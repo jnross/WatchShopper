@@ -1,0 +1,704 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */; };
+		3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB44185B6EA4003A160B /* ESChecklist.m */; };
+		3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB44185B6EA4003A160B /* ESChecklist.m */; };
+		3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */; };
+		3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */; };
+		3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */; };
+		3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */; };
+		3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
+		3B6D31CA1843100100E9A6AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C91843100100E9A6AB /* CoreGraphics.framework */; };
+		3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31CB1843100100E9A6AB /* UIKit.framework */; };
+		3B6D31D21843100100E9A6AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31D01843100100E9A6AB /* InfoPlist.strings */; };
+		3B6D31D41843100100E9A6AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31D31843100100E9A6AB /* main.m */; };
+		3B6D31DB1843100100E9A6AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31D91843100100E9A6AB /* Main.storyboard */; };
+		3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31DF1843100100E9A6AB /* Images.xcassets */; };
+		3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31E61843100100E9A6AB /* XCTest.framework */; };
+		3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
+		3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31CB1843100100E9A6AB /* UIKit.framework */; };
+		3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31EF1843100100E9A6AB /* InfoPlist.strings */; };
+		3B6D31F31843100100E9A6AB /* PebbleShopperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */; };
+		3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */; };
+		3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */; };
+		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
+		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
+		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
+		3B6D32291843247800E9A6AB /* libevernote-sdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */; };
+		3BCED9681845D614005F0560 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
+		3BCED96B1845D64B005F0560 /* libevernote-sdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */; };
+		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
+		3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
+		3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
+		3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
+		3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
+		3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
+		3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
+		3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */; };
+		3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */; };
+		3BF2E8E91855254B006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
+		3BF2E8EA18552567006CB2B3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */; };
+		3BF2E8EB18552567006CB2B3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */; };
+		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
+		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
+		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D31BC1843100100E9A6AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B6D31C31843100100E9A6AB;
+			remoteInfo = PebbleShopper;
+		};
+		3B6D32061843128B00E9A6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0BB3D1AD1524ED96001C4534;
+			remoteInfo = "evernote-sdk-ios";
+		};
+		3B6D32081843128B00E9A6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0BB3D26E1524EF37001C4534;
+			remoteInfo = SampleApp;
+		};
+		3B6D320A1843128B00E9A6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0BDBBC431550A11A003E6681;
+			remoteInfo = UnitTests;
+		};
+		3B6D3210184312CD00E9A6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BB3D1AC1524ED96001C4534;
+			remoteInfo = "evernote-sdk-ios";
+		};
+		3BCED9691845D645005F0560 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BB3D1AC1524ED96001C4534;
+			remoteInfo = "evernote-sdk-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistItemsViewController.h; path = Classes/ESChecklistItemsViewController.h; sourceTree = "<group>"; };
+		3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistItemsViewController.m; path = Classes/ESChecklistItemsViewController.m; sourceTree = "<group>"; };
+		3B4ECB43185B6EA4003A160B /* ESChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklist.h; path = Classes/ESChecklist.h; sourceTree = "<group>"; };
+		3B4ECB44185B6EA4003A160B /* ESChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklist.m; path = Classes/ESChecklist.m; sourceTree = "<group>"; };
+		3B4ECB45185B6EA4003A160B /* ESChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistItem.h; path = Classes/ESChecklistItem.h; sourceTree = "<group>"; };
+		3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistItem.m; path = Classes/ESChecklistItem.m; sourceTree = "<group>"; };
+		3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESAppDelegate.h; path = Classes/ESAppDelegate.h; sourceTree = "<group>"; };
+		3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESAppDelegate.m; path = Classes/ESAppDelegate.m; sourceTree = "<group>"; };
+		3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistsViewController.h; path = Classes/ESChecklistsViewController.h; sourceTree = "<group>"; };
+		3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistsViewController.m; path = Classes/ESChecklistsViewController.m; sourceTree = "<group>"; };
+		3B6D31C41843100100E9A6AB /* PebbleShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PebbleShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6D31C71843100100E9A6AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3B6D31C91843100100E9A6AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3B6D31CB1843100100E9A6AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3B6D31CF1843100100E9A6AB /* PebbleShopper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PebbleShopper-Info.plist"; sourceTree = "<group>"; };
+		3B6D31D11843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B6D31D31843100100E9A6AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B6D31D51843100100E9A6AB /* PebbleShopper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PebbleShopper-Prefix.pch"; sourceTree = "<group>"; };
+		3B6D31DA1843100100E9A6AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B6D31DF1843100100E9A6AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PebbleShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6D31E61843100100E9A6AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3B6D31EE1843100100E9A6AB /* PebbleShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PebbleShopperTests-Info.plist"; sourceTree = "<group>"; };
+		3B6D31F01843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleShopperTests.m; sourceTree = "<group>"; };
+		3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESEvernoteSynchronizer.h; path = Classes/ESEvernoteSynchronizer.h; sourceTree = "<group>"; };
+		3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESEvernoteSynchronizer.m; path = Classes/ESEvernoteSynchronizer.m; sourceTree = "<group>"; };
+		3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "evernote-sdk-ios.xcodeproj"; path = "../evernote-sdk-ios/evernote-sdk-ios.xcodeproj"; sourceTree = "<group>"; };
+		3B6D321418431F4000E9A6AB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3B6D321618431F4000E9A6AB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3B6D321718431F4000E9A6AB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3B6D321C18431F5B00E9A6AB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3BCED9671845D614005F0560 /* ESChecklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistTest.m; sourceTree = "<group>"; };
+		3BCED96C1845D709005F0560 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = PebbleShopper/lib/PebbleKit.framework; sourceTree = "<group>"; };
+		3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = PebbleShopper/lib/PebbleVendor.framework; sourceTree = "<group>"; };
+		3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESWatchManager.h; path = Classes/ESWatchManager.h; sourceTree = "<group>"; };
+		3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESWatchManager.m; path = Classes/ESWatchManager.m; sourceTree = "<group>"; };
+		3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B6D31C11843100100E9A6AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */,
+				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
+				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
+				3BF2E8EA18552567006CB2B3 /* CoreBluetooth.framework in Frameworks */,
+				3BF2E8EB18552567006CB2B3 /* CoreMotion.framework in Frameworks */,
+				3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */,
+				3B6D32291843247800E9A6AB /* libevernote-sdk-ios.a in Frameworks */,
+				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
+				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
+				3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */,
+				3B6D31CA1843100100E9A6AB /* CoreGraphics.framework in Frameworks */,
+				3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
+				3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
+				3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */,
+				3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6D31E21843100100E9A6AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BF2E8E91855254B006CB2B3 /* ExternalAccessory.framework in Frameworks */,
+				3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */,
+				3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */,
+				3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
+				3BCED96B1845D64B005F0560 /* libevernote-sdk-ios.a in Frameworks */,
+				3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */,
+				3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */,
+				3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
+				3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B6D31BB1843100100E9A6AB = {
+			isa = PBXGroup;
+			children = (
+				3BF2E8D118538C78006CB2B3 /* README.md */,
+				3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */,
+				3B6D31CD1843100100E9A6AB /* PebbleShopper */,
+				3B6D31EC1843100100E9A6AB /* PebbleShopperTests */,
+				3B6D31C61843100100E9A6AB /* Frameworks */,
+				3B6D31C51843100100E9A6AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B6D31C51843100100E9A6AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31C41843100100E9A6AB /* PebbleShopper.app */,
+				3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B6D31C61843100100E9A6AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */,
+				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
+				3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */,
+				3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */,
+				3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */,
+				3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */,
+				3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */,
+				3BCED96C1845D709005F0560 /* SenTestingKit.framework */,
+				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
+				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
+				3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */,
+				3B6D321618431F4000E9A6AB /* Security.framework */,
+				3B6D321718431F4000E9A6AB /* StoreKit.framework */,
+				3B6D31C71843100100E9A6AB /* Foundation.framework */,
+				3B6D31C91843100100E9A6AB /* CoreGraphics.framework */,
+				3B6D31CB1843100100E9A6AB /* UIKit.framework */,
+				3B6D31E61843100100E9A6AB /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B6D31CD1843100100E9A6AB /* PebbleShopper */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31FF1843119A00E9A6AB /* Evernote */,
+				3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */,
+				3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */,
+				3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */,
+				3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */,
+				3B6D31D91843100100E9A6AB /* Main.storyboard */,
+				3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */,
+				3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */,
+				3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */,
+				3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */,
+				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
+				3B6D31CE1843100100E9A6AB /* Supporting Files */,
+			);
+			path = PebbleShopper;
+			sourceTree = "<group>";
+		};
+		3B6D31CE1843100100E9A6AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31CF1843100100E9A6AB /* PebbleShopper-Info.plist */,
+				3B6D31D01843100100E9A6AB /* InfoPlist.strings */,
+				3B6D31D31843100100E9A6AB /* main.m */,
+				3B6D31D51843100100E9A6AB /* PebbleShopper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B6D31EC1843100100E9A6AB /* PebbleShopperTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */,
+				3B6D31ED1843100100E9A6AB /* Supporting Files */,
+				3BCED9671845D614005F0560 /* ESChecklistTest.m */,
+			);
+			path = PebbleShopperTests;
+			sourceTree = "<group>";
+		};
+		3B6D31ED1843100100E9A6AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31EE1843100100E9A6AB /* PebbleShopperTests-Info.plist */,
+				3B6D31EF1843100100E9A6AB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B6D31FF1843119A00E9A6AB /* Evernote */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */,
+				3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */,
+				3B4ECB43185B6EA4003A160B /* ESChecklist.h */,
+				3B4ECB44185B6EA4003A160B /* ESChecklist.m */,
+				3B4ECB45185B6EA4003A160B /* ESChecklistItem.h */,
+				3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */,
+			);
+			name = Evernote;
+			sourceTree = "<group>";
+		};
+		3B6D32011843128B00E9A6AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */,
+				3B6D32091843128B00E9A6AB /* SampleApp.app */,
+				3B6D320B1843128B00E9A6AB /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B6D31C31843100100E9A6AB /* PebbleShopper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopper" */;
+			buildPhases = (
+				3B6D31C01843100100E9A6AB /* Sources */,
+				3B6D31C11843100100E9A6AB /* Frameworks */,
+				3B6D31C21843100100E9A6AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B6D3211184312CD00E9A6AB /* PBXTargetDependency */,
+			);
+			name = PebbleShopper;
+			productName = PebbleShopper;
+			productReference = 3B6D31C41843100100E9A6AB /* PebbleShopper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B6D31E41843100100E9A6AB /* PebbleShopperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopperTests" */;
+			buildPhases = (
+				3B6D31E11843100100E9A6AB /* Sources */,
+				3B6D31E21843100100E9A6AB /* Frameworks */,
+				3B6D31E31843100100E9A6AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BCED96A1845D645005F0560 /* PBXTargetDependency */,
+				3B6D31EB1843100100E9A6AB /* PBXTargetDependency */,
+			);
+			name = PebbleShopperTests;
+			productName = PebbleShopperTests;
+			productReference = 3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B6D31BC1843100100E9A6AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ES;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Easy Street 3";
+				TargetAttributes = {
+					3B6D31C31843100100E9A6AB = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					3B6D31E41843100100E9A6AB = {
+						TestTargetID = 3B6D31C31843100100E9A6AB;
+					};
+				};
+			};
+			buildConfigurationList = 3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "PebbleShopper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B6D31BB1843100100E9A6AB;
+			productRefGroup = 3B6D31C51843100100E9A6AB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3B6D32011843128B00E9A6AB /* Products */;
+					ProjectRef = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				3B6D31C31843100100E9A6AB /* PebbleShopper */,
+				3B6D31E41843100100E9A6AB /* PebbleShopperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libevernote-sdk-ios.a";
+			remoteRef = 3B6D32061843128B00E9A6AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3B6D32091843128B00E9A6AB /* SampleApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SampleApp.app;
+			remoteRef = 3B6D32081843128B00E9A6AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3B6D320B1843128B00E9A6AB /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 3B6D320A1843128B00E9A6AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B6D31C21843100100E9A6AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */,
+				3B6D31D21843100100E9A6AB /* InfoPlist.strings in Resources */,
+				3BF2E8D218538C78006CB2B3 /* README.md in Resources */,
+				3B6D31DB1843100100E9A6AB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6D31E31843100100E9A6AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B6D31C01843100100E9A6AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */,
+				3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */,
+				3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */,
+				3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */,
+				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
+				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
+				3B6D31D41843100100E9A6AB /* main.m in Sources */,
+				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6D31E11843100100E9A6AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */,
+				3B6D31F31843100100E9A6AB /* PebbleShopperTests.m in Sources */,
+				3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */,
+				3BCED9681845D614005F0560 /* ESChecklistTest.m in Sources */,
+				3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B6D31EB1843100100E9A6AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B6D31C31843100100E9A6AB /* PebbleShopper */;
+			targetProxy = 3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */;
+		};
+		3B6D3211184312CD00E9A6AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "evernote-sdk-ios";
+			targetProxy = 3B6D3210184312CD00E9A6AB /* PBXContainerItemProxy */;
+		};
+		3BCED96A1845D645005F0560 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "evernote-sdk-ios";
+			targetProxy = 3BCED9691845D645005F0560 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B6D31D01843100100E9A6AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B6D31D11843100100E9A6AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3B6D31D91843100100E9A6AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B6D31DA1843100100E9A6AB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B6D31EF1843100100E9A6AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B6D31F01843100100E9A6AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B6D31F41843100100E9A6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3B6D31F51843100100E9A6AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B6D31F71843100100E9A6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PebbleShopper/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
+				INFOPLIST_FILE = "PebbleShopper/PebbleShopper-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3B6D31F81843100100E9A6AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PebbleShopper/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
+				INFOPLIST_FILE = "PebbleShopper/PebbleShopper-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3B6D31FA1843100100E9A6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PebbleShopper.app/PebbleShopper";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/PebbleShopper/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PebbleShopperTests/PebbleShopperTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3B6D31FB1843100100E9A6AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PebbleShopper.app/PebbleShopper";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/PebbleShopper/lib",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
+				INFOPLIST_FILE = "PebbleShopperTests/PebbleShopperTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "PebbleShopper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B6D31F41843100100E9A6AB /* Debug */,
+				3B6D31F51843100100E9A6AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B6D31F71843100100E9A6AB /* Debug */,
+				3B6D31F81843100100E9A6AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B6D31FA1843100100E9A6AB /* Debug */,
+				3B6D31FB1843100100E9A6AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B6D31BC1843100100E9A6AB /* Project object */;
+}
