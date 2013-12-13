@@ -1,0 +1,23 @@
+{
+  "uuid": "9ebb1e22-0c72-494e-b5cf-54099e4842e3",
+  "shortName": "PebbleShopper",
+  "longName": "PebbleShopper",
+  "companyName": "Easy Street 3",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "type": "png",
+        "name": "IMAGE_CHECK",
+        "file": "images/check.png"
+      }
+    ]
+  }
+}
