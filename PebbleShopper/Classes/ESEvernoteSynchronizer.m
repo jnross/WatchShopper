@@ -55,9 +55,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
             // show an alert, etc
             // ...
         } else {
-            // authentication succeeded :)
-            // do something now that we're authenticated
-            // ... 
+            [self getPebbleNotes];
         } 
     }];
 }
@@ -67,6 +65,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)getPebbleNotes {
+    [self.mutableChecklists removeAllObjects];
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
     [noteStore listNotebooksWithSuccess:^(NSArray *notebooks) {
         for (EDAMNotebook *notebook in notebooks) {
@@ -109,6 +108,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                 NSLog(@"Note content: %@ %@", content, note);
                 loadedNotes++;
                 if (loadedNotes >= notesToLoad) {
+                    [self sortChecklistsRecent];
                     [self.delegate synchronizerUpdatedChecklists:self];
                 }
             } failure:^(NSError *error) {
@@ -125,15 +125,10 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     return self.mutableChecklists;
 }
 
-    //EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:[[EvernoteSession sharedSession] ] tagGuids:<#(NSMutableArray *)#> timeZone:<#(NSString *)#> inactive:<#(BOOL)#> emphasized:<#(NSString *)#>]
-    //EDAMSavedSearch * search = [[EDAMSavedSearch alloc] initWithGuid:nil name:@"pebbled-tagged" query:<#(NSString *)#> format:<#(int)#> updateSequenceNum:<#(int32_t)#> scope:<#(EDAMSavedSearchScope *)#>]
-    //[noteStore createSearch:search success:<#^(EDAMSavedSearch *search)success#> failure:<#^(NSError *error)failure#>]
-//    [noteStore listTagsByNotebookWithGuid:[noteStore listno]
-//                                  success:^(NSArray *tags) {
-//                                      NSLog(@"tags");
-//                                  }
-//                                  failure:^(NSError *error) {
-//                                      NSLog(@"Failed to get tags.");
-//                                  }];
+- (void)sortChecklistsRecent {
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastUpdatedDate" ascending:NO];
+    [self.mutableChecklists sortUsingDescriptors:@[sortDescriptor]];
+}
+
 
 @end

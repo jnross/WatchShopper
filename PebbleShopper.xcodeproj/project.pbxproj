@@ -49,6 +49,7 @@
 		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
 		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
+		EE387604185D8477003E6A22 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 		3B6D31CD1843100100E9A6AB /* PebbleShopper */ = {
 			isa = PBXGroup;
 			children = (
+				EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */,
+				EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */,
 				3B6D31FF1843119A00E9A6AB /* Evernote */,
 				3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */,
 				3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */,
@@ -448,6 +453,7 @@
 				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
 				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
 				3B6D31D41843100100E9A6AB /* main.m in Sources */,
+				EE387604185D8477003E6A22 /* TTTTimeIntervalFormatter.m in Sources */,
 				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 #import "ESChecklist.h"
+#import "NSDate+EDAMAdditions.h"
 
 @interface ESChecklist () <NSXMLParserDelegate>
 
@@ -26,6 +27,7 @@
 - (id)initWithNote:(EDAMNote *)note {
     self = [super init];
     self.name = note.title;
+    self.lastUpdatedDate = [NSDate endateFromEDAMTimestamp:note.updated];
     self.guid = note.guid;
     self.items = [NSMutableArray arrayWithCapacity:10];
     NSString *content = note.content;
