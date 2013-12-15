@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Checklists View Controller - Checklists-->
+        <!--Checklists View Controller - Lists-->
         <scene sceneID="yr1-Yv-x20">
             <objects>
                 <tableViewController id="HMM-cX-2fG" customClass="ESChecklistsViewController" sceneMemberID="viewController">
@@ -23,13 +23,14 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" id="CuZ-C7-fQi"/>
+                    <navigationItem key="navigationItem" title="Lists" id="CuZ-C7-fQi"/>
                     <connections>
                         <segue destination="SCX-n1-W1n" kind="push" identifier="push" id="nD6-12-1XQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XkX-9c-ntj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="546" y="118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BLX-j6-GU4">
@@ -44,6 +45,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBp-Qd-uJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="115" y="118"/>
         </scene>
         <!--Checklist Items View Controller-->
         <scene sceneID="WLq-3D-5xL">
@@ -72,7 +74,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HYP-pL-hXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="524"/>
+            <point key="canvasLocation" x="966" y="118"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
