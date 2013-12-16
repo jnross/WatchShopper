@@ -29,5 +29,6 @@
 - (BOOL)isAlreadyAutheticated;
 - (void)getPebbleNotes;
 - (NSArray*)checklists;
+- (void)saveNote:(EDAMNote *)note;
 
 @end
