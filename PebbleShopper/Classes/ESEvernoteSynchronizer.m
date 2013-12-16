@@ -64,6 +64,16 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     return [[EvernoteSession sharedSession] authenticationToken] != nil;
 }
 
+- (void)saveNote:(EDAMNote *)note {
+    [[EvernoteNoteStore noteStore] updateNote:note
+                                      success:^(EDAMNote *note) {
+                                          
+                                      }
+                                      failure:^(NSError *error) {
+                                          NSLog(@"Failed to update note: %@", error);
+                                      }];
+}
+
 - (void)getPebbleNotes {
     [self.mutableChecklists removeAllObjects];
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];

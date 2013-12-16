@@ -23,12 +23,14 @@
 
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *guid;
+@property(nonatomic,strong) EDAMNote *note;
 @property(nonatomic,strong) NSDate *lastUpdatedDate;
 @property(nonatomic,strong) NSMutableArray *items;
 @property(nonatomic,weak) NSObject<ESChecklistObserver> *observer;
 
 - (id)initWithName:(NSString *)name guid:(NSString *)guid;
 - (id)initWithNote:(EDAMNote *)note;
+- (void)saveToEvernote;
 - (NSArray *)pebbleDataUpdates;
 
 @end

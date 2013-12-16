@@ -8,6 +8,7 @@
 
 #import "ESChecklist.h"
 #import "NSDate+EDAMAdditions.h"
+#import "ESEvernoteSynchronizer.h"
 
 @interface ESChecklist () <NSXMLParserDelegate>
 
@@ -26,6 +27,7 @@
 
 - (id)initWithNote:(EDAMNote *)note {
     self = [super init];
+    self.note = note;
     self.name = note.title;
     self.lastUpdatedDate = [NSDate endateFromEDAMTimestamp:note.updated];
     self.guid = note.guid;
@@ -68,6 +70,22 @@
     }
     
     return updates;
+}
+
+- (void)saveToEvernote {
+    NSMutableString *content = [NSMutableString stringWithString:@"<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\"><en-note><div>"];
+    for (ESChecklistItem *item in self.items) {
+        if (item.isChecked) {
+            [content appendFormat:@"<div><span style=\"text-decoration: line-through;\">%@</span></div>", item.name];
+        } else {
+            [content appendFormat:@"<div>%@</div>", item.name];
+        }
+        
+    }
+    
+    [content appendString:@"</div></en-note>"];
+    self.note.content = content;
+    [EVERNOTE saveNote:self.note];
 }
 
 #pragma mark - NSXMLParserDelegate implementation
