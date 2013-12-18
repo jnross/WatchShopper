@@ -57,15 +57,6 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
     CheckListItem *item = checklist_items[cell_index->row];
     char* item_name = item->name;
 
-
-    // GBitmap *img = NULL;
-    // if (item->isChecked) {
-    //   if (img_check == NULL) {
-    //     img_check = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CHECK);
-    //   }
-    //   img = img_check;
-    // }
-    //menu_cell_basic_draw(ctx, cell_layer, itemName, NULL, img);
     GFont font = fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
     GRect rect = (GRect){ .origin = GPointZero, .size = layer_get_frame(cell_layer).size };
     rect.origin.x += 2;
@@ -83,8 +74,6 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
       graphics_fill_rect(ctx, line_rect, 0, GCornerNone);
     }
 
-    // GRect frame = layer_get_frame(cell_layer);
-    // APP_LOG(APP_LOG_LEVEL_DEBUG, "cell layer rect (%d, %d, %d, %d)", frame.origin.x, frame.origin.y, frame.size.w, frame.size.h);
     return;
   }
 }
@@ -163,8 +152,10 @@ void app_message_inbox_dropped(AppMessageResult reason, void *context) {
 
 void parse_checklist_continuation(uint8_t *bytes, uint16_t length) {
   uint8_t current_index = 0;
+  uint8_t last_item_index = 0;
   for (int i = 0; i < checklist_item_count; i++ ){
     int item_id = bytes[current_index++];
+    last_item_index = item_id;
     CheckListItem *item = malloc(sizeof(CheckListItem));
     checklist_items[item_id] = item;
     item->item_id = item_id;
@@ -182,7 +173,10 @@ void parse_checklist_continuation(uint8_t *bytes, uint16_t length) {
     }
   }
 
-  menu_layer_reload_data(menu_layer);
+  if (last_item_index == checklist_item_count - 1) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
+    menu_layer_reload_data(menu_layer);
+  }
 }
 
 void parse_checklist_start(uint8_t *bytes, uint16_t length) {
