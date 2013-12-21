@@ -13,6 +13,4 @@
 
 @property(nonatomic,strong) ESChecklist *checklist;
 
-- (id)initWithChecklist:(ESChecklist *)checklist;
-
 @end
