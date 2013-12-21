@@ -1,1 +1,6 @@
 xcuserdata
+PebbleShopper/lib/PebbleKit.framework/Headers
+PebbleShopper/lib/PebbleKit.framework/Versions/Current
+PebbleShopper/lib/PebbleVendor.framework/Headers
+PebbleShopper/lib/PebbleVendor.framework/Versions/Current
+.lock-waf_darwin_build
