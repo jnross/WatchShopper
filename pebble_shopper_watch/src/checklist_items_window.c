@@ -16,6 +16,7 @@ static char *checklist_name;
 static CheckListItem **checklist_items;
 static uint8_t checklist_item_count;
 
+static void discard_checklist_items();
 
 void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
   uint8_t current_index = 0;
@@ -29,7 +30,9 @@ void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
     char *name = (char *)&bytes[current_index];
     int name_length = strlen(name);
     char *item_name = malloc(name_length + 1);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "malloc %p", item_name);
     strncpy(item_name, name, name_length);
+    //APP_LOG(APP_LOG_LEVEL_DEBUG, "Item %s", item_name);
     current_index += name_length + 1;
     item->name = item_name;
     int flags = bytes[current_index++];
@@ -48,6 +51,7 @@ void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
 }
 
 void parse_list_items_start(uint8_t *bytes, uint16_t length) {
+  discard_checklist_items();
   uint8_t current_index = 0;
   checklist_id = bytes[current_index++];
   char *name = (char *)&bytes[current_index];
@@ -151,6 +155,7 @@ void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *da
 }
 
 static void discard_checklist_items() {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "discard_checklist_items");
 	if (checklist_name != NULL) {
 		free(checklist_name);
 		checklist_name = NULL;
@@ -159,6 +164,9 @@ static void discard_checklist_items() {
 		for (int i = 0; i < checklist_item_count; i++) {
 			CheckListItem *item = checklist_items[i];
 			if (item != NULL) {
+    			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item->name);
+				free(item->name);
+    			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item);
 				free(item);
 				checklist_items[i] = NULL;
 			}
@@ -203,7 +211,8 @@ static void checklist_items_window_load(Window *window) {
 }
 
 static void checklist_items_window_unload(Window *window) {
-	menu_layer_destroy(items_menu);
+	discard_checklist_items();
+  	menu_layer_destroy(items_menu);
 }
 
 Window *create_checklist_items_window() {
