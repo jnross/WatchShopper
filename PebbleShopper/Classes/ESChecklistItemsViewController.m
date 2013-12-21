@@ -15,13 +15,21 @@
 
 @implementation ESChecklistItemsViewController
 
-- (id)initWithChecklist:(ESChecklist *)checklist
-{
-    self = [super initWithStyle:UITableViewStylePlain];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        self.checklist = checklist;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
 }
 
 - (void)viewDidLoad
@@ -91,6 +99,12 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.checklist saveToEvernote];
+}
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    if (self.isViewLoaded && self.view.window) {
+        [[ESWatchManager sharedManager] launchWatchAppWithChecklist:self.checklist];
+    }
 }
 
 /*
