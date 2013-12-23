@@ -28,11 +28,11 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
   Tuple *tuple = dict_read_first(iterator);
 
   if (tuple->key == CMD_LIST_ITEMS_START) {
-    parse_list_items_start(tuple->value->data, tuple->length);
+    parse_checklist_items_start(tuple->value->data, tuple->length);
   } else if (tuple->key == CMD_LIST_ITEM_UPDATE) {
     parse_item_update(tuple->value->data);
   } else if (tuple->key == CMD_LIST_ITEMS_CONTINUATION) {
-    parse_list_items_continuation(tuple->value->data, tuple->length);
+    parse_checklist_items_continuation(tuple->value->data, tuple->length);
   }
   
 
