@@ -5,27 +5,34 @@ typedef struct {
   uint8_t item_id;
   char *name;
   bool isChecked;
-} CheckListItem;
+} ListItem;
+
+typedef struct {
+  uint8_t list_id;
+  char *name;
+  ListItem **items;
+  uint8_t count;
+} List;
 
 static MenuLayer *items_menu;
 
 #define NUM_MENU_SECTIONS 1
 
-static uint8_t checklist_id;
-static char *checklist_name;
-static CheckListItem **checklist_items;
-static uint8_t checklist_item_count;
+static List *checklist;
 
-static void discard_checklist_items();
+static void discard_checklist();
+
+void list_destroy(List *list);
+List* list_create();
 
 void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
   uint8_t current_index = 0;
   uint8_t last_item_index = 0;
-  for (int i = 0; i < checklist_item_count; i++ ){
+  for (int i = 0; i < checklist->count; i++ ){
     int item_id = bytes[current_index++];
     last_item_index = item_id;
-    CheckListItem *item = malloc(sizeof(CheckListItem));
-    checklist_items[item_id] = item;
+    ListItem *item = malloc(sizeof(ListItem));
+    checklist->items[item_id] = item;
     item->item_id = item_id;
     char *name = (char *)&bytes[current_index];
     int name_length = strlen(name);
@@ -44,24 +51,32 @@ void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
   }
 
   // Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
-  if (last_item_index == checklist_item_count - 1) {
+  if (last_item_index == checklist->count - 1) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
     menu_layer_reload_data(items_menu);
   }
 }
 
+List *list_create() {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "list_create");
+	List* list = malloc(sizeof(List));
+	memset(list, 0, sizeof(List));
+	return list;
+}
+
 void parse_list_items_start(uint8_t *bytes, uint16_t length) {
-  discard_checklist_items();
+  discard_checklist();
+  checklist = list_create();
   uint8_t current_index = 0;
-  checklist_id = bytes[current_index++];
+  checklist->list_id = bytes[current_index++];
   char *name = (char *)&bytes[current_index];
   int namelength = strlen(name);
-  checklist_name = malloc(namelength + 1);
-  strncpy(checklist_name, name, namelength);
+  checklist->name = malloc(namelength + 1);
+  strncpy(checklist->name, name, namelength);
   current_index += namelength + 1;
-  checklist_item_count = bytes[current_index++];
-  checklist_items = malloc(checklist_item_count * sizeof(CheckListItem*));
-  memset(checklist_items, 0, checklist_item_count * sizeof(CheckListItem*));
+  checklist->count = bytes[current_index++];
+  checklist->items = malloc(checklist->count * sizeof(ListItem*));
+  memset(checklist->items, 0, checklist->count * sizeof(ListItem*));
 
   parse_list_items_continuation(bytes + current_index, length - current_index);
 }
@@ -69,7 +84,7 @@ void parse_list_items_start(uint8_t *bytes, uint16_t length) {
 void parse_item_update(uint8_t *bytes) {
   uint8_t item_id = bytes[1];
   uint8_t flags = bytes[2];
-  CheckListItem *item = checklist_items[item_id];
+  ListItem *item = checklist->items[item_id];
   item->isChecked = flags & 0x01;
 
   menu_layer_reload_data(items_menu);
@@ -98,7 +113,11 @@ static uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data
 // Each section has a number of items;  we use a callback to specify this
 // You can also dynamically add and remove items using this
 static uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-  return checklist_item_count;
+	if (checklist == NULL) {
+		return 0;
+	} else {
+  		return checklist->count;
+	}
 }
 
 // A callback is used to specify the height of the section header
@@ -115,13 +134,13 @@ static int16_t menu_get_cell_height_callback(MenuLayer *menu_layer, MenuIndex *c
 
 // Here we draw what each header is
 static void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
-  menu_cell_basic_header_draw(ctx, cell_layer, checklist_name);
+  menu_cell_basic_header_draw(ctx, cell_layer, checklist->name);
 }
 
 // This is the menu item draw callback where you specify what each item should look like
 static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-  if (cell_index->row < checklist_item_count) {
-    CheckListItem *item = checklist_items[cell_index->row];
+  if (cell_index->row < checklist->count) {
+    ListItem *item = checklist->items[cell_index->row];
     char* item_name = item->name;
 
     GFont font = fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
@@ -147,40 +166,46 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
 
 // Here we capture when a user selects a menu item
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-  CheckListItem *item = checklist_items[cell_index->row];
+  ListItem *item = checklist->items[cell_index->row];
   item->isChecked = !(item->isChecked);
-  send_check_item(checklist_id, item->item_id, item->isChecked);
+  send_check_item(checklist->list_id, item->item_id, item->isChecked);
   menu_layer_reload_data(menu_layer);
 
 }
 
-static void discard_checklist_items() {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "discard_checklist_items");
-	if (checklist_name != NULL) {
-		free(checklist_name);
-		checklist_name = NULL;
+static void discard_checklist() {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "discard_checklist");
+    if (checklist != NULL) {
+    	list_destroy(checklist);
+    	checklist = NULL;
 	}
-	if (checklist_items != NULL) {
-		for (int i = 0; i < checklist_item_count; i++) {
-			CheckListItem *item = checklist_items[i];
+}
+
+void list_destroy(List *list) {
+	if (list->name != NULL) {
+		free(list->name);
+		list->name = NULL;
+	}
+	if (list->items != NULL) {
+		for (int i = 0; i < list->count; i++) {
+			ListItem *item = list->items[i];
 			if (item != NULL) {
     			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item->name);
 				free(item->name);
     			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item);
 				free(item);
-				checklist_items[i] = NULL;
+				list->items[i] = NULL;
 			}
 		}
-		free(checklist_items);
-		checklist_items = NULL;
-		checklist_item_count = 0;
+		free(list->items);
+		list->items = NULL;
+		list->count = 0;
 	}
+	free(list);
 }
 
 static void checklist_items_window_load(Window *window) {
-  checklist_items = NULL;
-  checklist_item_count = 0;
-  checklist_name = NULL;
+  checklist = NULL;
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
   bounds.origin = GPointZero;
@@ -211,7 +236,7 @@ static void checklist_items_window_load(Window *window) {
 }
 
 static void checklist_items_window_unload(Window *window) {
-	discard_checklist_items();
+	discard_checklist();
   	menu_layer_destroy(items_menu);
 }
 
