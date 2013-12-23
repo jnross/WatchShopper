@@ -1,19 +1,6 @@
 
 #include "checklist_items_window.h"
 
-typedef struct {
-  uint8_t item_id;
-  char *name;
-  bool isChecked;
-} ListItem;
-
-typedef struct {
-  uint8_t list_id;
-  char *name;
-  ListItem **items;
-  uint8_t count;
-} List;
-
 static MenuLayer *items_menu;
 
 #define NUM_MENU_SECTIONS 1
@@ -22,63 +9,24 @@ static List *checklist;
 
 static void discard_checklist();
 
-void list_destroy(List *list);
-List* list_create();
-
-void parse_list_items_continuation(uint8_t *bytes, uint16_t length) {
-  uint8_t current_index = 0;
-  uint8_t last_item_index = 0;
-  for (int i = 0; i < checklist->count; i++ ){
-    int item_id = bytes[current_index++];
-    last_item_index = item_id;
-    ListItem *item = malloc(sizeof(ListItem));
-    checklist->items[item_id] = item;
-    item->item_id = item_id;
-    char *name = (char *)&bytes[current_index];
-    int name_length = strlen(name);
-    char *item_name = malloc(name_length + 1);
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "malloc %p", item_name);
-    strncpy(item_name, name, name_length);
-    //APP_LOG(APP_LOG_LEVEL_DEBUG, "Item %s", item_name);
-    current_index += name_length + 1;
-    item->name = item_name;
-    int flags = bytes[current_index++];
-    item->isChecked = (flags & 0x01) > 0;
-
-    if (current_index == length) {
-      break;
-    }
-  }
-
-  // Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
-  if (last_item_index == checklist->count - 1) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
-    menu_layer_reload_data(items_menu);
-  }
+void reload_if_necessary() {
+ 	// Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "expected: %d, current: %d", checklist->expected_count, checklist->count);
+ 	if (checklist->count == checklist->expected_count) {
+    	APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
+    	menu_layer_reload_data(items_menu);
+ 	}
 }
 
-List *list_create() {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "list_create");
-	List* list = malloc(sizeof(List));
-	memset(list, 0, sizeof(List));
-	return list;
+void parse_checklist_items_continuation(uint8_t *bytes, uint16_t length) {
+	parse_list_items_continuation(checklist, bytes, length);
+	reload_if_necessary();
 }
 
-void parse_list_items_start(uint8_t *bytes, uint16_t length) {
-  discard_checklist();
-  checklist = list_create();
-  uint8_t current_index = 0;
-  checklist->list_id = bytes[current_index++];
-  char *name = (char *)&bytes[current_index];
-  int namelength = strlen(name);
-  checklist->name = malloc(namelength + 1);
-  strncpy(checklist->name, name, namelength);
-  current_index += namelength + 1;
-  checklist->count = bytes[current_index++];
-  checklist->items = malloc(checklist->count * sizeof(ListItem*));
-  memset(checklist->items, 0, checklist->count * sizeof(ListItem*));
-
-  parse_list_items_continuation(bytes + current_index, length - current_index);
+void parse_checklist_items_start(uint8_t *bytes, uint16_t length) {
+	discard_checklist();
+	checklist = parse_list_items_start(bytes, length);
+	reload_if_necessary();
 }
 
 void parse_item_update(uint8_t *bytes) {
@@ -89,7 +37,6 @@ void parse_item_update(uint8_t *bytes) {
 
   menu_layer_reload_data(items_menu);
 }
-
 
 static void send_check_item(uint8_t list_id, uint8_t item_id, uint8_t flags) {
   uint8_t buf[3];
@@ -179,29 +126,6 @@ static void discard_checklist() {
     	list_destroy(checklist);
     	checklist = NULL;
 	}
-}
-
-void list_destroy(List *list) {
-	if (list->name != NULL) {
-		free(list->name);
-		list->name = NULL;
-	}
-	if (list->items != NULL) {
-		for (int i = 0; i < list->count; i++) {
-			ListItem *item = list->items[i];
-			if (item != NULL) {
-    			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item->name);
-				free(item->name);
-    			APP_LOG(APP_LOG_LEVEL_DEBUG, "free  %p", item);
-				free(item);
-				list->items[i] = NULL;
-			}
-		}
-		free(list->items);
-		list->items = NULL;
-		list->count = 0;
-	}
-	free(list);
 }
 
 static void checklist_items_window_load(Window *window) {
