@@ -1,5 +1,5 @@
 
-#include "checklist_items_window.h"
+#include "items_window.h"
 
 static MenuLayer *items_menu;
 
@@ -128,7 +128,7 @@ static void discard_checklist() {
 	}
 }
 
-static void checklist_items_window_load(Window *window) {
+static void items_window_load(Window *window) {
   checklist = NULL;
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
@@ -159,16 +159,16 @@ static void checklist_items_window_load(Window *window) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Added menu %p to window", items_menu);
 }
 
-static void checklist_items_window_unload(Window *window) {
+static void items_window_unload(Window *window) {
 	discard_checklist();
   	menu_layer_destroy(items_menu);
 }
 
-Window *create_checklist_items_window() {
+Window *create_items_window() {
 	Window *window = window_create();
 	window_set_window_handlers(window, (WindowHandlers) {
-    	.load = checklist_items_window_load,
-    	.unload = checklist_items_window_unload,
+    	.load = items_window_load,
+    	.unload = items_window_unload,
   	});
 	return window;
 }

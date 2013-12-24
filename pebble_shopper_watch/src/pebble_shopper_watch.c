@@ -1,6 +1,6 @@
 #include <pebble.h>
 
-#include "checklist_items_window.h"
+#include "items_window.h"
 
 static Window *window;
 
@@ -48,7 +48,7 @@ void app_message_outbox_sent(DictionaryIterator *iterator, void *context) {
 
 static void init(void) {
 
-  window = create_checklist_items_window();
+  window = create_items_window();
   const bool animated = true;
   window_stack_push(window, animated);
 
