@@ -1,6 +1,7 @@
 #include <pebble.h>
 
 #include "items_window.h"
+#include "checklists_window.h"
 
 static Window *window;
 
@@ -27,12 +28,16 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Received app message");
   Tuple *tuple = dict_read_first(iterator);
 
-  if (tuple->key == CMD_LIST_ITEMS_START) {
-    parse_checklist_items_start(tuple->value->data, tuple->length);
-  } else if (tuple->key == CMD_LIST_ITEM_UPDATE) {
+  if (tuple->key == CMD_LIST_ITEM_UPDATE) {
     parse_item_update(tuple->value->data);
+  } else if (tuple->key == CMD_LIST_ITEMS_START) {
+    parse_checklist_items_start(tuple->value->data, tuple->length);
   } else if (tuple->key == CMD_LIST_ITEMS_CONTINUATION) {
     parse_checklist_items_continuation(tuple->value->data, tuple->length);
+  } else if (tuple->key == CMD_CHECKLISTS_START) {
+    parse_checklists_start(tuple->value->data, tuple->length);
+  } else if (tuple->key == CMD_CHECKLISTS_CONTINUATION) {
+    parse_checklists_continuation(tuple->value->data, tuple->length);
   }
   
 
@@ -48,7 +53,7 @@ void app_message_outbox_sent(DictionaryIterator *iterator, void *context) {
 
 static void init(void) {
 
-  window = create_items_window();
+  window = create_checklists_window();
   const bool animated = true;
   window_stack_push(window, animated);
 

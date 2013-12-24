@@ -12,7 +12,16 @@
 
 #define APP_MESSAGE_SIZE_MAX 124
 
+@class ESWatchManager;
+@protocol ESWatchManagerObserver <NSObject>
+
+- (void)watchApp:(ESWatchManager*)watchApp selectedChecklistAtIndex:(NSInteger)selectedChecklistIndex;
+
+@end
+
 @interface ESWatchManager : NSObject
+
+@property(nonatomic,weak) NSObject<ESWatchManagerObserver> *observer;
 
 + (ESWatchManager *)sharedManager;
 
@@ -20,5 +29,7 @@
 - (void)sendChecklistToWatch:(ESChecklist *)checklist;
 - (void)sendChecklistItemUpdate:(ESChecklistItem *)item;
 - (void)launchWatchAppWithChecklist:(ESChecklist *)checklist;
+- (void)queueUpdate:(NSDictionary *)update;
+- (void)sendAllChecklists;
 
 @end
