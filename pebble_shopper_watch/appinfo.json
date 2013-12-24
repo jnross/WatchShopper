@@ -17,6 +17,12 @@
         "type": "png",
         "name": "IMAGE_CHECK",
         "file": "images/check.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_MENU",
+        "file": "images/menu.png",
+        "menuIcon":true
       }
     ]
   }
