@@ -2,6 +2,7 @@
 #include "items_window.h"
 
 static MenuLayer *items_menu;
+static Window *items_window;
 
 #define NUM_MENU_SECTIONS 1
 
@@ -24,6 +25,10 @@ void parse_checklist_items_continuation(uint8_t *bytes, uint16_t length) {
 }
 
 void parse_checklist_items_start(uint8_t *bytes, uint16_t length) {
+  if (items_window == NULL) {
+    items_window = create_items_window();
+    window_stack_push(items_window, true);
+  }
 	discard_checklist();
 	checklist = parse_list_items_start(bytes, length);
 	reload_if_necessary();
@@ -129,6 +134,7 @@ static void discard_checklist() {
 }
 
 static void items_window_load(Window *window) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "items_window_load");
   checklist = NULL;
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
@@ -155,13 +161,16 @@ static void items_window_load(Window *window) {
   layer_add_child(window_layer, menu_layer_get_layer(items_menu));
   menu_layer_reload_data(items_menu);
 
-
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Added menu %p to window", items_menu);
 }
 
 static void items_window_unload(Window *window) {
-	discard_checklist();
-  	menu_layer_destroy(items_menu);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "items_window_unload");
+  menu_layer_destroy(items_menu);
+  discard_checklist();
+  if (items_window != NULL) {
+    window_destroy(items_window);
+    items_window = NULL;
+  }
 }
 
 Window *create_items_window() {

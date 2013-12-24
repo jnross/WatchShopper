@@ -30,5 +30,6 @@
 - (void)getPebbleNotes;
 - (NSArray*)checklists;
 - (void)saveNote:(EDAMNote *)note;
+- (NSArray *)checklistDataUpdates;
 
 @end

@@ -9,6 +9,7 @@
 #import <PebbleKit/PebbleKit.h>
 
 #import "ESWatchManager.h"
+#import "ESEvernoteSynchronizer.h"
 
 #define PEBBLE_SHOPPER_APP_UUID_STRING @"9ebb1e22-0c72-494e-b5cf-54099e4842e3"
 
@@ -87,8 +88,20 @@ static ESWatchManager *singletonInstance = nil;
     data = update[@3];
     if (data != nil) {
         [self sendChecklistToWatch:self.currentChecklist];
+        [self sendAllChecklists];
     }
     
+    NSNumber *selectedChecklistNumber = update[@5];
+    if (selectedChecklistNumber != nil) {
+        [self.observer watchApp:self selectedChecklistAtIndex:selectedChecklistNumber.integerValue];
+    }
+    
+}
+
+- (void)sendAllChecklists {
+    for (NSDictionary *dict in EVERNOTE.checklistDataUpdates) {
+        [self queueUpdate:dict];
+    }
 }
 
 - (void)sendChecklistToWatch:(ESChecklist *)checklist {

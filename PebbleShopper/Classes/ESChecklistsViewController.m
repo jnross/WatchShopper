@@ -12,7 +12,7 @@
 #import "ESChecklistItemsViewController.h"
 #import "TTTTimeIntervalFormatter.h"
 
-@interface ESChecklistsViewController () <ESEvernoteSynchronizerDelegate>
+@interface ESChecklistsViewController () <ESEvernoteSynchronizerDelegate, ESWatchManagerObserver>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
 @property(nonatomic,strong) TTTTimeIntervalFormatter *formatter;
@@ -39,6 +39,7 @@
     [self refreshNotes];
     
     [[ESWatchManager sharedManager] start];
+    [ESWatchManager sharedManager].observer = self;
     
     self.formatter = [[TTTTimeIntervalFormatter alloc] init];
 }
@@ -75,6 +76,7 @@
 - (void)synchronizerUpdatedChecklists:(ESEvernoteSynchronizer *) synchronizer {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    [[ESWatchManager sharedManager] sendAllChecklists];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -119,9 +121,24 @@
     
 //    ESChecklistItemsViewController *itemView = [[ESChecklistItemsViewController alloc] initWithChecklist:checklist];
 //    [self.navigationController pushViewController:itemView animated:YES];
+    [self pushChecklist:checklist];
+}
+
+- (void)pushChecklist:(ESChecklist *)checklist {
     [self performSegueWithIdentifier:@"push" sender:checklist];
     
     [[ESWatchManager sharedManager] launchWatchAppWithChecklist:checklist];
+}
+
+- (void) watchApp:(ESWatchManager*)watchApp selectedChecklistAtIndex:(NSInteger)selectedChecklistIndex {
+    NSArray *checklists = [EVERNOTE checklists];
+    if (checklists.count > selectedChecklistIndex) {
+        ESChecklist *selectedChecklist = checklists[selectedChecklistIndex];
+        if (self.navigationController.topViewController != self) {
+            [self.navigationController popToViewController:self animated:NO];
+        }
+        [self pushChecklist:selectedChecklist];
+    }
 }
 
 @end
