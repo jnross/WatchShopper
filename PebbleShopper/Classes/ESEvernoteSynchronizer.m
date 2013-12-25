@@ -71,6 +71,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                                       }
                                       failure:^(NSError *error) {
                                           NSLog(@"Failed to update note: %@", error);
+                                          [self handleError:error];
                                       }];
 }
 
@@ -84,6 +85,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                                 }
                                 failure:^(NSError *error) {
                                     NSLog(@"Failed to get tags.");
+                                    [self handleError:error];
                                 }];
 }
 
@@ -100,6 +102,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                                   }
                                   failure:^(NSError *error) {
                                       NSLog(@"Failed to get tags.");
+                                      [self handleError:error];
                                   }];
 }
 
@@ -123,12 +126,32 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                 }
             } failure:^(NSError *error) {
                 NSLog(@"Error fetching note content: %@", error);
+                [self handleError:error];
             }];
             
         }
     } failure:^(NSError *error) {
         NSLog(@"Failed to get notes.");
+        [self handleError:error];
     }];
+}
+
+- (void) handleError:(NSError *)error {
+    if (error == nil) {
+        return;
+    }
+    if ([error.domain isEqualToString:EvernoteSDKErrorDomain]
+        && error.code == EDAMErrorCode_RATE_LIMIT_REACHED) {
+        NSInteger rateLimitDurationSeconds = [error.userInfo[@"rateLimitDuration"] integerValue];
+        NSInteger rateLimitDurationMinutes = rateLimitDurationSeconds / 60;
+        NSString *message = [NSString stringWithFormat:@"Too many requests to Evernote.  Please try again in %d minutes.", rateLimitDurationMinutes];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 - (NSArray *)checklists {

@@ -60,6 +60,7 @@
 
 - (IBAction)pulledToRefresh:(id)sender {
     [self refreshNotes];
+    [self.tableView reloadData];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
