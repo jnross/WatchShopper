@@ -12,7 +12,7 @@
 #import "ESChecklistItemsViewController.h"
 #import "TTTTimeIntervalFormatter.h"
 
-@interface ESChecklistsViewController () <ESEvernoteSynchronizerDelegate, ESWatchManagerObserver>
+@interface ESChecklistsViewController () <ESEvernoteSynchronizerObserver, ESWatchManagerObserver>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
 @property(nonatomic,strong) TTTTimeIntervalFormatter *formatter;
@@ -30,7 +30,7 @@
     self.refreshControl = refreshControl;
     [refreshControl addTarget:self action:@selector(pulledToRefresh:) forControlEvents:UIControlEventValueChanged];
     
-    EVERNOTE.delegate = self;
+    [EVERNOTE addObserver:self];
     if ([EVERNOTE isAlreadyAutheticated]) {
         self.authStatusLabel.text = @"Already authenticated!";
         
@@ -42,6 +42,10 @@
     [ESWatchManager sharedManager].observer = self;
     
     self.formatter = [[TTTTimeIntervalFormatter alloc] init];
+}
+
+- (void)dealloc {
+    [EVERNOTE removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -60,7 +64,6 @@
 
 - (IBAction)pulledToRefresh:(id)sender {
     [self refreshNotes];
-    [self.tableView reloadData];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -120,12 +123,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ESChecklist *checklist = EVERNOTE.checklists[indexPath.row];
     
-//    ESChecklistItemsViewController *itemView = [[ESChecklistItemsViewController alloc] initWithChecklist:checklist];
-//    [self.navigationController pushViewController:itemView animated:YES];
-    [self pushChecklist:checklist];
+    [self loadAndPushChecklist:checklist];
+}
+
+- (void)loadAndPushChecklist:(ESChecklist *)checklist {
+    if (checklist.note.content != nil) {
+        [self pushChecklist:checklist];
+    } else {
+        [EVERNOTE loadContentForChecklist:checklist success:^{
+            [self pushChecklist:checklist];
+        } failure:^(NSError *error) {
+            //Alert the failure
+        }];
+    }
 }
 
 - (void)pushChecklist:(ESChecklist *)checklist {
+    
     [self performSegueWithIdentifier:@"push" sender:checklist];
     
     [[ESWatchManager sharedManager] launchWatchAppWithChecklist:checklist];
@@ -138,7 +152,7 @@
         if (self.navigationController.topViewController != self) {
             [self.navigationController popToViewController:self animated:NO];
         }
-        [self pushChecklist:selectedChecklist];
+        [self loadAndPushChecklist:selectedChecklist];
     }
 }
 
