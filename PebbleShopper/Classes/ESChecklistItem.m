@@ -19,7 +19,7 @@
 
 - (NSData *)pebbleData {
     const char *utf8name = self.name.UTF8String;
-    int nameLength = strlen(utf8name);
+    unsigned long nameLength = strlen(utf8name);
     NSMutableData *data = [NSMutableData dataWithCapacity:nameLength + 3];
     UInt8 itemId = self.itemId;
     [data appendBytes:&itemId length:1];
