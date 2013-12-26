@@ -108,19 +108,19 @@
 		3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESAppDelegate.m; path = Classes/ESAppDelegate.m; sourceTree = "<group>"; };
 		3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistsViewController.h; path = Classes/ESChecklistsViewController.h; sourceTree = "<group>"; };
 		3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistsViewController.m; path = Classes/ESChecklistsViewController.m; sourceTree = "<group>"; };
-		3B6D31C41843100100E9A6AB /* PebbleShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PebbleShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6D31C41843100100E9A6AB /* WatchShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6D31C71843100100E9A6AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3B6D31C91843100100E9A6AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3B6D31CB1843100100E9A6AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3B6D31CF1843100100E9A6AB /* PebbleShopper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PebbleShopper-Info.plist"; sourceTree = "<group>"; };
+		3B6D31CF1843100100E9A6AB /* WatchShopper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchShopper-Info.plist"; sourceTree = "<group>"; };
 		3B6D31D11843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B6D31D31843100100E9A6AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3B6D31D51843100100E9A6AB /* PebbleShopper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PebbleShopper-Prefix.pch"; sourceTree = "<group>"; };
+		3B6D31D51843100100E9A6AB /* WatchShopper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchShopper-Prefix.pch"; sourceTree = "<group>"; };
 		3B6D31DA1843100100E9A6AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B6D31DF1843100100E9A6AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PebbleShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6D31E61843100100E9A6AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3B6D31EE1843100100E9A6AB /* PebbleShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PebbleShopperTests-Info.plist"; sourceTree = "<group>"; };
+		3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchShopperTests-Info.plist"; sourceTree = "<group>"; };
 		3B6D31F01843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleShopperTests.m; sourceTree = "<group>"; };
 		3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESEvernoteSynchronizer.h; path = Classes/ESEvernoteSynchronizer.h; sourceTree = "<group>"; };
@@ -204,8 +204,8 @@
 		3B6D31C51843100100E9A6AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D31C41843100100E9A6AB /* PebbleShopper.app */,
-				3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */,
+				3B6D31C41843100100E9A6AB /* WatchShopper.app */,
+				3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,10 +258,10 @@
 		3B6D31CE1843100100E9A6AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D31CF1843100100E9A6AB /* PebbleShopper-Info.plist */,
+				3B6D31CF1843100100E9A6AB /* WatchShopper-Info.plist */,
 				3B6D31D01843100100E9A6AB /* InfoPlist.strings */,
 				3B6D31D31843100100E9A6AB /* main.m */,
-				3B6D31D51843100100E9A6AB /* PebbleShopper-Prefix.pch */,
+				3B6D31D51843100100E9A6AB /* WatchShopper-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 		3B6D31ED1843100100E9A6AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D31EE1843100100E9A6AB /* PebbleShopperTests-Info.plist */,
+				3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */,
 				3B6D31EF1843100100E9A6AB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -311,9 +311,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3B6D31C31843100100E9A6AB /* PebbleShopper */ = {
+		3B6D31C31843100100E9A6AB /* WatchShopper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopper" */;
+			buildConfigurationList = 3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopper" */;
 			buildPhases = (
 				3B6D31C01843100100E9A6AB /* Sources */,
 				3B6D31C11843100100E9A6AB /* Frameworks */,
@@ -324,14 +324,14 @@
 			dependencies = (
 				3B6D3211184312CD00E9A6AB /* PBXTargetDependency */,
 			);
-			name = PebbleShopper;
+			name = WatchShopper;
 			productName = PebbleShopper;
-			productReference = 3B6D31C41843100100E9A6AB /* PebbleShopper.app */;
+			productReference = 3B6D31C41843100100E9A6AB /* WatchShopper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3B6D31E41843100100E9A6AB /* PebbleShopperTests */ = {
+		3B6D31E41843100100E9A6AB /* WatchShopperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopperTests" */;
+			buildConfigurationList = 3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopperTests" */;
 			buildPhases = (
 				3B6D31E11843100100E9A6AB /* Sources */,
 				3B6D31E21843100100E9A6AB /* Frameworks */,
@@ -343,9 +343,9 @@
 				3BCED96A1845D645005F0560 /* PBXTargetDependency */,
 				3B6D31EB1843100100E9A6AB /* PBXTargetDependency */,
 			);
-			name = PebbleShopperTests;
+			name = WatchShopperTests;
 			productName = PebbleShopperTests;
-			productReference = 3B6D31E51843100100E9A6AB /* PebbleShopperTests.xctest */;
+			productReference = 3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -370,7 +370,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "PebbleShopper" */;
+			buildConfigurationList = 3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "WatchShopper" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -389,8 +389,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				3B6D31C31843100100E9A6AB /* PebbleShopper */,
-				3B6D31E41843100100E9A6AB /* PebbleShopperTests */,
+				3B6D31C31843100100E9A6AB /* WatchShopper */,
+				3B6D31E41843100100E9A6AB /* WatchShopperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -475,7 +475,7 @@
 /* Begin PBXTargetDependency section */
 		3B6D31EB1843100100E9A6AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3B6D31C31843100100E9A6AB /* PebbleShopper */;
+			target = 3B6D31C31843100100E9A6AB /* WatchShopper */;
 			targetProxy = 3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */;
 		};
 		3B6D3211184312CD00E9A6AB /* PBXTargetDependency */ = {
@@ -555,6 +555,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -589,6 +590,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "i386 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -602,8 +604,8 @@
 					"$(PROJECT_DIR)/PebbleShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopper/PebbleShopper-Info.plist";
+				GCC_PREFIX_HEADER = "PebbleShopper/WatchShopper-Prefix.pch";
+				INFOPLIST_FILE = "PebbleShopper/WatchShopper-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -621,8 +623,8 @@
 					"$(PROJECT_DIR)/PebbleShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopper/PebbleShopper-Info.plist";
+				GCC_PREFIX_HEADER = "PebbleShopper/WatchShopper-Prefix.pch";
+				INFOPLIST_FILE = "PebbleShopper/WatchShopper-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -647,8 +649,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "PebbleShopperTests/PebbleShopperTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PebbleShopperTests/WatchShopperTests-Info.plist";
+				PRODUCT_NAME = WatchShopperTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
 				WRAPPER_EXTENSION = xctest;
@@ -668,8 +670,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopperTests/PebbleShopperTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PebbleShopperTests/WatchShopperTests-Info.plist";
+				PRODUCT_NAME = WatchShopperTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
 				WRAPPER_EXTENSION = xctest;
@@ -679,7 +681,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "PebbleShopper" */ = {
+		3B6D31BF1843100100E9A6AB /* Build configuration list for PBXProject "WatchShopper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B6D31F41843100100E9A6AB /* Debug */,
@@ -688,7 +690,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopper" */ = {
+		3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B6D31F71843100100E9A6AB /* Debug */,
@@ -697,7 +699,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "PebbleShopperTests" */ = {
+		3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B6D31FA1843100100E9A6AB /* Debug */,
