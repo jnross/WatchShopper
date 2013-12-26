@@ -40,8 +40,8 @@ void parse_list_items_continuation(List *checklist, uint8_t *bytes, uint16_t len
     char *name = (char *)&bytes[current_index];
     int name_length = strlen(name);
     char *item_name = malloc(name_length + 1);
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "malloc %p", item_name);
-    strncpy(item_name, name, name_length);
+    strncpy(item_name, name, name_length + 1);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "malloc %p: %s", item_name, item_name);
     current_index += name_length + 1;
     item->name = item_name;
     int flags = bytes[current_index++];
@@ -61,7 +61,7 @@ List* parse_list_items_start(uint8_t *bytes, uint16_t length) {
   char *name = (char *)&bytes[current_index];
   int namelength = strlen(name);
   checklist->name = malloc(namelength + 1);
-  strncpy(checklist->name, name, namelength);
+  strncpy(checklist->name, name, namelength + 1);
   current_index += namelength + 1;
   checklist->count = 0;
   checklist->expected_count = bytes[current_index++];
