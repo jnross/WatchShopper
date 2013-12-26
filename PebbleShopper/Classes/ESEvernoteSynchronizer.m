@@ -185,7 +185,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
         && error.code == EDAMErrorCode_RATE_LIMIT_REACHED) {
         NSInteger rateLimitDurationSeconds = [error.userInfo[@"rateLimitDuration"] integerValue];
         NSInteger rateLimitDurationMinutes = rateLimitDurationSeconds / 60;
-        NSString *message = [NSString stringWithFormat:@"Too many requests to Evernote.  Please try again in %d minutes.", rateLimitDurationMinutes];
+        NSString *message = [NSString stringWithFormat:@"Too many requests to Evernote.  Please try again in %ld minutes.", (long)rateLimitDurationMinutes];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:message
                                                            delegate:nil
