@@ -32,7 +32,15 @@
     self.lastUpdatedDate = [NSDate endateFromEDAMTimestamp:note.updated];
     self.guid = note.guid;
     self.items = [NSMutableArray arrayWithCapacity:10];
-    NSString *content = note.content;
+    if (note.content != nil) {
+        [self loadContent];
+    }
+    return self;
+}
+
+
+- (void)loadContent {
+    NSString *content = self.note.content;
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[content dataUsingEncoding:NSUTF8StringEncoding]];
     parser.delegate = self;
     self.elementStack = [NSMutableArray arrayWithCapacity:3];
@@ -40,7 +48,6 @@
     [parser parse];
     self.elementStack = nil;
     self.accumulatedText = nil;
-    return self;
 }
 
 - (NSArray *)pebbleDataUpdates {

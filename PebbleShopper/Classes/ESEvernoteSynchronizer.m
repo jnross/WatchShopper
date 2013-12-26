@@ -15,6 +15,17 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 @interface ESEvernoteSynchronizer ()
 
 @property(nonatomic,strong) NSMutableArray* mutableChecklists;
+@property(nonatomic,strong) NSMutableArray *observerWrappers;
+
+@end
+
+@interface ESEvernoteSynchronizerObserverWrapper : NSObject
+
+@property(nonatomic,weak) NSObject<ESEvernoteSynchronizerObserver> *observer;
+
+@end
+
+@implementation ESEvernoteSynchronizerObserverWrapper
 
 @end
 
@@ -42,9 +53,29 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     
     self = [super init];
     self.mutableChecklists = [NSMutableArray array];
+    self.observerWrappers = [NSMutableArray array];
     
     
     return self;
+}
+
+- (void)addObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer {
+    ESEvernoteSynchronizerObserverWrapper *wrapper = [ESEvernoteSynchronizerObserverWrapper new];
+    wrapper.observer = observer;
+    [self.observerWrappers addObject:wrapper];
+}
+
+- (void)removeObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer {
+    ESEvernoteSynchronizerObserverWrapper *toRemove = nil;
+    for (ESEvernoteSynchronizerObserverWrapper *wrapper in self.observerWrappers) {
+        if (wrapper.observer == observer) {
+            toRemove = wrapper;
+            break;
+        }
+    }
+    if (toRemove != nil) {
+        [self.observerWrappers removeObject:toRemove];
+    }
 }
 
 - (void)authenticateEvernoteUserFromViewController:(UIViewController*)viewController {
@@ -76,7 +107,6 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)getPebbleNotes {
-    [self.mutableChecklists removeAllObjects];
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
     [noteStore listNotebooksWithSuccess:^(NSArray *notebooks) {
         for (EDAMNotebook *notebook in notebooks) {
@@ -111,29 +141,40 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:[NSMutableArray arrayWithObject:tag.guid] timeZone:nil inactive:NO emphasized:nil];
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
-        NSInteger notesToLoad = list.notes.count;
-        __block NSInteger loadedNotes = 0;
+        [self.mutableChecklists removeAllObjects];
         for (EDAMNote *note in list.notes) {
-            [noteStore getNoteContentWithGuid:note.guid success:^(NSString *content) {
-                note.content = content;
-                ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
-                [self.mutableChecklists addObject:checklist];
-                NSLog(@"Note content: %@ %@", content, note);
-                loadedNotes++;
-                if (loadedNotes >= notesToLoad) {
-                    [self sortChecklistsRecent];
-                    [self.delegate synchronizerUpdatedChecklists:self];
-                }
-            } failure:^(NSError *error) {
-                NSLog(@"Error fetching note content: %@", error);
-                [self handleError:error];
-            }];
-            
+            ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
+            [self.mutableChecklists addObject:checklist];
         }
+     
+        [self sortChecklistsRecent];
+        [self notifySynchronizerUpdatedChecklists];
     } failure:^(NSError *error) {
         NSLog(@"Failed to get notes.");
         [self handleError:error];
     }];
+}
+
+- (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure {
+    NSString *guid = checklist.note.guid;
+    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
+    [noteStore getNoteContentWithGuid:guid success:^(NSString *content) {
+        checklist.note.content = content;
+        [checklist loadContent];
+        NSLog(@"Note content: %@ %@", content, checklist.note);
+        success();
+    } failure:^(NSError *error) {
+        NSLog(@"Error fetching note content: %@", error);
+        [self handleError:error];
+        failure(error);
+    }];
+}
+
+- (void)notifySynchronizerUpdatedChecklists {
+    NSArray *wrappers = [NSArray arrayWithArray:self.observerWrappers];
+    for (ESEvernoteSynchronizerObserverWrapper *wrapper in wrappers) {
+        [wrapper.observer synchronizerUpdatedChecklists:self];
+    }
 }
 
 - (void) handleError:(NSError *)error {

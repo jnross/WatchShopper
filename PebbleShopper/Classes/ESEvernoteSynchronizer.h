@@ -12,7 +12,8 @@
 #define EVERNOTE [ESEvernoteSynchronizer sharedSynchronizer]
 
 @class ESEvernoteSynchronizer;
-@protocol ESEvernoteSynchronizerDelegate <NSObject>
+@class ESChecklist;
+@protocol ESEvernoteSynchronizerObserver <NSObject>
 
 - (void)synchronizerUpdatedChecklists:(ESEvernoteSynchronizer *) synchronizer;
 
@@ -20,16 +21,17 @@
 
 @interface ESEvernoteSynchronizer : NSObject
 
-@property(nonatomic, weak) NSObject<ESEvernoteSynchronizerDelegate> *delegate;
-
 + (void)setupEvernoteSingleton;
 + (ESEvernoteSynchronizer *)sharedSynchronizer;
 
+- (void)addObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer;
+- (void)removeObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer;
 - (void)authenticateEvernoteUserFromViewController:(UIViewController*)viewController;
 - (BOOL)isAlreadyAutheticated;
 - (void)getPebbleNotes;
 - (NSArray*)checklists;
 - (void)saveNote:(EDAMNote *)note;
 - (NSArray *)checklistDataUpdates;
+- (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure;
 
 @end

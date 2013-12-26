@@ -32,5 +32,6 @@
 - (id)initWithNote:(EDAMNote *)note;
 - (void)saveToEvernote;
 - (NSArray *)pebbleDataUpdates;
+- (void)loadContent;
 
 @end
