@@ -98,6 +98,15 @@ static ESWatchManager *singletonInstance = nil;
     
 }
 
+- (void)launchWatchAppWithAllChecklists {
+    [self.currentWatch appMessagesLaunch:^(PBWatch *watch, NSError *error) {
+        if (error != nil) {
+            NSLog(@"appMessagesLaunch error: %@", error);
+        }
+        [self sendAllChecklists];
+    }];
+}
+
 - (void)sendAllChecklists {
     for (NSDictionary *dict in EVERNOTE.checklistDataUpdates) {
         [self queueUpdate:dict];
