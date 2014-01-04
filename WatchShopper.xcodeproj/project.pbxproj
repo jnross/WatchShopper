@@ -25,7 +25,7 @@
 		3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
 		3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31CB1843100100E9A6AB /* UIKit.framework */; };
 		3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31EF1843100100E9A6AB /* InfoPlist.strings */; };
-		3B6D31F31843100100E9A6AB /* PebbleShopperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */; };
+		3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31F21843100100E9A6AB /* WatchShopperTests.m */; };
 		3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */; };
 		3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */; };
 		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
@@ -58,7 +58,7 @@
 			containerPortal = 3B6D31BC1843100100E9A6AB /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3B6D31C31843100100E9A6AB;
-			remoteInfo = PebbleShopper;
+			remoteInfo = WatchShopper;
 		};
 		3B6D32061843128B00E9A6AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -122,7 +122,7 @@
 		3B6D31E61843100100E9A6AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchShopperTests-Info.plist"; sourceTree = "<group>"; };
 		3B6D31F01843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleShopperTests.m; sourceTree = "<group>"; };
+		3B6D31F21843100100E9A6AB /* WatchShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchShopperTests.m; sourceTree = "<group>"; };
 		3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESEvernoteSynchronizer.h; path = Classes/ESEvernoteSynchronizer.h; sourceTree = "<group>"; };
 		3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESEvernoteSynchronizer.m; path = Classes/ESEvernoteSynchronizer.m; sourceTree = "<group>"; };
 		3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "evernote-sdk-ios.xcodeproj"; path = "../evernote-sdk-ios/evernote-sdk-ios.xcodeproj"; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 		3BCED9671845D614005F0560 /* ESChecklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistTest.m; sourceTree = "<group>"; };
 		3BCED96C1845D709005F0560 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = PebbleShopper/lib/PebbleKit.framework; sourceTree = "<group>"; };
-		3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = PebbleShopper/lib/PebbleVendor.framework; sourceTree = "<group>"; };
+		3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = WatchShopper/lib/PebbleKit.framework; sourceTree = "<group>"; };
+		3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = WatchShopper/lib/PebbleVendor.framework; sourceTree = "<group>"; };
 		3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESWatchManager.h; path = Classes/ESWatchManager.h; sourceTree = "<group>"; };
 		3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESWatchManager.m; path = Classes/ESWatchManager.m; sourceTree = "<group>"; };
 		3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -194,8 +194,8 @@
 			children = (
 				3BF2E8D118538C78006CB2B3 /* README.md */,
 				3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */,
-				3B6D31CD1843100100E9A6AB /* PebbleShopper */,
-				3B6D31EC1843100100E9A6AB /* PebbleShopperTests */,
+				3B6D31CD1843100100E9A6AB /* WatchShopper */,
+				3B6D31EC1843100100E9A6AB /* WatchShopperTests */,
 				3B6D31C61843100100E9A6AB /* Frameworks */,
 				3B6D31C51843100100E9A6AB /* Products */,
 			);
@@ -234,7 +234,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3B6D31CD1843100100E9A6AB /* PebbleShopper */ = {
+		3B6D31CD1843100100E9A6AB /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
 				EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */,
@@ -252,7 +252,7 @@
 				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
 				3B6D31CE1843100100E9A6AB /* Supporting Files */,
 			);
-			path = PebbleShopper;
+			path = WatchShopper;
 			sourceTree = "<group>";
 		};
 		3B6D31CE1843100100E9A6AB /* Supporting Files */ = {
@@ -266,14 +266,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3B6D31EC1843100100E9A6AB /* PebbleShopperTests */ = {
+		3B6D31EC1843100100E9A6AB /* WatchShopperTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D31F21843100100E9A6AB /* PebbleShopperTests.m */,
+				3B6D31F21843100100E9A6AB /* WatchShopperTests.m */,
 				3B6D31ED1843100100E9A6AB /* Supporting Files */,
 				3BCED9671845D614005F0560 /* ESChecklistTest.m */,
 			);
-			path = PebbleShopperTests;
+			path = WatchShopperTests;
 			sourceTree = "<group>";
 		};
 		3B6D31ED1843100100E9A6AB /* Supporting Files */ = {
@@ -325,7 +325,7 @@
 				3B6D3211184312CD00E9A6AB /* PBXTargetDependency */,
 			);
 			name = WatchShopper;
-			productName = PebbleShopper;
+			productName = WatchShopper;
 			productReference = 3B6D31C41843100100E9A6AB /* WatchShopper.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -344,7 +344,7 @@
 				3B6D31EB1843100100E9A6AB /* PBXTargetDependency */,
 			);
 			name = WatchShopperTests;
-			productName = PebbleShopperTests;
+			productName = WatchShopperTests;
 			productReference = 3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -463,7 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */,
-				3B6D31F31843100100E9A6AB /* PebbleShopperTests.m in Sources */,
+				3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */,
 				3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 				3BCED9681845D614005F0560 /* ESChecklistTest.m in Sources */,
 				3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */,
@@ -601,11 +601,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PebbleShopper/lib",
+					"$(PROJECT_DIR)/WatchShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/WatchShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopper/WatchShopper-Info.plist";
+				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
+				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -620,11 +620,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PebbleShopper/lib",
+					"$(PROJECT_DIR)/WatchShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/WatchShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopper/WatchShopper-Info.plist";
+				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
+				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -636,20 +636,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PebbleShopper.app/PebbleShopper";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/PebbleShopper/lib",
+					"$(PROJECT_DIR)/WatchShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
+				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "PebbleShopperTests/WatchShopperTests-Info.plist";
+				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
 				PRODUCT_NAME = WatchShopperTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -661,16 +661,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PebbleShopper.app/PebbleShopper";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/PebbleShopper/lib",
+					"$(PROJECT_DIR)/WatchShopper/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PebbleShopper/PebbleShopper-Prefix.pch";
-				INFOPLIST_FILE = "PebbleShopperTests/WatchShopperTests-Info.plist";
+				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
+				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
 				PRODUCT_NAME = WatchShopperTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
