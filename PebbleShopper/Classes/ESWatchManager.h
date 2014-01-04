@@ -30,6 +30,6 @@
 - (void)sendChecklistItemUpdate:(ESChecklistItem *)item;
 - (void)launchWatchAppWithChecklist:(ESChecklist *)checklist;
 - (void)queueUpdate:(NSDictionary *)update;
-- (void)sendAllChecklists;
+- (void)launchWatchAppWithAllChecklists;
 
 @end

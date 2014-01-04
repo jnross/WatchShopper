@@ -80,7 +80,7 @@
 - (void)synchronizerUpdatedChecklists:(ESEvernoteSynchronizer *) synchronizer {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
-    [[ESWatchManager sharedManager] sendAllChecklists];
+    [[ESWatchManager sharedManager] launchWatchAppWithAllChecklists];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
