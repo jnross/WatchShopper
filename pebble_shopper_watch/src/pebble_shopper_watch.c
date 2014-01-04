@@ -44,6 +44,15 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
 }
 
 void app_message_outbox_failed(DictionaryIterator *iterator, AppMessageResult reason, void *context) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "app_message_outbox_failed: %d", reason);
+  if (reason == APP_MSG_NOT_CONNECTED
+    || reason == APP_MSG_APP_NOT_RUNNING
+    || reason == APP_MSG_SEND_REJECTED
+  )
+  {
+    // Notify app not connected.
+    show_check_app_message(window);
+  }
 
 }
 
