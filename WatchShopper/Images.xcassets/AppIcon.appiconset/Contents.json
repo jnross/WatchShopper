@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "pebble-shopper-58.png",
+      "filename" : "watch-shopper-58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "pebble-shopper-80.png",
+      "filename" : "watch-shopper-80.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "pebble-shopper-120.png",
+      "filename" : "watch-shopper-120.png",
       "scale" : "2x"
     }
   ],
