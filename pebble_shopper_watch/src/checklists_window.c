@@ -2,6 +2,7 @@
 #include "checklists_window.h"
 
 static MenuLayer *checklists_menu;
+static TextLayer *message_text = NULL;
 
 #define NUM_MENU_SECTIONS 1
 
@@ -24,10 +25,38 @@ void parse_checklists_continuation(uint8_t *bytes, uint16_t length) {
 }
 
 void parse_checklists_start(uint8_t *bytes, uint16_t length) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "parse_checklists_start");
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "parse_checklists_start");
+  hide_check_app_message();
 	discard_checklists();
 	checklists = parse_list_items_start(bytes, length);
 	reload_if_necessary();
+}
+
+void show_check_app_message(Window *window) {
+  if (message_text == NULL) {
+    Layer *window_layer = window_get_root_layer(window);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "got window root layer %p", window_layer);
+    GRect bounds = layer_get_bounds(window_layer);
+    bounds.origin.y = 30;
+    bounds.size.h -= 2 * bounds.origin.y;
+    message_text = text_layer_create(bounds);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "About to set text.");
+    GFont *font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+    text_layer_set_font(message_text, font);
+    text_layer_set_text_alignment(message_text, GTextAlignmentCenter);
+    text_layer_set_text(message_text, "Please activate WatchShopper on your phone");
+    layer_add_child(window_layer, text_layer_get_layer(message_text));
+
+  }
+}
+
+void hide_check_app_message() {
+  if (message_text != NULL) {
+    Layer *message_text_layer = text_layer_get_layer(message_text);
+    layer_remove_from_parent(message_text_layer);
+    text_layer_destroy(message_text);
+    message_text = NULL;
+  }
 }
 
 static void send_checklist_select(uint8_t list_id) {

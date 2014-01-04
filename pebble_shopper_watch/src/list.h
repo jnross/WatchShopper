@@ -1,7 +1,6 @@
-#include <pebble.h>
+#pragma once
 
-#ifndef __LIST_H__
-#define __LIST_H__
+#include <pebble.h>
 
 typedef struct {
   uint8_t item_id;
@@ -22,5 +21,3 @@ void list_destroy(List *list);
 
 void parse_list_items_continuation(List *list, uint8_t *bytes, uint16_t length);
 List* parse_list_items_start(uint8_t *bytes, uint16_t length);
-
-#endif
