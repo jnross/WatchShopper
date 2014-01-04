@@ -1,4 +1,4 @@
-PebbleShopper
+WatchShopper
 
 Allows you to sync your Evernote shopping lists to your Pebble watch so you can check things off as you shop.
 
