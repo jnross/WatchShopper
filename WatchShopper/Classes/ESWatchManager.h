@@ -1,6 +1,6 @@
 //
 //  ESWatchManager.h
-//  PebbleShopper
+//  WatchShopper
 //
 //  Created by Joseph Ross on 12/7/13.
 //  Copyright (c) 2013 Easy Street 3. All rights reserved.

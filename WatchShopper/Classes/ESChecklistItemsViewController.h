@@ -1,6 +1,6 @@
 //
 //  ESChecklistItemsViewController.h
-//  PebbleShopper
+//  WatchShopper
 //
 //  Created by Joseph Ross on 12/10/13.
 //  Copyright (c) 2013 Easy Street 3. All rights reserved.

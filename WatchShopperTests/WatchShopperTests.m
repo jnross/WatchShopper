@@ -1,6 +1,6 @@
 //
-//  PebbleShopperTests.m
-//  PebbleShopperTests
+//  WatchShopperTests.m
+//  WatchShopperTests
 //
 //  Created by Joseph Ross on 11/24/13.
 //  Copyright (c) 2013 Easy Street 3. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface PebbleShopperTests : XCTestCase
+@interface WatchShopperTests : XCTestCase
 
 @end
 
-@implementation PebbleShopperTests
+@implementation WatchShopperTests
 
 - (void)setUp
 {
