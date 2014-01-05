@@ -143,12 +143,12 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
             }
         }
     }
-                                failure:^(NSError *error) {
-                                    NSLog(@"Failed to get notebooks.");
-                                    [self handleError:error];
-                                    [self finishAllNotebooks];
-                                    
-                                }];
+    failure:^(NSError *error) {
+        NSLog(@"Failed to get notebooks.");
+        [self handleError:error];
+        [self finishAllNotebooks];
+        
+    }];
 }
 
 - (void)getAllNotesForNotebook:(EDAMNotebook *) notebook {
@@ -168,30 +168,30 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 - (void)getTagsForNotebook:(EDAMNotebook *)notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    [noteStore listTagsByNotebookWithGuid:[notebook guid]
-                                  success:^(NSArray *tags) {
-                                      BOOL foundTagToFetch = NO;
-                                      for (EDAMTag *tag in tags) {
-                                          if ([self.targetTags containsObject:tag.name]) {
-                                              foundTagToFetch = YES;
-                                              [self fetchNotesWithTag:tag inNotebook:notebook];
-                                          }
-                                      }
-                                      if (!foundTagToFetch) {
-                                          [self finishNotebook:notebook];
-                                      }
-                                      NSLog(@"tags: %@", tags);
-                                  }
-                                  failure:^(NSError *error) {
-                                      NSLog(@"Failed to get tags.");
-                                      [self handleError:error];
-                                      [self finishNotebook:notebook];
-                                  }];
+    [noteStore listTagsByNotebookWithGuid:[notebook guid] success:^(NSArray *tags) {
+        NSMutableArray *availableTargetTagGuids = [NSMutableArray arrayWithCapacity:self.targetTags.count];
+        for (EDAMTag *tag in tags) {
+            if ([self.targetTags containsObject:tag.name]) {
+                [availableTargetTagGuids addObject:tag.guid];
+            }
+        }
+        if (availableTargetTagGuids.count > 0) {
+            [self fetchNotesWithTagGuids:availableTargetTagGuids inNotebook:notebook];
+        } else {
+            [self finishNotebook:notebook];
+        }
+        NSLog(@"tags: %@", tags);
+    }
+    failure:^(NSError *error) {
+        NSLog(@"Failed to get tags.");
+        [self handleError:error];
+        [self finishNotebook:notebook];
+    }];
 }
 
-- (void)fetchNotesWithTag:(EDAMTag*)tag inNotebook:(EDAMNotebook *)notebook {
+- (void)fetchNotesWithTagGuids:(NSMutableArray*)tagGuids inNotebook:(EDAMNotebook *)notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:[NSMutableArray arrayWithObject:tag.guid] timeZone:nil inactive:NO emphasized:nil];
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:tagGuids timeZone:nil inactive:NO emphasized:nil];
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
