@@ -14,8 +14,13 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 @interface ESEvernoteSynchronizer ()
 
-@property(nonatomic,strong) NSMutableArray* mutableChecklists;
+@property(nonatomic,strong) NSMutableArray* gatheringChecklists;
+@property(nonatomic,strong) NSMutableArray* gatheringNotebooks;
+
+@property(nonatomic,strong) NSArray* checklists;
 @property(nonatomic,strong) NSMutableArray *observerWrappers;
+@property(nonatomic,strong) NSArray *targetTags;
+@property(nonatomic,strong) NSArray *targetNotebookNames;
 
 @end
 
@@ -52,8 +57,10 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 - (id)init {
     
     self = [super init];
-    self.mutableChecklists = [NSMutableArray array];
     self.observerWrappers = [NSMutableArray array];
+    
+    self.targetTags = @[@"pebble"];
+    self.targetNotebookNames = @[@"Pebble"];
     
     
     return self;
@@ -106,33 +113,79 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
                                       }];
 }
 
+- (void)finishNotebook:(EDAMNotebook*)notebook {
+    [self.gatheringNotebooks removeObject:notebook];
+    if (self.gatheringNotebooks.count == 0) {
+        [self finishAllNotebooks];
+    }
+}
+
+- (void)finishAllNotebooks {
+    if (self.gatheringChecklists.count > 0) {
+        self.checklists = [self sortedRecentImmutableCopyOf:self.gatheringChecklists];
+    }
+    self.gatheringChecklists = nil;
+    self.gatheringNotebooks = nil;
+    
+    [self notifySynchronizerUpdatedChecklists];
+}
+
 - (void)getPebbleNotes {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    [noteStore listNotebooksWithSuccess:^(NSArray *notebooks) {
+    [noteStore listNotebooksWithSuccess: ^(NSArray *notebooks) {
+        self.gatheringChecklists = [NSMutableArray array];
+        self.gatheringNotebooks = [notebooks mutableCopy];
         for (EDAMNotebook *notebook in notebooks) {
-            [self getTagsForNotebook:notebook];
+            if ([self.targetNotebookNames containsObject:notebook.name] ) {
+                [self getAllNotesForNotebook:notebook];
+            } else {
+                [self getTagsForNotebook:notebook];
+            }
         }
-                                }
+    }
                                 failure:^(NSError *error) {
-                                    NSLog(@"Failed to get tags.");
+                                    NSLog(@"Failed to get notebooks.");
                                     [self handleError:error];
+                                    [self finishAllNotebooks];
+                                    
                                 }];
+}
+
+- (void)getAllNotesForNotebook:(EDAMNotebook *) notebook {
+    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:nil timeZone:nil inactive:NO emphasized:nil];
+    [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
+        NSLog(@"list: %@", list);
+        [self gatherChecklistsFromNotes:list.notes];
+        [self finishNotebook:notebook];
+    } failure:^(NSError *error) {
+        NSLog(@"Failed to get notes.");
+        [self handleError:error];
+        [self finishNotebook:notebook];
+    }];
+    
 }
 
 - (void)getTagsForNotebook:(EDAMNotebook *)notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
     [noteStore listTagsByNotebookWithGuid:[notebook guid]
                                   success:^(NSArray *tags) {
+                                      BOOL foundTagToFetch = NO;
                                       for (EDAMTag *tag in tags) {
-                                          if ([tag.name isEqualToString:@"pebble"]) {
+                                          if ([self.targetTags containsObject:tag.name]) {
+                                              foundTagToFetch = YES;
                                               [self fetchNotesWithTag:tag inNotebook:notebook];
                                           }
+                                      }
+                                      if (!foundTagToFetch) {
+                                          [self finishNotebook:notebook];
                                       }
                                       NSLog(@"tags: %@", tags);
                                   }
                                   failure:^(NSError *error) {
                                       NSLog(@"Failed to get tags.");
                                       [self handleError:error];
+                                      [self finishNotebook:notebook];
                                   }];
 }
 
@@ -141,18 +194,20 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:[NSMutableArray arrayWithObject:tag.guid] timeZone:nil inactive:NO emphasized:nil];
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
-        [self.mutableChecklists removeAllObjects];
-        for (EDAMNote *note in list.notes) {
-            ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
-            [self.mutableChecklists addObject:checklist];
-        }
-     
-        [self sortChecklistsRecent];
-        [self notifySynchronizerUpdatedChecklists];
+        [self gatherChecklistsFromNotes:list.notes];
+        [self finishNotebook:notebook];
     } failure:^(NSError *error) {
         NSLog(@"Failed to get notes.");
         [self handleError:error];
+        [self finishNotebook:notebook];
     }];
+}
+
+- (void)gatherChecklistsFromNotes:(NSArray *)notes {
+    for (EDAMNote *note in notes) {
+        ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
+        [self.gatheringChecklists addObject:checklist];
+    }
 }
 
 - (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure {
@@ -195,13 +250,9 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     }
 }
 
-- (NSArray *)checklists {
-    return self.mutableChecklists;
-}
-
-- (void)sortChecklistsRecent {
+- (NSArray *)sortedRecentImmutableCopyOf:(NSMutableArray *)toSort {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastUpdatedDate" ascending:NO];
-    [self.mutableChecklists sortUsingDescriptors:@[sortDescriptor]];
+    return [toSort sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 - (NSData *)pebbleDataForListName:(NSString *)listName index:(NSUInteger)index {
