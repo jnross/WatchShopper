@@ -1,5 +1,6 @@
 
 #include "checklists_window.h"
+#include "commands.h"
 
 static MenuLayer *checklists_menu;
 static TextLayer *message_text = NULL;

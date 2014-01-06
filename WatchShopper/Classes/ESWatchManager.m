@@ -10,10 +10,9 @@
 
 #import "ESWatchManager.h"
 #import "ESEvernoteSynchronizer.h"
+#import "commands.h"
 
 #define PEBBLE_SHOPPER_APP_UUID_STRING @"9ebb1e22-0c72-494e-b5cf-54099e4842e3"
-
-#define FLAG_IS_CHECKED 0x01
 
 @interface ESWatchManager () <PBPebbleCentralDelegate>
 
@@ -73,7 +72,7 @@ static ESWatchManager *singletonInstance = nil;
 }
 
 - (void)receivedUpdate:(NSDictionary *)update fromWatch:(PBWatch *)watch {
-    NSData *data = [update objectForKey:@1];
+    NSData *data = [update objectForKey:@CMD_LIST_ITEM_UPDATE];
     if (data != nil && data.length >= 3) {
         //UInt8 checklistId = ((UInt8*)data.bytes)[0];
         UInt8 itemId = ((UInt8*)data.bytes)[1];
@@ -85,13 +84,13 @@ static ESWatchManager *singletonInstance = nil;
         [self.currentChecklist.observer checklist:self.currentChecklist updatedItem:item];
     }
     
-    data = update[@3];
+    data = update[@CMD_GET_STATUS];
     if (data != nil) {
         [self sendChecklistToWatch:self.currentChecklist];
         [self sendAllChecklists];
     }
     
-    NSNumber *selectedChecklistNumber = update[@5];
+    NSNumber *selectedChecklistNumber = update[@CMD_CHECKLIST_SELECT];
     if (selectedChecklistNumber != nil) {
         [self.observer watchApp:self selectedChecklistAtIndex:selectedChecklistNumber.integerValue];
     }
@@ -159,9 +158,9 @@ static ESWatchManager *singletonInstance = nil;
         UInt8 buf[3];
         buf[0] = 0x00;
         buf[1] = item.itemId;
-        buf[2] = item.isChecked ? 0x01 : 0x00;
+        buf[2] = item.isChecked ? FLAG_IS_CHECKED : 0x00;
         NSData *data = [NSData dataWithBytes:buf length:3];
-        NSDictionary *update = @{@1: data};
+        NSDictionary *update = @{@CMD_LIST_ITEM_UPDATE: data};
         [self.currentWatch appMessagesPushUpdate:update onSent:^(PBWatch *watch, NSDictionary *update, NSError *error) {
             if (error != nil) {
                 NSLog(@"appMessagesPushUpdate error: %@", error);

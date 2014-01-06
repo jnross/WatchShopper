@@ -1,5 +1,6 @@
 
 #include "items_window.h"
+#include "commands.h"
 
 static MenuLayer *items_menu;
 static Window *items_window;
