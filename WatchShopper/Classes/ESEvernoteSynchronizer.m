@@ -9,6 +9,7 @@
 #import "ESEvernoteSynchronizer.h"
 #import "EvernoteSDK.h"
 #import "ESChecklist.h"
+#import "commands.h"
 
 static ESEvernoteSynchronizer *singletonInstance = nil;
 
@@ -269,7 +270,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 - (NSArray *)checklistDataUpdates {
     NSMutableData *data = [NSMutableData data];
-    NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@3:data}];
+    NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@CMD_CHECKLISTS_START:data}];
     
     // First byte is the 1-byte list ID
     UInt8 listId = 0;
@@ -289,7 +290,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
         NSData *itemData = [self pebbleDataForListName:aList.name index:i];
         if (data.length + itemData.length > 110) {
             data = [NSMutableData data];
-            [updates addObject:@{@4:data}];
+            [updates addObject:@{@CMD_CHECKLISTS_CONTINUATION:data}];
         }
         [data appendData:itemData];
         i++;

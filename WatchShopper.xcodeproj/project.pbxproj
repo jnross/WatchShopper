@@ -143,6 +143,7 @@
 		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
 		EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
 		EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +238,7 @@
 		3B6D31CD1843100100E9A6AB /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
+				EE3751191879D8A200655BA9 /* commands.h */,
 				EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */,
 				EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */,
 				3B6D31FF1843119A00E9A6AB /* Evernote */,

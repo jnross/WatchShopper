@@ -2,13 +2,12 @@
 
 #include "items_window.h"
 #include "checklists_window.h"
+#include "commands.h"
 
 static Window *window;
 
-#define CMD_GET_STATUS 3
-
 static void send_get_status() {
-  uint8_t get_status = 3;
+  uint8_t get_status = CMD_GET_STATUS;
 
   DictionaryIterator *dict;
   app_message_outbox_begin(&dict);
@@ -16,7 +15,6 @@ static void send_get_status() {
 
   app_message_outbox_send();
 }
-
 
 // App Message stuff.
 
@@ -39,7 +37,6 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
   } else if (tuple->key == CMD_CHECKLISTS_CONTINUATION) {
     parse_checklists_continuation(tuple->value->data, tuple->length);
   }
-  
 
 }
 

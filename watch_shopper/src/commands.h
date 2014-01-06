@@ -1,0 +1,15 @@
+#pragma once
+
+// To Watch:
+#define CMD_LIST_ITEMS_START 0x00
+#define CMD_LIST_ITEMS_CONTINUATION 0x01
+#define CMD_CHECKLISTS_START 0x10
+#define CMD_CHECKLISTS_CONTINUATION 0x11
+#define CMD_LIST_ITEM_UPDATE 0x20
+
+// From Watch:
+#define CMD_GET_STATUS 0x80
+#define CMD_CHECKLIST_SELECT 0x81
+
+// Flags:
+#define FLAG_IS_CHECKED 0x01

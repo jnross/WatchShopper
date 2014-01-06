@@ -9,6 +9,7 @@
 #import "ESChecklist.h"
 #import "NSDate+EDAMAdditions.h"
 #import "ESEvernoteSynchronizer.h"
+#import "commands.h"
 
 @interface ESChecklist () <NSXMLParserDelegate>
 
@@ -52,7 +53,7 @@
 
 - (NSArray *)pebbleDataUpdates {
     NSMutableData *data = [NSMutableData data];
-    NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@0:data}];
+    NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@CMD_LIST_ITEMS_START:data}];
     
     // First byte is the 1-byte list ID
     UInt8 listId = 0;
@@ -71,7 +72,7 @@
         NSData *itemData = [item pebbleData];
         if (data.length + itemData.length > 110) {
             data = [NSMutableData data];
-            [updates addObject:@{@2:data}];
+            [updates addObject:@{@CMD_LIST_ITEMS_CONTINUATION:data}];
         }
         [data appendData:itemData];
     }
