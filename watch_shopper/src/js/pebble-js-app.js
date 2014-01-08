@@ -2,6 +2,25 @@ Pebble.addEventListener("ready",
     function(e) {
         console.log("Hello world! - Sent from your javascript application.");
         sendChecklist(fake_checklist);
+        
+        Pebble.addEventListener("appmessage",
+		  function(e) {
+		    console.log("Received message: " + JSON.stringify(e.payload));
+		  }
+		);
+
+		Pebble.addEventListener("showConfiguration",
+			function(e) {
+				Pebble.openURL("http://jnross.github.io/watch_shopper_configuration.html");
+			}
+		);
+
+		Pebble.addEventListener("webviewclosed",
+		  function(e) {
+		    var configuration = JSON.parse(decodeURIComponent(e.response));
+		    console.log("Configuration window returned: ", JSON.stringify(configuration));
+		  }
+		);
     }
 );
 
@@ -35,12 +54,10 @@ function buildDataForChecklist(checklist) {
 	data.push(checklist.list_id);
 	data.push(checklist.name, 0);
 	data.push(checklist.items.length);
-	console.log("items count: " + checklist.items.length);
 	for (var i = 0; i < checklist.items.length; i++) {
 
 		var item = checklist.items[i];
 		var itemData = buildDataForChecklistItem(item);
-		console.log("itemData: " + itemData);
 		data = data.concat(itemData);
 	}
 	return data;

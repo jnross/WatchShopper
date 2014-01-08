@@ -5,6 +5,7 @@
   "companyName": "Easy Street 3",
   "versionCode": 1,
   "versionLabel": "1.0.0",
+  "capabilities": [ "configurable" ],
   "watchapp": {
     "watchface": false
   },
