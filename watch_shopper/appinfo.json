@@ -9,7 +9,13 @@
     "watchface": false
   },
   "appKeys": {
-    "dummy": 0
+    "CMD_LIST_ITEMS_START": 0,
+    "CMD_LIST_ITEMS_CONTINUATION": 1,
+    "CMD_CHECKLISTS_START": 16,
+    "CMD_CHECKLISTS_CONTINUATION": 17,
+    "CMD_LIST_ITEM_UPDATE": 32,
+    "CMD_GET_STATUS": 128,
+    "CMD_CHECKLIST_SELECT": 129
   },
   "resources": {
     "media": [
