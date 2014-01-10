@@ -100,6 +100,13 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
+    NSString *trimmedText = [self.accumulatedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (self.elementStack.count < 2 && trimmedText.length > 0) {
+        ESChecklistItem *item = [[ESChecklistItem alloc] initWithName:trimmedText itemId:self.currentItemId++];
+        [self.items addObject:item];
+        self.accumulatedText = nil;
+    }
+    
     NSString *stackItem = elementName;
     if ([self doesElement:elementName flagItemAsCheckedWithAttributes:attributeDict]) {
         stackItem = @"checked";
@@ -120,8 +127,10 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if (self.accumulatedText != nil) {
-        ESChecklistItem *item = [[ESChecklistItem alloc] initWithName:self.accumulatedText itemId:self.currentItemId++];
+    
+    NSString *trimmedText = [self.accumulatedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trimmedText.length > 0) {
+        ESChecklistItem *item = [[ESChecklistItem alloc] initWithName:trimmedText itemId:self.currentItemId++];
         [self.items addObject:item];
         if ([self.elementStack containsObject:@"checked"]) {
             item.isChecked = YES;
