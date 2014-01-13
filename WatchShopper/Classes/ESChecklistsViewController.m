@@ -50,7 +50,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingsButtonPressed:)];
     
 }
 
@@ -115,8 +114,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ESChecklist *checklist = sender;
-    ESChecklistItemsViewController *itemsView = segue.destinationViewController;
-    itemsView.checklist = checklist;
+    if ([segue.destinationViewController isKindOfClass:ESChecklistItemsViewController.class]) {
+        ESChecklistItemsViewController *itemsView = segue.destinationViewController;
+        itemsView.checklist = checklist;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

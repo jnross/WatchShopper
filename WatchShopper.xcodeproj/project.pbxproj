@@ -49,7 +49,9 @@
 		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
 		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
-		EE387604185D8477003E6A22 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */; };
+		EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */; };
+		EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */; };
+		EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEF97A201881C9C6004F7FC3 /* cog@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,8 +146,11 @@
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
-		EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
-		EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
+		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsController.m; path = Classes/ESSettingsController.m; sourceTree = "<group>"; };
+		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTTimeIntervalFormatter.h; path = Classes/TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTTimeIntervalFormatter.m; path = Classes/TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		EEF97A201881C9C6004F7FC3 /* cog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,8 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				EE3751191879D8A200655BA9 /* commands.h */,
-				EE387602185D8477003E6A22 /* TTTTimeIntervalFormatter.h */,
-				EE387603185D8477003E6A22 /* TTTTimeIntervalFormatter.m */,
+				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
+				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
 				3B6D31FF1843119A00E9A6AB /* Evernote */,
 				3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */,
 				3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */,
@@ -252,7 +257,10 @@
 				3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */,
 				3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */,
 				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
+				EEF97A201881C9C6004F7FC3 /* cog@2x.png */,
 				3B6D31CE1843100100E9A6AB /* Supporting Files */,
+				EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */,
+				EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -426,6 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */,
 				3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */,
 				3B6D31D21843100100E9A6AB /* InfoPlist.strings in Resources */,
 				3BF2E8D218538C78006CB2B3 /* README.md in Resources */,
@@ -455,8 +464,9 @@
 				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
 				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
 				3B6D31D41843100100E9A6AB /* main.m in Sources */,
-				EE387604185D8477003E6A22 /* TTTTimeIntervalFormatter.m in Sources */,
+				EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */,
 				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
+				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +534,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -557,7 +566,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "i386 armv7 armv7s x86_64";
 			};
 			name = Debug;
 		};
@@ -565,7 +573,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -592,7 +599,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "i386 armv7 armv7s x86_64";
 			};
 			name = Release;
 		};
