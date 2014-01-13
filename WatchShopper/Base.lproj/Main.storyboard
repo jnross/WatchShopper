@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3Dq-ST-dnl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3Dq-ST-dnl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -23,7 +23,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lists" id="CuZ-C7-fQi"/>
+                    <navigationItem key="navigationItem" title="Lists" id="CuZ-C7-fQi">
+                        <barButtonItem key="rightBarButtonItem" image="cog.png" id="eeY-hN-nvf">
+                            <connections>
+                                <segue destination="BSd-Sv-UUZ" kind="modal" identifier="showSettings" id="oi1-l3-O5d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="SCX-n1-W1n" kind="push" identifier="push" id="nD6-12-1XQ"/>
                     </connections>
@@ -31,6 +37,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XkX-9c-ntj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="546" y="118"/>
+        </scene>
+        <!--Settings Controller-->
+        <scene sceneID="hv4-nB-fPx">
+            <objects>
+                <tableViewController id="BSd-Sv-UUZ" customClass="ESSettingsController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kpy-ar-mqX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ngZ-4n-GdN">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ngZ-4n-GdN" id="OFP-b9-6XW">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BSd-Sv-UUZ" id="DaU-SE-Z3q"/>
+                            <outlet property="delegate" destination="BSd-Sv-UUZ" id="FF2-Gb-P4A"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zvt-sg-WIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="546" y="789"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BLX-j6-GU4">
@@ -77,6 +111,9 @@
             <point key="canvasLocation" x="966" y="118"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cog.png" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

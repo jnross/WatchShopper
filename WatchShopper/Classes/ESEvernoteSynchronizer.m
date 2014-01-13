@@ -38,7 +38,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 @implementation ESEvernoteSynchronizer
 
 + (void)setupEvernoteSingleton {
-    NSString *EVERNOTE_HOST = BootstrapServerBaseURLStringSandbox;
+    NSString *EVERNOTE_HOST = BootstrapServerBaseURLStringUS;
     NSString *CONSUMER_KEY = @"jnross";
     NSString *CONSUMER_SECRET = @"bc29b5c96d1461d6";
     
