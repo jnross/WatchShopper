@@ -7,16 +7,21 @@
 //
 
 #import "ESSettingsController.h"
+#import "ESSettingsManager.h"
+#import "ESAddTagCell.h"
+#import "ESEvernoteSynchronizer.h"
 
 #define SECTION_AUTHORIZE_EVERNOTE 0
-#define SECTION_LABELS 1
+#define SECTION_TAGS 1
 #define SECTION_NOTEBOOKS 2
 #define NUM_SECTIONS 3
 
-@interface ESSettingsController ()
+@interface ESSettingsController () <UITextFieldDelegate, UIAlertViewDelegate>
 
-@property(nonatomic,strong) NSMutableArray *targetLabels;
-@property(nonatomic,strong) NSMutableArray *targetNotebookNames;
+@property(nonatomic,strong) NSArray *targetTags;
+@property(nonatomic,strong) NSArray *targetNotebookNames;
+
+- (IBAction)tagTextEntered:(UITextField*)tagTextField;
 
 @end
 
@@ -31,15 +36,43 @@
     return self;
 }
 
+- (IBAction)donePressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)tagTextEntered:(UITextField*)tagTextField {
+    [[ESSettingsManager sharedManager] addTargetTag:tagTextField.text];
+    NSInteger insertRowIndex = self.targetTags.count;
+    self.targetTags = [[ESSettingsManager sharedManager] targetTags];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:insertRowIndex inSection:SECTION_TAGS]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:insertRowIndex inSection:SECTION_TAGS]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.targetTags = [[ESSettingsManager sharedManager] targetTags];
+    self.allNotebookNames = [[ESEvernoteSynchronizer sharedSynchronizer] allNotebookNames];
+    self.targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,11 +89,28 @@
 }
 
 - (NSInteger)numberOfLabelRows {
-    return self.targetLabels.count + 1;
+    return self.targetTags.count + 1;
 }
 
 - (NSInteger)numberOfNotebookRows {
     return self.allNotebookNames.count;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case SECTION_AUTHORIZE_EVERNOTE:
+            return @"Evernote";
+            break;
+        case SECTION_TAGS:
+            return @"Tags to Sync";
+            break;
+        case SECTION_NOTEBOOKS:
+            return @"Notebooks to Sync";
+            break;
+        default:
+            break;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -69,7 +119,7 @@
         case SECTION_AUTHORIZE_EVERNOTE:
             return 1;
             break;
-        case SECTION_LABELS:
+        case SECTION_TAGS:
             return [self numberOfLabelRows];
             break;
         case SECTION_NOTEBOOKS:
@@ -88,8 +138,8 @@
         case SECTION_AUTHORIZE_EVERNOTE:
             cell = [self evernoteAuthorizationCell];
             break;
-        case SECTION_LABELS:
-            cell = [self labelCellForRow:indexPath.row];
+        case SECTION_TAGS:
+            cell = [self tagCellForRow:indexPath.row];
             break;
         case SECTION_NOTEBOOKS:
             cell = [self notebookCellForRow:indexPath.row];
@@ -107,34 +157,35 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = @"Authorize Evernote";
-    return cell;
-}
-
-- (UITableViewCell *)addLabelCell {
-    static NSString *CellIdentifier = @"AddLabelCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.text = @"Add Label to Sync";
-        cell.textLabel.textColor = [UIColor grayColor];
+    if ([[ESEvernoteSynchronizer sharedSynchronizer] isAlreadyAutheticated]) {
+        cell.textLabel.text = @"Log Out and Re-Authorize";
+    } else {
+        cell.textLabel.text = @"Authorize Evernote";
     }
     
     return cell;
 }
 
-- (UITableViewCell *)labelCellForRow:(NSInteger)row {
+- (UITableViewCell *)addTagCell {
+    static NSString *CellIdentifier = @"AddTagCell";
+    ESAddTagCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.textField.text = nil;
+    return cell;
+}
+
+- (UITableViewCell *)tagCellForRow:(NSInteger)row {
     
-    if (row >= self.targetLabels.count) {
-        return [self addLabelCell];
+    if (row >= self.targetTags.count) {
+        return [self addTagCell];
     }
     
-    static NSString *CellIdentifier = @"LabelCell";
+    static NSString *CellIdentifier = @"TagCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
     }
-    NSString *labelText = self.targetLabels[row];
+    NSString *labelText = self.targetTags[row];
     
     cell.textLabel.text = labelText;
     return cell;
@@ -148,33 +199,71 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     NSString *labelText = self.allNotebookNames[row];
+    if ([self.targetNotebookNames containsObject:labelText]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     cell.textLabel.text = labelText;
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *tag = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+        [[ESSettingsManager sharedManager] removeTargetTag:tag];
+        self.targetTags = [[ESSettingsManager sharedManager] targetTags];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.section) {
+        case SECTION_AUTHORIZE_EVERNOTE:
+            if ([[ESEvernoteSynchronizer sharedSynchronizer] isAlreadyAutheticated]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Logout" message:@"Log out current Evernote account?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+                [alert show];
+            } else {
+                [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
+            }
+            break;
+        case SECTION_TAGS:
+            break;
+        case SECTION_NOTEBOOKS:
+        {
+            NSString *notebookName = self.allNotebookNames[indexPath.row];
+            [[ESSettingsManager sharedManager] toggleNotebook:notebookName];
+            self.targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [[ESEvernoteSynchronizer sharedSynchronizer] logout];
+        [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
+    }
+}
 
 /*
 // Override to support rearranging the table view.

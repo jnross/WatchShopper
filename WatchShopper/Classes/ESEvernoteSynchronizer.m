@@ -9,6 +9,7 @@
 #import "ESEvernoteSynchronizer.h"
 #import "EvernoteSDK.h"
 #import "ESChecklist.h"
+#import "ESSettingsManager.h"
 #import "commands.h"
 
 static ESEvernoteSynchronizer *singletonInstance = nil;
@@ -20,8 +21,6 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 @property(nonatomic,strong) NSArray* checklists;
 @property(nonatomic,strong) NSMutableArray *observerWrappers;
-@property(nonatomic,strong) NSArray *targetTags;
-@property(nonatomic,strong) NSArray *targetNotebookNames;
 
 @end
 
@@ -60,9 +59,6 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     self = [super init];
     self.observerWrappers = [NSMutableArray array];
     
-    self.targetTags = @[@"pebble"];
-    self.targetNotebookNames = @[@"Pebble"];
-    
     
     return self;
 }
@@ -99,6 +95,10 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     }];
 }
 
+- (void)logout {
+    [[EvernoteSession sharedSession] logout];
+}
+
 - (BOOL)isAlreadyAutheticated {
     return [[EvernoteSession sharedSession] authenticationToken] != nil;
 }
@@ -122,9 +122,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)finishAllNotebooks {
-    if (self.gatheringChecklists.count > 0) {
-        self.checklists = [self sortedRecentImmutableCopyOf:self.gatheringChecklists];
-    }
+    self.checklists = [self sortedRecentImmutableCopyOf:self.gatheringChecklists];
     self.gatheringChecklists = nil;
     self.gatheringNotebooks = nil;
     
@@ -136,8 +134,12 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     [noteStore listNotebooksWithSuccess: ^(NSArray *notebooks) {
         self.gatheringChecklists = [NSMutableArray array];
         self.gatheringNotebooks = [notebooks mutableCopy];
+        NSArray *targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
+        NSMutableArray *allNotebookNames = [NSMutableArray arrayWithCapacity:notebooks.count];
+        self.allNotebookNames = allNotebookNames;
         for (EDAMNotebook *notebook in notebooks) {
-            if ([self.targetNotebookNames containsObject:notebook.name] ) {
+            [allNotebookNames addObject:notebook.name];
+            if ([targetNotebookNames containsObject:notebook.name] ) {
                 [self getAllNotesForNotebook:notebook];
             } else {
                 [self getTagsForNotebook:notebook];
@@ -170,9 +172,10 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 - (void)getTagsForNotebook:(EDAMNotebook *)notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
     [noteStore listTagsByNotebookWithGuid:[notebook guid] success:^(NSArray *tags) {
-        NSMutableArray *availableTargetTagGuids = [NSMutableArray arrayWithCapacity:self.targetTags.count];
+        NSArray *targetTags = [[ESSettingsManager sharedManager] targetTags];
+        NSMutableArray *availableTargetTagGuids = [NSMutableArray arrayWithCapacity:targetTags.count];
         for (EDAMTag *tag in tags) {
-            if ([self.targetTags containsObject:tag.name]) {
+            if ([targetTags containsObject:tag.name]) {
                 [availableTargetTagGuids addObject:tag.guid];
             }
         }
@@ -207,6 +210,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 - (void)gatherChecklistsFromNotes:(NSArray *)notes {
     for (EDAMNote *note in notes) {
         ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
+        checklist.listId = self.gatheringChecklists.count;
         [self.gatheringChecklists addObject:checklist];
     }
 }

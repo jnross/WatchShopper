@@ -49,6 +49,9 @@
 		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
 		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
+		EE161693188507000093E263 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE161692188507000093E263 /* ESAddTagCell.m */; };
+		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
+		EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */; };
 		EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */; };
 		EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEF97A201881C9C6004F7FC3 /* cog@2x.png */; };
@@ -145,7 +148,11 @@
 		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
+		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
 		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
+		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
+		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
 		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
 		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsController.m; path = Classes/ESSettingsController.m; sourceTree = "<group>"; };
 		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTTimeIntervalFormatter.h; path = Classes/TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
@@ -261,6 +268,10 @@
 				3B6D31CE1843100100E9A6AB /* Supporting Files */,
 				EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */,
 				EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */,
+				EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */,
+				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
+				EE161691188507000093E263 /* ESAddTagCell.h */,
+				EE161692188507000093E263 /* ESAddTagCell.m */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -461,9 +472,11 @@
 				3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */,
 				3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */,
 				3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */,
+				EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
 				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
 				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
 				3B6D31D41843100100E9A6AB /* main.m in Sources */,
+				EE161693188507000093E263 /* ESAddTagCell.m in Sources */,
 				EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */,
 				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
@@ -476,6 +489,7 @@
 			files = (
 				3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */,
 				3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */,
+				EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
 				3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 				3BCED9681845D614005F0560 /* ESChecklistTest.m in Sources */,
 				3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */,
