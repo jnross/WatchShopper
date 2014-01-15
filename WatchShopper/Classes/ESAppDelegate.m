@@ -8,12 +8,14 @@
 
 #import "ESAppDelegate.h"
 #import "ESEvernoteSynchronizer.h"
+#import "ESSettingsManager.h"
 
 @implementation ESAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [ESEvernoteSynchronizer setupEvernoteSingleton];
+    [[ESSettingsManager sharedManager] setUpInitialSettingsIfNecessary];
     
     // Override point for customization after application launch.
     return YES;

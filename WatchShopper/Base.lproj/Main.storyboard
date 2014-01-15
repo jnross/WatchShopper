@@ -14,7 +14,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Bnx-cG-jWo">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bnx-cG-jWo" id="PE4-gJ-nOm">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -26,7 +26,7 @@
                     <navigationItem key="navigationItem" title="Lists" id="CuZ-C7-fQi">
                         <barButtonItem key="rightBarButtonItem" image="cog.png" id="eeY-hN-nvf">
                             <connections>
-                                <segue destination="BSd-Sv-UUZ" kind="modal" identifier="showSettings" id="oi1-l3-O5d"/>
+                                <segue destination="BSd-Sv-UUZ" kind="push" identifier="showSettings" id="oi1-l3-O5d"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="546" y="118"/>
         </scene>
-        <!--Settings Controller-->
+        <!--Settings Controller - Settings-->
         <scene sceneID="hv4-nB-fPx">
             <objects>
                 <tableViewController id="BSd-Sv-UUZ" customClass="ESSettingsController" sceneMemberID="viewController">
@@ -47,13 +47,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ngZ-4n-GdN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddTagCell" id="ngZ-4n-GdN" customClass="ESAddTagCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ngZ-4n-GdN" id="OFP-b9-6XW">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Tag to Sync" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jGf-mz-up8">
+                                            <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="tagTextEntered:" destination="BSd-Sv-UUZ" eventType="editingDidEnd" id="Jnj-ZO-AEI"/>
+                                                <outlet property="delegate" destination="BSd-Sv-UUZ" id="knu-Tv-HK2"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="jGf-mz-up8" id="NyQ-C7-Ddi"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -61,10 +76,17 @@
                             <outlet property="delegate" destination="BSd-Sv-UUZ" id="FF2-Gb-P4A"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="N3w-C2-PsI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="QU8-w5-6qH">
+                            <connections>
+                                <action selector="donePressed:" destination="BSd-Sv-UUZ" id="gVn-y2-TgF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvt-sg-WIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="546" y="789"/>
+            <point key="canvasLocation" x="946" y="795"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BLX-j6-GU4">
@@ -91,7 +113,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Item" id="wgV-eZ-cRp">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wgV-eZ-cRp" id="DWo-XL-bJP">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
