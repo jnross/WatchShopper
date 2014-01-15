@@ -45,6 +45,25 @@ void parse_item_update(uint8_t *bytes) {
   menu_layer_reload_data(items_menu);
 }
 
+void send_list_status() {
+  if (checklist == NULL) return;
+  int bufLength = 1 + 2 * checklist->count;
+  uint8_t *buf = malloc(bufLength);
+  int currentIndex = 0;
+  buf[currentIndex++] = checklist->list_id;
+  for (int i = 0; i < checklist->count; i++) {
+    ListItem *item = checklist->items[i];
+    buf[currentIndex++] = item->item_id;
+    buf[currentIndex++] = item->isChecked ? FLAG_IS_CHECKED : 0;
+  }
+
+  DictionaryIterator *dict;
+  app_message_outbox_begin(&dict);
+  dict_write_data(dict, CMD_LIST_ITEM_UPDATE, buf, bufLength);
+
+  app_message_outbox_send();
+}
+
 static void send_check_item(uint8_t list_id, uint8_t item_id, uint8_t flags) {
   uint8_t buf[3];
   buf[0] = list_id;

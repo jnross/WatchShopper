@@ -23,6 +23,7 @@
 
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *guid;
+@property(nonatomic) NSInteger listId;
 @property(nonatomic,strong) EDAMNote *note;
 @property(nonatomic,strong) NSDate *lastUpdatedDate;
 @property(nonatomic,strong) NSMutableArray *items;

@@ -31,5 +31,6 @@
 - (void)launchWatchAppWithChecklist:(ESChecklist *)checklist;
 - (void)queueUpdate:(NSDictionary *)update;
 - (void)launchWatchAppWithAllChecklists;
+- (void)getListStatus;
 
 @end

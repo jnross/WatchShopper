@@ -74,14 +74,19 @@ static ESWatchManager *singletonInstance = nil;
 - (void)receivedUpdate:(NSDictionary *)update fromWatch:(PBWatch *)watch {
     NSData *data = [update objectForKey:@CMD_LIST_ITEM_UPDATE];
     if (data != nil && data.length >= 3) {
-        //UInt8 checklistId = ((UInt8*)data.bytes)[0];
-        UInt8 itemId = ((UInt8*)data.bytes)[1];
-        UInt8 flags = ((UInt8*)data.bytes)[2];
-        
-        ESChecklistItem *item = [self.currentChecklist.items objectAtIndex:itemId];
-        item.isChecked = (flags & FLAG_IS_CHECKED) > 0;
-        
-        [self.currentChecklist.observer checklist:self.currentChecklist updatedItem:item];
+        UInt8 checklistId = ((UInt8*)data.bytes)[0];
+        if (checklistId == self.currentChecklist.listId) {
+            int currentIndex = 1;
+            while (currentIndex < data.length) {
+                UInt8 itemId = ((UInt8*)data.bytes)[currentIndex++];
+                UInt8 flags = ((UInt8*)data.bytes)[currentIndex++];
+                
+                ESChecklistItem *item = [self.currentChecklist.items objectAtIndex:itemId];
+                item.isChecked = (flags & FLAG_IS_CHECKED) > 0;
+                
+                [self.currentChecklist.observer checklist:self.currentChecklist updatedItem:item];
+            }
+        }
     }
     
     data = update[@CMD_GET_STATUS];
@@ -131,13 +136,19 @@ static ESWatchManager *singletonInstance = nil;
     }];
 }
 
+- (void)getListStatus {
+    uint8_t cmd = CMD_GET_LIST_STATUS;
+    NSData *data = [NSData dataWithBytes:&cmd length:1];
+    NSDictionary *update = @{@CMD_GET_LIST_STATUS: data};
+    [self queueUpdate:update];
+}
+
 - (void)queueUpdate:(NSDictionary *)update {
     BOOL triggerSend = (self.queue.count == 0);
     [self.queue addObject:update];
     if (triggerSend) {
         [self doSend];
     }
-    
 }
 
 - (void)doSend {
