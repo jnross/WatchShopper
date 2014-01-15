@@ -56,7 +56,7 @@
     NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@CMD_LIST_ITEMS_START:data}];
     
     // First byte is the 1-byte list ID
-    UInt8 listId = 0;
+    UInt8 listId = self.listId;
     [data appendBytes:&listId length:1];
     
     //Append the null-terminated list name

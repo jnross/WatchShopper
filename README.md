@@ -25,6 +25,9 @@ To Watch:
   <tr>
     <td>0x20</td><td>CMD_LIST_ITEM_UPDATE</td><td></td>
   </tr>
+  <tr>
+    <td>0x30</td><td>CMD_GET_LIST_STATUS</td><td>Requests the checked status for the list currently displayed by the watch.</td>
+  </tr>
 </table>
 From Watch:
 <table>

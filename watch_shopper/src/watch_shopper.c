@@ -23,7 +23,6 @@ void app_message_inbox_dropped(AppMessageResult reason, void *context) {
 }
 
 void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Received app message");
   Tuple *tuple = dict_read_first(iterator);
 
   if (tuple->key == CMD_LIST_ITEM_UPDATE) {
@@ -36,6 +35,9 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
     parse_checklists_start(tuple->value->data, tuple->length);
   } else if (tuple->key == CMD_CHECKLISTS_CONTINUATION) {
     parse_checklists_continuation(tuple->value->data, tuple->length);
+  } else if (tuple->key == CMD_GET_LIST_STATUS) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "CMD_GET_LIST_STATUS");
+    send_list_status();
   }
 
 }
