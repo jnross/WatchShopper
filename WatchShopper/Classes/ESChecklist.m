@@ -84,9 +84,9 @@
     NSMutableString *content = [NSMutableString stringWithString:@"<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\"><en-note><div>"];
     for (ESChecklistItem *item in self.items) {
         if (item.isChecked) {
-            [content appendFormat:@"<div><span style=\"text-decoration: line-through;\">%@</span></div>", item.name];
+            [content appendFormat:@"<div><en-todo checked=\"true\"></en-todo>%@</div>", item.name];
         } else {
-            [content appendFormat:@"<div>%@</div>", item.name];
+            [content appendFormat:@"<div><en-todo></en-todo>%@</div>", item.name];
         }
         
     }
@@ -121,9 +121,17 @@
     NSString *styleString = [attributes objectForKey:@"style"];
     BOOL hasLineThroughStyle = styleString ? [styleString rangeOfString:@"line-through"].location != NSNotFound : NO;
     
-    BOOL flagAsChecked = isSpanTag
-                        && hasLineThroughStyle;
-    return flagAsChecked;
+    if (isSpanTag && hasLineThroughStyle) {
+        return true;
+    }
+    
+    BOOL isTodoTag = [element isEqualToString:@"en-todo"];
+    NSString *checked = [attributes objectForKey:@"checked"];
+    BOOL isChecked = [checked isEqualToString:@"true"];
+    if (isTodoTag && isChecked) {
+        return true;
+    }
+    return false;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -137,6 +145,13 @@
         }
         
         self.accumulatedText = nil;
+    } else {
+        if ([self.elementStack.lastObject isEqualToString:@"checked"]) {
+            [self.elementStack removeLastObject];
+            [self.elementStack removeLastObject];
+            [self.elementStack addObject:@"checked"];
+            [self.elementStack addObject:@"checked"];
+        }
     }
     [self.elementStack removeLastObject];
 }
