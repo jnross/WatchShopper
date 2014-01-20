@@ -52,6 +52,7 @@
 		EE161693188507000093E263 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE161692188507000093E263 /* ESAddTagCell.m */; };
 		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
+		EEC417B1188DA757002DB9DA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EEC417B0188DA757002DB9DA /* iTunesArtwork */; };
 		EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */; };
 		EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */; };
 		EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEF97A201881C9C6004F7FC3 /* cog@2x.png */; };
@@ -154,6 +155,7 @@
 		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
 		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
 		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
+		EEC417B0188DA757002DB9DA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
 		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsController.m; path = Classes/ESSettingsController.m; sourceTree = "<group>"; };
 		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTTimeIntervalFormatter.h; path = Classes/TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
 				EE161691188507000093E263 /* ESAddTagCell.h */,
 				EE161692188507000093E263 /* ESAddTagCell.m */,
+				EEC417B0188DA757002DB9DA /* iTunesArtwork */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */,
+				EEC417B1188DA757002DB9DA /* iTunesArtwork in Resources */,
 				3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */,
 				3B6D31D21843100100E9A6AB /* InfoPlist.strings in Resources */,
 				3BF2E8D218538C78006CB2B3 /* README.md in Resources */,
@@ -659,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
