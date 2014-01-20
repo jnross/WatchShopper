@@ -13,10 +13,11 @@
 #import "version.h"
 
 #define SECTION_AUTHORIZE_EVERNOTE 0
-#define SECTION_TAGS 1
-#define SECTION_NOTEBOOKS 2
-#define SECTION_VERSION 3
-#define NUM_SECTIONS 4
+#define SECTION_INSTALL_WATCHAPP 1
+#define SECTION_TAGS 2
+#define SECTION_NOTEBOOKS 3
+#define SECTION_VERSION 4
+#define NUM_SECTIONS 5
 
 @interface ESSettingsController () <UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -103,6 +104,9 @@
         case SECTION_AUTHORIZE_EVERNOTE:
             return @"Evernote";
             break;
+        case SECTION_INSTALL_WATCHAPP:
+            return @"Install";
+            break;
         case SECTION_TAGS:
             return @"Tags to Sync";
             break;
@@ -122,6 +126,9 @@
 {
     switch (section) {
         case SECTION_AUTHORIZE_EVERNOTE:
+            return 1;
+            break;
+        case SECTION_INSTALL_WATCHAPP:
             return 1;
             break;
         case SECTION_TAGS:
@@ -146,6 +153,9 @@
         case SECTION_AUTHORIZE_EVERNOTE:
             cell = [self evernoteAuthorizationCell];
             break;
+        case SECTION_INSTALL_WATCHAPP:
+            cell = [self installWatchappCell];
+            break;
         case SECTION_TAGS:
             cell = [self tagCellForRow:indexPath.row];
             break;
@@ -167,9 +177,19 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.textAlignment = NSTextAlignmentRight;
     }
     cell.textLabel.text = BUILD_VERSION;
+    
+    return cell;
+}
+
+- (UITableViewCell *)installWatchappCell {
+    static NSString *CellIdentifier = @"InstallWatchappCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.text = @"Install WatchShopper Watchapp";
     
     return cell;
 }
@@ -263,6 +283,11 @@
                 [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
             }
             break;
+        case SECTION_INSTALL_WATCHAPP: {
+            NSString *url = @"pebble://appstore/52bf023e007c1ebd8500008c";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+            break;
         case SECTION_TAGS:
             break;
         case SECTION_NOTEBOOKS:
@@ -287,22 +312,6 @@
         [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
     }
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
