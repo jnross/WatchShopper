@@ -1,6 +1,7 @@
 
 #include "checklists_window.h"
 #include "commands.h"
+#include "log.h"
 
 static MenuLayer *checklists_menu;
 static TextLayer *message_text = NULL;
@@ -13,10 +14,11 @@ static void discard_checklists();
 
 static void reload_if_necessary() {
  	// Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "expected: %d, current: %d", checklists->expected_count, checklists->count);
  	if (checklists->count == checklists->expected_count) {
-    	APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
     	menu_layer_reload_data(checklists_menu);
+      // Bind the menu layer's click config provider to the window for interactivity
+      Window *window = layer_get_window(menu_layer_get_layer(checklists_menu));
+      menu_layer_set_click_config_onto_window(checklists_menu, window);
  	}
 }
 
@@ -26,7 +28,6 @@ void parse_checklists_continuation(uint8_t *bytes, uint16_t length) {
 }
 
 void parse_checklists_start(uint8_t *bytes, uint16_t length) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "parse_checklists_start");
   hide_check_app_message();
 	discard_checklists();
 	checklists = parse_list_items_start(bytes, length);
@@ -36,12 +37,10 @@ void parse_checklists_start(uint8_t *bytes, uint16_t length) {
 void show_check_app_message(Window *window) {
   if (message_text == NULL) {
     Layer *window_layer = window_get_root_layer(window);
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "got window root layer %p", window_layer);
     GRect bounds = layer_get_bounds(window_layer);
     bounds.origin.y = 30;
     bounds.size.h -= 2 * bounds.origin.y;
     message_text = text_layer_create(bounds);
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "About to set text.");
     GFont *font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
     text_layer_set_font(message_text, font);
     text_layer_set_text_alignment(message_text, GTextAlignmentCenter);
@@ -131,13 +130,16 @@ static void checklists_menu_draw_row_callback(GContext* ctx, const Layer *cell_l
 
 // Here we capture when a user selects a menu item
 void checklists_menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
+  DLOG("%s", __FUNCTION__);
+  if (checklists->count == 0) {
+    return;
+  }
   ListItem *item = checklists->items[cell_index->row];
   int selected_list_id = item->item_id;
   send_checklist_select(selected_list_id);
 }
 
 static void discard_checklists() {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "discard_checklist");
     if (checklists != NULL) {
     	list_destroy(checklists);
     	checklists = NULL;
@@ -145,7 +147,6 @@ static void discard_checklists() {
 }
 
 static void checklists_window_load(Window *window) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "checklists_window_load");
   checklists = NULL;
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
@@ -165,9 +166,6 @@ static void checklists_window_load(Window *window) {
     .select_click = checklists_menu_select_callback,
   });
 
-  // Bind the menu layer's click config provider to the window for interactivity
-  menu_layer_set_click_config_onto_window(checklists_menu, window);
-
   // Add it to the window for display
   layer_add_child(window_layer, menu_layer_get_layer(checklists_menu));
   menu_layer_reload_data(checklists_menu);
@@ -175,7 +173,6 @@ static void checklists_window_load(Window *window) {
 }
 
 static void checklists_window_unload(Window *window) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "checklists_window_unload");
     discard_checklists();
   	menu_layer_destroy(checklists_menu);
 }

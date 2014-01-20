@@ -36,14 +36,12 @@ void app_message_inbox_received(DictionaryIterator *iterator, void *context) {
   } else if (tuple->key == CMD_CHECKLISTS_CONTINUATION) {
     parse_checklists_continuation(tuple->value->data, tuple->length);
   } else if (tuple->key == CMD_GET_LIST_STATUS) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "CMD_GET_LIST_STATUS");
     send_list_status();
   }
 
 }
 
 void app_message_outbox_failed(DictionaryIterator *iterator, AppMessageResult reason, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "app_message_outbox_failed: %d", reason);
   if (reason == APP_MSG_NOT_CONNECTED
     || reason == APP_MSG_APP_NOT_RUNNING
     || reason == APP_MSG_SEND_REJECTED
@@ -83,7 +81,6 @@ static void deinit(void) {
 int main(void) {
   init();
 
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Done initializing, pushed window: %p", window);
 
   app_event_loop();
   deinit();

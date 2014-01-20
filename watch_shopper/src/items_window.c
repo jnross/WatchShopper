@@ -14,9 +14,7 @@ static void discard_checklist();
 
 void reload_if_necessary() {
  	// Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "expected: %d, current: %d", checklist->expected_count, checklist->count);
  	if (checklist->count == checklist->expected_count) {
-    	APP_LOG(APP_LOG_LEVEL_DEBUG, "reloading menu");
     	menu_layer_reload_data(items_menu);
  	}
 }
@@ -148,7 +146,6 @@ void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *da
 }
 
 static void discard_checklist() {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "discard_checklist");
     if (checklist != NULL) {
     	list_destroy(checklist);
     	checklist = NULL;
@@ -156,7 +153,6 @@ static void discard_checklist() {
 }
 
 static void items_window_load(Window *window) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "items_window_load");
   checklist = NULL;
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
@@ -186,7 +182,6 @@ static void items_window_load(Window *window) {
 }
 
 static void items_window_unload(Window *window) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "items_window_unload");
   menu_layer_destroy(items_menu);
   discard_checklist();
   if (items_window != NULL) {
