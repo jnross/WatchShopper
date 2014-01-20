@@ -151,6 +151,7 @@
 		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
 		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
 		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
+		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
 		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
 		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
 		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
@@ -263,6 +264,7 @@
 				3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */,
 				3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */,
 				3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */,
+				EE566265188C2CF60054F593 /* version.h */,
 				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
 				EEF97A201881C9C6004F7FC3 /* cog@2x.png */,
 				3B6D31CE1843100100E9A6AB /* Supporting Files */,
@@ -336,6 +338,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopper" */;
 			buildPhases = (
+				EE566262188C2AF10054F593 /* ShellScript */,
 				3B6D31C01843100100E9A6AB /* Sources */,
 				3B6D31C11843100100E9A6AB /* Frameworks */,
 				3B6D31C21843100100E9A6AB /* Resources */,
@@ -462,6 +465,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EE566262188C2AF10054F593 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p build\nexport VERSION=`git describe`\necho \"#define BUILD_VERSION @\\\"$VERSION\\\"\" > build/version.h";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B6D31C01843100100E9A6AB /* Sources */ = {

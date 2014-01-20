@@ -10,11 +10,13 @@
 #import "ESSettingsManager.h"
 #import "ESAddTagCell.h"
 #import "ESEvernoteSynchronizer.h"
+#import "version.h"
 
 #define SECTION_AUTHORIZE_EVERNOTE 0
 #define SECTION_TAGS 1
 #define SECTION_NOTEBOOKS 2
-#define NUM_SECTIONS 3
+#define SECTION_VERSION 3
+#define NUM_SECTIONS 4
 
 @interface ESSettingsController () <UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -107,6 +109,9 @@
         case SECTION_NOTEBOOKS:
             return @"Notebooks to Sync";
             break;
+        case SECTION_VERSION:
+            return @"Version";
+            break;
         default:
             break;
     }
@@ -124,6 +129,9 @@
             break;
         case SECTION_NOTEBOOKS:
             return [self numberOfNotebookRows];
+            break;
+        case SECTION_VERSION:
+            return 1;
             break;
         default:
             break;
@@ -144,9 +152,24 @@
         case SECTION_NOTEBOOKS:
             cell = [self notebookCellForRow:indexPath.row];
             break;
+        case SECTION_VERSION:
+            cell = [self versionCell];
+            break;
         default:
             break;
     }
+    
+    return cell;
+}
+
+- (UITableViewCell *)versionCell {
+    static NSString *CellIdentifier = @"VersionCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
+    }
+    cell.textLabel.text = BUILD_VERSION;
     
     return cell;
 }
