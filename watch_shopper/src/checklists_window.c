@@ -112,6 +112,7 @@ static void checklists_menu_draw_row_callback(GContext* ctx, const Layer *cell_l
     rect.origin.x += 2;
     rect.origin.y -= 4;
     rect.size.w -= 2;
+    rect.size.h += 4;
     graphics_context_set_text_color(ctx, GColorBlack);
     graphics_draw_text(ctx, item_name, font, rect, GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 
