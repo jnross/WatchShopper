@@ -35,6 +35,7 @@ void list_destroy(List *list) {
 }
 
 void parse_list_items_continuation(List *checklist, uint8_t *bytes, uint16_t length) {
+  if (checklist == NULL) { return; }
   uint8_t current_index = 0;
   for (int i = 0; i < checklist->expected_count; i++ ){
     int item_index = bytes[current_index++];

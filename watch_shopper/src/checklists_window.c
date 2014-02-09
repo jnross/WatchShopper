@@ -14,7 +14,7 @@ static void discard_checklists();
 
 static void reload_if_necessary() {
  	// Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
- 	if (checklists->count == checklists->expected_count) {
+ 	if (checklists != NULL && checklists->count == checklists->expected_count) {
     	menu_layer_reload_data(checklists_menu);
       // Bind the menu layer's click config provider to the window for interactivity
       Window *window = layer_get_window(menu_layer_get_layer(checklists_menu));
