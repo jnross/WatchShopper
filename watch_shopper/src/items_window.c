@@ -14,7 +14,7 @@ static void discard_checklist();
 
 void reload_if_necessary() {
  	// Don't reload the menu until we've loaded all the items.  If we do, the app will crash when attempting to access bad memory.
- 	if (checklist->count == checklist->expected_count) {
+ 	if (checklist != NULL && checklist->count == checklist->expected_count) {
     	menu_layer_reload_data(items_menu);
  	}
 }
