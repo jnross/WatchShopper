@@ -126,13 +126,11 @@ static ESWatchManager *singletonInstance = nil;
     
 }
 
-- (void)launchWatchAppWithChecklist:(ESChecklist *)checklist {
-    self.currentChecklist = checklist;
+- (void)launchWatchApp {
     [self.currentWatch appMessagesLaunch:^(PBWatch *watch, NSError *error) {
         if (error != nil) {
             NSLog(@"appMessagesLaunch error: %@", error);
         }
-        [self sendChecklistToWatch:self.currentChecklist];
     }];
 }
 
