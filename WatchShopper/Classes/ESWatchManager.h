@@ -28,7 +28,7 @@
 - (void)start;
 - (void)sendChecklistToWatch:(ESChecklist *)checklist;
 - (void)sendChecklistItemUpdate:(ESChecklistItem *)item;
-- (void)launchWatchAppWithChecklist:(ESChecklist *)checklist;
+- (void)launchWatchApp;
 - (void)queueUpdate:(NSDictionary *)update;
 - (void)launchWatchAppWithAllChecklists;
 - (void)getListStatus;
