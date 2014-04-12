@@ -184,6 +184,13 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
   }
 }
 
+#define SEND_TO_BOTTOM_TIMEOUT_MS 200
+
+static void send_to_bottom_timer_fired(void *callback_data) {
+    refresh_checked_items();
+    menu_layer_reload_data(items_menu);
+}
+
 // Here we capture when a user selects a menu item
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
   ListItem *item = NULL;
@@ -192,20 +199,14 @@ void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *da
   } else if (cell_index->section == SECTION_CHECKED) {
     item = checked_items[cell_index->row];
   }
-  // Draw a line through newly-checked items.
-  if (item->isChecked) {
-    graphics_context_set_fill_color(ctx, GColorBlack);
-    GRect line_rect;
-    line_rect.origin = (GPoint) {.x = 0, .y = (rect.size.h / 2) + 0};
-    line_rect.size = (GSize) {.w = rect.size.w, .h = 2};
-    graphics_fill_rect(ctx, line_rect, 0, GCornerNone);
-  }
 
   if (item != NULL) {
     item->isChecked = !(item->isChecked);
     send_check_item(checklist->list_id, item->item_id, item->isChecked);
-    refresh_checked_items();
+    
+    //Show the item as briefly crossed out, then pop it to the bottom of the list.
     menu_layer_reload_data(menu_layer);
+    app_timer_register(SEND_TO_BOTTOM_TIMEOUT_MS, send_to_bottom_timer_fired, NULL);
   }
 
 }
