@@ -44,13 +44,16 @@
 @property (nonatomic, readwrite, weak) id<PBPebbleCentralDelegate> delegate;
 
 /**
- *  The UUID is used as the identifier of the watch/phone app pair and is used
+ *  The UUID is used as the identifier of the watch application and is used
  *  to make sure that appMessage and dataLogging communications arrives at its companion app
  *  on the other device (and not in another app).
+ *  For most app message methods there is are two variants: one that does not take a UUID parameter and one that does take
+ *  a UUID parameter (for example, -appMessagesAddReceiveUpdateHandler: vs appMessagesAddReceiveUpdateHandler:withUUID:).
+ *  The methods that do not take a UUID, will use the UUID as set prior to this property.
  *  @param uuid The 16 byte UUID of your app.
  *  @note The UUID needs to be set before using either app message or data logging.
  */
-@property (nonatomic, readwrite) NSData *appUUID;
+@property (nonatomic, strong, readwrite) NSData *appUUID;
 
 /**
  *  Verifies the currently set application UUID.
