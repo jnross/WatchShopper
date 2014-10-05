@@ -59,7 +59,7 @@
     @"<en-note><div>ketchup</div><div>mustard</div><div>pickles</div><div><span style=\"text-decoration: line-through;\">beef</span></div><div>w sauce</div><div>buns</div><div>cheese</div><div>mayo</div><div>toms</div><div>lettuce</div><div>onion</div></en-note>";
     ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
     
-    NSData *pebbleData = [checklist pebbleData];
+    NSData *pebbleData = [checklist pebbleDataUpdates][0];
     UInt8 *bytes = (UInt8 *)pebbleData.bytes;
     int currentOffset = 0;
     int listId = bytes[currentOffset++];
