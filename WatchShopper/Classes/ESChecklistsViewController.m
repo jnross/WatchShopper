@@ -143,7 +143,8 @@
     
     [self performSegueWithIdentifier:@"push" sender:checklist];
     
-    [[ESWatchManager sharedManager] launchWatchAppWithChecklist:checklist];
+    [[ESWatchManager sharedManager] launchWatchApp];
+    [[ESWatchManager sharedManager] sendChecklistToWatch:checklist];
 }
 
 - (void) watchApp:(ESWatchManager*)watchApp selectedChecklistAtIndex:(NSInteger)selectedChecklistIndex {

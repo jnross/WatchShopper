@@ -67,7 +67,6 @@ typedef enum {
  *  asynchronously on the queue that was originally used when calling this method.
  *  @param watch The watch on which the query was performed.
  *  @param isGolfSupported YES if Golf Messages are supported, NO if not.
- *  @note This API is the only AppMessages method that can (and should) be used before -appMessagesSetUUID:
  */
 - (void)golfGetIsSupported:(void(^)(PBWatch *watch, BOOL isGolfSupported))fetchedBlock;
 

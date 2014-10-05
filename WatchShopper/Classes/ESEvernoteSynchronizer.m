@@ -156,7 +156,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 - (void)getAllNotesForNotebook:(EDAMNotebook *) notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:nil timeZone:nil inactive:NO emphasized:nil];
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:2 ascending:NO words:nil notebookGuid:notebook.guid tagGuids:nil timeZone:nil inactive:NO emphasized:nil];
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
@@ -195,7 +195,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 - (void)fetchNotesWithTagGuids:(NSMutableArray*)tagGuids inNotebook:(EDAMNotebook *)notebook {
     EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:0 ascending:YES words:nil notebookGuid:notebook.guid tagGuids:tagGuids timeZone:nil inactive:NO emphasized:nil];
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:2 ascending:NO words:nil notebookGuid:notebook.guid tagGuids:tagGuids timeZone:nil inactive:NO emphasized:nil];
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
