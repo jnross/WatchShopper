@@ -92,13 +92,13 @@ static int16_t checklists_menu_get_header_height_callback(MenuLayer *menu_layer,
 
 // A callback is used to specify the height of the section header
 static int16_t checklists_menu_get_cell_height_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *callback_context) {
-  // This is a define provided in pebble_os.h that you may use for the default height
   return 24;
 }
 
 // Here we draw what each header is
 static void checklists_menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
-  menu_cell_basic_header_draw(ctx, cell_layer, checklists->name);
+  char *name = checklists ? checklists->name : "";
+  menu_cell_basic_header_draw(ctx, cell_layer, name);
 }
 
 // This is the menu item draw callback where you specify what each item should look like
