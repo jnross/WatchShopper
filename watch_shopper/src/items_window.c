@@ -168,12 +168,16 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
     rect.origin.y -= 4;
     rect.size.w -= 2;
     rect.size.h += 4;
-    graphics_context_set_text_color(ctx, GColorBlack);
     graphics_draw_text(ctx, item_name, font, rect, GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 
     // Draw a line through checked items.
     if (item->isChecked) {
-      graphics_context_set_fill_color(ctx, GColorBlack);
+      MenuIndex selected_index = menu_layer_get_selected_index(items_menu);
+      bool is_selected = false;
+      if (selected_index.row == cell_index->row && selected_index.section == cell_index->section) {
+        is_selected = true;
+      }
+      graphics_context_set_fill_color(ctx, is_selected ? GColorWhite : GColorBlack);
       GRect line_rect;
       line_rect.origin = (GPoint) {.x = 0, .y = (rect.size.h / 2) + 0};
       line_rect.size = (GSize) {.w = rect.size.w, .h = 2};
