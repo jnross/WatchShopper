@@ -41,7 +41,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[EvernoteSession sharedSession] handleDidBecomeActive];
+    //[[ENSession sharedSession] handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -51,9 +51,9 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     BOOL canHandle = NO;
-    if ([[NSString stringWithFormat:@"en-%@", [[EvernoteSession sharedSession] consumerKey]] isEqualToString:[url scheme]] == YES) {
-        canHandle = [[EvernoteSession sharedSession] canHandleOpenURL:url];
-    }
+//    if ([[NSString stringWithFormat:@"en-%@", [[ENSession sharedSession] consumerKey]] isEqualToString:[url scheme]] == YES) {
+//        canHandle = [[ENSession sharedSession] canHandleOpenURL:url];
+//    }
     return canHandle;
 }
 

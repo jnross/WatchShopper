@@ -30,7 +30,7 @@
     self = [super init];
     self.note = note;
     self.name = note.title;
-    self.lastUpdatedDate = [NSDate endateFromEDAMTimestamp:note.updated];
+    self.lastUpdatedDate = [NSDate dateWithEDAMTimestamp:note.updated.longLongValue];
     self.guid = note.guid;
     self.items = [NSMutableArray arrayWithCapacity:10];
     if (note.content != nil) {

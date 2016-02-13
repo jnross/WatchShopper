@@ -7,7 +7,7 @@
 //
 
 #import "ESEvernoteSynchronizer.h"
-#import "EvernoteSDK.h"
+#import "ENSDKAdvanced.h"
 #import "ESChecklist.h"
 #import "ESSettingsManager.h"
 #import "commands.h"
@@ -37,14 +37,11 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 @implementation ESEvernoteSynchronizer
 
 + (void)setupEvernoteSingleton {
-    NSString *EVERNOTE_HOST = BootstrapServerBaseURLStringUS;
     NSString *CONSUMER_KEY = @"jnross";
     NSString *CONSUMER_SECRET = @"[REDACTED]";
     
     // set up Evernote session singleton
-    [EvernoteSession setSharedSessionHost:EVERNOTE_HOST
-                              consumerKey:CONSUMER_KEY
-                           consumerSecret:CONSUMER_SECRET];
+    [ENSession setSharedSessionConsumerKey:CONSUMER_KEY consumerSecret:CONSUMER_SECRET optionalHost:nil];
 }
 
 + (ESEvernoteSynchronizer *)sharedSynchronizer {
@@ -83,8 +80,8 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)authenticateEvernoteUserFromViewController:(UIViewController*)viewController {
-    EvernoteSession *session = [EvernoteSession sharedSession];
-    [session authenticateWithViewController:viewController completionHandler:^(NSError *error) {
+    ENSession *session = [ENSession sharedSession];
+    [session authenticateWithViewController:viewController preferRegistration:NO completion:^(NSError *error) {
         if (error || !session.isAuthenticated) {
             // authentication failed :(
             // show an alert, etc
@@ -96,15 +93,15 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)logout {
-    [[EvernoteSession sharedSession] logout];
+    [[ENSession sharedSession] unauthenticate];
 }
 
 - (BOOL)isAlreadyAutheticated {
-    return [[EvernoteSession sharedSession] authenticationToken] != nil;
+    return [[ENSession sharedSession] isAuthenticated];
 }
 
 - (void)saveNote:(EDAMNote *)note {
-    [[EvernoteNoteStore noteStore] updateNote:note
+    [[[ENSession sharedSession] primaryNoteStore] updateNote:note
                                       success:^(EDAMNote *note) {
                                           
                                       }
@@ -130,8 +127,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)getPebbleNotes {
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    [noteStore listNotebooksWithSuccess: ^(NSArray *notebooks) {
+    [[[ENSession sharedSession] primaryNoteStore] listNotebooksWithSuccess: ^(NSArray *notebooks) {
         self.gatheringChecklists = [NSMutableArray array];
         self.gatheringNotebooks = [notebooks mutableCopy];
         NSArray *targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
@@ -155,8 +151,12 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)getAllNotesForNotebook:(EDAMNotebook *) notebook {
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:2 ascending:NO words:nil notebookGuid:notebook.guid tagGuids:nil timeZone:nil inactive:NO emphasized:nil];
+    ENNoteStoreClient *noteStore = [[ENSession sharedSession] primaryNoteStore];
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] init];
+    filter.order = @(2);
+    filter.ascending = @NO;
+    filter.notebookGuid = notebook.guid;
+    filter.inactive = @NO;
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
@@ -170,7 +170,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)getTagsForNotebook:(EDAMNotebook *)notebook {
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
+    ENNoteStoreClient *noteStore = [[ENSession sharedSession] primaryNoteStore];
     [noteStore listTagsByNotebookWithGuid:[notebook guid] success:^(NSArray *tags) {
         NSArray *targetTags = [[ESSettingsManager sharedManager] targetTags];
         NSMutableArray *availableTargetTagGuids = [NSMutableArray arrayWithCapacity:targetTags.count];
@@ -194,8 +194,14 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 }
 
 - (void)fetchNotesWithTagGuids:(NSMutableArray*)tagGuids inNotebook:(EDAMNotebook *)notebook {
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] initWithOrder:2 ascending:NO words:nil notebookGuid:notebook.guid tagGuids:tagGuids timeZone:nil inactive:NO emphasized:nil];
+    ENNoteStoreClient *noteStore = [[ENSession sharedSession] primaryNoteStore];
+    
+    EDAMNoteFilter *filter = [[EDAMNoteFilter alloc] init];
+    filter.order = @(2);
+    filter.ascending = @NO;
+    filter.notebookGuid = notebook.guid;
+    filter.tagGuids = tagGuids;
+    filter.inactive = @NO;
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
         NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
@@ -217,7 +223,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 - (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure {
     NSString *guid = checklist.note.guid;
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
+    ENNoteStoreClient *noteStore = [[ENSession sharedSession] primaryNoteStore];
     [noteStore getNoteContentWithGuid:guid success:^(NSString *content) {
         checklist.note.content = content;
         [checklist loadContent];
@@ -241,7 +247,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     if (error == nil) {
         return;
     }
-    if ([error.domain isEqualToString:EvernoteSDKErrorDomain]
+    if ([error.domain isEqualToString:ENErrorDomain]
         && error.code == EDAMErrorCode_RATE_LIMIT_REACHED) {
         NSInteger rateLimitDurationSeconds = [error.userInfo[@"rateLimitDuration"] integerValue];
         NSInteger rateLimitDurationMinutes = rateLimitDurationSeconds / 60;

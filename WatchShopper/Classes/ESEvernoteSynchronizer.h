@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EvernoteSDK.h"
+#import "ENSDKAdvanced.h"
 
 #define EVERNOTE [ESEvernoteSynchronizer sharedSynchronizer]
 

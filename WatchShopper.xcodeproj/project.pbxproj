@@ -31,9 +31,7 @@
 		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
-		3B6D32291843247800E9A6AB /* libevernote-sdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */; };
 		3BCED9681845D614005F0560 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
-		3BCED96B1845D64B005F0560 /* libevernote-sdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */; };
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
 		3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
 		3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
@@ -49,6 +47,7 @@
 		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
 		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
+		C8DF4D991FC57F061F9AA27F /* libPods-WatchShopper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D7D8B55FAF75659EEE77EB /* libPods-WatchShopper.a */; };
 		EE161693188507000093E263 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE161692188507000093E263 /* ESAddTagCell.m */; };
 		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
@@ -65,41 +64,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3B6D31C31843100100E9A6AB;
 			remoteInfo = WatchShopper;
-		};
-		3B6D32061843128B00E9A6AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0BB3D1AD1524ED96001C4534;
-			remoteInfo = "evernote-sdk-ios";
-		};
-		3B6D32081843128B00E9A6AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0BB3D26E1524EF37001C4534;
-			remoteInfo = SampleApp;
-		};
-		3B6D320A1843128B00E9A6AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0BDBBC431550A11A003E6681;
-			remoteInfo = UnitTests;
-		};
-		3B6D3210184312CD00E9A6AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BB3D1AC1524ED96001C4534;
-			remoteInfo = "evernote-sdk-ios";
-		};
-		3BCED9691845D645005F0560 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BB3D1AC1524ED96001C4534;
-			remoteInfo = "evernote-sdk-ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -131,7 +95,6 @@
 		3B6D31F21843100100E9A6AB /* WatchShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchShopperTests.m; sourceTree = "<group>"; };
 		3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESEvernoteSynchronizer.h; path = Classes/ESEvernoteSynchronizer.h; sourceTree = "<group>"; };
 		3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESEvernoteSynchronizer.m; path = Classes/ESEvernoteSynchronizer.m; sourceTree = "<group>"; };
-		3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "evernote-sdk-ios.xcodeproj"; path = "../evernote-sdk-ios/evernote-sdk-ios.xcodeproj"; sourceTree = "<group>"; };
 		3B6D321418431F4000E9A6AB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3B6D321618431F4000E9A6AB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -149,6 +112,9 @@
 		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		46776F811A1F86294A85B741 /* Pods-WatchShopper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchShopper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper.debug.xcconfig"; sourceTree = "<group>"; };
+		85D7D8B55FAF75659EEE77EB /* libPods-WatchShopper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WatchShopper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5A05986F542A65595D62FDC /* Pods-WatchShopper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchShopper.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper.release.xcconfig"; sourceTree = "<group>"; };
 		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
 		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
 		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
@@ -174,7 +140,6 @@
 				3BF2E8EA18552567006CB2B3 /* CoreBluetooth.framework in Frameworks */,
 				3BF2E8EB18552567006CB2B3 /* CoreMotion.framework in Frameworks */,
 				3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */,
-				3B6D32291843247800E9A6AB /* libevernote-sdk-ios.a in Frameworks */,
 				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
 				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
 				3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */,
@@ -183,6 +148,7 @@
 				3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
 				3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */,
 				3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */,
+				C8DF4D991FC57F061F9AA27F /* libPods-WatchShopper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +160,6 @@
 				3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */,
 				3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */,
 				3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
-				3BCED96B1845D64B005F0560 /* libevernote-sdk-ios.a in Frameworks */,
 				3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */,
 				3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */,
 				3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
@@ -209,11 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				3BF2E8D118538C78006CB2B3 /* README.md */,
-				3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */,
 				3B6D31CD1843100100E9A6AB /* WatchShopper */,
 				3B6D31EC1843100100E9A6AB /* WatchShopperTests */,
 				3B6D31C61843100100E9A6AB /* Frameworks */,
 				3B6D31C51843100100E9A6AB /* Products */,
+				780E964B690D38568AB0D7AE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +211,7 @@
 				3B6D31C91843100100E9A6AB /* CoreGraphics.framework */,
 				3B6D31CB1843100100E9A6AB /* UIKit.framework */,
 				3B6D31E61843100100E9A6AB /* XCTest.framework */,
+				85D7D8B55FAF75659EEE77EB /* libPods-WatchShopper.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,14 +290,13 @@
 			name = Evernote;
 			sourceTree = "<group>";
 		};
-		3B6D32011843128B00E9A6AB /* Products */ = {
+		780E964B690D38568AB0D7AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */,
-				3B6D32091843128B00E9A6AB /* SampleApp.app */,
-				3B6D320B1843128B00E9A6AB /* UnitTests.octest */,
+				46776F811A1F86294A85B741 /* Pods-WatchShopper.debug.xcconfig */,
+				E5A05986F542A65595D62FDC /* Pods-WatchShopper.release.xcconfig */,
 			);
-			name = Products;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,15 +306,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B6D31F61843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopper" */;
 			buildPhases = (
+				8EDBF3A8165D0FAFB3AC0B7E /* Check Pods Manifest.lock */,
 				EE566262188C2AF10054F593 /* ShellScript */,
 				3B6D31C01843100100E9A6AB /* Sources */,
 				3B6D31C11843100100E9A6AB /* Frameworks */,
 				3B6D31C21843100100E9A6AB /* Resources */,
+				16D5CC55C250C92DB6D23C81 /* Embed Pods Frameworks */,
+				BA0153568FCCC815144B2DD8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3B6D3211184312CD00E9A6AB /* PBXTargetDependency */,
 			);
 			name = WatchShopper;
 			productName = WatchShopper;
@@ -367,7 +334,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3BCED96A1845D645005F0560 /* PBXTargetDependency */,
 				3B6D31EB1843100100E9A6AB /* PBXTargetDependency */,
 			);
 			name = WatchShopperTests;
@@ -408,12 +374,6 @@
 			mainGroup = 3B6D31BB1843100100E9A6AB;
 			productRefGroup = 3B6D31C51843100100E9A6AB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3B6D32011843128B00E9A6AB /* Products */;
-					ProjectRef = 3B6D32001843128B00E9A6AB /* evernote-sdk-ios.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3B6D31C31843100100E9A6AB /* WatchShopper */,
@@ -421,30 +381,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3B6D32071843128B00E9A6AB /* libevernote-sdk-ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libevernote-sdk-ios.a";
-			remoteRef = 3B6D32061843128B00E9A6AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B6D32091843128B00E9A6AB /* SampleApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = SampleApp.app;
-			remoteRef = 3B6D32081843128B00E9A6AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B6D320B1843128B00E9A6AB /* UnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
-			remoteRef = 3B6D320A1843128B00E9A6AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3B6D31C21843100100E9A6AB /* Resources */ = {
@@ -471,6 +407,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16D5CC55C250C92DB6D23C81 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8EDBF3A8165D0FAFB3AC0B7E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA0153568FCCC815144B2DD8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EE566262188C2AF10054F593 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -526,16 +507,6 @@
 			isa = PBXTargetDependency;
 			target = 3B6D31C31843100100E9A6AB /* WatchShopper */;
 			targetProxy = 3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */;
-		};
-		3B6D3211184312CD00E9A6AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "evernote-sdk-ios";
-			targetProxy = 3B6D3210184312CD00E9A6AB /* PBXContainerItemProxy */;
-		};
-		3BCED96A1845D645005F0560 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "evernote-sdk-ios";
-			targetProxy = 3BCED9691845D645005F0560 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -641,6 +612,7 @@
 		};
 		3B6D31F71843100100E9A6AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46776F811A1F86294A85B741 /* Pods-WatchShopper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -651,7 +623,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
-				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
 				WRAPPER_EXTENSION = app;
@@ -660,6 +631,7 @@
 		};
 		3B6D31F81843100100E9A6AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5A05986F542A65595D62FDC /* Pods-WatchShopper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -671,7 +643,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
-				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
 				WRAPPER_EXTENSION = app;
