@@ -41,7 +41,7 @@ void show_check_app_message(Window *window) {
     bounds.origin.y = 30;
     bounds.size.h -= 2 * bounds.origin.y;
     message_text = text_layer_create(bounds);
-    GFont *font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+    GFont font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
     text_layer_set_font(message_text, font);
     text_layer_set_text_alignment(message_text, GTextAlignmentCenter);
     text_layer_set_text(message_text, "Please activate WatchShopper on your phone");
