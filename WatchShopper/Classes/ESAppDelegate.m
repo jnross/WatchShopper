@@ -9,6 +9,7 @@
 #import "ESAppDelegate.h"
 #import "ESEvernoteSynchronizer.h"
 #import "ESSettingsManager.h"
+#import "WatchShopper-Swift.h"
 
 @implementation ESAppDelegate
 
@@ -16,7 +17,9 @@
 {
     [ESEvernoteSynchronizer setupEvernoteSingleton];
     [[ESSettingsManager sharedManager] setUpInitialSettingsIfNecessary];
+    [[ESAppleWatchManager defaultManager] start];
     
+    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!! applicationDidLaunch");
     // Override point for customization after application launch.
     return YES;
 }

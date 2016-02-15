@@ -10,12 +10,10 @@
 #import "ESEvernoteSynchronizer.h"
 #import "ESWatchManager.h"
 #import "ESChecklistItemsViewController.h"
-#import "TTTTimeIntervalFormatter.h"
 
 @interface ESChecklistsViewController () <ESEvernoteSynchronizerObserver, ESWatchManagerObserver>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
-@property(nonatomic,strong) TTTTimeIntervalFormatter *formatter;
 
 @end
 
@@ -40,8 +38,6 @@
     
     [[ESWatchManager sharedManager] start];
     [ESWatchManager sharedManager].observer = self;
-    
-    self.formatter = [[TTTTimeIntervalFormatter alloc] init];
 }
 
 - (void)dealloc {
@@ -95,18 +91,7 @@
     
     cell.textLabel.text = checklist.name;
     
-    NSTimeInterval interval = [checklist.lastUpdatedDate timeIntervalSinceNow];
-    
-    NSTimeInterval twoDaysAgo = -60 * 60 * 24 * 2;
-    NSString *dateString = nil;
-    if (interval < twoDaysAgo) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEE, MMM dd, yyyy"];
-        dateString = [dateFormatter stringFromDate:checklist.lastUpdatedDate];
-    } else {
-        dateString = [self.formatter stringForTimeInterval:interval];
-    }
-    cell.detailTextLabel.text = dateString;
+    cell.detailTextLabel.text = [ESChecklist niceLookingStringForDate:checklist.lastUpdatedDate];
     
     return cell;
     

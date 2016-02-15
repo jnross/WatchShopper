@@ -10,6 +10,7 @@
 #import "NSDate+EDAMAdditions.h"
 #import "ESEvernoteSynchronizer.h"
 #import "commands.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @interface ESChecklist () <NSXMLParserDelegate>
 
@@ -163,5 +164,26 @@
     }
 }
 
++ (NSString*)niceLookingStringForDate:(NSDate*) date {
+    NSTimeInterval interval = [date timeIntervalSinceNow];
+    
+    NSTimeInterval twoDaysAgo = -60 * 60 * 24 * 2;
+    NSString *dateString = nil;
+    if (interval < twoDaysAgo) {
+        static NSDateFormatter *dateFormatter = nil;
+        if (dateFormatter == nil) {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, MMM dd, yyyy"];
+        }
+        dateString = [dateFormatter stringFromDate:date];
+    } else {
+        static TTTTimeIntervalFormatter *formatter = nil;
+        if (formatter == nil) {
+            formatter = [[TTTTimeIntervalFormatter alloc] init];
+        }
+        dateString = [formatter stringForTimeInterval:interval];
+    }
+    return dateString;
+}
 
 @end

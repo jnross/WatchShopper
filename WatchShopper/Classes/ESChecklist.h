@@ -35,4 +35,6 @@
 - (NSArray *)pebbleDataUpdates;
 - (void)loadContent;
 
++ (NSString*)niceLookingStringForDate:(NSDate*)date;
+
 @end

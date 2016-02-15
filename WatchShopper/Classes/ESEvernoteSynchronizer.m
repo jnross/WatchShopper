@@ -16,10 +16,10 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
 
 @interface ESEvernoteSynchronizer ()
 
-@property(nonatomic,strong) NSMutableArray* gatheringChecklists;
+@property(nonatomic,strong) NSMutableArray<ESChecklist *>* gatheringChecklists;
 @property(nonatomic,strong) NSMutableArray* gatheringNotebooks;
 
-@property(nonatomic,strong) NSArray* checklists;
+@property(nonatomic,strong) NSArray<ESChecklist *>* checklists;
 @property(nonatomic,strong) NSMutableArray *observerWrappers;
 
 @end
@@ -122,11 +122,14 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     self.checklists = [self sortedRecentImmutableCopyOf:self.gatheringChecklists];
     self.gatheringChecklists = nil;
     self.gatheringNotebooks = nil;
+    self.isGathering = NO;
     
     [self notifySynchronizerUpdatedChecklists];
 }
 
 - (void)getPebbleNotes {
+    if (self.isGathering) { return; }
+    self.isGathering = YES;
     [[[ENSession sharedSession] primaryNoteStore] listNotebooksWithSuccess: ^(NSArray *notebooks) {
         self.gatheringChecklists = [NSMutableArray array];
         self.gatheringNotebooks = [notebooks mutableCopy];
@@ -203,7 +206,6 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     filter.tagGuids = tagGuids;
     filter.inactive = @NO;
     [noteStore findNotesWithFilter:filter offset:0 maxNotes:32 success:^(EDAMNoteList *list) {
-        NSLog(@"list: %@", list);
         [self gatherChecklistsFromNotes:list.notes];
         [self finishNotebook:notebook];
     } failure:^(NSError *error) {

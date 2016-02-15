@@ -29,12 +29,13 @@
 - (void)authenticateEvernoteUserFromViewController:(UIViewController*)viewController;
 - (BOOL)isAlreadyAutheticated;
 - (void)getPebbleNotes;
-- (NSArray*)checklists;
+- (NSArray<ESChecklist *>*)checklists;
 - (void)saveNote:(EDAMNote *)note;
 - (NSArray *)checklistDataUpdates;
 - (void)logout;
 - (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure;
 
 @property (nonatomic,retain) NSArray *allNotebookNames;
+@property (nonatomic) BOOL isGathering;
 
 @end
