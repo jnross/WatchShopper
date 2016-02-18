@@ -51,9 +51,10 @@ class ChecklistController: WKInterfaceController {
     }
     
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        if let row = table.rowControllerAtIndex(rowIndex) as? ItemRow {
+        if let row = table.rowControllerAtIndex(rowIndex) as? ItemRow, listGuid = list?.guid {
             row.checked = !row.checked
             setCheckedImage(row)
+            DataProxy.defaultProxy.updateCheckedItem(row.itemId, listGuid: listGuid, checked: row.checked)
         }
     }
     

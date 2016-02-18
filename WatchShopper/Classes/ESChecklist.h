@@ -26,7 +26,7 @@
 @property(nonatomic) NSInteger listId;
 @property(nonatomic,strong) EDAMNote *note;
 @property(nonatomic,strong) NSDate *lastUpdatedDate;
-@property(nonatomic,strong) NSMutableArray *items;
+@property(nonatomic,strong) NSMutableArray<ESChecklistItem *> *items;
 @property(nonatomic,weak) NSObject<ESChecklistObserver> *observer;
 
 - (id)initWithName:(NSString *)name guid:(NSString *)guid;

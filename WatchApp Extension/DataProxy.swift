@@ -45,6 +45,14 @@ class DataProxy: NSObject, WCSessionDelegate {
         }
     }
     
+    func updateCheckedItem(itemId:Int, listGuid:String, checked:Bool) {
+        session.sendMessage(["action":"updateCheckedItem", "listGuid":listGuid, "itemId":itemId, "checked":checked], replyHandler: { (reply) -> Void in
+            NSLog("!!!!!!!!!!!!!!!!!!Got reply: %@", reply)
+            }) { (error) -> Void in
+                NSLog("!!!!!!!!!!!!!!!!!Got error: %@", error)
+        }
+    }
+    
     func addDataProxyObserver(observer:DataProxyObserver) {
         observers.append(observer)
     }
