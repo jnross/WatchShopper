@@ -254,12 +254,9 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
         NSInteger rateLimitDurationSeconds = [error.userInfo[@"rateLimitDuration"] integerValue];
         NSInteger rateLimitDurationMinutes = rateLimitDurationSeconds / 60;
         NSString *message = [NSString stringWithFormat:@"Too many requests to Evernote.  Please try again in %ld minutes.", (long)rateLimitDurationMinutes];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:message
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }
 }
 

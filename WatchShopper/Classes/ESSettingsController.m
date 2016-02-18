@@ -277,8 +277,12 @@
     switch (indexPath.section) {
         case SECTION_AUTHORIZE_EVERNOTE:
             if ([[ESEvernoteSynchronizer sharedSynchronizer] isAlreadyAutheticated]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Logout" message:@"Log out current Evernote account?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-                [alert show];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm Logout" message:@"Log out current Evernote account?" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    [self userConfirmedLogout];
+                }]];
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
             } else {
                 [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
             }
@@ -306,11 +310,9 @@
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [[ESEvernoteSynchronizer sharedSynchronizer] logout];
-        [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
-    }
+- (void)userConfirmedLogout {
+    [[ESEvernoteSynchronizer sharedSynchronizer] logout];
+    [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
 }
 
 /*

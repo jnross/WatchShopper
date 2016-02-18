@@ -47,7 +47,7 @@
                         <table alignment="left" id="Js1-GH-tDF">
                             <items>
                                 <tableRow identifier="ItemRow" id="igP-LL-whq" customClass="ItemRow" customModule="WatchApp_Extension">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="dkV-mT-uUP">
+                                    <group key="rootItem" width="1" height="32" alignment="left" id="dkV-mT-uUP">
                                         <items>
                                             <button alignment="left" verticalAlignment="center" backgroundImage="unchecked" id="xiH-BC-R1f"/>
                                             <label alignment="left" verticalAlignment="center" text="Item" numberOfLines="2" id="tVQ-CR-iJZ">
