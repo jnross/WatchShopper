@@ -15,27 +15,27 @@
 @class ESChecklist;
 @protocol ESEvernoteSynchronizerObserver <NSObject>
 
-- (void)synchronizerUpdatedChecklists:(ESEvernoteSynchronizer *) synchronizer;
+- (void)synchronizerUpdatedChecklists:(nonnull ESEvernoteSynchronizer *) synchronizer;
 
 @end
 
 @interface ESEvernoteSynchronizer : NSObject
 
 + (void)setupEvernoteSingleton;
-+ (ESEvernoteSynchronizer *)sharedSynchronizer;
++ (nonnull ESEvernoteSynchronizer *)sharedSynchronizer;
 
-- (void)addObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer;
-- (void)removeObserver:(NSObject<ESEvernoteSynchronizerObserver> *)observer;
-- (void)authenticateEvernoteUserFromViewController:(UIViewController*)viewController;
+- (void)addObserver:(nonnull NSObject<ESEvernoteSynchronizerObserver> *)observer;
+- (void)removeObserver:(nonnull NSObject<ESEvernoteSynchronizerObserver> *)observer;
+- (void)authenticateEvernoteUserFromViewController:(nonnull UIViewController*)viewController;
 - (BOOL)isAlreadyAutheticated;
 - (void)getPebbleNotes;
-- (NSArray<ESChecklist *>*)checklists;
-- (void)saveNote:(EDAMNote *)note;
-- (NSArray *)checklistDataUpdates;
+- (nonnull NSArray<ESChecklist *>*)checklists;
+- (void)saveNote:(nonnull EDAMNote *)note;
+- (nonnull NSArray *)checklistDataUpdates;
 - (void)logout;
-- (void)loadContentForChecklist:(ESChecklist *)checklist success:(void (^)())success failure:(void (^)(NSError* error))failure;
+- (void)loadContentForChecklist:(nonnull ESChecklist *)checklist success:(nullable void (^)())success failure:(nullable void (^)( NSError* _Nonnull error))failure;
 
-@property (nonatomic,retain) NSArray *allNotebookNames;
+@property (nonatomic,retain,nonnull) NSArray *allNotebookNames;
 @property (nonatomic) BOOL isGathering;
 
 @end

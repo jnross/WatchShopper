@@ -10,13 +10,13 @@ import WatchKit
 import WatchConnectivity
 
 protocol DataProxyObserver: NSObjectProtocol {
-    func dataProxyUpdatedLists(dataProxy:DataProxy)
+    func dataProxyUpdatedLists(_ dataProxy:DataProxy)
 }
 
 class DataProxy: NSObject, WCSessionDelegate {
     static let defaultProxy = DataProxy()
     
-    let session = WCSession.defaultSession()
+    let session = WCSession.default()
     
     var lists:[ListInfo] = []
     
@@ -24,7 +24,7 @@ class DataProxy: NSObject, WCSessionDelegate {
     
     func start() {
         session.delegate = self
-        session.activateSession()
+        session.activate()
     }
     
     func sendNeedsUpdate() {
@@ -35,7 +35,7 @@ class DataProxy: NSObject, WCSessionDelegate {
         }
     }
     
-    func fetchListItems(guid:String, completionHandler:ListWithItems -> Void) {
+    func fetchListItems(_ guid:String, completionHandler:(ListWithItems) -> Void) {
         session.sendMessage(["action":"fetchListItems", "guid":guid], replyHandler: { (reply) -> Void in
             if let list = ListWithItems(dictionary: reply) {
                 completionHandler(list)
@@ -45,7 +45,7 @@ class DataProxy: NSObject, WCSessionDelegate {
         }
     }
     
-    func updateCheckedItem(itemId:Int, listGuid:String, checked:Bool) {
+    func updateCheckedItem(_ itemId:Int, listGuid:String, checked:Bool) {
         session.sendMessage(["action":"updateCheckedItem", "listGuid":listGuid, "itemId":itemId, "checked":checked], replyHandler: { (reply) -> Void in
             NSLog("!!!!!!!!!!!!!!!!!!Got reply: %@", reply)
             }) { (error) -> Void in
@@ -53,25 +53,32 @@ class DataProxy: NSObject, WCSessionDelegate {
         }
     }
     
-    func addDataProxyObserver(observer:DataProxyObserver) {
+    func addDataProxyObserver(_ observer:DataProxyObserver) {
         observers.append(observer)
     }
     
-    func removeDataProxyObserver(observer:DataProxyObserver) {
-        if let index = observers.indexOf({return $0.isEqual(observer)}) {
-            observers.removeAtIndex(index)
+    func removeDataProxyObserver(_ observer:DataProxyObserver) {
+        if let index = observers.index(where: {return $0.isEqual(observer)}) {
+            observers.remove(at: index)
         }
     }
     
     func notifyUpdatedLists() {
-        observers.map({$0.dataProxyUpdatedLists(self)})
+        observers.forEach({$0.dataProxyUpdatedLists(self)})
     }
     
-    func sessionReachabilityDidChange(session: WCSession) {
+    // MARK: WCSessionDelegate methods
+    
+    @available(watchOSApplicationExtension 2.2, *)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: NSError?) {
         
     }
     
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         if let listDicts = applicationContext["lists"] as? [[String:AnyObject]] {
             lists = []
             for listDict in listDicts {
@@ -83,7 +90,7 @@ class DataProxy: NSObject, WCSessionDelegate {
         }
     }
     
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : AnyObject]) {
         
     }
 }

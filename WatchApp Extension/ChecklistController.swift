@@ -14,8 +14,8 @@ class ChecklistController: WKInterfaceController {
     var list:ListWithItems? = nil
     
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: AnyObject?) {
+        super.awake(withContext: context)
         list = context as? ListWithItems
         self.setTitle(list?.name)
         refreshTable()
@@ -32,8 +32,8 @@ class ChecklistController: WKInterfaceController {
     func refreshTable() {
         table.setNumberOfRows(list?.items.count ?? 0, withRowType: "ItemRow")
         
-        for (index, item) in (list?.items ?? []).enumerate() {
-            if let row = table.rowControllerAtIndex(index) as? ItemRow {
+        for (index, item) in (list?.items ?? []).enumerated() {
+            if let row = table.rowController(at: index) as? ItemRow {
                 row.nameLabel.setText(item.name)
                 row.checked = item.checked
                 setCheckedImage(row)
@@ -42,7 +42,7 @@ class ChecklistController: WKInterfaceController {
         }
     }
     
-    func setCheckedImage(row:ItemRow) {
+    func setCheckedImage(_ row:ItemRow) {
         if row.checked {
             row.checkButton.setBackgroundImageNamed("checked")
         } else {
@@ -50,8 +50,8 @@ class ChecklistController: WKInterfaceController {
         }
     }
     
-    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        if let row = table.rowControllerAtIndex(rowIndex) as? ItemRow, listGuid = list?.guid {
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        if let row = table.rowController(at: rowIndex) as? ItemRow, listGuid = list?.guid {
             row.checked = !row.checked
             setCheckedImage(row)
             DataProxy.defaultProxy.updateCheckedItem(row.itemId, listGuid: listGuid, checked: row.checked)

@@ -14,27 +14,27 @@
 
 @protocol ESChecklistObserver <NSObject>
 
-- (void)checklistDidRefresh:(ESChecklist *)checklist;
-- (void)checklist:(ESChecklist *)checklist updatedItem:(ESChecklistItem *) item;
+- (void)checklistDidRefresh:(nonnull ESChecklist *)checklist;
+- (void)checklist:(nonnull ESChecklist *)checklist updatedItem:(nonnull ESChecklistItem *) item;
 
 @end
 
 @interface ESChecklist : NSObject
 
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) NSString *guid;
+@property(nonatomic,strong,nonnull) NSString *name;
+@property(nonatomic,strong,nonnull) NSString *guid;
 @property(nonatomic) NSInteger listId;
-@property(nonatomic,strong) EDAMNote *note;
-@property(nonatomic,strong) NSDate *lastUpdatedDate;
-@property(nonatomic,strong) NSMutableArray<ESChecklistItem *> *items;
-@property(nonatomic,weak) NSObject<ESChecklistObserver> *observer;
+@property(nonatomic,strong,nullable) EDAMNote *note;
+@property(nonatomic,strong,nonnull) NSDate *lastUpdatedDate;
+@property(nonatomic,weak,nullable) NSObject<ESChecklistObserver> *observer;
 
-- (id)initWithName:(NSString *)name guid:(NSString *)guid;
-- (id)initWithNote:(EDAMNote *)note;
+- (nonnull instancetype)initWithName:(nonnull NSString *)name guid:(nonnull NSString *)guid;
+- (nonnull instancetype)initWithNote:(nonnull EDAMNote *)note;
 - (void)saveToEvernote;
-- (NSArray *)pebbleDataUpdates;
+- (nonnull NSArray *)pebbleDataUpdates;
 - (void)loadContent;
+- (nonnull NSArray<ESChecklistItem *> *)items;
 
-+ (NSString*)niceLookingStringForDate:(NSDate*)date;
++ (nullable NSString*)niceLookingStringForDate:(nonnull NSDate*)date;
 
 @end

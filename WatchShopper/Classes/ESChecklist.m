@@ -16,6 +16,7 @@
 
 @property(nonatomic,strong) NSMutableArray *elementStack;
 @property(nonatomic,strong) NSMutableString *accumulatedText;
+@property(nonatomic,strong) NSMutableArray<ESChecklistItem *> *items;
 @property(nonatomic) UInt8 currentItemId;
 
 @end
@@ -104,7 +105,7 @@
     NSString *trimmedText = [self.accumulatedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (self.elementStack.count < 2 && trimmedText.length > 0) {
         ESChecklistItem *item = [[ESChecklistItem alloc] initWithName:trimmedText itemId:self.currentItemId++];
-        [self.items addObject:item];
+        [_items addObject:item];
         self.accumulatedText = nil;
     }
     
@@ -140,7 +141,7 @@
     NSString *trimmedText = [self.accumulatedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (trimmedText.length > 0) {
         ESChecklistItem *item = [[ESChecklistItem alloc] initWithName:trimmedText itemId:self.currentItemId++];
-        [self.items addObject:item];
+        [_items addObject:item];
         if ([self.elementStack containsObject:@"checked"]) {
             item.isChecked = YES;
         }

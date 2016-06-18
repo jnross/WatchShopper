@@ -14,8 +14,8 @@ class ListsController: WKInterfaceController, DataProxyObserver {
 
     @IBOutlet weak var table:WKInterfaceTable! = nil
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: AnyObject?) {
+        super.awake(withContext: context)
         
         // Configure interface objects here.
     }
@@ -34,15 +34,15 @@ class ListsController: WKInterfaceController, DataProxyObserver {
         DataProxy.defaultProxy.removeDataProxyObserver(self)
     }
     
-    func dataProxyUpdatedLists(dataProxy: DataProxy) {
+    func dataProxyUpdatedLists(_ dataProxy: DataProxy) {
         refreshData()
     }
     
     func refreshData() {
         let lists = DataProxy.defaultProxy.lists
         table.setNumberOfRows(lists.count, withRowType: "ListRow")
-        for (index, listInfo) in lists.enumerate() {
-            if let listRow = table.rowControllerAtIndex(index) as? ListRow {
+        for (index, listInfo) in lists.enumerated() {
+            if let listRow = table.rowController(at: index) as? ListRow {
                 listRow.nameLabel.setText(listInfo.name)
                 listRow.dateLabel.setText(listInfo.date)
                 listRow.listGuid = listInfo.guid
@@ -50,10 +50,10 @@ class ListsController: WKInterfaceController, DataProxyObserver {
         }
     }
     
-    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        if let row = table.rowControllerAtIndex(rowIndex) {
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        if let row = table.rowController(at: rowIndex) {
             DataProxy.defaultProxy.fetchListItems(row.listGuid) { list -> Void in
-                self.pushControllerWithName("Checklist", context: list)
+                self.pushController(withName: "Checklist", context: list)
             }
         }
     }
