@@ -26,9 +26,15 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testUserDefaults
 {
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"Hello" forKey:@"hello"];
+    [defaults synchronize];
+    
+    defaults = [NSUserDefaults standardUserDefaults];
+    id result = [defaults objectForKey:@"hello"];
+    XCTAssertNotNil(result);
 }
 
 @end

@@ -80,6 +80,7 @@ static ESSettingsManager *singletonInstance = nil;
         [targetNotebooks addObject: notebookName];
     }
     [defaults setObject:targetNotebooks forKey:KEY_TARGET_NOTEBOOKS];
+    [defaults synchronize];
 }
 
 @end

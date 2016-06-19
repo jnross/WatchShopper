@@ -56,10 +56,11 @@
     note.title = @"Hamburger List ƻ";
     note.content = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
     @"<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\">"
-    @"<en-note><div>ketchup</div><div>mustard</div><div>pickles</div><div><span style=\"text-decoration: line-through;\">beef</span></div><div>w sauce</div><div>buns</div><div>cheese</div><div>mayo</div><div>toms</div><div>lettuce</div><div>onion</div></en-note>";
+    @"<en-note><div>ketchup</div><div>mustard</div><div>pickles</div><div><span style=\"text-decoration: line-through;\">beef</span></div><div>w sauce</div><div>buns</div><div>cheese</div><div>mayo</div><div>toms</div><div>lettuce</div></en-note>";
     ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
     
-    NSData *pebbleData = [checklist pebbleDataUpdates][0];
+    // TODO: Deal with continuation updates
+    NSData *pebbleData = [checklist pebbleDataUpdates][0][@0];
     UInt8 *bytes = (UInt8 *)pebbleData.bytes;
     int currentOffset = 0;
     int listId = bytes[currentOffset++];
