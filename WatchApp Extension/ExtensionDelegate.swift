@@ -13,6 +13,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         DataProxy.defaultProxy.start()
+        WLog("Watch app started")
     }
 
     func applicationDidBecomeActive() {

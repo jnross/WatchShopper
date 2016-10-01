@@ -289,7 +289,7 @@
             break;
         case SECTION_INSTALL_WATCHAPP: {
             NSString *url = @"pebble://appstore/52bf023e007c1ebd8500008c";
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {}];
         }
             break;
         case SECTION_TAGS:

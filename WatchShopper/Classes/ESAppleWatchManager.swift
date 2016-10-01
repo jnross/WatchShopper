@@ -21,44 +21,54 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
         ESEvernoteSynchronizer.shared().add(self)
     }
     
+    enum WatchAction : String {
+        case needsUpdate
+        case fetchLists
+        case fetchListItems
+        case updateCheckedItem
+    }
+    
     
     @available(iOS 9.3, *)
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: NSError?) {}
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
     func sessionWatchStateDidChange(_ session: WCSession) {}
     func sessionReachabilityDidChange(_ session: WCSession) {}
     func sessionDidBecomeInactive(_ session: WCSession) {}
     func sessionDidDeactivate(_ session: WCSession) {}
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
-        if let action = message["action"] as? String {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        if let action = WatchAction(rawValue:message["action"] as? String ?? "") {
             switch action {
-            case "needsUpdate":
-                let synchronizer = ESEvernoteSynchronizer.shared()
-                if synchronizer.checklists().count ?? 0 == 0 && synchronizer.isAlreadyAutheticated()
-                {
-                    ESEvernoteSynchronizer.shared().getPebbleNotes()
-                } else {
-                    sendListInfo()
-                }
-                replyHandler([:])
-            case "fetchListItems":
+            case .fetchListItems:
                 fetchListWithItems(message, completion:replyHandler)
-                
-            case "updateCheckedItem":
-                OperationQueue.main().addOperation({ () -> Void in
-                    self.updateCheckedItem(message)
-                })
-                replyHandler([:])
             default:
                 break
             }
         }
     }
     
-    func updateCheckedItem(_ message:[String:AnyObject]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let action = WatchAction(rawValue:message["action"] as? String ?? "") {
+            switch action {
+            case .needsUpdate:
+                WLog("Got update request")
+                sendLatestList()
+            case .fetchLists:
+                sendListOfLists()
+            case .updateCheckedItem:
+                OperationQueue.main.addOperation({ () -> Void in
+                    self.updateCheckedItem(message)
+                })
+            default:
+                break
+            }
+        }
+    }
+    
+    func updateCheckedItem(_ message:[String:Any]) {
         if let listGuid = message["listGuid"] as? String,
-            itemId = message["itemId"] as? Int,
-            checked = message["checked"] as? Bool {
+            let itemId = message["itemId"] as? Int,
+            let checked = message["checked"] as? Bool {
                 for list in ESEvernoteSynchronizer.shared().checklists() {
                     if list.guid == listGuid && list.items().count > itemId {
                         let item = list.items()[itemId]
@@ -71,44 +81,82 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
         }
     }
     
-    func fetchListWithItems(_ message:[String:AnyObject], completion:([String:AnyObject]) -> Void) {
-        if let guid = message["guid"] as? String {
-            for list in ESEvernoteSynchronizer.shared().checklists() {
-                if list.guid == guid {
-                    if list.items().count == 0 {
-                        ESEvernoteSynchronizer.shared().loadContent(for: list, success: { () -> Void in
-                            self.finishReturningList(list, completion: completion)
-                            }, failure: { (error) -> Void in
-                                
-                        })
-                    } else {
-                        finishReturningList(list, completion: completion)
-                    }
-                    
-                    break
-                }
+    func fetchListWithItems(_ message:[String:Any], completion:@escaping ([String:Any]) -> Void) {
+        
+        guard let guid = message["guid"] as? String else {
+            fatalError("Received list fetch request without a guid.")
+        }
+        WLog("Got request from watch for list \(guid)")
+        for list in ESEvernoteSynchronizer.shared().checklists() {
+            if list.guid == guid {
+                ESEvernoteSynchronizer.shared().loadContent(for: list, success: { () -> Void in
+                    self.finishReturningList(list, completion: completion)
+                    }, failure: { (error) -> Void in
+                        WLog("Error loading list \(guid): \(error)")
+                })
+                
+                break
             }
         }
     }
     
-    func finishReturningList(_ list:ESChecklist, completion:([String:AnyObject]) -> Void) {
-        let items = list.items().map() { item -> [String:AnyObject] in
+    func finishReturningList(_ list:ESChecklist, completion:([String:Any]) -> Void) {
+        completion(serializeable(for: list))
+    }
+    
+    func serializeable(for list:ESChecklist) -> [String:Any] {
+        let items = list.items().map() { item -> [String:Any] in
             return ["name":item.name, "id":Int(item.itemId), "checked":item.isChecked]
         }
         
+        var ret:[String:Any] = ["name":list.name, "guid":list.guid, "items":items]
         if let date = ESChecklist.niceLookingString(for: list.lastUpdatedDate) {
-                completion(["name":list.name, "date":date, "guid":list.guid, "items":items])
+            ret["date"] = date
+        }
+        return ret
+    }
+    
+    func sendLatestList() {
+        let lists = ESEvernoteSynchronizer.shared().checklists()
+        if lists.count == 0 {
+            ESEvernoteSynchronizer.shared().getWatchNotes()
+            return
+        }
+        
+        //TODO: Add a check that if the latest list has not loaded its items, load them.
+        
+        let latestList = lists[0]
+        if latestList.note?.content == nil {
+            ESEvernoteSynchronizer.shared().loadContent(for: latestList, success: {
+                    self.sendLatestList()
+                }, failure: { (error) in
+                    NSLog("Failed to load latest list: \(error)")
+            })
+            return
+        }
+        do {
+            try session.updateApplicationContext(["latest":serializeable(for: latestList)])
+        } catch  {
+            print("Failed to update application context")
         }
     }
     
     func synchronizerUpdatedChecklists(_ synchronizer: ESEvernoteSynchronizer) {
         NSLog("!!!!!!!!!!!!!!!!!!!!!!!!!!! updated checklists")
-        sendListInfo()
+        sendListOfLists()
+       
+        // TODO: Don't send latest list if the contents aren't loaded.
+        sendLatestList()
     }
     
-    func sendListInfo() {
+    func sendListOfLists() {
         let lists = ESEvernoteSynchronizer.shared().checklists()
-        var listDicts:[[String:AnyObject]] = []
+        if lists.count == 0 {
+            ESEvernoteSynchronizer.shared().getWatchNotes()
+            return
+        }
+        
+        var listDicts:[[String:Any]] = []
         for list in lists {
             if let date = ESChecklist.niceLookingString(for: list.lastUpdatedDate) {
                     listDicts.append(["name":list.name, "date":date, "guid":list.guid])

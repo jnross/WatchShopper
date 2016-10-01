@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11077"/>
     </dependencies>
     <scenes>
         <!--Lists-->
@@ -19,7 +19,7 @@
                                                 <fontDescription key="font" type="system" pointSize="16"/>
                                             </label>
                                             <label alignment="center" text="List Date-ish" id="uQY-8m-Wb4">
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="system" pointSize="12"/>
                                             </label>
                                         </items>
@@ -32,12 +32,21 @@
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="GJb-j8-EmA">
+                        <items>
+                            <menuItem title="Refresh" icon="repeat" id="D7C-JW-tUa">
+                                <connections>
+                                    <action selector="doRefreshAction" destination="AgC-eL-Hgc" id="gEG-an-AOu"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="table" destination="BSM-1A-QtN" id="RhF-PK-0W5"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="-94" y="324"/>
         </scene>
         <!--Checklist-->
         <scene sceneID="dJS-db-zzp">
@@ -63,12 +72,26 @@
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="yFg-11-2cC">
+                        <items>
+                            <menuItem title="Refresh" icon="repeat" id="csq-jm-RNx">
+                                <connections>
+                                    <action selector="doRefreshAction" destination="IvG-rO-uo0" id="aGd-fQ-Y3R"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save" icon="share" id="g4X-1n-UZ2">
+                                <connections>
+                                    <action selector="doSaveAction" destination="IvG-rO-uo0" id="QAf-2J-cSC"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="table" destination="Js1-GH-tDF" id="NDh-ym-O7j"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="474" y="350"/>
+            <point key="canvasLocation" x="220" y="324"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

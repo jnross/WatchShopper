@@ -11,6 +11,15 @@ import WatchConnectivity
 
 protocol DataProxyObserver: NSObjectProtocol {
     func dataProxyUpdatedLists(_ dataProxy:DataProxy)
+    func dataProxyUpdatedLatestList(_ dataProxy:DataProxy, latest:ListWithItems)
+}
+enum WatchAppState {
+    case JustLaunched
+    case BackedOutToTopList
+    case UserSelectedList
+    case Unauthenticated
+    case ApiLimitReached
+    
 }
 
 class DataProxy: NSObject, WCSessionDelegate {
@@ -19,8 +28,11 @@ class DataProxy: NSObject, WCSessionDelegate {
     let session = WCSession.default()
     
     var lists:[ListInfo] = []
+    var latest:ListInfo? = nil
     
     var observers:[DataProxyObserver] = []
+    
+    var state:WatchAppState = .JustLaunched
     
     func start() {
         session.delegate = self
@@ -28,29 +40,26 @@ class DataProxy: NSObject, WCSessionDelegate {
     }
     
     func sendNeedsUpdate() {
-        session.sendMessage(["action":"needsUpdate"], replyHandler: { (reply) -> Void in
-            NSLog("!!!!!!!!!!!!!!!!!!Got reply: %@", reply)
-            }) { (error) -> Void in
-            NSLog("!!!!!!!!!!!!!!!!!Got error: %@", error)
+        WLog("Sent update request")
+        session.sendMessage(["action":"needsUpdate"], replyHandler: nil) { (error) -> Void in
+            WLog("Error requesting update: \(error)")
         }
     }
     
-    func fetchListItems(_ guid:String, completionHandler:(ListWithItems) -> Void) {
+    func fetchListItems(_ guid:String, completionHandler:@escaping (ListWithItems) -> Void) {
         session.sendMessage(["action":"fetchListItems", "guid":guid], replyHandler: { (reply) -> Void in
             if let list = ListWithItems(dictionary: reply) {
+                WLog("Got \(list.items.count) items for list \(list.guid)")
                 completionHandler(list)
             }
             }) { (error) -> Void in
-                NSLog("!!!!!!!!!!!!!!!!!Got error: %@", error)
+                WLog("Got error while fetching list \(guid): \(error)")
         }
+        WLog("Requested items for list \(guid)")
     }
     
     func updateCheckedItem(_ itemId:Int, listGuid:String, checked:Bool) {
-        session.sendMessage(["action":"updateCheckedItem", "listGuid":listGuid, "itemId":itemId, "checked":checked], replyHandler: { (reply) -> Void in
-            NSLog("!!!!!!!!!!!!!!!!!!Got reply: %@", reply)
-            }) { (error) -> Void in
-                NSLog("!!!!!!!!!!!!!!!!!Got error: %@", error)
-        }
+        session.sendMessage(["action":"updateCheckedItem", "listGuid":listGuid, "itemId":itemId, "checked":checked], replyHandler:nil, errorHandler:nil)
     }
     
     func addDataProxyObserver(_ observer:DataProxyObserver) {
@@ -67,10 +76,14 @@ class DataProxy: NSObject, WCSessionDelegate {
         observers.forEach({$0.dataProxyUpdatedLists(self)})
     }
     
+    func notifyLatestList(_ listInfo:ListWithItems) {
+        observers.forEach({$0.dataProxyUpdatedLatestList(self, latest: listInfo)})
+    }
+    
     // MARK: WCSessionDelegate methods
     
     @available(watchOSApplicationExtension 2.2, *)
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: NSError?) {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
     
@@ -78,7 +91,7 @@ class DataProxy: NSObject, WCSessionDelegate {
         
     }
     
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         if let listDicts = applicationContext["lists"] as? [[String:AnyObject]] {
             lists = []
             for listDict in listDicts {
@@ -87,10 +100,21 @@ class DataProxy: NSObject, WCSessionDelegate {
                 }
             }
             notifyUpdatedLists()
+        } else if let latestList = applicationContext["latest"] as? [String:AnyObject] {
+            if let list = ListWithItems(dictionary: latestList) {
+                latest = list
+                notifyLatestList(list)
+            }
+            
         }
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        
+    }
+    
+    @available(watchOSApplicationExtension 2.2, *)
+    func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
         
     }
 }
@@ -106,7 +130,7 @@ class ListInfo {
         self.guid = guid
     }
     
-    init?(dictionary:[String:AnyObject]) {
+    init?(dictionary:[String:Any]) {
         name = dictionary["name"] as? String ?? ""
         date = dictionary["date"] as? String ?? ""
         guid = dictionary["guid"] as? String ?? ""
@@ -129,9 +153,9 @@ class ListWithItems : ListInfo {
         super.init(name:name, date:date, guid:guid)
     }
     
-    override init?(dictionary:[String:AnyObject]) {
+    override init?(dictionary:[String:Any]) {
         var items:[ListItem]? = nil
-        if let itemDicts = dictionary["items"] as? [[String: AnyObject]] {
+        if let itemDicts = dictionary["items"] as? [[String: Any]] {
             items = itemDicts.map() { itemDict -> ListItem in
                 let item = ListItem()
                 item.name = itemDict["name"] as? String ?? ""

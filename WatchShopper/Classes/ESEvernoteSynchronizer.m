@@ -11,6 +11,7 @@
 #import "ESChecklist.h"
 #import "ESSettingsManager.h"
 #import "commands.h"
+#import "WLog.h"
 
 static ESEvernoteSynchronizer *singletonInstance = nil;
 
@@ -41,7 +42,11 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     NSString *CONSUMER_SECRET = @"[REDACTED]";
     
     // set up Evernote session singleton
-    [ENSession setSharedSessionConsumerKey:CONSUMER_KEY consumerSecret:CONSUMER_SECRET optionalHost:nil];
+    [ENSession setSharedSessionConsumerKey:CONSUMER_KEY
+                            consumerSecret:CONSUMER_SECRET
+                              optionalHost:nil];
+//                              optionalHost:ENSessionHostSandbox];
+    
 }
 
 + (ESEvernoteSynchronizer *)sharedSynchronizer {
@@ -87,7 +92,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
             // show an alert, etc
             // ...
         } else {
-            [self getPebbleNotes];
+            [self getWatchNotes];
         } 
     }];
 }
@@ -124,10 +129,14 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
     self.gatheringNotebooks = nil;
     self.isGathering = NO;
     
-    [self notifySynchronizerUpdatedChecklists];
+    if (self.checklists.count >0) {
+        WLog(@"Notifying with %d checklists", (int)self.checklists.count);
+        [self notifySynchronizerUpdatedChecklists];
+    }
 }
 
-- (void)getPebbleNotes {
+- (void)getWatchNotes {
+    WLog(@"Fetching Notes");
     if (self.isGathering) { return; }
     self.isGathering = YES;
     [[[ENSession sharedSession] primaryNoteStore] listNotebooksWithSuccess: ^(NSArray *notebooks) {
@@ -250,7 +259,7 @@ static ESEvernoteSynchronizer *singletonInstance = nil;
         return;
     }
     if ([error.domain isEqualToString:ENErrorDomain]
-        && error.code == EDAMErrorCode_RATE_LIMIT_REACHED) {
+        && error.code == ENErrorCodeRateLimitReached) {
         NSInteger rateLimitDurationSeconds = [error.userInfo[@"rateLimitDuration"] integerValue];
         NSInteger rateLimitDurationMinutes = rateLimitDurationSeconds / 60;
         NSString *message = [NSString stringWithFormat:@"Too many requests to Evernote.  Please try again in %ld minutes.", (long)rateLimitDurationMinutes];

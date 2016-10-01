@@ -28,7 +28,7 @@
 - (void)removeObserver:(nonnull NSObject<ESEvernoteSynchronizerObserver> *)observer;
 - (void)authenticateEvernoteUserFromViewController:(nonnull UIViewController*)viewController;
 - (BOOL)isAlreadyAutheticated;
-- (void)getPebbleNotes;
+- (void)getWatchNotes;
 - (nonnull NSArray<ESChecklist *>*)checklists;
 - (void)saveNote:(nonnull EDAMNote *)note;
 - (nonnull NSArray *)checklistDataUpdates;

@@ -51,7 +51,7 @@
 
 - (void) refreshNotes {
     if ([EVERNOTE isAlreadyAutheticated]) {
-        [EVERNOTE getPebbleNotes];
+        [EVERNOTE getWatchNotes];
     } else {
         [EVERNOTE authenticateEvernoteUserFromViewController:self];
     }

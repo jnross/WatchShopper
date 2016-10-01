@@ -34,7 +34,6 @@
     self.name = note.title;
     self.lastUpdatedDate = [NSDate dateWithEDAMTimestamp:note.updated.longLongValue];
     self.guid = note.guid;
-    self.items = [NSMutableArray arrayWithCapacity:10];
     if (note.content != nil) {
         [self loadContent];
     }
@@ -43,6 +42,7 @@
 
 
 - (void)loadContent {
+    self.items = [NSMutableArray arrayWithCapacity:10];
     NSString *content = self.note.content;
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[content dataUsingEncoding:NSUTF8StringEncoding]];
     parser.delegate = self;

@@ -63,6 +63,8 @@
 		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
 		C8DF4D991FC57F061F9AA27F /* libPods-WatchShopper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D7D8B55FAF75659EEE77EB /* libPods-WatchShopper.a */; };
 		EE161693188507000093E263 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE161692188507000093E263 /* ESAddTagCell.m */; };
+		EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
+		EEA997821DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
 		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEC417B1188DA757002DB9DA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EEC417B0188DA757002DB9DA /* iTunesArtwork */; };
@@ -190,7 +192,10 @@
 		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
 		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
 		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
+		EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchShopper.entitlements; sourceTree = "<group>"; };
 		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
+		EEA997801DA162A500E4F8D9 /* WLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLog.swift; sourceTree = "<group>"; };
+		EEA997831DA1669900E4F8D9 /* WLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLog.h; sourceTree = "<group>"; };
 		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
 		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
 		EEC417B0188DA757002DB9DA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = SOURCE_ROOT; };
@@ -272,6 +277,7 @@
 				37EBD5121C70603C005FFC9A /* Assets.xcassets */,
 				37EBD5141C70603C005FFC9A /* Info.plist */,
 				37EBD50A1C70603C005FFC9A /* Supporting Files */,
+				EEA997801DA162A500E4F8D9 /* WLog.swift */,
 			);
 			path = "WatchApp Extension";
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 		3B6D31CD1843100100E9A6AB /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
+				EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */,
 				EE3751191879D8A200655BA9 /* commands.h */,
 				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
 				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
@@ -365,6 +372,7 @@
 				EEC417B0188DA757002DB9DA /* iTunesArtwork */,
 				37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */,
 				37EBD5221C70E7E5005FFC9A /* WatchShopper-Bridging-Header.h */,
+				EEA997831DA1669900E4F8D9 /* WLog.h */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -517,16 +525,25 @@
 				TargetAttributes = {
 					37EBD4F81C70603C005FFC9A = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4KL237738M;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					37EBD5041C70603C005FFC9A = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4KL237738M;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					3B6D31C31843100100E9A6AB = {
+						DevelopmentTeam = 4KL237738M;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 						};
@@ -712,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37EBD5111C70603C005FFC9A /* NotificationController.swift in Sources */,
+				EEA997821DA162A500E4F8D9 /* WLog.swift in Sources */,
 				37EBD50F1C70603C005FFC9A /* ExtensionDelegate.swift in Sources */,
 				37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */,
 				37EBD5211C70E181005FFC9A /* DataProxy.swift in Sources */,
@@ -734,6 +752,7 @@
 				EE161693188507000093E263 /* ESAddTagCell.m in Sources */,
 				EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */,
 				37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */,
+				EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */,
 				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
 			);
@@ -812,7 +831,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4KL237738M;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -822,12 +844,14 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.easystreet3.WatchShopper.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "e72bd3df-0b92-4d36-9600-4847a4c502fc";
+				PROVISIONING_PROFILE_SPECIFIER = "WatchShopper Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Debug;
 		};
@@ -835,8 +859,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -845,12 +872,13 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.easystreet3.WatchShopper.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Release;
 		};
@@ -861,6 +889,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4KL237738M;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -870,12 +899,14 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.easystreet3.WatchShopper.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "16e130a5-4889-4c0f-a05a-c7e1e3b3008c";
+				PROVISIONING_PROFILE_SPECIFIER = "WatchShopper WatchApp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Debug;
 		};
@@ -899,7 +930,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Release;
 		};
@@ -916,8 +947,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -959,8 +992,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -978,6 +1013,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -988,6 +1024,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WatchShopper/WatchShopper.entitlements;
+				DEVELOPMENT_TEAM = 4KL237738M;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -996,9 +1034,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.easystreet3.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a03454b0-3cde-4178-a71b-0c39d944b53f";
+				PROVISIONING_PROFILE_SPECIFIER = WatchShopper;
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1013,7 +1054,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WatchShopper/WatchShopper.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1022,6 +1065,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.easystreet3.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

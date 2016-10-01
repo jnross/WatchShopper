@@ -8,15 +8,34 @@
 
 import WatchKit
 
-class ChecklistController: WKInterfaceController {
+class ChecklistController: WKInterfaceController, DataProxyObserver {
     
     @IBOutlet var table:WKInterfaceTable! = nil
     var list:ListWithItems? = nil
     
     
-    override func awake(withContext context: AnyObject?) {
+    override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        list = context as? ListWithItems
+        DataProxy.defaultProxy.addDataProxyObserver(self)
+        if let list = context as? ListWithItems {
+            self.list = list
+        } else {
+            DataProxy.defaultProxy.sendNeedsUpdate()
+        }
+    }
+    
+    func dataProxyUpdatedLists(_ dataProxy: DataProxy) {
+        
+    }
+    
+    func dataProxyUpdatedLatestList(_ dataProxy: DataProxy, latest: ListWithItems) {
+        if self.list == nil {
+            self.list = latest
+            refreshData()
+        }
+    }
+    
+    func refreshData() {
         self.setTitle(list?.name)
         refreshTable()
     }
@@ -27,6 +46,11 @@ class ChecklistController: WKInterfaceController {
     
     override func willActivate() {
         super.willActivate()
+        if self.list == nil {
+            DataProxy.defaultProxy.sendNeedsUpdate()
+        } else {
+            refreshData()
+        }
     }
     
     func refreshTable() {
@@ -51,13 +75,28 @@ class ChecklistController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        if let row = table.rowController(at: rowIndex) as? ItemRow, listGuid = list?.guid {
+        if let row = table.rowController(at: rowIndex) as? ItemRow, let listGuid = list?.guid {
             row.checked = !row.checked
             setCheckedImage(row)
             DataProxy.defaultProxy.updateCheckedItem(row.itemId, listGuid: listGuid, checked: row.checked)
         }
     }
     
+    // MARK: Menu actions
+    
+    @IBAction func doRefreshAction() {
+        guard let guid = self.list?.guid else {
+            fatalError("List must not be nil at this point, and must have a guid.")
+        }
+        DataProxy.defaultProxy.fetchListItems(guid) { (list) -> Void in
+            self.list = list
+            self.refreshData()
+        }
+    }
+    
+    @IBAction func doSaveAction() {
+        // TODO: DataProxy needs a save action before we can call it here.
+    }
 }
 
 class ItemRow : NSObject {
