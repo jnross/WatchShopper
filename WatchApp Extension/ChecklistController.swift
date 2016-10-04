@@ -77,6 +77,7 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         if let row = table.rowController(at: rowIndex) as? ItemRow, let listGuid = list?.guid {
             row.checked = !row.checked
+            list?.items[rowIndex].checked = row.checked
             setCheckedImage(row)
             DataProxy.defaultProxy.updateCheckedItem(row.itemId, listGuid: listGuid, checked: row.checked)
         }
