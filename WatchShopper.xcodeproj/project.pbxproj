@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		06FA90271297DB741C2B3ED3 /* libPods-WatchShopperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151321F5D1B63FC61CB62AC1 /* libPods-WatchShopperTests.a */; };
+		3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F8191DAD96A3004AF8DC /* RxBlocking.framework */; };
+		3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81D1DAD9724004AF8DC /* RxCocoa.framework */; };
+		3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81F1DAD9744004AF8DC /* RxSwift.framework */; };
+		3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
 		37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2AFC51C727E130060E8D2 /* ChecklistController.swift */; };
 		37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
 		37E3EB231D15CE7500BC5666 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
@@ -124,6 +128,10 @@
 
 /* Begin PBXFileReference section */
 		151321F5D1B63FC61CB62AC1 /* libPods-WatchShopperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WatchShopperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3715F8191DAD96A3004AF8DC /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		3715F81D1DAD9724004AF8DC /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		3715F81F1DAD9744004AF8DC /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvernoteSynchronizer.swift; path = Classes/EvernoteSynchronizer.swift; sourceTree = "<group>"; };
 		37B2AFC51C727E130060E8D2 /* ChecklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistController.swift; sourceTree = "<group>"; };
 		37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		37EBD4F91C70603C005FFC9A /* WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +226,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */,
+				3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */,
+				3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */,
 				3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
@@ -318,6 +329,9 @@
 		3B6D31C61843100100E9A6AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3715F81F1DAD9744004AF8DC /* RxSwift.framework */,
+				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
+				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
 				3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
 				3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */,
@@ -416,6 +430,7 @@
 				3B4ECB44185B6EA4003A160B /* ESChecklist.m */,
 				3B4ECB45185B6EA4003A160B /* ESChecklistItem.h */,
 				3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */,
+				3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */,
 			);
 			name = Evernote;
 			sourceTree = "<group>";
@@ -480,6 +495,7 @@
 				16D5CC55C250C92DB6D23C81 /* Embed Pods Frameworks */,
 				BA0153568FCCC815144B2DD8 /* Copy Pods Resources */,
 				37EBD51F1C70603C005FFC9A /* Embed Watch Content */,
+				3715F81C1DAD96E6004AF8DC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -648,6 +664,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3715F81C1DAD96E6004AF8DC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		473E9C76AE0D3AFECD4B15E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -754,6 +786,7 @@
 				37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */,
 				EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */,
 				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
+				3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */,
 				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1030,6 +1063,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
@@ -1061,6 +1095,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
