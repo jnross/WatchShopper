@@ -3,4 +3,5 @@
 //
 
 #import "ESEvernoteSynchronizer.h"
+#import "ESSettingsManager.h"
 #import "ESChecklist.h"

@@ -12,8 +12,8 @@
 + (ESSettingsManager *) sharedManager;
 
 - (void)setUpInitialSettingsIfNecessary;
-- (NSArray*) targetTags;
-- (NSArray*) targetNotebookNames;
+- (NSArray<NSString*>*) targetTags;
+- (NSArray<NSString*>*) targetNotebookNames;
 - (void) addTargetTag:(NSString *)label;
 - (void) removeTargetTag:(NSString *)label;
 - (void) toggleNotebook:(NSString *)notebookName;

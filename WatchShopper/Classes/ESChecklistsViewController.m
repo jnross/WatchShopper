@@ -7,13 +7,14 @@
 //
 
 #import "ESChecklistsViewController.h"
-#import "ESEvernoteSynchronizer.h"
+#import "WatchShopper-Swift.h"
 #import "ESWatchManager.h"
 #import "ESChecklistItemsViewController.h"
 
-@interface ESChecklistsViewController () <ESEvernoteSynchronizerObserver, ESWatchManagerObserver>
+@interface ESChecklistsViewController () <EvernoteSynchronizerObserver, ESWatchManagerObserver>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
+@property(nonatomic,strong) NSArray<ESChecklist*>* checklists;
 
 @end
 
@@ -28,8 +29,8 @@
     self.refreshControl = refreshControl;
     [refreshControl addTarget:self action:@selector(pulledToRefresh:) forControlEvents:UIControlEventValueChanged];
     
-    [EVERNOTE addObserver:self];
-    if ([EVERNOTE isAlreadyAutheticated]) {
+    [EvernoteSynchronizer.shared addObserver:self];
+    if ([EvernoteSynchronizer.shared isAlreadyAuthenticated]) {
         self.authStatusLabel.text = @"Already authenticated!";
         
     }
@@ -41,7 +42,7 @@
 }
 
 - (void)dealloc {
-    [EVERNOTE removeObserver:self];
+    [EvernoteSynchronizer.shared removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,10 +51,10 @@
 }
 
 - (void) refreshNotes {
-    if ([EVERNOTE isAlreadyAutheticated]) {
-        [EVERNOTE getWatchNotes];
+    if ([EvernoteSynchronizer.shared isAlreadyAuthenticated]) {
+        [EvernoteSynchronizer.shared refreshWatchNotes];
     } else {
-        [EVERNOTE authenticateEvernoteUserFromViewController:self];
+        [EvernoteSynchronizer.shared authenticateEvernoteUserWithViewController:self];
     }
 }
 
@@ -72,14 +73,15 @@
 }
 
 
-- (void)synchronizerUpdatedChecklists:(ESEvernoteSynchronizer *) synchronizer {
+- (void)synchronizer:(EvernoteSynchronizer *) synchronizer updatedChecklists:(NSArray<ESChecklist*>*)checklists {
+    self.checklists = checklists;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
     [[ESWatchManager sharedManager] launchWatchAppWithAllChecklists];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return EVERNOTE.checklists.count;
+    return self.checklists.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Checklist"];
@@ -87,7 +89,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Checklist"];
     }
     
-    ESChecklist *checklist = [EVERNOTE.checklists objectAtIndex:indexPath.row];
+    ESChecklist *checklist = [self.checklists objectAtIndex:indexPath.row];
     
     cell.textLabel.text = checklist.name;
     
@@ -107,7 +109,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ESChecklist *checklist = EVERNOTE.checklists[indexPath.row];
+    ESChecklist *checklist = self.checklists[indexPath.row];
     
     [self loadAndPushChecklist:checklist];
 }
@@ -133,7 +135,7 @@
 }
 
 - (void) watchApp:(ESWatchManager*)watchApp selectedChecklistAtIndex:(NSInteger)selectedChecklistIndex {
-    NSArray *checklists = [EVERNOTE checklists];
+    NSArray *checklists = [self checklists];
     if (checklists.count > selectedChecklistIndex) {
         ESChecklist *selectedChecklist = checklists[selectedChecklistIndex];
         if (self.navigationController.topViewController != self) {

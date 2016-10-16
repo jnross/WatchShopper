@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+
+let kMaxNotes:Int32 = 32
 
 @objc protocol EvernoteSynchronizerObserver: class {
-    func synchronizerUpdatedChecklists(synchronizer:ESEvernoteSynchronizer)
+    func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[ESChecklist])
 }
 
 struct ObserverWrapper {
@@ -17,8 +20,9 @@ struct ObserverWrapper {
 }
 
 class EvernoteSynchronizer: NSObject {
-    static let sharedSynchronizer = EvernoteSynchronizer()
+    static let shared = EvernoteSynchronizer()
     private var observerWrappers:[ObserverWrapper] = []
+    var disposeBag = DisposeBag()
     
     override init() {
         let consumerKey = "jnross"
@@ -49,7 +53,7 @@ class EvernoteSynchronizer: NSObject {
                 let alert = UIAlertController(title: nil, message:"Evernote authentication failed", preferredStyle: .alert)
                 alert.show(viewController, sender: self)
             } else {
-                self.getWatchNotes()
+                self.refreshWatchNotes()
             }
         }
     }
@@ -58,13 +62,84 @@ class EvernoteSynchronizer: NSObject {
         ENSession.shared().unauthenticate()
     }
     
-    var isAlreadyAuthenticated:Bool {
-        get {
-            return ENSession.shared().isAuthenticated
+    func isAlreadyAuthenticated() -> Bool {
+        return ENSession.shared().isAuthenticated
+    }
+    
+    func refreshWatchNotes() {
+        disposeBag = DisposeBag()
+        getAllNotebooks()
+            .map({ notebook in
+                return self.getWatchNotesFor(notebook: notebook)
+            })
+            .merge()
+            .reduce([EDAMNote]()) { (accumulator, notes) in
+                return accumulator + notes
+            }
+            .map({ (notes:[EDAMNote]) -> [ESChecklist] in
+                var checklists:[ESChecklist] = []
+                for note in notes {
+                    checklists.append(ESChecklist(note: note))
+                }
+                return checklists
+            })
+            .subscribe(onNext: { (checklists) in
+                for observerWrapper in self.observerWrappers {
+                    observerWrapper.observer?.synchronizer(self, updatedChecklists: checklists)
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+    }
+    
+    func getAllNotebooks() -> Observable<EDAMNotebook> {
+        return Observable.create() { observer in
+            ENSession.shared().primaryNoteStore().listNotebooks(success: { (notebooksOpt) in
+                guard let notebooks = notebooksOpt as? [EDAMNotebook] else { return }
+                for notebook in notebooks {
+                    observer.on(.next(notebook))
+                }
+                observer.on(.completed)
+                }, failure: { error in
+                    observer.on(.error(error!))
+            })
+            return Disposables.create()
         }
     }
     
-    func getWatchNotes() {
-        
+    func getWatchNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
+        let targetNotebookNames = ESSettingsManager.shared().targetNotebookNames()
+        if targetNotebookNames?.contains(notebook.name) ?? false {
+            return getTaggedNotesFor(notebook:notebook)
+        } else {
+            return getAllNotesFor(notebook:notebook)
+        }
+    }
+    
+    func getTaggedNotesFor(notebook:EDAMNotebook) ->Observable<[EDAMNote]> {
+        return Observable.create() { observer in
+            observer.on(.completed)
+            return Disposables.create()
+        }
+    }
+    
+    func getAllNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
+        return Observable.create() { observer in
+            let filter = EDAMNoteFilter()
+            filter.order = 2
+            filter.ascending = false
+            filter.notebookGuid = notebook.guid
+            filter.inactive = false
+            ENSession.shared().primaryNoteStore().findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, success: { noteList in
+                if let notes = noteList?.notes as? [EDAMNote] {
+                    observer.on(.next(notes))
+                }
+                observer.on(.completed)
+                }, failure: { error in
+                    observer.on(.error(error!))
+                    
+            })
+            return Disposables.create()
+        }
     }
 }
