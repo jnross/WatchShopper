@@ -27,6 +27,7 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
         case fetchLists
         case fetchListItems
         case updateCheckedItem
+        case save
     }
     
     
@@ -54,13 +55,28 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
             case .needsUpdate:
                 WLog("Got update request")
                 sendLatestList()
+                sendListOfLists()
             case .fetchLists:
                 sendListOfLists()
             case .updateCheckedItem:
                 OperationQueue.main.addOperation({ () -> Void in
                     self.updateCheckedItem(message)
                 })
+            case .save:
+                guard let guid = message["guid"] as? String else { break }
+                OperationQueue.main.addOperation() {
+                    self.saveListWithGuid(guid)
+                }
             default:
+                break
+            }
+        }
+    }
+    
+    func saveListWithGuid(_ guid: String) {
+        for checklist in checklists {
+            if checklist.guid == guid {
+                checklist.saveToEvernote()
                 break
             }
         }
@@ -131,19 +147,19 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
             EvernoteSynchronizer.shared.loadContent(for: latestList, success: {
                     self.sendLatestList()
                 }, failure: { (error) in
-                    NSLog("Failed to load latest list: \(error)")
+                    WLog("Failed to load latest list: \(error)")
             })
             return
         }
         do {
             try session.updateApplicationContext(["latest":serializeable(for: latestList)])
         } catch  {
-            print("Failed to update application context")
+            WLog("Failed to update application context")
         }
     }
     
     func synchronizer(_ synchronizer: EvernoteSynchronizer, updatedChecklists:[ESChecklist]) {
-        NSLog("!!!!!!!!!!!!!!!!!!!!!!!!!!! updated checklists")
+        WLog("updated checklists")
         self.checklists = updatedChecklists
         sendListOfLists()
        
@@ -165,9 +181,10 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
             }
         }
         do {
+            WLog("Sending \(listDicts.count) lists")
             try session.updateApplicationContext(["lists":listDicts])
         } catch  {
-            print("Failed to update application context")
+            WLog("Failed to update application context")
         }
     }
 }

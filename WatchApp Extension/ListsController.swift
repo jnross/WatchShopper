@@ -25,9 +25,13 @@ class ListsController: WKInterfaceController, DataProxyObserver {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        DataProxy.defaultProxy.addDataProxyObserver(self)
-        DataProxy.defaultProxy.sendNeedsUpdate()
+        let dataProxy = DataProxy.defaultProxy
+        dataProxy.addDataProxyObserver(self)
+        dataProxy.sendNeedsUpdate()
         refreshData()
+        if dataProxy.state != .JustLaunched {
+            dataProxy.state = .BackedOutToTopList
+        }
     }
 
     override func didDeactivate() {
@@ -44,6 +48,7 @@ class ListsController: WKInterfaceController, DataProxyObserver {
     func dataProxyUpdatedLatestList(_ dataProxy: DataProxy, latest: ListWithItems) {
         if dataProxy.state == .JustLaunched {
             self.pushController(withName: "Checklist", context: latest)
+            dataProxy.state = .LatestList
         }
     }
     
@@ -61,11 +66,9 @@ class ListsController: WKInterfaceController, DataProxyObserver {
     
     // MARK: WKInterfaceTableDelegate
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        if let row = table.rowController(at: rowIndex) {
-            DataProxy.defaultProxy.fetchListItems((row as AnyObject).listGuid) { list -> Void in
-                self.pushController(withName: "Checklist", context: list)
-            }
-        }
+        let listInfo = DataProxy.defaultProxy.lists[rowIndex]
+        self.pushController(withName: "Checklist", context: listInfo)
+        DataProxy.defaultProxy.state = .UserSelectedList
     }
     
     // MARK: Menu actions

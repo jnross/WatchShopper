@@ -19,6 +19,11 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
         DataProxy.defaultProxy.addDataProxyObserver(self)
         if let list = context as? ListWithItems {
             self.list = list
+        } else if let listInfo = context as? ListInfo {
+            DataProxy.defaultProxy.fetchListItems(listInfo.guid, completionHandler: { list in
+                self.list = list
+                self.refreshData()
+            })
         } else {
             DataProxy.defaultProxy.sendNeedsUpdate()
         }
@@ -96,7 +101,8 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     }
     
     @IBAction func doSaveAction() {
-        // TODO: DataProxy needs a save action before we can call it here.
+        guard let list = self.list else { return }
+        DataProxy.defaultProxy.saveList(list)
     }
 }
 

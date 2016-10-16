@@ -15,6 +15,7 @@ protocol DataProxyObserver: NSObjectProtocol {
 }
 enum WatchAppState {
     case JustLaunched
+    case LatestList
     case BackedOutToTopList
     case UserSelectedList
     case Unauthenticated
@@ -43,6 +44,12 @@ class DataProxy: NSObject, WCSessionDelegate {
         WLog("Sent update request")
         session.sendMessage(["action":"needsUpdate"], replyHandler: nil) { (error) -> Void in
             WLog("Error requesting update: \(error)")
+        }
+    }
+    func saveList(_ list:ListInfo) {
+        WLog("Saving list \(list.name) (\(list.guid))")
+        session.sendMessage(["action":"save", "guid":list.guid], replyHandler: nil) { (error) -> Void in
+            WLog("Error saving list \(list.name) (\(list.guid): \(error)")
         }
     }
     
@@ -93,19 +100,34 @@ class DataProxy: NSObject, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         if let listDicts = applicationContext["lists"] as? [[String:AnyObject]] {
-            lists = []
+            var newLists:[ListInfo] = []
             for listDict in listDicts {
                 if let list = ListInfo(dictionary: listDict) {
-                    lists.append(list)
+                    newLists.append(list)
                 }
             }
-            notifyUpdatedLists()
+            if updateDetected(lists, newLists) {
+                lists = newLists
+                notifyUpdatedLists()
+            }
         } else if let latestList = applicationContext["latest"] as? [String:AnyObject] {
             if let list = ListWithItems(dictionary: latestList) {
                 latest = list
                 notifyLatestList(list)
             }
             
+        }
+    }
+    
+    func updateDetected(_ first:[ListInfo], _ second:[ListInfo]) -> Bool {
+        // Since we know the newest list is always the first element of the array, all
+        // we have to do is check the dates of the first items (if present).
+        if     first.count < 1
+            || first.count != second.count
+            || first[0].date != second[0].date {
+            return true
+        } else {
+            return false
         }
     }
     
