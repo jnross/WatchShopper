@@ -9,16 +9,17 @@
 #import <PebbleKit/PebbleKit.h>
 
 #import "ESWatchManager.h"
-#import "ESEvernoteSynchronizer.h"
 #import "commands.h"
+#import "WatchShopper-Swift.h"
 
 #define PEBBLE_SHOPPER_APP_UUID_STRING @"9ebb1e22-0c72-494e-b5cf-54099e4842e3"
 
-@interface ESWatchManager () <PBPebbleCentralDelegate>
+@interface ESWatchManager () <PBPebbleCentralDelegate, EvernoteSynchronizerObserver>
 
 @property(nonatomic,strong) ESChecklist *currentChecklist;
 @property(nonatomic,strong) PBWatch *currentWatch;
 @property(nonatomic,strong) NSMutableArray *queue;
+@property(nonatomic,strong) NSArray<ESChecklist*> *checklists;
 
 @end
 
@@ -112,9 +113,52 @@ static ESWatchManager *singletonInstance = nil;
 }
 
 - (void)sendAllChecklists {
-    for (NSDictionary *dict in EVERNOTE.checklistDataUpdates) {
+    for (NSDictionary *dict in self.checklistDataUpdates) {
         [self queueUpdate:dict];
     }
+}
+
+- (NSData *)pebbleDataForListName:(NSString *)listName index:(NSUInteger)index {
+    const char *utf8name = listName.UTF8String;
+    unsigned long nameLength = strlen(utf8name);
+    NSMutableData *data = [NSMutableData dataWithCapacity:nameLength + 3];
+    UInt8 itemId = index;
+    [data appendBytes:&itemId length:1];
+    [data appendBytes:utf8name length:nameLength + 1];
+    UInt8 flags = 0;
+    [data appendBytes:&flags length:1];
+    return data;
+}
+
+- (NSArray<NSDictionary*>*)checklistDataUpdates {
+    NSMutableData *data = [NSMutableData data];
+    NSMutableArray *updates = [NSMutableArray arrayWithObject:@{@CMD_CHECKLISTS_START:data}];
+    
+    // First byte is the 1-byte list ID
+    UInt8 listId = 0;
+    [data appendBytes:&listId length:1];
+    
+    //Append the null-terminated list name
+    const char *utf8name = @"Lists".UTF8String;
+    [data appendBytes:utf8name length:strlen(utf8name) + 1];
+    
+    //Append 1-byte list item count
+    UInt8 count = self.checklists.count;
+    [data appendBytes:&count length:1];
+    
+    //Concatenate list items
+    int i = 0;
+    for (ESChecklist *aList in self.checklists) {
+        NSData *itemData = [self pebbleDataForListName:aList.name index:i];
+        if (data.length + itemData.length > 110) {
+            data = [NSMutableData data];
+            [updates addObject:@{@CMD_CHECKLISTS_CONTINUATION:data}];
+        }
+        [data appendData:itemData];
+        i++;
+    }
+    
+    return updates;
 }
 
 - (void)sendChecklistToWatch:(ESChecklist *)checklist {
@@ -160,6 +204,10 @@ static ESWatchManager *singletonInstance = nil;
             [self doSend];
         }];
     }
+}
+
+- (void)synchronizer:(EvernoteSynchronizer*)synchronizer updatedChecklists:(NSArray<ESChecklist*>*)checklists {
+    self.checklists = checklists;
 }
 
 - (void)sendChecklistItemUpdate:(ESChecklistItem *)item {

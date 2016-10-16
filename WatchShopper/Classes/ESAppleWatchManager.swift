@@ -10,15 +10,16 @@ import UIKit
 import WatchConnectivity
 
 @available (iOS 9.0, *)
-class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerObserver {
-    static let defaultManager = ESAppleWatchManager()
+class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserver {
+    static let defaultManager = AppleWatchManager()
+    var checklists:[ESChecklist] = []
     
     let session = WCSession.default()
     
     func start() {
         session.delegate = self
         session.activate()
-        ESEvernoteSynchronizer.shared().add(self)
+        EvernoteSynchronizer.shared.addObserver(self)
     }
     
     enum WatchAction : String {
@@ -69,7 +70,7 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
         if let listGuid = message["listGuid"] as? String,
             let itemId = message["itemId"] as? Int,
             let checked = message["checked"] as? Bool {
-                for list in ESEvernoteSynchronizer.shared().checklists() {
+                for list in checklists {
                     if list.guid == listGuid && list.items().count > itemId {
                         let item = list.items()[itemId]
                         item.isChecked = checked
@@ -87,9 +88,9 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
             fatalError("Received list fetch request without a guid.")
         }
         WLog("Got request from watch for list \(guid)")
-        for list in ESEvernoteSynchronizer.shared().checklists() {
+        for list in checklists {
             if list.guid == guid {
-                ESEvernoteSynchronizer.shared().loadContent(for: list, success: { () -> Void in
+                EvernoteSynchronizer.shared.loadContent(for: list, success: { () -> Void in
                     self.finishReturningList(list, completion: completion)
                     }, failure: { (error) -> Void in
                         WLog("Error loading list \(guid): \(error)")
@@ -117,9 +118,9 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
     }
     
     func sendLatestList() {
-        let lists = ESEvernoteSynchronizer.shared().checklists()
+        let lists = checklists
         if lists.count == 0 {
-            ESEvernoteSynchronizer.shared().getWatchNotes()
+            EvernoteSynchronizer.shared.refreshWatchNotes()
             return
         }
         
@@ -127,7 +128,7 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
         
         let latestList = lists[0]
         if latestList.note?.content == nil {
-            ESEvernoteSynchronizer.shared().loadContent(for: latestList, success: {
+            EvernoteSynchronizer.shared.loadContent(for: latestList, success: {
                     self.sendLatestList()
                 }, failure: { (error) in
                     NSLog("Failed to load latest list: \(error)")
@@ -141,8 +142,9 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
         }
     }
     
-    func synchronizerUpdatedChecklists(_ synchronizer: ESEvernoteSynchronizer) {
+    func synchronizer(_ synchronizer: EvernoteSynchronizer, updatedChecklists:[ESChecklist]) {
         NSLog("!!!!!!!!!!!!!!!!!!!!!!!!!!! updated checklists")
+        self.checklists = updatedChecklists
         sendListOfLists()
        
         // TODO: Don't send latest list if the contents aren't loaded.
@@ -150,9 +152,9 @@ class ESAppleWatchManager: NSObject, WCSessionDelegate, ESEvernoteSynchronizerOb
     }
     
     func sendListOfLists() {
-        let lists = ESEvernoteSynchronizer.shared().checklists()
+        let lists = checklists
         if lists.count == 0 {
-            ESEvernoteSynchronizer.shared().getWatchNotes()
+            EvernoteSynchronizer.shared.refreshWatchNotes()
             return
         }
         

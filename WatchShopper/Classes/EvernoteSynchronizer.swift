@@ -22,6 +22,7 @@ struct ObserverWrapper {
 class EvernoteSynchronizer: NSObject {
     static let shared = EvernoteSynchronizer()
     private var observerWrappers:[ObserverWrapper] = []
+    var allNotebookNames:[String] = []
     var disposeBag = DisposeBag()
     
     override init() {
@@ -81,7 +82,9 @@ class EvernoteSynchronizer: NSObject {
                 for note in notes {
                     checklists.append(ESChecklist(note: note))
                 }
-                return checklists
+                return checklists.sorted(by: { first, second in
+                    return first.lastUpdatedDate > second.lastUpdatedDate
+                })
             })
             .subscribe(onNext: { (checklists) in
                 for observerWrapper in self.observerWrappers {
@@ -96,6 +99,7 @@ class EvernoteSynchronizer: NSObject {
         return Observable.create() { observer in
             ENSession.shared().primaryNoteStore().listNotebooks(success: { (notebooksOpt) in
                 guard let notebooks = notebooksOpt as? [EDAMNotebook] else { return }
+                self.allNotebookNames = notebooks.map(){ return $0.name }
                 for notebook in notebooks {
                     observer.on(.next(notebook))
                 }
@@ -110,15 +114,59 @@ class EvernoteSynchronizer: NSObject {
     func getWatchNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
         let targetNotebookNames = ESSettingsManager.shared().targetNotebookNames()
         if targetNotebookNames?.contains(notebook.name) ?? false {
-            return getTaggedNotesFor(notebook:notebook)
-        } else {
             return getAllNotesFor(notebook:notebook)
+        } else {
+            return getTaggedNotesFor(notebook:notebook)
         }
     }
     
     func getTaggedNotesFor(notebook:EDAMNotebook) ->Observable<[EDAMNote]> {
         return Observable.create() { observer in
-            observer.on(.completed)
+            var fetchTasks = 0
+            self.getTagsFor(notebook: notebook).subscribe(onNext:
+                { tags in
+                    fetchTasks += 1
+                    let guids = tags.map() { tag in return tag.guid! }
+                    let filter = EDAMNoteFilter()
+                    filter.order = NSNumber(value: NoteSortOrder_UPDATED.rawValue)
+                    filter.ascending = false
+                    filter.notebookGuid = notebook.guid
+                    filter.inactive = false
+                    filter.tagGuids = guids
+                    ENSession.shared().primaryNoteStore().findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, success: { noteList in
+                        if let notes = noteList?.notes as? [EDAMNote] {
+                            observer.on(.next(notes))
+                        }
+                        fetchTasks -= 1
+                        if fetchTasks == 0 { observer.on(.completed) }
+                        }, failure: { error in observer.on(.error(error!))})
+                },onCompleted:{
+                    if fetchTasks == 0 { observer.on(.completed) }
+            }).addDisposableTo(self.disposeBag)
+            return Disposables.create()
+        }
+    }
+    
+    func getTagsFor(notebook:EDAMNotebook) -> Observable<[EDAMTag]> {
+        return Observable.create { observer in
+            ENSession.shared().primaryNoteStore().listTagsByNotebook(withGuid: notebook.guid, success:
+                { tagsAny in
+                    guard let tags = tagsAny as? [EDAMTag] else {
+                        observer.on(.completed)
+                        return
+                    }
+                    let targetTags = ESSettingsManager.shared().targetTags()
+                    let filteredTags = tags.filter() { tag in
+                        return targetTags?.contains(tag.name) ?? false
+                    }
+                    if filteredTags.count > 0 {
+                        observer.on(.next(filteredTags))
+                    }
+                    observer.on(.completed)
+                }, failure:
+                { error in
+                    observer.on(.error(error!))
+                })
             return Disposables.create()
         }
     }
@@ -126,7 +174,7 @@ class EvernoteSynchronizer: NSObject {
     func getAllNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
         return Observable.create() { observer in
             let filter = EDAMNoteFilter()
-            filter.order = 2
+            filter.order = NSNumber(value:NoteSortOrder_UPDATED.rawValue)
             filter.ascending = false
             filter.notebookGuid = notebook.guid
             filter.inactive = false
@@ -141,5 +189,22 @@ class EvernoteSynchronizer: NSObject {
             })
             return Disposables.create()
         }
+    }
+    
+    func loadContent(for checklist:ESChecklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
+        ENSession.shared().primaryNoteStore().getNoteContent(withGuid: checklist.note?.guid, success:
+            { content in
+                checklist.note?.content = content
+                checklist.loadContent()
+                success()
+            }) { error in
+                failure(error!)
+        }
+    }
+    
+    func save(checklist:ESChecklist) {
+        ENSession.shared().primaryNoteStore().update(checklist.note, success: nil, failure:{ error in
+                //TODO: notify user of failure
+        })
     }
 }

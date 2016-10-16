@@ -6,3 +6,4 @@ PebbleShopper/lib/PebbleVendor.framework/Versions/Current
 .lock-waf_darwin_build
 build
 Pods
+Carthage

@@ -9,8 +9,8 @@
 #import "ESSettingsController.h"
 #import "ESSettingsManager.h"
 #import "ESAddTagCell.h"
-#import "ESEvernoteSynchronizer.h"
 #import "version.h"
+#import "WatchShopper-Swift.h"
 
 #define SECTION_AUTHORIZE_EVERNOTE 0
 #define SECTION_INSTALL_WATCHAPP 1
@@ -74,7 +74,7 @@
     [super viewWillAppear:animated];
     
     self.targetTags = [[ESSettingsManager sharedManager] targetTags];
-    self.allNotebookNames = [[ESEvernoteSynchronizer sharedSynchronizer] allNotebookNames];
+    self.allNotebookNames = [[EvernoteSynchronizer shared] allNotebookNames];
     self.targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
 }
 
@@ -200,7 +200,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if ([[ESEvernoteSynchronizer sharedSynchronizer] isAlreadyAutheticated]) {
+    if ([[EvernoteSynchronizer shared] isAlreadyAuthenticated]) {
         cell.textLabel.text = @"Log Out and Re-Authorize";
     } else {
         cell.textLabel.text = @"Authorize Evernote";
@@ -276,7 +276,7 @@
     
     switch (indexPath.section) {
         case SECTION_AUTHORIZE_EVERNOTE:
-            if ([[ESEvernoteSynchronizer sharedSynchronizer] isAlreadyAutheticated]) {
+            if ([[EvernoteSynchronizer shared] isAlreadyAuthenticated]) {
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm Logout" message:@"Log out current Evernote account?" preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
                 [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -284,7 +284,7 @@
                 }]];
                 [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
             } else {
-                [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
+                [[EvernoteSynchronizer shared] authenticateEvernoteUserWithViewController:self];
             }
             break;
         case SECTION_INSTALL_WATCHAPP: {
@@ -311,8 +311,8 @@
 
 
 - (void)userConfirmedLogout {
-    [[ESEvernoteSynchronizer sharedSynchronizer] logout];
-    [[ESEvernoteSynchronizer sharedSynchronizer] authenticateEvernoteUserFromViewController:self];
+    [[EvernoteSynchronizer shared] logout];
+    [[EvernoteSynchronizer shared] authenticateEvernoteUserWithViewController:self];
 }
 
 /*

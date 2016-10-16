@@ -45,7 +45,6 @@
 		3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31CB1843100100E9A6AB /* UIKit.framework */; };
 		3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31EF1843100100E9A6AB /* InfoPlist.strings */; };
 		3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31F21843100100E9A6AB /* WatchShopperTests.m */; };
-		3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */; };
 		3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */; };
 		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
@@ -199,7 +198,6 @@
 		E5A05986F542A65595D62FDC /* Pods-WatchShopper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchShopper.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper.release.xcconfig"; sourceTree = "<group>"; };
 		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
 		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
-		EE3751191879D8A200655BA9 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
 		EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchShopper.entitlements; sourceTree = "<group>"; };
 		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
 		EEA997801DA162A500E4F8D9 /* WLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLog.swift; sourceTree = "<group>"; };
@@ -207,6 +205,7 @@
 		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
 		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
 		EEC417B0188DA757002DB9DA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = SOURCE_ROOT; };
+		EEF3454C1DB4293A00AE998E /* commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
 		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
 		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsController.m; path = Classes/ESSettingsController.m; sourceTree = "<group>"; };
 		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTTimeIntervalFormatter.h; path = Classes/TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
@@ -359,7 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */,
-				EE3751191879D8A200655BA9 /* commands.h */,
 				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
 				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
 				3B6D31FF1843119A00E9A6AB /* Evernote */,
@@ -383,6 +381,7 @@
 				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
 				EE161691188507000093E263 /* ESAddTagCell.h */,
 				EE161692188507000093E263 /* ESAddTagCell.m */,
+				EEF3454C1DB4293A00AE998E /* commands.h */,
 				EEC417B0188DA757002DB9DA /* iTunesArtwork */,
 				37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */,
 				37EBD5221C70E7E5005FFC9A /* WatchShopper-Bridging-Header.h */,
@@ -776,7 +775,6 @@
 				3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */,
 				3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */,
 				3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */,
-				3B6D31FE1843119000E9A6AB /* ESEvernoteSynchronizer.m in Sources */,
 				EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
 				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
 				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
@@ -1077,7 +1075,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1107,7 +1105,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

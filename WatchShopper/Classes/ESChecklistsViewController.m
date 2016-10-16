@@ -118,7 +118,7 @@
     if (checklist.note.content != nil) {
         [self pushChecklist:checklist];
     } else {
-        [EVERNOTE loadContentForChecklist:checklist success:^{
+        [EvernoteSynchronizer.shared loadContentFor:checklist success:^{
             [self pushChecklist:checklist];
         } failure:^(NSError *error) {
             //Alert the failure

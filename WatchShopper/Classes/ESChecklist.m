@@ -8,9 +8,9 @@
 
 #import "ESChecklist.h"
 #import "NSDate+EDAMAdditions.h"
-#import "ESEvernoteSynchronizer.h"
 #import "commands.h"
 #import "TTTTimeIntervalFormatter.h"
+#import "WatchShopper-Swift.h"
 
 @interface ESChecklist () <NSXMLParserDelegate>
 
@@ -95,7 +95,7 @@
     
     [content appendString:@"</div></en-note>"];
     self.note.content = content;
-    [EVERNOTE saveNote:self.note];
+    [EvernoteSynchronizer.shared saveWithChecklist:self];
 }
 
 #pragma mark - NSXMLParserDelegate implementation

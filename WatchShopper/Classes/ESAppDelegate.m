@@ -7,7 +7,7 @@
 //
 
 #import "ESAppDelegate.h"
-#import "ESEvernoteSynchronizer.h"
+#import "ENSDKAdvanced.h"
 #import "ESSettingsManager.h"
 #import "WatchShopper-Swift.h"
 #import "WLog.h"
@@ -16,9 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [ESEvernoteSynchronizer setupEvernoteSingleton];
     [[ESSettingsManager sharedManager] setUpInitialSettingsIfNecessary];
-    [[ESAppleWatchManager defaultManager] start];
+    [[AppleWatchManager defaultManager] start];
     
     WLog(@"applicationDidLaunch");
     // Override point for customization after application launch.
