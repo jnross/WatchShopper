@@ -12,7 +12,8 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     
     @IBOutlet var table:WKInterfaceTable! = nil
     var list:ListWithItems? = nil
-    
+    var reorderTimer:Timer? = nil
+    var reorderIndices:Set<Int> = Set<Int>()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -47,6 +48,20 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     
     override func didDeactivate() {
         super.didDeactivate()
+        sortCheckedItemsToBottom()
+        refreshTable()
+    }
+    
+    func sortCheckedItemsToBottom() {
+        if let list = list {
+            list.items = list.items.sorted(by: { (first, second) in
+                if first.checked != second.checked {
+                    return !first.checked
+                } else {
+                    return first.id < second.id
+                }
+            })
+        }
     }
     
     override func willActivate() {
@@ -59,15 +74,20 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     }
     
     func refreshTable() {
-        table.setNumberOfRows(list?.items.count ?? 0, withRowType: "ItemRow")
+        guard let list = list else { return }
+        table.setNumberOfRows(list.items.count, withRowType: "ItemRow")
         
-        for (index, item) in (list?.items ?? []).enumerated() {
-            if let row = table.rowController(at: index) as? ItemRow {
-                row.nameLabel.setText(item.name)
-                row.checked = item.checked
-                setCheckedImage(row)
-                row.itemId = item.id
-            }
+        for (index, item) in (list.items).enumerated() {
+            setupRow(at: index, item: item)
+        }
+    }
+    
+    func setupRow(at index:Int, item:ListItem) {
+        if let row = table.rowController(at: index) as? ItemRow {
+            row.nameLabel.setText(item.name)
+            row.checked = item.checked
+            setCheckedImage(row)
+            row.itemId = item.id
         }
     }
     
@@ -81,10 +101,48 @@ class ChecklistController: WKInterfaceController, DataProxyObserver {
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         if let row = table.rowController(at: rowIndex) as? ItemRow, let listGuid = list?.guid {
+            reorderIndices.insert(rowIndex)
+            resetReorderTimer()
             row.checked = !row.checked
             list?.items[rowIndex].checked = row.checked
             setCheckedImage(row)
             DataProxy.defaultProxy.updateCheckedItem(row.itemId, listGuid: listGuid, checked: row.checked)
+        }
+    }
+    
+    func resetReorderTimer() {
+        cancelReorderTimer()
+        reorderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
+            self.cancelReorderTimer()
+            self.reorderTable()
+        })
+    }
+    
+    func cancelReorderTimer() {
+        reorderTimer?.invalidate()
+        reorderTimer = nil
+    }
+    
+    func reorderTable() {
+        guard let list = list else { return }
+        var reorderIds:[Int] = []
+        for i in reorderIndices {
+            let item = list.items[i]
+            reorderIds.append(item.id)
+        }
+        sortCheckedItemsToBottom()
+        var insertIndices:[Int] = []
+        for (i,item) in list.items.enumerated() {
+            if reorderIds.contains(item.id) {
+                insertIndices.append(i)
+            }
+        }
+        
+        table.removeRows(at: IndexSet(Array(reorderIndices)))
+        table.insertRows(at: IndexSet(insertIndices), withRowType: "ItemRow")
+        for index in insertIndices {
+            let item = list.items[index]
+            setupRow(at: index, item: item)
         }
     }
     

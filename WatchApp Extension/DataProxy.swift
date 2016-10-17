@@ -169,7 +169,7 @@ class ListItem {
 }
 
 class ListWithItems : ListInfo {
-    let items:[ListItem]
+    var items:[ListItem]
     init(name:String, date:String, guid:String, items:[ListItem]) {
         self.items = items
         super.init(name:name, date:date, guid:guid)
