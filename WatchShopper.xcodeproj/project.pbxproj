@@ -12,6 +12,7 @@
 		3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81D1DAD9724004AF8DC /* RxCocoa.framework */; };
 		3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81F1DAD9744004AF8DC /* RxSwift.framework */; };
 		3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
+		3776F11E1DB8160C00AC1885 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3776F11D1DB8160C00AC1885 /* PebbleKit.framework */; };
 		37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2AFC51C727E130060E8D2 /* ChecklistController.swift */; };
 		37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
 		37E3EB231D15CE7500BC5666 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
@@ -50,10 +51,6 @@
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
-		3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
-		3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
-		3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
-		3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
 		3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
 		3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
 		3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */; };
@@ -131,6 +128,9 @@
 		3715F81D1DAD9724004AF8DC /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		3715F81F1DAD9744004AF8DC /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvernoteSynchronizer.swift; path = Classes/EvernoteSynchronizer.swift; sourceTree = "<group>"; };
+		374E38201DB919A200CC9488 /* watch_shopper */ = {isa = PBXFileReference; lastKnownFileType = folder; path = watch_shopper; sourceTree = "<group>"; };
+		3776F11C1DB812DF00AC1885 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		3776F11D1DB8160C00AC1885 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = Carthage/Build/iOS/PebbleKit.framework; sourceTree = "<group>"; };
 		37B2AFC51C727E130060E8D2 /* ChecklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistController.swift; sourceTree = "<group>"; };
 		37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		37EBD4F91C70603C005FFC9A /* WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,8 +182,6 @@
 		3BCED9671845D614005F0560 /* ESChecklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistTest.m; sourceTree = "<group>"; };
 		3BCED96C1845D709005F0560 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = WatchShopper/lib/PebbleKit.framework; sourceTree = "<group>"; };
-		3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = WatchShopper/lib/PebbleVendor.framework; sourceTree = "<group>"; };
 		3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESWatchManager.h; path = Classes/ESWatchManager.h; sourceTree = "<group>"; };
 		3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESWatchManager.m; path = Classes/ESWatchManager.m; sourceTree = "<group>"; };
 		3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -228,6 +226,7 @@
 				3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */,
 				3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */,
 				3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */,
+				3776F11E1DB8160C00AC1885 /* PebbleKit.framework in Frameworks */,
 				3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
@@ -238,8 +237,6 @@
 				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
 				3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */,
 				3B6D31CA1843100100E9A6AB /* CoreGraphics.framework in Frameworks */,
-				3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
-				3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
 				3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */,
 				3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */,
 				C8DF4D991FC57F061F9AA27F /* libPods-WatchShopper.a in Frameworks */,
@@ -254,10 +251,9 @@
 				3BF2E8E91855254B006CB2B3 /* ExternalAccessory.framework in Frameworks */,
 				3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */,
 				3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */,
-				3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
 				3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */,
 				3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */,
-				3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
+				3776F11F1DB8175700AC1885 /* PebbleKit.framework in Frameworks */,
 				3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */,
 				06FA90271297DB741C2B3ED3 /* libPods-WatchShopperTests.a in Frameworks */,
 			);
@@ -304,7 +300,9 @@
 			isa = PBXGroup;
 			children = (
 				3BF2E8D118538C78006CB2B3 /* README.md */,
+				3776F11C1DB812DF00AC1885 /* Cartfile */,
 				3B6D31CD1843100100E9A6AB /* WatchShopper */,
+				374E38201DB919A200CC9488 /* watch_shopper */,
 				3B6D31EC1843100100E9A6AB /* WatchShopperTests */,
 				37EBD4FA1C70603C005FFC9A /* WatchApp */,
 				37EBD5091C70603C005FFC9A /* WatchApp Extension */,
@@ -328,6 +326,7 @@
 		3B6D31C61843100100E9A6AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3776F11D1DB8160C00AC1885 /* PebbleKit.framework */,
 				3715F81F1DAD9744004AF8DC /* RxSwift.framework */,
 				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
 				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
@@ -336,8 +335,6 @@
 				3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */,
 				3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */,
 				3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */,
-				3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */,
-				3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */,
 				3BCED96C1845D709005F0560 /* SenTestingKit.framework */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
 				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
@@ -494,7 +491,7 @@
 				16D5CC55C250C92DB6D23C81 /* Embed Pods Frameworks */,
 				BA0153568FCCC815144B2DD8 /* Copy Pods Resources */,
 				37EBD51F1C70603C005FFC9A /* Embed Watch Content */,
-				3715F81C1DAD96E6004AF8DC /* ShellScript */,
+				3715F81C1DAD96E6004AF8DC /* Carthage copy-frameworks */,
 			);
 			buildRules = (
 			);
@@ -663,7 +660,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopper/Pods-WatchShopper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3715F81C1DAD96E6004AF8DC /* ShellScript */ = {
+		3715F81C1DAD96E6004AF8DC /* Carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -672,7 +669,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PebbleKit.framework",
 			);
+			name = "Carthage copy-frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1120,6 +1119,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
@@ -1147,6 +1147,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";

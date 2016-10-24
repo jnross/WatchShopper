@@ -42,14 +42,15 @@ static ESWatchManager *singletonInstance = nil;
 
 - (void) start {
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:PEBBLE_SHOPPER_APP_UUID_STRING];
-    uuid_t uuidBytes;
-    [uuid getUUIDBytes:uuidBytes];
-    NSData *uuidData = [NSData dataWithBytes:uuidBytes length:sizeof(uuidBytes)];
-    [[PBPebbleCentral defaultCentral] setAppUUID:uuidData];
+    [[PBPebbleCentral defaultCentral] setAppUUID:uuid];
     
     [PBPebbleCentral defaultCentral].delegate = self;
-    
-    [self updateCurrentWatch:[[PBPebbleCentral defaultCentral] lastConnectedWatch]];
+    [[PBPebbleCentral defaultCentral] run];
+    [[EvernoteSynchronizer shared] addObserver:self];
+    NSArray<PBWatch*>* connectedWatches = PBPebbleCentral.defaultCentral.connectedWatches;
+    if (connectedWatches.count > 0) {
+        [self updateCurrentWatch:connectedWatches[0]];
+    }
     
 }
 
@@ -66,9 +67,6 @@ static ESWatchManager *singletonInstance = nil;
     [watch appMessagesAddReceiveUpdateHandler:^BOOL(PBWatch *watch, NSDictionary *update) {
         [self receivedUpdate:update fromWatch:watch];
         return YES;
-    }];
-    [watch appMessagesAddAppLifecycleUpdateHandler:^(PBWatch *watch, NSUUID *uuid, PBAppState newAppState) {
-        [self onLifeCyleUpdate:uuid newState:newAppState fromWatch:watch];
     }];
 }
 
@@ -208,6 +206,7 @@ static ESWatchManager *singletonInstance = nil;
 
 - (void)synchronizer:(EvernoteSynchronizer*)synchronizer updatedChecklists:(NSArray<ESChecklist*>*)checklists {
     self.checklists = checklists;
+    [self sendAllChecklists];
 }
 
 - (void)sendChecklistItemUpdate:(ESChecklistItem *)item {
@@ -224,11 +223,6 @@ static ESWatchManager *singletonInstance = nil;
             }
         }];
     }
-    
-}
-
-- (void)onLifeCyleUpdate:(NSUUID*)uuid newState:(PBAppState)newState fromWatch:(PBWatch *)watch {
-    
     
 }
 
