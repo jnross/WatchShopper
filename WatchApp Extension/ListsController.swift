@@ -74,7 +74,7 @@ class ListsController: WKInterfaceController, DataProxyObserver {
     // MARK: Menu actions
     
     @IBAction func doRefreshAction() {
-        DataProxy.defaultProxy.sendNeedsUpdate()
+        DataProxy.defaultProxy.sendRefreshLists()
     }
 
 }

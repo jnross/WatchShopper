@@ -46,6 +46,13 @@ class DataProxy: NSObject, WCSessionDelegate {
             WLog("Error requesting update: \(error)")
         }
     }
+    
+    func sendRefreshLists() {
+        WLog("Sent refresh request")
+        session.sendMessage(["action":"refreshLists"], replyHandler: nil) { (error) -> Void in
+            WLog("Error requesting update: \(error)")
+        }
+    }
     func saveList(_ list:ListInfo) {
         WLog("Saving list \(list.name) (\(list.guid))")
         session.sendMessage(["action":"save", "guid":list.guid], replyHandler: nil) { (error) -> Void in

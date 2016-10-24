@@ -24,7 +24,7 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
     
     enum WatchAction : String {
         case needsUpdate
-        case fetchLists
+        case refreshLists
         case fetchListItems
         case updateCheckedItem
         case save
@@ -56,8 +56,8 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
                 WLog("Got update request")
                 sendLatestList()
                 sendListOfLists()
-            case .fetchLists:
-                sendListOfLists()
+            case .refreshLists:
+                EvernoteSynchronizer.shared.refreshWatchNotes()
             case .updateCheckedItem:
                 OperationQueue.main.addOperation({ () -> Void in
                     self.updateCheckedItem(message)
