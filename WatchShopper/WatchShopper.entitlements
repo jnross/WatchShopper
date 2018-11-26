@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.easystreet3.WatchShopper</string>
+		<string>$(AppIdentifierPrefix)com.rossable.WatchShopper</string>
 	</array>
 </dict>
 </plist>

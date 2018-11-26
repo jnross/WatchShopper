@@ -4,7 +4,13 @@ PODS:
 DEPENDENCIES:
   - evernote-cloud-sdk-ios
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - evernote-cloud-sdk-ios
+
 SPEC CHECKSUMS:
   evernote-cloud-sdk-ios: 048cf5dcdc0c64069192d1336b7e121bc1a77e12
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 92b18e57780031f8cfd5355023eb8264a4d44111
+
+COCOAPODS: 1.5.3
