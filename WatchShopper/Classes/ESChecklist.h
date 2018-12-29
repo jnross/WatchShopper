@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ENSDKAdvanced.h"
+#import "EvernoteSDK/ENSDKAdvanced.h"
 #import "ESChecklistItem.h"
 
 @class ESChecklist;

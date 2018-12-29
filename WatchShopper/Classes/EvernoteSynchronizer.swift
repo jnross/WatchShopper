@@ -48,7 +48,7 @@ class EvernoteSynchronizer: NSObject {
     }
     
     func authenticateEvernoteUserWith(viewController:UIViewController) {
-        guard let session = ENSession.shared() else { return }
+        let session = ENSession.shared
         session.authenticate(with: viewController, preferRegistration: false) { error in
             if error != nil || !session.isAuthenticated {
                 let alert = UIAlertController(title: nil, message:"Evernote authentication failed", preferredStyle: .alert)
@@ -60,11 +60,11 @@ class EvernoteSynchronizer: NSObject {
     }
     
     func logout() {
-        ENSession.shared().unauthenticate()
+        ENSession.shared.unauthenticate()
     }
     
     func isAlreadyAuthenticated() -> Bool {
-        return ENSession.shared().isAuthenticated
+        return ENSession.shared.isAuthenticated
     }
     
     func refreshWatchNotes() {
@@ -97,15 +97,17 @@ class EvernoteSynchronizer: NSObject {
     
     func getAllNotebooks() -> Observable<EDAMNotebook> {
         return Observable.create() { observer in
-            ENSession.shared().primaryNoteStore().listNotebooks(success: { (notebooksOpt) in
-                guard let notebooks = notebooksOpt as? [EDAMNotebook] else { return }
+            ENSession.shared.primaryNoteStore()?.listNotebooks(completion: { (notebooksOpt, error) in
+                if let error = error {
+                    observer.on(.error(error))
+                    return
+                }
+                guard let notebooks = notebooksOpt else { return }
                 self.allNotebookNames = notebooks.map(){ return $0.name }
                 for notebook in notebooks {
                     observer.on(.next(notebook))
                 }
                 observer.on(.completed)
-                }, failure: { error in
-                    observer.on(.error(error!))
             })
             return Disposables.create()
         }
@@ -133,13 +135,17 @@ class EvernoteSynchronizer: NSObject {
                     filter.notebookGuid = notebook.guid
                     filter.inactive = false
                     filter.tagGuids = guids
-                    ENSession.shared().primaryNoteStore().findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, success: { noteList in
-                        if let notes = noteList?.notes as? [EDAMNote] {
+                    ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, completion: { noteList, error in
+                        if let error = error {
+                            observer.on(.error(error))
+                            return
+                        }
+                        if let notes = noteList?.notes {
                             observer.on(.next(notes))
                         }
                         fetchTasks -= 1
                         if fetchTasks == 0 { observer.on(.completed) }
-                        }, failure: { error in observer.on(.error(error!))})
+                    })
                 },onCompleted:{
                     if fetchTasks == 0 { observer.on(.completed) }
             }).addDisposableTo(self.disposeBag)
@@ -149,9 +155,13 @@ class EvernoteSynchronizer: NSObject {
     
     func getTagsFor(notebook:EDAMNotebook) -> Observable<[EDAMTag]> {
         return Observable.create { observer in
-            ENSession.shared().primaryNoteStore().listTagsByNotebook(withGuid: notebook.guid, success:
-                { tagsAny in
-                    guard let tags = tagsAny as? [EDAMTag] else {
+            ENSession.shared.primaryNoteStore()?.listTagsInNotebook(withGuid: notebook.guid, completion:
+                { tagsOpt, error in
+                    if let error = error {
+                        observer.on(.error(error))
+                        return
+                    }
+                    guard let tags = tagsOpt else {
                         observer.on(.completed)
                         return
                     }
@@ -163,9 +173,6 @@ class EvernoteSynchronizer: NSObject {
                         observer.on(.next(filteredTags))
                     }
                     observer.on(.completed)
-                }, failure:
-                { error in
-                    observer.on(.error(error!))
                 })
             return Disposables.create()
         }
@@ -178,32 +185,37 @@ class EvernoteSynchronizer: NSObject {
             filter.ascending = false
             filter.notebookGuid = notebook.guid
             filter.inactive = false
-            ENSession.shared().primaryNoteStore().findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, success: { noteList in
-                if let notes = noteList?.notes as? [EDAMNote] {
+            ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, completion: { noteList, error in
+                if let error = error {
+                    observer.on(.error(error))
+                    return
+                }
+                if let notes = noteList?.notes {
                     observer.on(.next(notes))
                 }
                 observer.on(.completed)
-                }, failure: { error in
-                    observer.on(.error(error!))
-                    
             })
             return Disposables.create()
         }
     }
     
     func loadContent(for checklist:ESChecklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
-        ENSession.shared().primaryNoteStore().getNoteContent(withGuid: checklist.note?.guid, success:
-            { content in
+        guard let guid = checklist.note?.guid else { return }
+        ENSession.shared.primaryNoteStore()?.fetchNoteContent(withGuid: guid, completion:
+            { content, error in
+                if let error = error {
+                    failure(error)
+                    return
+                }
                 checklist.note?.content = content
                 checklist.loadContent()
                 success()
-            }) { error in
-                failure(error!)
-        }
+            })
     }
     
     func save(checklist:ESChecklist) {
-        ENSession.shared().primaryNoteStore().update(checklist.note, success: nil, failure:{ error in
+        guard let note = checklist.note else { return }
+        ENSession.shared.primaryNoteStore()?.update(note, completion: { error in
                 //TODO: notify user of failure
         })
     }

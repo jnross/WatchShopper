@@ -1,1 +1,2 @@
 github "ReactiveX/RxSwift" "3.6.1"
+github "jnross/evernote-cloud-sdk-ios" "carthage-support"

@@ -4,3 +4,4 @@
 
 #import "ESSettingsManager.h"
 #import "ESChecklist.h"
+#import "EvernoteSDK/EvernoteSDK.h"

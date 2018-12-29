@@ -7,7 +7,6 @@
 //
 
 #import "ESChecklist.h"
-#import "NSDate+EDAMAdditions.h"
 #import "commands.h"
 #import "TTTTimeIntervalFormatter.h"
 #import "WatchShopper-Swift.h"
