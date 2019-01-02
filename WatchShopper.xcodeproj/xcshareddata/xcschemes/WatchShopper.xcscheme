@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B6D31E41843100100E9A6AB"
+               BlueprintIdentifier = "D8E9563121DC4F5D004D86B4"
                BuildableName = "WatchShopperTests.xctest"
                BlueprintName = "WatchShopperTests"
                ReferencedContainer = "container:WatchShopper.xcodeproj">

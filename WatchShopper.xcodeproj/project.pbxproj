@@ -38,14 +38,14 @@
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
-		D8B6E1DD21AC560B00159931 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
+		D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
+		D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
 		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
 		D8E9562621DC4605004D86B4 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562421DC4605004D86B4 /* ESAddTagCell.m */; };
 		D8E9563521DC4F5D004D86B4 /* WatchShopperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9563421DC4F5D004D86B4 /* WatchShopperTests.swift */; };
 		D8E9563D21DC4F73004D86B4 /* ChecklistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9563C21DC4F73004D86B4 /* ChecklistTest.swift */; };
-		D8E9563E21DC4FCB004D86B4 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
 		D8E9563F21DC4FDE004D86B4 /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
 		D8E9564021DC4FDE004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9564121DC4FDE004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
@@ -150,8 +150,8 @@
 		3B6D321C18431F5B00E9A6AB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
 		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
 		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemsViewController.swift; sourceTree = "<group>"; };
@@ -189,8 +189,8 @@
 			files = (
 				3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */,
 				3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */,
-				D8B6E1DD21AC560B00159931 /* EvernoteSDK.framework in Frameworks */,
 				3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */,
+				D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
 				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
@@ -213,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8E9563E21DC4FCB004D86B4 /* EvernoteSDK.framework in Frameworks */,
+				D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +282,7 @@
 		3B6D31C61843100100E9A6AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */,
+				D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */,
 				3715F81F1DAD9744004AF8DC /* RxSwift.framework */,
 				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
 				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
@@ -456,7 +456,7 @@
 			attributes = {
 				CLASSPREFIX = ES;
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Easy Street 3";
 				TargetAttributes = {
 					37EBD4F81C70603C005FFC9A = {
@@ -702,7 +702,6 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
@@ -731,7 +730,6 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
@@ -803,14 +801,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -848,14 +854,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -903,7 +917,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
@@ -935,7 +948,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
