@@ -12,7 +12,7 @@ import WatchConnectivity
 @available (iOS 9.0, *)
 class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserver {
     static let defaultManager = AppleWatchManager()
-    var checklists:[ESChecklist] = []
+    var checklists:[Checklist] = []
     
     let session = WCSession.default()
     
@@ -87,11 +87,9 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
             let itemId = message["itemId"] as? Int,
             let checked = message["checked"] as? Bool {
                 for list in checklists {
-                    if list.guid == listGuid && list.items().count > itemId {
-                        let item = list.items()[itemId]
-                        item.isChecked = checked
-                        list.observer?.checklist(list, updatedItem: item)
-                        
+                    if list.guid == listGuid && list.items.count > itemId {
+                        list.items[itemId].checked = checked
+                        list.observer?.checklist(list, updatedItem: list.items[itemId])
                         break
                     }
                 }
@@ -117,17 +115,17 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
         }
     }
     
-    func finishReturningList(_ list:ESChecklist, completion:([String:Any]) -> Void) {
+    func finishReturningList(_ list:Checklist, completion:([String:Any]) -> Void) {
         completion(serializeable(for: list))
     }
     
-    func serializeable(for list:ESChecklist) -> [String:Any] {
-        let items = list.items().map() { item -> [String:Any] in
-            return ["name":item.name, "id":Int(item.itemId), "checked":item.isChecked]
+    func serializeable(for list:Checklist) -> [String:Any] {
+        let items = list.items.map() { item -> [String:Any] in
+            return ["name":item.name, "id":Int(item.id), "checked":item.checked]
         }
         
         var ret:[String:Any] = ["name":list.name, "guid":list.guid, "items":items]
-        if let date = ESChecklist.niceLookingString(for: list.lastUpdatedDate) {
+        if let date = list.prettyDateString {
             ret["date"] = date
         }
         return ret
@@ -158,7 +156,7 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
         }
     }
     
-    func synchronizer(_ synchronizer: EvernoteSynchronizer, updatedChecklists:[ESChecklist]) {
+    func synchronizer(_ synchronizer: EvernoteSynchronizer, updatedChecklists:[Checklist]) {
         WLog("updated checklists")
         self.checklists = updatedChecklists
         sendListOfLists()
@@ -176,7 +174,7 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
         
         var listDicts:[[String:Any]] = []
         for list in lists {
-            if let date = ESChecklist.niceLookingString(for: list.lastUpdatedDate) {
+            if let date = list.prettyDateString {
                     listDicts.append(["name":list.name, "date":date, "guid":list.guid])
             }
         }

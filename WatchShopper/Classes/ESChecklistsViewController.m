@@ -8,13 +8,12 @@
 
 #import "ESChecklistsViewController.h"
 #import "WatchShopper-Swift.h"
-#import "ESWatchManager.h"
-#import "ESChecklistItemsViewController.h"
+#import "EvernoteSDK/EvernoteSDK.h"
 
-@interface ESChecklistsViewController () <EvernoteSynchronizerObserver, ESWatchManagerObserver>
+@interface ESChecklistsViewController () <EvernoteSynchronizerObserver>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
-@property(nonatomic,strong) NSArray<ESChecklist*>* checklists;
+@property(nonatomic,strong) NSArray<Checklist*>* checklists;
 
 @end
 
@@ -36,9 +35,6 @@
     }
     
     [self refreshNotes];
-    
-    [[ESWatchManager sharedManager] start];
-    [ESWatchManager sharedManager].observer = self;
 }
 
 - (void)dealloc {
@@ -73,11 +69,10 @@
 }
 
 
-- (void)synchronizer:(EvernoteSynchronizer *) synchronizer updatedChecklists:(NSArray<ESChecklist*>*)checklists {
+- (void)synchronizer:(EvernoteSynchronizer *) synchronizer updatedChecklists:(NSArray<Checklist*>*)checklists {
     self.checklists = checklists;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
-    [[ESWatchManager sharedManager] launchWatchAppWithAllChecklists];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,32 +84,32 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Checklist"];
     }
     
-    ESChecklist *checklist = [self.checklists objectAtIndex:indexPath.row];
+    Checklist *checklist = [self.checklists objectAtIndex:indexPath.row];
     
     cell.textLabel.text = checklist.name;
     
-    cell.detailTextLabel.text = [ESChecklist niceLookingStringForDate:checklist.lastUpdatedDate];
+    cell.detailTextLabel.text = checklist.prettyDateString;
     
     return cell;
     
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ESChecklist *checklist = sender;
-    if ([segue.destinationViewController isKindOfClass:ESChecklistItemsViewController.class]) {
-        ESChecklistItemsViewController *itemsView = segue.destinationViewController;
+    Checklist *checklist = sender;
+    if ([segue.destinationViewController isKindOfClass:ChecklistItemsViewController.class]) {
+        ChecklistItemsViewController *itemsView = segue.destinationViewController;
         itemsView.checklist = checklist;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ESChecklist *checklist = self.checklists[indexPath.row];
+    Checklist *checklist = self.checklists[indexPath.row];
     
     [self loadAndPushChecklist:checklist];
 }
 
-- (void)loadAndPushChecklist:(ESChecklist *)checklist {
+- (void)loadAndPushChecklist:(Checklist *)checklist {
     if (checklist.note.content != nil) {
         [self pushChecklist:checklist];
     } else {
@@ -126,23 +121,9 @@
     }
 }
 
-- (void)pushChecklist:(ESChecklist *)checklist {
+- (void)pushChecklist:(Checklist *)checklist {
     
     [self performSegueWithIdentifier:@"push" sender:checklist];
-    
-    [[ESWatchManager sharedManager] launchWatchApp];
-    [[ESWatchManager sharedManager] sendChecklistToWatch:checklist];
-}
-
-- (void) watchApp:(ESWatchManager*)watchApp selectedChecklistAtIndex:(NSInteger)selectedChecklistIndex {
-    NSArray *checklists = [self checklists];
-    if (checklists.count > selectedChecklistIndex) {
-        ESChecklist *selectedChecklist = checklists[selectedChecklistIndex];
-        if (self.navigationController.topViewController != self) {
-            [self.navigationController popToViewController:self animated:NO];
-        }
-        [self loadAndPushChecklist:selectedChecklist];
-    }
 }
 
 @end

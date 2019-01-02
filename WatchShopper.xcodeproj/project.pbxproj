@@ -13,7 +13,6 @@
 		3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
 		37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2AFC51C727E130060E8D2 /* ChecklistController.swift */; };
 		37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
-		37E3EB231D15CE7500BC5666 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
 		37EBD4F61C7056E9005FFC9A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */; };
 		37EBD4FD1C70603C005FFC9A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4FB1C70603C005FFC9A /* Interface.storyboard */; };
 		37EBD4FF1C70603C005FFC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4FE1C70603C005FFC9A /* Assets.xcassets */; };
@@ -25,11 +24,6 @@
 		37EBD5171C70603C005FFC9A /* WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 37EBD4F91C70603C005FFC9A /* WatchApp.app */; };
 		37EBD5211C70E181005FFC9A /* DataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBD5201C70E181005FFC9A /* DataProxy.swift */; };
 		37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */; };
-		3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */; };
-		3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB44185B6EA4003A160B /* ESChecklist.m */; };
-		3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB44185B6EA4003A160B /* ESChecklist.m */; };
-		3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */; };
-		3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */; };
 		3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */; };
 		3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */; };
 		3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
@@ -49,22 +43,13 @@
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
-		3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
-		3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */; };
-		3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
-		3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */; };
-		3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
-		3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */; };
-		3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */; };
-		3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */; };
-		3BF2E8E91855254B006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
-		3BF2E8EA18552567006CB2B3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */; };
-		3BF2E8EB18552567006CB2B3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */; };
-		3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
-		3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */; };
 		D8B6E1DD21AC560B00159931 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
-		EE161693188507000093E263 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE161692188507000093E263 /* ESAddTagCell.m */; };
+		D8E9561B21DB448F004D86B4 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
+		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
+		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
+		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
+		D8E9562621DC4605004D86B4 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562421DC4605004D86B4 /* ESAddTagCell.m */; };
 		EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
 		EEA997821DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
 		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
@@ -73,7 +58,6 @@
 		EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */; };
 		EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */; };
 		EEF97A211881C9C6004F7FC3 /* cog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEF97A201881C9C6004F7FC3 /* cog@2x.png */; };
-		F8218014492899ABEA106BF2 /* libPods-WatchShopperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBC90914BAD5E6FE0055BEE /* libPods-WatchShopperTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,17 +130,11 @@
 		37EBD5141C70603C005FFC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EBD5201C70E181005FFC9A /* DataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProxy.swift; sourceTree = "<group>"; };
 		37EBD5221C70E7E5005FFC9A /* WatchShopper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchShopper-Bridging-Header.h"; sourceTree = "<group>"; };
-		37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ESAppleWatchManager.swift; path = Classes/ESAppleWatchManager.swift; sourceTree = "<group>"; };
-		3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistItemsViewController.h; path = Classes/ESChecklistItemsViewController.h; sourceTree = "<group>"; };
-		3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistItemsViewController.m; path = Classes/ESChecklistItemsViewController.m; sourceTree = "<group>"; };
-		3B4ECB43185B6EA4003A160B /* ESChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklist.h; path = Classes/ESChecklist.h; sourceTree = "<group>"; };
-		3B4ECB44185B6EA4003A160B /* ESChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklist.m; path = Classes/ESChecklist.m; sourceTree = "<group>"; };
-		3B4ECB45185B6EA4003A160B /* ESChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistItem.h; path = Classes/ESChecklistItem.h; sourceTree = "<group>"; };
-		3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistItem.m; path = Classes/ESChecklistItem.m; sourceTree = "<group>"; };
-		3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESAppDelegate.h; path = Classes/ESAppDelegate.h; sourceTree = "<group>"; };
-		3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESAppDelegate.m; path = Classes/ESAppDelegate.m; sourceTree = "<group>"; };
-		3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESChecklistsViewController.h; path = Classes/ESChecklistsViewController.h; sourceTree = "<group>"; };
-		3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESChecklistsViewController.m; path = Classes/ESChecklistsViewController.m; sourceTree = "<group>"; };
+		37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESAppleWatchManager.swift; sourceTree = "<group>"; };
+		3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAppDelegate.h; sourceTree = "<group>"; };
+		3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAppDelegate.m; sourceTree = "<group>"; };
+		3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESChecklistsViewController.h; sourceTree = "<group>"; };
+		3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistsViewController.m; sourceTree = "<group>"; };
 		3B6D31C41843100100E9A6AB /* WatchShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6D31C71843100100E9A6AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3B6D31C91843100100E9A6AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,8 +150,6 @@
 		3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchShopperTests-Info.plist"; sourceTree = "<group>"; };
 		3B6D31F01843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B6D31F21843100100E9A6AB /* WatchShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchShopperTests.m; sourceTree = "<group>"; };
-		3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESEvernoteSynchronizer.h; path = Classes/ESEvernoteSynchronizer.h; sourceTree = "<group>"; };
-		3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESEvernoteSynchronizer.m; path = Classes/ESEvernoteSynchronizer.m; sourceTree = "<group>"; };
 		3B6D321418431F4000E9A6AB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3B6D321618431F4000E9A6AB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -182,32 +158,26 @@
 		3BCED9671845D614005F0560 /* ESChecklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistTest.m; sourceTree = "<group>"; };
 		3BCED96C1845D709005F0560 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = WatchShopper/lib/PebbleKit.framework; sourceTree = "<group>"; };
-		3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = WatchShopper/lib/PebbleVendor.framework; sourceTree = "<group>"; };
-		3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESWatchManager.h; path = Classes/ESWatchManager.h; sourceTree = "<group>"; };
-		3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESWatchManager.m; path = Classes/ESWatchManager.m; sourceTree = "<group>"; };
-		3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7961115C1CBA0455BD92890D /* libPods-WatchShopper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WatchShopper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
-		EE161691188507000093E263 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
-		EE161692188507000093E263 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
+		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Checklist.swift; path = Classes/Checklist.swift; sourceTree = "<group>"; };
+		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChecklistItem.swift; path = Classes/ChecklistItem.swift; sourceTree = "<group>"; };
+		D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemsViewController.swift; sourceTree = "<group>"; };
+		D8E9562421DC4605004D86B4 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
+		D8E9562521DC4605004D86B4 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
 		EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchShopper.entitlements; sourceTree = "<group>"; };
 		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
 		EEA997801DA162A500E4F8D9 /* WLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLog.swift; sourceTree = "<group>"; };
 		EEA997831DA1669900E4F8D9 /* WLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLog.h; sourceTree = "<group>"; };
-		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsManager.h; path = Classes/ESSettingsManager.h; sourceTree = "<group>"; };
-		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsManager.m; path = Classes/ESSettingsManager.m; sourceTree = "<group>"; };
+		EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSettingsManager.h; sourceTree = "<group>"; };
+		EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSettingsManager.m; sourceTree = "<group>"; };
 		EEC417B0188DA757002DB9DA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = SOURCE_ROOT; };
-		EEF3454C1DB4293A00AE998E /* commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = commands.h; path = watch_shopper/src/commands.h; sourceTree = SOURCE_ROOT; };
-		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSettingsController.h; path = Classes/ESSettingsController.h; sourceTree = "<group>"; };
-		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSettingsController.m; path = Classes/ESSettingsController.m; sourceTree = "<group>"; };
-		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTTimeIntervalFormatter.h; path = Classes/TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
-		EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTTimeIntervalFormatter.m; path = Classes/TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSettingsController.h; sourceTree = "<group>"; };
+		EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSettingsController.m; sourceTree = "<group>"; };
+		EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 		EEF97A201881C9C6004F7FC3 /* cog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,18 +197,12 @@
 				3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */,
 				D8B6E1DD21AC560B00159931 /* EvernoteSDK.framework in Frameworks */,
 				3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */,
-				3BF2E8F0185525CF006CB2B3 /* MessageUI.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
-				3BF2E8EA18552567006CB2B3 /* CoreBluetooth.framework in Frameworks */,
-				3BF2E8EB18552567006CB2B3 /* CoreMotion.framework in Frameworks */,
-				3BF2E8EC18552567006CB2B3 /* ExternalAccessory.framework in Frameworks */,
 				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
 				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
 				3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */,
 				3B6D31CA1843100100E9A6AB /* CoreGraphics.framework in Frameworks */,
-				3BF2E8D91853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
-				3BF2E8D71853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
 				3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */,
 				3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */,
 			);
@@ -248,16 +212,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E3EB231D15CE7500BC5666 /* MessageUI.framework in Frameworks */,
-				3BF2E8E91855254B006CB2B3 /* ExternalAccessory.framework in Frameworks */,
-				3BF2E8E61855253B006CB2B3 /* CoreBluetooth.framework in Frameworks */,
-				3BF2E8E71855253B006CB2B3 /* CoreMotion.framework in Frameworks */,
-				3BF2E8DA1853A9D6006CB2B3 /* PebbleVendor.framework in Frameworks */,
 				3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */,
 				3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */,
-				3BF2E8D81853A9D5006CB2B3 /* PebbleKit.framework in Frameworks */,
 				3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */,
-				F8218014492899ABEA106BF2 /* libPods-WatchShopperTests.a in Frameworks */,
+				D8E9561B21DB448F004D86B4 /* EvernoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,13 +295,7 @@
 				3715F81F1DAD9744004AF8DC /* RxSwift.framework */,
 				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
 				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
-				3BF2E8EF185525CF006CB2B3 /* MessageUI.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
-				3BF2E8E81855254B006CB2B3 /* ExternalAccessory.framework */,
-				3BF2E8E41855253B006CB2B3 /* CoreBluetooth.framework */,
-				3BF2E8E51855253B006CB2B3 /* CoreMotion.framework */,
-				3BF2E8D51853A9D5006CB2B3 /* PebbleKit.framework */,
-				3BF2E8D61853A9D5006CB2B3 /* PebbleVendor.framework */,
 				3BCED96C1845D709005F0560 /* SenTestingKit.framework */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
 				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
@@ -363,31 +315,14 @@
 		3B6D31CD1843100100E9A6AB /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
+				D8E9562821DC469F004D86B4 /* Classes */,
 				EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */,
-				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
-				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
 				3B6D31FF1843119A00E9A6AB /* Evernote */,
-				3BF2E8DE1853AA34006CB2B3 /* ESWatchManager.h */,
-				3BF2E8DF1853AA34006CB2B3 /* ESWatchManager.m */,
-				37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */,
-				3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */,
-				3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */,
 				3B6D31D91843100100E9A6AB /* Main.storyboard */,
-				3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */,
-				3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */,
-				3B128D791858378900E52B21 /* ESChecklistItemsViewController.h */,
-				3B128D7A1858378900E52B21 /* ESChecklistItemsViewController.m */,
 				EE566265188C2CF60054F593 /* version.h */,
 				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
 				EEF97A201881C9C6004F7FC3 /* cog@2x.png */,
 				3B6D31CE1843100100E9A6AB /* Supporting Files */,
-				EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */,
-				EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */,
-				EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */,
-				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
-				EE161691188507000093E263 /* ESAddTagCell.h */,
-				EE161692188507000093E263 /* ESAddTagCell.m */,
-				EEF3454C1DB4293A00AE998E /* commands.h */,
 				EEC417B0188DA757002DB9DA /* iTunesArtwork */,
 				37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */,
 				37EBD5221C70E7E5005FFC9A /* WatchShopper-Bridging-Header.h */,
@@ -429,15 +364,32 @@
 		3B6D31FF1843119A00E9A6AB /* Evernote */ = {
 			isa = PBXGroup;
 			children = (
-				3B6D31FC1843119000E9A6AB /* ESEvernoteSynchronizer.h */,
-				3B6D31FD1843119000E9A6AB /* ESEvernoteSynchronizer.m */,
-				3B4ECB43185B6EA4003A160B /* ESChecklist.h */,
-				3B4ECB44185B6EA4003A160B /* ESChecklist.m */,
-				3B4ECB45185B6EA4003A160B /* ESChecklistItem.h */,
-				3B4ECB46185B6EA4003A160B /* ESChecklistItem.m */,
 				3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */,
+				D8E9561E21DC45F3004D86B4 /* Checklist.swift */,
+				D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */,
 			);
 			name = Evernote;
+			sourceTree = "<group>";
+		};
+		D8E9562821DC469F004D86B4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */,
+				D8E9562521DC4605004D86B4 /* ESAddTagCell.h */,
+				D8E9562421DC4605004D86B4 /* ESAddTagCell.m */,
+				3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */,
+				3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */,
+				37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */,
+				3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */,
+				3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */,
+				EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */,
+				EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */,
+				EEB84F7E1883CA2A001CDDC1 /* ESSettingsManager.h */,
+				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
+				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
+				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -720,18 +672,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */,
-				3BF2E8E01853AA34006CB2B3 /* ESWatchManager.m in Sources */,
-				3B4ECB47185B6EA4003A160B /* ESChecklist.m in Sources */,
+				D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */,
 				EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
-				3B128D7B1858378900E52B21 /* ESChecklistItemsViewController.m in Sources */,
 				3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */,
 				3B6D31D41843100100E9A6AB /* main.m in Sources */,
-				EE161693188507000093E263 /* ESAddTagCell.m in Sources */,
+				D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */,
+				D8E9562621DC4605004D86B4 /* ESAddTagCell.m in Sources */,
 				EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */,
 				37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */,
 				EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */,
-				3B4ECB49185B6EA4003A160B /* ESChecklistItem.m in Sources */,
 				3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */,
+				D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */,
 				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,12 +691,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4ECB48185B6EA4003A160B /* ESChecklist.m in Sources */,
 				3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */,
 				37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */,
 				EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
-				3B4ECB4A185B6EA4003A160B /* ESChecklistItem.m in Sources */,
-				3BF2E8E11853AA34006CB2B3 /* ESWatchManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,6 +1022,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
@@ -1084,6 +1033,7 @@
 				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rossable.com.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WatchShopperTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
@@ -1100,12 +1050,14 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)/WatchShopper/lib",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
 				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rossable.com.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WatchShopperTests;
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ESChecklist.h"
+#import "EvernoteSDK/EvernoteSDK.h"
 
 @interface ESChecklistTest : XCTestCase
 
@@ -35,7 +35,7 @@
     note.content = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
     "<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\">"
     "<en-note><div>ketchup</div><div>mustard</div><div>pickles</div><div><span style=\"text-decoration: line-through;\">beef</span></div><div><span>w sauce</span></div><div>buns</div><div>cheese</div><div>mayo</div><div>toms</div><div>lettuce</div><div>onion</div></en-note>";
-    ESChecklist *checklist = [[ESChecklist alloc] initWithNote:note];
+    Checklist *checklist = [[Checklist alloc] initWithNote:note];
     XCTAssertEqualObjects(checklist.name, note.title, @"Names should match");
     XCTAssertEqualObjects(checklist.guid, note.guid, @"Guids should match");
     XCTAssert(checklist.items.count == 11, @"Expect 11 items");

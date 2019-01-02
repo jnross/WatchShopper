@@ -12,7 +12,7 @@ import RxSwift
 let kMaxNotes:Int32 = 32
 
 @objc protocol EvernoteSynchronizerObserver: class {
-    func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[ESChecklist])
+    func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[Checklist])
 }
 
 struct ObserverWrapper {
@@ -77,13 +77,13 @@ class EvernoteSynchronizer: NSObject {
             .reduce([EDAMNote]()) { (accumulator, notes) in
                 return accumulator + notes
             }
-            .map({ (notes:[EDAMNote]) -> [ESChecklist] in
-                var checklists:[ESChecklist] = []
+            .map({ (notes:[EDAMNote]) -> [Checklist] in
+                var checklists:[Checklist] = []
                 for note in notes {
-                    checklists.append(ESChecklist(note: note))
+                    checklists.append(Checklist(note: note))
                 }
                 return checklists.sorted(by: { first, second in
-                    return first.lastUpdatedDate > second.lastUpdatedDate
+                    return first.lastUpdated > second.lastUpdated
                 })
             })
             .subscribe(onNext: { (checklists) in
@@ -199,7 +199,7 @@ class EvernoteSynchronizer: NSObject {
         }
     }
     
-    func loadContent(for checklist:ESChecklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
+    func loadContent(for checklist:Checklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
         guard let guid = checklist.note?.guid else { return }
         ENSession.shared.primaryNoteStore()?.fetchNoteContent(withGuid: guid, completion:
             { content, error in
@@ -213,7 +213,7 @@ class EvernoteSynchronizer: NSObject {
             })
     }
     
-    func save(checklist:ESChecklist) {
+    func save(checklist:Checklist) {
         guard let note = checklist.note else { return }
         ENSession.shared.primaryNoteStore()?.update(note, completion: { error in
                 //TODO: notify user of failure
