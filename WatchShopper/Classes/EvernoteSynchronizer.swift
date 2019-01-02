@@ -215,7 +215,7 @@ class EvernoteSynchronizer: NSObject {
     
     func save(checklist:Checklist) {
         guard let note = checklist.note else { return }
-        ENSession.shared.primaryNoteStore()?.update(note, completion: { error in
+        ENSession.shared.primaryNoteStore()?.update(note, completion: { note, error in
                 //TODO: notify user of failure
         })
     }

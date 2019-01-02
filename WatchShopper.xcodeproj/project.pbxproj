@@ -12,7 +12,6 @@
 		3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81F1DAD9744004AF8DC /* RxSwift.framework */; };
 		3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
 		37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2AFC51C727E130060E8D2 /* ChecklistController.swift */; };
-		37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCED9671845D614005F0560 /* ESChecklistTest.m */; };
 		37EBD4F61C7056E9005FFC9A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */; };
 		37EBD4FD1C70603C005FFC9A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4FB1C70603C005FFC9A /* Interface.storyboard */; };
 		37EBD4FF1C70603C005FFC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4FE1C70603C005FFC9A /* Assets.xcassets */; };
@@ -33,11 +32,6 @@
 		3B6D31D41843100100E9A6AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31D31843100100E9A6AB /* main.m */; };
 		3B6D31DB1843100100E9A6AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31D91843100100E9A6AB /* Main.storyboard */; };
 		3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31DF1843100100E9A6AB /* Images.xcassets */; };
-		3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31E61843100100E9A6AB /* XCTest.framework */; };
-		3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
-		3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31CB1843100100E9A6AB /* UIKit.framework */; };
-		3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31EF1843100100E9A6AB /* InfoPlist.strings */; };
-		3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31F21843100100E9A6AB /* WatchShopperTests.m */; };
 		3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */; };
 		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
@@ -45,15 +39,19 @@
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
 		D8B6E1DD21AC560B00159931 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
-		D8E9561B21DB448F004D86B4 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
 		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
 		D8E9562621DC4605004D86B4 /* ESAddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562421DC4605004D86B4 /* ESAddTagCell.m */; };
+		D8E9563521DC4F5D004D86B4 /* WatchShopperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9563421DC4F5D004D86B4 /* WatchShopperTests.swift */; };
+		D8E9563D21DC4F73004D86B4 /* ChecklistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9563C21DC4F73004D86B4 /* ChecklistTest.swift */; };
+		D8E9563E21DC4FCB004D86B4 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */; };
+		D8E9563F21DC4FDE004D86B4 /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
+		D8E9564021DC4FDE004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
+		D8E9564121DC4FDE004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
 		EEA997821DA162A500E4F8D9 /* WLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA997801DA162A500E4F8D9 /* WLog.swift */; };
 		EEB84F801883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
-		EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */; };
 		EEC417B1188DA757002DB9DA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EEC417B0188DA757002DB9DA /* iTunesArtwork */; };
 		EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A171881BCE8004F7FC3 /* ESSettingsController.m */; };
 		EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */; };
@@ -75,7 +73,7 @@
 			remoteGlobalIDString = 37EBD4F81C70603C005FFC9A;
 			remoteInfo = WatchApp;
 		};
-		3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */ = {
+		D8E9563721DC4F5D004D86B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3B6D31BC1843100100E9A6AB /* Project object */;
 			proxyType = 1;
@@ -110,11 +108,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0DBC90914BAD5E6FE0055BEE /* libPods-WatchShopperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WatchShopperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715F8191DAD96A3004AF8DC /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		3715F81D1DAD9724004AF8DC /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		3715F81F1DAD9744004AF8DC /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvernoteSynchronizer.swift; path = Classes/EvernoteSynchronizer.swift; sourceTree = "<group>"; };
+		3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteSynchronizer.swift; sourceTree = "<group>"; };
 		37B2AFC51C727E130060E8D2 /* ChecklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistController.swift; sourceTree = "<group>"; };
 		37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		37EBD4F91C70603C005FFC9A /* WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,28 +142,25 @@
 		3B6D31D51843100100E9A6AB /* WatchShopper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchShopper-Prefix.pch"; sourceTree = "<group>"; };
 		3B6D31DA1843100100E9A6AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B6D31DF1843100100E9A6AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6D31E61843100100E9A6AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchShopperTests-Info.plist"; sourceTree = "<group>"; };
-		3B6D31F01843100100E9A6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3B6D31F21843100100E9A6AB /* WatchShopperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchShopperTests.m; sourceTree = "<group>"; };
 		3B6D321418431F4000E9A6AB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3B6D321618431F4000E9A6AB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3B6D321718431F4000E9A6AB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3B6D321C18431F5B00E9A6AB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		3BCED9671845D614005F0560 /* ESChecklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESChecklistTest.m; sourceTree = "<group>"; };
-		3BCED96C1845D709005F0560 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		7961115C1CBA0455BD92890D /* libPods-WatchShopper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WatchShopper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		D8B6E1DC21AC560B00159931 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
-		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Checklist.swift; path = Classes/Checklist.swift; sourceTree = "<group>"; };
-		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChecklistItem.swift; path = Classes/ChecklistItem.swift; sourceTree = "<group>"; };
+		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemsViewController.swift; sourceTree = "<group>"; };
 		D8E9562421DC4605004D86B4 /* ESAddTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAddTagCell.m; sourceTree = "<group>"; };
 		D8E9562521DC4605004D86B4 /* ESAddTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAddTagCell.h; sourceTree = "<group>"; };
+		D8E9563221DC4F5D004D86B4 /* WatchShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E9563421DC4F5D004D86B4 /* WatchShopperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopperTests.swift; sourceTree = "<group>"; };
+		D8E9563621DC4F5D004D86B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8E9563C21DC4F73004D86B4 /* ChecklistTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTest.swift; sourceTree = "<group>"; };
 		EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchShopper.entitlements; sourceTree = "<group>"; };
 		EE566265188C2CF60054F593 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = build/version.h; sourceTree = SOURCE_ROOT; };
 		EEA997801DA162A500E4F8D9 /* WLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLog.swift; sourceTree = "<group>"; };
@@ -208,21 +202,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3B6D31E21843100100E9A6AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3B6D31E71843100100E9A6AB /* XCTest.framework in Frameworks */,
-				3B6D31E91843100100E9A6AB /* UIKit.framework in Frameworks */,
-				3B6D31E81843100100E9A6AB /* Foundation.framework in Frameworks */,
-				D8E9561B21DB448F004D86B4 /* EvernoteSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		75D46EEE28958B24D8D9B7B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8E9562F21DC4F5D004D86B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8E9563E21DC4FCB004D86B4 /* EvernoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,9 +260,9 @@
 				3BF2E8D118538C78006CB2B3 /* README.md */,
 				D8B6E1DB21AC500100159931 /* Cartfile */,
 				3B6D31CD1843100100E9A6AB /* WatchShopper */,
-				3B6D31EC1843100100E9A6AB /* WatchShopperTests */,
 				37EBD4FA1C70603C005FFC9A /* WatchApp */,
 				37EBD5091C70603C005FFC9A /* WatchApp Extension */,
+				D8E9563321DC4F5D004D86B4 /* WatchShopperTests */,
 				3B6D31C61843100100E9A6AB /* Frameworks */,
 				3B6D31C51843100100E9A6AB /* Products */,
 			);
@@ -281,9 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				3B6D31C41843100100E9A6AB /* WatchShopper.app */,
-				3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */,
 				37EBD4F91C70603C005FFC9A /* WatchApp.app */,
 				37EBD5051C70603C005FFC9A /* WatchApp Extension.appex */,
+				D8E9563221DC4F5D004D86B4 /* WatchShopperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,7 +287,6 @@
 				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
 				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
-				3BCED96C1845D709005F0560 /* SenTestingKit.framework */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
 				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
 				3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */,
@@ -306,8 +296,6 @@
 				3B6D31C91843100100E9A6AB /* CoreGraphics.framework */,
 				3B6D31CB1843100100E9A6AB /* UIKit.framework */,
 				3B6D31E61843100100E9A6AB /* XCTest.framework */,
-				7961115C1CBA0455BD92890D /* libPods-WatchShopper.a */,
-				0DBC90914BAD5E6FE0055BEE /* libPods-WatchShopperTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,7 +305,6 @@
 			children = (
 				D8E9562821DC469F004D86B4 /* Classes */,
 				EE4E70AD1DA03260009E8DB9 /* WatchShopper.entitlements */,
-				3B6D31FF1843119A00E9A6AB /* Evernote */,
 				3B6D31D91843100100E9A6AB /* Main.storyboard */,
 				EE566265188C2CF60054F593 /* version.h */,
 				3B6D31DF1843100100E9A6AB /* Images.xcassets */,
@@ -342,25 +329,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3B6D31EC1843100100E9A6AB /* WatchShopperTests */ = {
-			isa = PBXGroup;
-			children = (
-				3B6D31F21843100100E9A6AB /* WatchShopperTests.m */,
-				3B6D31ED1843100100E9A6AB /* Supporting Files */,
-				3BCED9671845D614005F0560 /* ESChecklistTest.m */,
-			);
-			path = WatchShopperTests;
-			sourceTree = "<group>";
-		};
-		3B6D31ED1843100100E9A6AB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3B6D31EE1843100100E9A6AB /* WatchShopperTests-Info.plist */,
-				3B6D31EF1843100100E9A6AB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		3B6D31FF1843119A00E9A6AB /* Evernote */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +342,7 @@
 		D8E9562821DC469F004D86B4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3B6D31FF1843119A00E9A6AB /* Evernote */,
 				D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */,
 				D8E9562521DC4605004D86B4 /* ESAddTagCell.h */,
 				D8E9562421DC4605004D86B4 /* ESAddTagCell.m */,
@@ -390,6 +359,16 @@
 				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		D8E9563321DC4F5D004D86B4 /* WatchShopperTests */ = {
+			isa = PBXGroup;
+			children = (
+				D8E9563C21DC4F73004D86B4 /* ChecklistTest.swift */,
+				D8E9563421DC4F5D004D86B4 /* WatchShopperTests.swift */,
+				D8E9563621DC4F5D004D86B4 /* Info.plist */,
+			);
+			path = WatchShopperTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,24 +430,22 @@
 			productReference = 3B6D31C41843100100E9A6AB /* WatchShopper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3B6D31E41843100100E9A6AB /* WatchShopperTests */ = {
+		D8E9563121DC4F5D004D86B4 /* WatchShopperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopperTests" */;
+			buildConfigurationList = D8E9563921DC4F5D004D86B4 /* Build configuration list for PBXNativeTarget "WatchShopperTests" */;
 			buildPhases = (
-				A1F52E245B033E8E870DF933 /* [CP] Check Pods Manifest.lock */,
-				3B6D31E11843100100E9A6AB /* Sources */,
-				3B6D31E21843100100E9A6AB /* Frameworks */,
-				3B6D31E31843100100E9A6AB /* Resources */,
-				D513FC894BAC271826058388 /* [CP] Copy Pods Resources */,
+				D8E9562E21DC4F5D004D86B4 /* Sources */,
+				D8E9562F21DC4F5D004D86B4 /* Frameworks */,
+				D8E9563021DC4F5D004D86B4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3B6D31EB1843100100E9A6AB /* PBXTargetDependency */,
+				D8E9563821DC4F5D004D86B4 /* PBXTargetDependency */,
 			);
 			name = WatchShopperTests;
 			productName = WatchShopperTests;
-			productReference = 3B6D31E51843100100E9A6AB /* WatchShopperTests.xctest */;
+			productReference = D8E9563221DC4F5D004D86B4 /* WatchShopperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -478,7 +455,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ES;
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Easy Street 3";
 				TargetAttributes = {
@@ -507,8 +484,9 @@
 							};
 						};
 					};
-					3B6D31E41843100100E9A6AB = {
-						LastSwiftMigration = 0800;
+					D8E9563121DC4F5D004D86B4 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 3B6D31C31843100100E9A6AB;
 					};
 				};
@@ -527,9 +505,9 @@
 			projectRoot = "";
 			targets = (
 				3B6D31C31843100100E9A6AB /* WatchShopper */,
-				3B6D31E41843100100E9A6AB /* WatchShopperTests */,
 				37EBD4F81C70603C005FFC9A /* WatchApp */,
 				37EBD5041C70603C005FFC9A /* WatchApp Extension */,
+				D8E9563121DC4F5D004D86B4 /* WatchShopperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -566,11 +544,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3B6D31E31843100100E9A6AB /* Resources */ = {
+		D8E9563021DC4F5D004D86B4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B6D31F11843100100E9A6AB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,50 +570,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-		A1F52E245B033E8E870DF933 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WatchShopperTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D513FC894BAC271826058388 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopperTests/Pods-WatchShopperTests-resources.sh",
-				"${PODS_ROOT}/evernote-cloud-sdk-ios/ENSDKResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ENSDKResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchShopperTests/Pods-WatchShopperTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		EE566262188C2AF10054F593 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -687,13 +620,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3B6D31E11843100100E9A6AB /* Sources */ = {
+		D8E9562E21DC4F5D004D86B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B6D31F31843100100E9A6AB /* WatchShopperTests.m in Sources */,
-				37E3EB221D15CDE700BC5666 /* ESChecklistTest.m in Sources */,
-				EEB84F811883CA2A001CDDC1 /* ESSettingsManager.m in Sources */,
+				D8E9564021DC4FDE004D86B4 /* Checklist.swift in Sources */,
+				D8E9564121DC4FDE004D86B4 /* ChecklistItem.swift in Sources */,
+				D8E9563D21DC4F73004D86B4 /* ChecklistTest.swift in Sources */,
+				D8E9563F21DC4FDE004D86B4 /* EvernoteSynchronizer.swift in Sources */,
+				D8E9563521DC4F5D004D86B4 /* WatchShopperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,10 +645,10 @@
 			target = 37EBD4F81C70603C005FFC9A /* WatchApp */;
 			targetProxy = 37EBD5151C70603C005FFC9A /* PBXContainerItemProxy */;
 		};
-		3B6D31EB1843100100E9A6AB /* PBXTargetDependency */ = {
+		D8E9563821DC4F5D004D86B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3B6D31C31843100100E9A6AB /* WatchShopper */;
-			targetProxy = 3B6D31EA1843100100E9A6AB /* PBXContainerItemProxy */;
+			targetProxy = D8E9563721DC4F5D004D86B4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -740,14 +675,6 @@
 				3B6D31DA1843100100E9A6AB /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3B6D31EF1843100100E9A6AB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3B6D31F01843100100E9A6AB /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -962,7 +889,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/WatchShopper/lib",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -994,7 +920,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/WatchShopper/lib",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1013,55 +938,88 @@
 			};
 			name = Release;
 		};
-		3B6D31FA1843100100E9A6AB /* Debug */ = {
+		D8E9563A21DC4F5D004D86B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/WatchShopper/lib",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rossable.com.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = WatchShopperTests;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = WatchShopperTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossable.WatchShopperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
 			};
 			name = Debug;
 		};
-		3B6D31FB1843100100E9A6AB /* Release */ = {
+		D8E9563B21DC4F5D004D86B4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/WatchShopper/lib",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
-				INFOPLIST_FILE = "WatchShopperTests/WatchShopperTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rossable.com.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = WatchShopperTests;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = WatchShopperTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossable.WatchShopperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../evernote-sdk-ios/evernote-sdk-ios/**";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/WatchShopper";
 			};
 			name = Release;
 		};
@@ -1104,11 +1062,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B6D31F91843100100E9A6AB /* Build configuration list for PBXNativeTarget "WatchShopperTests" */ = {
+		D8E9563921DC4F5D004D86B4 /* Build configuration list for PBXNativeTarget "WatchShopperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3B6D31FA1843100100E9A6AB /* Debug */,
-				3B6D31FB1843100100E9A6AB /* Release */,
+				D8E9563A21DC4F5D004D86B4 /* Debug */,
+				D8E9563B21DC4F5D004D86B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
