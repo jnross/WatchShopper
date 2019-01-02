@@ -41,6 +41,7 @@ class Checklist: NSObject {
     }
     
     func loadContent() {
+        items = []
         guard let data = note?.content.data(using: .utf8) else {
             // TODO: log unexpected missing content
             return
