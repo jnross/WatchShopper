@@ -1,5 +1,5 @@
 //
-//  ESAppleWatchManager.swift
+//  AppleWatchManager.swift
 //  WatchShopper
 //
 //  Created by Joseph Ross on 2/14/16.
@@ -11,12 +11,12 @@ import WatchConnectivity
 
 @available (iOS 9.0, *)
 class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserver {
-    static let defaultManager = AppleWatchManager()
+    @objc static let defaultManager = AppleWatchManager()
     var checklists:[Checklist] = []
     
-    let session = WCSession.default()
+    let session = WCSession.default
     
-    func start() {
+    @objc func start() {
         session.delegate = self
         session.activate()
         EvernoteSynchronizer.shared.addObserver(self)

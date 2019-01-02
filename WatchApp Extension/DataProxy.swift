@@ -26,7 +26,7 @@ enum WatchAppState {
 class DataProxy: NSObject, WCSessionDelegate {
     static let defaultProxy = DataProxy()
     
-    let session = WCSession.default()
+    let session = WCSession.default
     
     var lists:[ListInfo] = []
     var latest:ListInfo? = nil

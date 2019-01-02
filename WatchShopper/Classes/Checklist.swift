@@ -14,9 +14,9 @@ protocol ChecklistObserver: class {
 }
 
 class Checklist: NSObject {
-    var name: String
+    @objc var name: String
     var guid: String
-    var note: EDAMNote? = nil
+    @objc var note: EDAMNote? = nil
     var lastUpdated: Date
     weak var observer: ChecklistObserver? = nil
     var items:[ChecklistItem] = []
@@ -64,7 +64,7 @@ class Checklist: NSObject {
         EvernoteSynchronizer.shared.save(checklist: self)
     }
     
-    var prettyDateString: String? {
+    @objc var prettyDateString: String? {
         
         let interval = self.lastUpdated.timeIntervalSinceNow
         let twoDaysAgo: TimeInterval = -60 * 60 * 24 * 2

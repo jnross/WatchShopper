@@ -20,9 +20,9 @@ struct ObserverWrapper {
 }
 
 class EvernoteSynchronizer: NSObject {
-    static let shared = EvernoteSynchronizer()
+    @objc static let shared = EvernoteSynchronizer()
     private var observerWrappers:[ObserverWrapper] = []
-    var allNotebookNames:[String] = []
+    @objc var allNotebookNames:[String] = []
     var disposeBag = DisposeBag()
     
     override init() {
@@ -34,11 +34,11 @@ class EvernoteSynchronizer: NSObject {
 //                                              optionalHost: ENSessionHostSandbox)
     }
     
-    func addObserver(_ observer:EvernoteSynchronizerObserver) {
+    @objc func addObserver(_ observer:EvernoteSynchronizerObserver) {
         observerWrappers.append(ObserverWrapper(observer: observer))
     }
     
-    func removeObserver(_ observer:EvernoteSynchronizerObserver) {
+    @objc func removeObserver(_ observer:EvernoteSynchronizerObserver) {
         observerWrappers = observerWrappers.filter() { wrapper in
             if let wrapped = wrapper.observer, wrapped !== observer {
                 return true
@@ -47,7 +47,7 @@ class EvernoteSynchronizer: NSObject {
         }
     }
     
-    func authenticateEvernoteUserWith(viewController:UIViewController) {
+    @objc func authenticateEvernoteUserWith(viewController:UIViewController) {
         let session = ENSession.shared
         session.authenticate(with: viewController, preferRegistration: false) { error in
             if error != nil || !session.isAuthenticated {
@@ -59,15 +59,15 @@ class EvernoteSynchronizer: NSObject {
         }
     }
     
-    func logout() {
+    @objc func logout() {
         ENSession.shared.unauthenticate()
     }
     
-    func isAlreadyAuthenticated() -> Bool {
+    @objc func isAlreadyAuthenticated() -> Bool {
         return ENSession.shared.isAuthenticated
     }
     
-    func refreshWatchNotes() {
+    @objc func refreshWatchNotes() {
         disposeBag = DisposeBag()
         getAllNotebooks()
             .map({ notebook in
@@ -199,7 +199,7 @@ class EvernoteSynchronizer: NSObject {
         }
     }
     
-    func loadContent(for checklist:Checklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
+    @objc func loadContent(for checklist:Checklist, success:@escaping ()->Void, failure:@escaping (Error)->Void) {
         guard let guid = checklist.note?.guid else { return }
         ENSession.shared.primaryNoteStore()?.fetchNoteContent(withGuid: guid, completion:
             { content, error in

@@ -9,7 +9,7 @@
 import UIKit
 
 class ChecklistItemsViewController: UITableViewController {
-    var checklist: Checklist!
+    @objc var checklist: Checklist!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -22,7 +22,7 @@
 		37EBD5131C70603C005FFC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD5121C70603C005FFC9A /* Assets.xcassets */; };
 		37EBD5171C70603C005FFC9A /* WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 37EBD4F91C70603C005FFC9A /* WatchApp.app */; };
 		37EBD5211C70E181005FFC9A /* DataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBD5201C70E181005FFC9A /* DataProxy.swift */; };
-		37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */; };
+		37EBD5241C70E7E5005FFC9A /* AppleWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EBD5231C70E7E5005FFC9A /* AppleWatchManager.swift */; };
 		3B4ECB4F185B6EB6003A160B /* ESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */; };
 		3B4ECB52185B6EE8003A160B /* ESChecklistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */; };
 		3B6D31C81843100100E9A6AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D31C71843100100E9A6AB /* Foundation.framework */; };
@@ -127,7 +127,7 @@
 		37EBD5141C70603C005FFC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EBD5201C70E181005FFC9A /* DataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProxy.swift; sourceTree = "<group>"; };
 		37EBD5221C70E7E5005FFC9A /* WatchShopper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchShopper-Bridging-Header.h"; sourceTree = "<group>"; };
-		37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESAppleWatchManager.swift; sourceTree = "<group>"; };
+		37EBD5231C70E7E5005FFC9A /* AppleWatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleWatchManager.swift; sourceTree = "<group>"; };
 		3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESAppDelegate.h; sourceTree = "<group>"; };
 		3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESAppDelegate.m; sourceTree = "<group>"; };
 		3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESChecklistsViewController.h; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 				D8E9562421DC4605004D86B4 /* ESAddTagCell.m */,
 				3B4ECB4D185B6EB6003A160B /* ESAppDelegate.h */,
 				3B4ECB4E185B6EB6003A160B /* ESAppDelegate.m */,
-				37EBD5231C70E7E5005FFC9A /* ESAppleWatchManager.swift */,
+				37EBD5231C70E7E5005FFC9A /* AppleWatchManager.swift */,
 				3B4ECB50185B6EE8003A160B /* ESChecklistsViewController.h */,
 				3B4ECB51185B6EE8003A160B /* ESChecklistsViewController.m */,
 				EEF97A161881BCE8004F7FC3 /* ESSettingsController.h */,
@@ -468,12 +468,12 @@
 					37EBD5041C70603C005FFC9A = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = PTE4TYXPW2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					3B6D31C31843100100E9A6AB = {
 						DevelopmentTeam = PTE4TYXPW2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -612,7 +612,7 @@
 				D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */,
 				D8E9562621DC4605004D86B4 /* ESAddTagCell.m in Sources */,
 				EEF97A181881BCE8004F7FC3 /* ESSettingsController.m in Sources */,
-				37EBD5241C70E7E5005FFC9A /* ESAppleWatchManager.swift in Sources */,
+				37EBD5241C70E7E5005FFC9A /* AppleWatchManager.swift in Sources */,
 				EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */,
 				3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */,
 				D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */,
@@ -702,7 +702,8 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -730,7 +731,8 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -901,7 +903,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
 			};
@@ -932,7 +935,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WatchShopper/WatchShopper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/watch_shopper/src";
 				WRAPPER_EXTENSION = app;
 			};
