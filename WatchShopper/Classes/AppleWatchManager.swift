@@ -165,6 +165,10 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
         sendLatestList()
     }
     
+    func synchronizerFailedToUpdate(_ synchronizer: EvernoteSynchronizer) {
+        // TODO: Report an error in some way?
+    }
+    
     func sendListOfLists() {
         let lists = checklists
         if lists.count == 0 {

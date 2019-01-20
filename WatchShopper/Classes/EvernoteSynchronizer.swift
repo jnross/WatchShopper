@@ -7,23 +7,35 @@
 //
 
 import UIKit
-import RxSwift
 
 let kMaxNotes:Int32 = 32
 
 @objc protocol EvernoteSynchronizerObserver: class {
     func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[Checklist])
+    func synchronizerFailedToUpdate(_ synchronizer:EvernoteSynchronizer)
 }
 
 struct ObserverWrapper {
     weak var observer:EvernoteSynchronizerObserver? = nil
 }
 
+enum Result<T> {
+    case ok(T)
+    case err(Error)
+}
+
+extension ENError {
+    static var unknown: NSError {
+        return NSError(domain: ENErrorDomain, code: Int(EDAMErrorCode_UNKNOWN.rawValue), userInfo: nil)
+    }
+}
+
 class EvernoteSynchronizer: NSObject {
     @objc static let shared = EvernoteSynchronizer()
     private var observerWrappers:[ObserverWrapper] = []
     @objc var allNotebookNames:[String] = []
-    var disposeBag = DisposeBag()
+    var gatheringNotebooks:Set<EDAMNotebook> = []
+    var gatheringChecklists:[Checklist] = []
     
     override init() {
         let consumerKey = "jnross"
@@ -67,135 +79,123 @@ class EvernoteSynchronizer: NSObject {
         return ENSession.shared.isAuthenticated
     }
     
-    @objc func refreshWatchNotes() {
-        disposeBag = DisposeBag()
-        getAllNotebooks()
-            .map({ notebook in
-                return self.getWatchNotesFor(notebook: notebook)
-            })
-            .merge()
-            .reduce([EDAMNote]()) { (accumulator, notes) in
-                return accumulator + notes
-            }
-            .map({ (notes:[EDAMNote]) -> [Checklist] in
-                var checklists:[Checklist] = []
-                for note in notes {
-                    checklists.append(Checklist(note: note))
-                }
-                return checklists.sorted(by: { first, second in
-                    return first.lastUpdated > second.lastUpdated
-                })
-            })
-            .subscribe(onNext: { (checklists) in
-                for observerWrapper in self.observerWrappers {
-                    observerWrapper.observer?.synchronizer(self, updatedChecklists: checklists)
-                }
-            })
-            .addDisposableTo(disposeBag)
-        
-    }
-    
-    func getAllNotebooks() -> Observable<EDAMNotebook> {
-        return Observable.create() { observer in
-            ENSession.shared.primaryNoteStore()?.listNotebooks(completion: { (notebooksOpt, error) in
-                if let error = error {
-                    observer.on(.error(error))
-                    return
-                }
-                guard let notebooks = notebooksOpt else { return }
-                self.allNotebookNames = notebooks.map(){ return $0.name }
-                for notebook in notebooks {
-                    observer.on(.next(notebook))
-                }
-                observer.on(.completed)
-            })
-            return Disposables.create()
+    func notifyFailure() {
+        for observerWrapper in self.observerWrappers {
+            observerWrapper.observer?.synchronizerFailedToUpdate(self)
         }
     }
     
-    func getWatchNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
+    @objc func refreshWatchNotes() {
+        getAllNotebooks() { result in
+            guard case let .ok(notebooks) = result else {
+                //TODO: report error to user
+                self.notifyFailure()
+                return
+            }
+            self.gatheringNotebooks = Set(notebooks)
+            notebooks.forEach { notebook in
+                self.getWatchNotesFor(notebook: notebook) { result in
+                    guard case let .ok(notes) = result else {
+                        // TODO: handle single notebook failure?
+                        self.finish(notebook)
+                        return
+                    }
+                    self.gatheringChecklists += notes.map { Checklist(note: $0) }
+                    self.finish(notebook)
+                }
+            }
+        }
+    }
+    
+    func finish(_ notebook: EDAMNotebook) {
+        gatheringNotebooks.remove(notebook)
+        if gatheringNotebooks.isEmpty {
+            for observerWrapper in self.observerWrappers {
+                observerWrapper.observer?.synchronizer(self, updatedChecklists: gatheringChecklists)
+            }
+            gatheringChecklists = []
+        }
+    }
+    
+    func getAllNotebooks(completion: @escaping (Result<[EDAMNotebook]>) -> Void) {
+        ENSession.shared.primaryNoteStore()?.listNotebooks { (notebooksOpt, error) in
+            if let error = error {
+                completion(.err(error))
+                return
+            }
+            guard let notebooks = notebooksOpt else { return }
+            self.allNotebookNames = notebooks.map(){ return $0.name }
+            completion(.ok(notebooks))
+        }
+    }
+    
+    func getWatchNotesFor(notebook:EDAMNotebook, completion:@escaping (Result<[EDAMNote]>) -> Void) {
         let targetNotebookNames = ESSettingsManager.shared().targetNotebookNames()
         if targetNotebookNames?.contains(notebook.name) ?? false {
-            return getAllNotesFor(notebook:notebook)
+            getAllNotesFor(notebook:notebook, completion: completion)
         } else {
-            return getTaggedNotesFor(notebook:notebook)
+            getTaggedNotesFor(notebook:notebook, completion: completion)
         }
     }
     
-    func getTaggedNotesFor(notebook:EDAMNotebook) ->Observable<[EDAMNote]> {
-        return Observable.create() { observer in
-            var fetchTasks = 0
-            self.getTagsFor(notebook: notebook).subscribe(onNext:
-                { tags in
-                    fetchTasks += 1
-                    let guids = tags.map() { tag in return tag.guid! }
-                    let filter = EDAMNoteFilter()
-                    filter.order = NSNumber(value: NoteSortOrder_UPDATED.rawValue)
-                    filter.ascending = false
-                    filter.notebookGuid = notebook.guid
-                    filter.inactive = false
-                    filter.tagGuids = guids
-                    ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, completion: { noteList, error in
-                        if let error = error {
-                            observer.on(.error(error))
-                            return
-                        }
-                        if let notes = noteList?.notes {
-                            observer.on(.next(notes))
-                        }
-                        fetchTasks -= 1
-                        if fetchTasks == 0 { observer.on(.completed) }
-                    })
-                },onCompleted:{
-                    if fetchTasks == 0 { observer.on(.completed) }
-            }).addDisposableTo(self.disposeBag)
-            return Disposables.create()
-        }
-    }
-    
-    func getTagsFor(notebook:EDAMNotebook) -> Observable<[EDAMTag]> {
-        return Observable.create { observer in
-            ENSession.shared.primaryNoteStore()?.listTagsInNotebook(withGuid: notebook.guid, completion:
-                { tagsOpt, error in
-                    if let error = error {
-                        observer.on(.error(error))
-                        return
-                    }
-                    guard let tags = tagsOpt else {
-                        observer.on(.completed)
-                        return
-                    }
-                    let targetTags = ESSettingsManager.shared().targetTags()
-                    let filteredTags = tags.filter() { tag in
-                        return targetTags?.contains(tag.name) ?? false
-                    }
-                    if filteredTags.count > 0 {
-                        observer.on(.next(filteredTags))
-                    }
-                    observer.on(.completed)
-                })
-            return Disposables.create()
-        }
-    }
-    
-    func getAllNotesFor(notebook:EDAMNotebook) -> Observable<[EDAMNote]> {
-        return Observable.create() { observer in
+    func getTaggedNotesFor(notebook:EDAMNotebook, completion:@escaping (Result<[EDAMNote]>) -> Void) {
+        self.getTagsFor(notebook: notebook) { result in
+            guard case let .ok(tags) = result else {
+                switch result {
+                case let .err(error):
+                    completion(.err(error))
+                default:
+                    completion(.err(ENError.unknown))
+                }
+                return
+            }
+            let guids = tags.map() { tag in return tag.guid! }
             let filter = EDAMNoteFilter()
-            filter.order = NSNumber(value:NoteSortOrder_UPDATED.rawValue)
+            filter.order = NSNumber(value: NoteSortOrder_UPDATED.rawValue)
             filter.ascending = false
             filter.notebookGuid = notebook.guid
             filter.inactive = false
-            ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes, completion: { noteList, error in
+            filter.tagGuids = guids
+            ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes) { noteList, error in
                 if let error = error {
-                    observer.on(.error(error))
+                    completion(.err(error))
                     return
                 }
-                if let notes = noteList?.notes {
-                    observer.on(.next(notes))
-                }
-                observer.on(.completed)
-            })
-            return Disposables.create()
+                completion(.ok(noteList?.notes ?? []))
+            }
+        }
+    }
+    
+    func getTagsFor(notebook: EDAMNotebook, completion: @escaping (Result<[EDAMTag]>) -> Void) {
+        ENSession.shared.primaryNoteStore()?.listTagsInNotebook(withGuid: notebook.guid) { tagsOpt, error in
+            if let error = error {
+                completion(.err(error))
+                return
+            }
+            guard let tags = tagsOpt else {
+                completion(.ok([]))
+                return
+            }
+            let targetTags = ESSettingsManager.shared().targetTags()
+            let filteredTags = tags.filter() { tag in
+                return targetTags?.contains(tag.name) ?? false
+            }
+            completion(.ok(filteredTags))
+        }
+    }
+    
+    func getAllNotesFor(notebook: EDAMNotebook, completion: @escaping (Result<[EDAMNote]>) -> Void) {
+        let filter = EDAMNoteFilter()
+        filter.order = NSNumber(value:NoteSortOrder_UPDATED.rawValue)
+        filter.ascending = false
+        filter.notebookGuid = notebook.guid
+        filter.inactive = false
+        ENSession.shared.primaryNoteStore()?.findNotes(with: filter, offset: 0, maxNotes: kMaxNotes) { noteList, error in
+            if let error = error {
+                completion(.err(error))
+                return
+            }
+            completion(.ok(noteList?.notes ?? []))
         }
     }
     

@@ -75,6 +75,12 @@
     [self.refreshControl endRefreshing];
 }
 
+- (void)synchronizerFailedToUpdate:(EvernoteSynchronizer * _Nonnull)synchronizer {
+    // TODO: report error?
+    [self.refreshControl endRefreshing];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.checklists.count;
 }

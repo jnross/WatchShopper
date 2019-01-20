@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F8191DAD96A3004AF8DC /* RxBlocking.framework */; };
-		3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81D1DAD9724004AF8DC /* RxCocoa.framework */; };
-		3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3715F81F1DAD9744004AF8DC /* RxSwift.framework */; };
 		3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */; };
 		37B2AFC61C727E130060E8D2 /* ChecklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2AFC51C727E130060E8D2 /* ChecklistController.swift */; };
 		37EBD4F61C7056E9005FFC9A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */; };
@@ -108,9 +105,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3715F8191DAD96A3004AF8DC /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		3715F81D1DAD9724004AF8DC /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		3715F81F1DAD9744004AF8DC /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		3715F8211DAD97F4004AF8DC /* EvernoteSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteSynchronizer.swift; sourceTree = "<group>"; };
 		37B2AFC51C727E130060E8D2 /* ChecklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistController.swift; sourceTree = "<group>"; };
 		37EBD4F51C7056E9005FFC9A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -187,9 +181,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3715F81A1DAD96A3004AF8DC /* RxBlocking.framework in Frameworks */,
-				3715F81E1DAD9724004AF8DC /* RxCocoa.framework in Frameworks */,
-				3715F8201DAD9744004AF8DC /* RxSwift.framework in Frameworks */,
 				D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
@@ -283,9 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */,
-				3715F81F1DAD9744004AF8DC /* RxSwift.framework */,
-				3715F81D1DAD9724004AF8DC /* RxCocoa.framework */,
-				3715F8191DAD96A3004AF8DC /* RxBlocking.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
 				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
@@ -560,9 +548,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/EvernoteSDK.framework",
 			);
 			outputPaths = (
