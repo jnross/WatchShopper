@@ -36,6 +36,7 @@ class EvernoteSynchronizer: NSObject {
     @objc var allNotebookNames:[String] = []
     var gatheringNotebooks:Set<EDAMNotebook> = []
     var gatheringChecklists:[Checklist] = []
+    var inProgress: Bool = false
     
     override init() {
         let consumerKey = "jnross"
@@ -86,10 +87,15 @@ class EvernoteSynchronizer: NSObject {
     }
     
     @objc func refreshWatchNotes() {
+        // Don't start fetching notes a second time if we're already in progress.
+        guard inProgress == false else { return }
+        inProgress = true
+        
         getAllNotebooks() { result in
             guard case let .ok(notebooks) = result else {
                 //TODO: report error to user
                 self.notifyFailure()
+                self.inProgress = false
                 return
             }
             self.gatheringNotebooks = Set(notebooks)
@@ -114,6 +120,7 @@ class EvernoteSynchronizer: NSObject {
                 observerWrapper.observer?.synchronizer(self, updatedChecklists: gatheringChecklists)
             }
             gatheringChecklists = []
+            inProgress = false
         }
     }
     

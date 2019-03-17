@@ -115,12 +115,16 @@ class DataProxy: NSObject, WCSessionDelegate {
             }
             if updateDetected(lists, newLists) {
                 lists = newLists
-                notifyUpdatedLists()
+                DispatchQueue.main.async { [weak self] in
+                    self?.notifyUpdatedLists()
+                }
             }
         } else if let latestList = applicationContext["latest"] as? [String:AnyObject] {
             if let list = ListWithItems(dictionary: latestList) {
                 latest = list
-                notifyLatestList(list)
+                DispatchQueue.main.async { [weak self] in
+                    self?.notifyLatestList(list)
+                }
             }
             
         }

@@ -65,37 +65,37 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // This method will be called once per supported complication, and the results will be cached
         switch complication.family {
         case .circularSmall:
-            let image = #imageLiteral(resourceName: "Circular")
+            let image = #imageLiteral(resourceName: "Complication/Circular")
             let imageProvider = CLKImageProvider(onePieceImage: image)
             let template = CLKComplicationTemplateCircularSmallSimpleImage()
             template.imageProvider = imageProvider
             handler(template)
         case .graphicCircular:
-            let image = #imageLiteral(resourceName: "Graphic Circular")
+            let image = #imageLiteral(resourceName: "Complication/Graphic Circular")
             let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: image)
             let template = CLKComplicationTemplateGraphicCircularImage()
             template.imageProvider = fullColorImageProvider
             handler(template)
         case .modularSmall:
-            let image = #imageLiteral(resourceName: "Modular")
+            let image = #imageLiteral(resourceName: "Complication/Modular")
             let imageProvider = CLKImageProvider(onePieceImage: image)
             let template = CLKComplicationTemplateModularSmallSimpleImage()
             template.imageProvider = imageProvider
             handler(template)
         case .utilitarianSmall:
-            let image = #imageLiteral(resourceName: "Utilitarian")
+            let image = #imageLiteral(resourceName: "Complication/Utilitarian")
             let imageProvider = CLKImageProvider(onePieceImage: image)
             let template = CLKComplicationTemplateUtilitarianSmallSquare()
             template.imageProvider  = imageProvider
             handler(template)
         case .extraLarge:
-            let image = #imageLiteral(resourceName: "Extra Large")
+            let image = #imageLiteral(resourceName: "Complication/Extra Large")
             let imageProvider = CLKImageProvider(onePieceImage: image)
             let template = CLKComplicationTemplateExtraLargeSimpleImage()
             template.imageProvider = imageProvider
             handler(template)
         case .graphicCorner:
-            let image = #imageLiteral(resourceName: "Graphic Corner")
+            let image = #imageLiteral(resourceName: "Complication/Graphic Corner")
             let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: image)
             let template = CLKComplicationTemplateGraphicCornerCircularImage()
             template.imageProvider = fullColorImageProvider
