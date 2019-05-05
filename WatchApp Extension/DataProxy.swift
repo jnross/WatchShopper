@@ -81,7 +81,7 @@ class DataProxy: NSObject, WCSessionDelegate {
     }
     
     func removeDataProxyObserver(_ observer:DataProxyObserver) {
-        if let index = observers.index(where: {return $0.isEqual(observer)}) {
+        if let index = observers.firstIndex(where: {return $0.isEqual(observer)}) {
             observers.remove(at: index)
         }
     }
