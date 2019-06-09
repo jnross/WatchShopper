@@ -9,8 +9,10 @@
 #import "ESChecklistsViewController.h"
 #import "WatchShopper-Swift.h"
 #import "EvernoteSDK/EvernoteSDK.h"
+#import "ESSettingsController.h"
+#import "WatchShopper-Swift.h"
 
-@interface ESChecklistsViewController () <EvernoteSynchronizerObserver>
+@interface ESChecklistsViewController () <EvernoteSynchronizerObserver, ESSettingsControllerDelegate>
 
 @property(nonatomic,strong) IBOutlet UILabel *authStatusLabel;
 @property(nonatomic,strong) NSArray<Checklist*>* checklists;
@@ -35,6 +37,7 @@
     }
     
     [self refreshNotes];
+    [[self refreshControl] programaticallyBeginRefreshingIn:self.tableView];
 }
 
 - (void)dealloc {
@@ -71,7 +74,7 @@
 
 - (void)synchronizer:(EvernoteSynchronizer *) synchronizer updatedChecklists:(NSArray<Checklist*>*)checklists {
     self.checklists = checklists;
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.refreshControl endRefreshing];
 }
 
@@ -102,9 +105,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     Checklist *checklist = sender;
-    if ([segue.destinationViewController isKindOfClass:ChecklistItemsViewController.class]) {
+    if ([segue.destinationViewController isKindOfClass:ChecklistItemsViewController.class])
+    {
         ChecklistItemsViewController *itemsView = segue.destinationViewController;
         itemsView.checklist = checklist;
+    }
+    else if ([segue.destinationViewController isKindOfClass:ESSettingsController.class])
+    {
+        ESSettingsController *settingsView = segue.destinationViewController;
+        settingsView.settingsDelegate = self;
     }
 }
 
@@ -130,6 +139,13 @@
 - (void)pushChecklist:(Checklist *)checklist {
     
     [self performSegueWithIdentifier:@"push" sender:checklist];
+}
+
+- (void)settingsController:(id)settings willDismissNeedingReload:(Boolean)needsReload {
+    if (needsReload) {
+        [self refreshNotes];
+        [[self refreshControl] programaticallyBeginRefreshingIn:self.tableView];
+    }
 }
 
 @end

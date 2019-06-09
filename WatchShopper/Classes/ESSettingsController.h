@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class ESSettingsController;
+
+@protocol ESSettingsControllerDelegate <NSObject>
+
+- (void)settingsController:(ESSettingsController*) settings willDismissNeedingReload: (Boolean) needsReload;
+
+@end
+
 @interface ESSettingsController : UITableViewController
 
 @property(nonatomic,strong) NSArray *allNotebookNames;
+@property(nonatomic,weak)   IBOutlet NSObject<ESSettingsControllerDelegate>* settingsDelegate;
 
 @end

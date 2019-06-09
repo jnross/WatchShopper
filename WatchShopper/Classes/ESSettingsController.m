@@ -23,6 +23,7 @@
 
 @property(nonatomic,strong) NSArray *targetTags;
 @property(nonatomic,strong) NSArray *targetNotebookNames;
+@property(nonatomic,readwrite) Boolean reloadNeeded;
 
 - (IBAction)tagTextEntered:(UITextField*)tagTextField;
 
@@ -49,6 +50,7 @@
 }
 
 - (IBAction)tagTextEntered:(UITextField*)tagTextField {
+    self.reloadNeeded = YES;
     [[ESSettingsManager sharedManager] addTargetTag:tagTextField.text];
     NSInteger insertRowIndex = self.targetTags.count;
     self.targetTags = [[ESSettingsManager sharedManager] targetTags];
@@ -76,6 +78,13 @@
     self.targetTags = [[ESSettingsManager sharedManager] targetTags];
     self.allNotebookNames = [[EvernoteSynchronizer shared] allNotebookNames];
     self.targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController) {
+        [self.settingsDelegate settingsController:self willDismissNeedingReload:self.reloadNeeded];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -264,6 +273,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        self.reloadNeeded = YES;
         NSString *tag = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
         [[ESSettingsManager sharedManager] removeTargetTag:tag];
         self.targetTags = [[ESSettingsManager sharedManager] targetTags];
@@ -296,6 +306,7 @@
             break;
         case SECTION_NOTEBOOKS:
         {
+            self.reloadNeeded = YES;
             NSString *notebookName = self.allNotebookNames[indexPath.row];
             [[ESSettingsManager sharedManager] toggleNotebook:notebookName];
             self.targetNotebookNames = [[ESSettingsManager sharedManager] targetNotebookNames];

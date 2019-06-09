@@ -38,6 +38,7 @@
 		D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
 		D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
 		D883D698222C364700D423CB /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883D697222C364700D423CB /* ComplicationController.swift */; };
+		D8AF21C422AD969900C5ECFF /* SwiftSugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */; };
 		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
@@ -147,6 +148,7 @@
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
 		D883D697222C364700D423CB /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSugar.swift; sourceTree = "<group>"; };
 		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				EEB84F7F1883CA2A001CDDC1 /* ESSettingsManager.m */,
 				EEF97A1D1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.h */,
 				EEF97A1E1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m */,
+				D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				37EBD5241C70E7E5005FFC9A /* AppleWatchManager.swift in Sources */,
 				EEA997811DA162A500E4F8D9 /* WLog.swift in Sources */,
 				3715F8221DAD97F4004AF8DC /* EvernoteSynchronizer.swift in Sources */,
+				D8AF21C422AD969900C5ECFF /* SwiftSugar.swift in Sources */,
 				D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */,
 				EEF97A1F1881C8E0004F7FC3 /* TTTTimeIntervalFormatter.m in Sources */,
 			);

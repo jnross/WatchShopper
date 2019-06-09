@@ -10,6 +10,14 @@ import UIKit
 
 let kMaxNotes:Int32 = 32
 
+// The definition below controls whether we communicate with the Evernote production instance or the sandbox
+//private let evernoteHost = nil // Connect to the production backend by default.
+private let evernoteHost = ENSessionHostSandbox
+
+
+private let consumerKey = "jnross"
+private let consumerSecret = "[REDACTED]"
+
 @objc protocol EvernoteSynchronizerObserver: class {
     func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[Checklist])
     func synchronizerFailedToUpdate(_ synchronizer:EvernoteSynchronizer)
@@ -39,12 +47,9 @@ class EvernoteSynchronizer: NSObject {
     var inProgress: Bool = false
     
     override init() {
-        let consumerKey = "jnross"
-        let consumerSecret = "[REDACTED]"
         ENSession.setSharedSessionConsumerKey(consumerKey,
                                               consumerSecret: consumerSecret,
-                                              optionalHost: nil)
-//                                              optionalHost: ENSessionHostSandbox)
+                                              optionalHost: evernoteHost)
     }
     
     @objc func addObserver(_ observer:EvernoteSynchronizerObserver) {
@@ -157,6 +162,10 @@ class EvernoteSynchronizer: NSObject {
                 return
             }
             let guids = tags.map() { tag in return tag.guid! }
+            guard guids.isNotEmpty else {
+                completion(.ok([]))
+                return
+            }
             let filter = EDAMNoteFilter()
             filter.order = NSNumber(value: NoteSortOrder_UPDATED.rawValue)
             filter.ascending = false
