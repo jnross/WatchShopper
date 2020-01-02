@@ -58,7 +58,7 @@ class Checklist: NSObject {
     func saveToEvernote() {
         var content = "<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\"><en-note><div>"
         for item in items {
-            content.append("<div><en-todo\(item.checked ? "checked=\"true\"": "")></en-todo>\(item.name)</div>")
+            content.append("<div><en-todo\(item.checked ? " checked=\"true\"": "")/>\(item.name)</div>")
         }
         content.append("</div></en-note>")
         self.note?.content = content;
