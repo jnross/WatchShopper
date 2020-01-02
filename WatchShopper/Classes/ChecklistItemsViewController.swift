@@ -19,6 +19,14 @@ class ChecklistItemsViewController: UITableViewController {
         super.viewDidLoad()
         self.title = self.checklist.name
         self.checklist.observer = self
+        
+        if (checklist.note?.content == nil) {
+            EvernoteSynchronizer.shared.loadContent(for: checklist, success: {
+                self.tableView.reloadData()
+            }) { (error) in
+                //TODO: Alert the failure
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -121,19 +121,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Checklist *checklist = self.checklists[indexPath.row];
     
-    [self loadAndPushChecklist:checklist];
-}
-
-- (void)loadAndPushChecklist:(Checklist *)checklist {
-    if (checklist.note.content != nil) {
-        [self pushChecklist:checklist];
-    } else {
-        [EvernoteSynchronizer.shared loadContentFor:checklist success:^{
-            [self pushChecklist:checklist];
-        } failure:^(NSError *error) {
-            //Alert the failure
-        }];
-    }
+    [self pushChecklist:checklist];
 }
 
 - (void)pushChecklist:(Checklist *)checklist {
