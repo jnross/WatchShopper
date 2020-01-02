@@ -133,8 +133,8 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
     
     func sendLatestList() {
         let lists = checklists
-        if lists.count == 0 {
-            EvernoteSynchronizer.shared.refreshWatchNotes()
+        guard lists.count > 0 else {
+            // TODO: Fetch latest, or surface error?
             return
         }
         
@@ -171,8 +171,8 @@ class AppleWatchManager: NSObject, WCSessionDelegate, EvernoteSynchronizerObserv
     
     func sendListOfLists() {
         let lists = checklists
-        if lists.count == 0 {
-            EvernoteSynchronizer.shared.refreshWatchNotes()
+        guard lists.count > 0 else {
+            // TODO: Fetch latest, or surface error?
             return
         }
         
