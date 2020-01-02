@@ -11,8 +11,8 @@ import UIKit
 let kMaxNotes:Int32 = 32
 
 // The definition below controls whether we communicate with the Evernote production instance or the sandbox
-//private let evernoteHost = nil // Connect to the production backend by default.
-private let evernoteHost = ENSessionHostSandbox
+private let evernoteHost:String? = nil // Connect to the production backend by default.
+//private let evernoteHost = ENSessionHostSandbox
 
 
 private let consumerKey = "jnross"
@@ -232,7 +232,10 @@ class EvernoteSynchronizer: NSObject {
     func save(checklist:Checklist) {
         guard let note = checklist.note else { return }
         ENSession.shared.primaryNoteStore()?.update(note, completion: { note, error in
-                //TODO: notify user of failure
+            //TODO: notify user of failure
+            if let error = error {
+                NSLog("Failed to save checklist \"\(checklist.name)\": \(error)")
+            }
         })
     }
 }
