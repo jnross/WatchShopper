@@ -29,7 +29,6 @@
 		3B6D31D41843100100E9A6AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D31D31843100100E9A6AB /* main.m */; };
 		3B6D31DB1843100100E9A6AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31D91843100100E9A6AB /* Main.storyboard */; };
 		3B6D31E01843100100E9A6AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B6D31DF1843100100E9A6AB /* Images.xcassets */; };
-		3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321518431F4000E9A6AB /* MobileCoreServices.framework */; };
 		3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321618431F4000E9A6AB /* Security.framework */; };
 		3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321718431F4000E9A6AB /* StoreKit.framework */; };
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
@@ -39,6 +38,7 @@
 		D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
 		D883D698222C364700D423CB /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883D697222C364700D423CB /* ComplicationController.swift */; };
 		D8AF21C422AD969900C5ECFF /* SwiftSugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */; };
+		D8D524F32513D5EA001C6C00 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D524F22513D5EA001C6C00 /* CoreServices.framework */; };
 		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
@@ -150,6 +150,7 @@
 		D883D697222C364700D423CB /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSugar.swift; sourceTree = "<group>"; };
 		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		D8D524F22513D5EA001C6C00 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemsViewController.swift; sourceTree = "<group>"; };
@@ -187,9 +188,9 @@
 			files = (
 				D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
-				3B6D321918431F4000E9A6AB /* MobileCoreServices.framework in Frameworks */,
 				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
 				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
+				D8D524F32513D5EA001C6C00 /* CoreServices.framework in Frameworks */,
 				3B6D321B18431F4000E9A6AB /* StoreKit.framework in Frameworks */,
 				3B6D31CA1843100100E9A6AB /* CoreGraphics.framework in Frameworks */,
 				3B6D31CC1843100100E9A6AB /* UIKit.framework in Frameworks */,
@@ -278,6 +279,7 @@
 		3B6D31C61843100100E9A6AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8D524F22513D5EA001C6C00 /* CoreServices.framework */,
 				D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
@@ -450,7 +452,7 @@
 			attributes = {
 				CLASSPREFIX = ES;
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Easy Street 3";
 				TargetAttributes = {
 					37EBD4F81C70603C005FFC9A = {
@@ -804,6 +806,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -857,6 +860,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
