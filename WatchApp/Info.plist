@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.rossable.WatchShopper</string>
+	<string>com.rossible.WatchShopper</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
