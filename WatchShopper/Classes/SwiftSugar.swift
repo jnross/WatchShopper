@@ -4,7 +4,7 @@
 //  WatchShopper
 //
 //  Created by Joseph Ross on 6/9/19.
-//  Copyright © 2019 Easy Street 3. All rights reserved.
+//  Copyright © 2019 Joseph Ross. All rights reserved.
 //
 
 import Foundation

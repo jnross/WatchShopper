@@ -3,7 +3,7 @@
 //  WatchShopper
 //
 //  Created by Joseph Norman Ross on 1/12/14.
-//  Copyright (c) 2014 Easy Street 3. All rights reserved.
+//  Copyright (c) 2014 Joseph Ross. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

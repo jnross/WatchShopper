@@ -453,7 +453,7 @@
 				CLASSPREFIX = ES;
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1300;
-				ORGANIZATIONNAME = "Easy Street 3";
+				ORGANIZATIONNAME = "Joseph Ross";
 				TargetAttributes = {
 					37EBD4F81C70603C005FFC9A = {
 						CreatedOnToolsVersion = 7.2.1;
