@@ -7,7 +7,7 @@
 //
 
 #import "ESAppDelegate.h"
-#import "EvernoteSDK/ENSDKAdvanced.h"
+#import "ENSDKAdvanced.h"
 #import "ESSettingsManager.h"
 #import "WatchShopper-Swift.h"
 #import "WLog.h"

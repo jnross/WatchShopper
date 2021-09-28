@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ChecklistObserver: class {
+protocol ChecklistObserver: AnyObject {
     func checklistDidRefresh(_: Checklist)
     func checklist(_: Checklist, updatedItem: ChecklistItem)
 }

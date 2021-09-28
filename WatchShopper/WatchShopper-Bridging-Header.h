@@ -3,5 +3,5 @@
 //
 
 #import "ESSettingsManager.h"
-#import "EvernoteSDK/EvernoteSDK.h"
+#import "EvernoteSDK.h"
 #import "TTTTimeIntervalFormatter.h"

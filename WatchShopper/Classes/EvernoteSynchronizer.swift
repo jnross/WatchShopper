@@ -18,7 +18,7 @@ private let evernoteHost:String? = nil // Connect to the production backend by d
 private let consumerKey = "jnross"
 private let consumerSecret = "[REDACTED]"
 
-@objc protocol EvernoteSynchronizerObserver: class {
+@objc protocol EvernoteSynchronizerObserver: AnyObject {
     func synchronizer(_ synchronizer:EvernoteSynchronizer, updatedChecklists:[Checklist])
     func synchronizerFailedToUpdate(_ synchronizer:EvernoteSynchronizer)
 }

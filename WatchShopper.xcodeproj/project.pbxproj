@@ -34,11 +34,10 @@
 		3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6D321C18431F5B00E9A6AB /* libxml2.dylib */; };
 		3BF2E8D218538C78006CB2B3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2E8D118538C78006CB2B3 /* README.md */; };
 		3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2E8ED185525A7006CB2B3 /* libz.dylib */; };
-		D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
-		D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */; };
 		D883D698222C364700D423CB /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883D697222C364700D423CB /* ComplicationController.swift */; };
 		D8AF21C422AD969900C5ECFF /* SwiftSugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */; };
 		D8D524F32513D5EA001C6C00 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D524F22513D5EA001C6C00 /* CoreServices.framework */; };
+		D8E26C252702838800F2E6B1 /* libevernote-sdk-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E26C1E2702836500F2E6B1 /* libevernote-sdk-ios.a */; };
 		D8E9562021DC45F3004D86B4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561E21DC45F3004D86B4 /* Checklist.swift */; };
 		D8E9562121DC45F3004D86B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */; };
 		D8E9562321DC45FD004D86B4 /* ChecklistItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */; };
@@ -71,6 +70,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 37EBD4F81C70603C005FFC9A;
 			remoteInfo = WatchApp;
+		};
+		D8E26C1D2702836500F2E6B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0BB3D1AD1524ED96001C4534;
+			remoteInfo = "evernote-sdk-ios";
+		};
+		D8E26C1F2702836500F2E6B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 865C383118F8BA2400ECB2BA;
+			remoteInfo = ENSDK;
+		};
+		D8E26C212702836500F2E6B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6D9D60B71E27940A001740D8;
+			remoteInfo = EvernoteSDK;
+		};
+		D8E26C232702837B00F2E6B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BB3D1AC1524ED96001C4534;
+			remoteInfo = "evernote-sdk-ios";
 		};
 		D8E9563721DC4F5D004D86B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -146,11 +173,10 @@
 		3B6D321C18431F5B00E9A6AB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		3BF2E8D118538C78006CB2B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3BF2E8ED185525A7006CB2B3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EvernoteSDK.framework; path = Carthage/Build/iOS/EvernoteSDK.framework; sourceTree = "<group>"; };
 		D883D697222C364700D423CB /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		D8AF21C322AD969900C5ECFF /* SwiftSugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSugar.swift; sourceTree = "<group>"; };
-		D8B6E1DB21AC500100159931 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		D8D524F22513D5EA001C6C00 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "evernote-sdk-ios.xcodeproj"; path = "evernote-cloud-sdk-ios/evernote-sdk-ios.xcodeproj"; sourceTree = "<group>"; };
 		D8E9561E21DC45F3004D86B4 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		D8E9562221DC45FD004D86B4 /* ChecklistItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemsViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D85D77A121DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
+				D8E26C252702838800F2E6B1 /* libevernote-sdk-ios.a in Frameworks */,
 				3BF2E8EE185525A7006CB2B3 /* libz.dylib in Frameworks */,
 				3B6D321D18431F5B00E9A6AB /* libxml2.dylib in Frameworks */,
 				3B6D321A18431F4000E9A6AB /* Security.framework in Frameworks */,
@@ -209,7 +235,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D85D77A221DC54DB00E35243 /* EvernoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,8 +279,8 @@
 		3B6D31BB1843100100E9A6AB = {
 			isa = PBXGroup;
 			children = (
+				D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */,
 				3BF2E8D118538C78006CB2B3 /* README.md */,
-				D8B6E1DB21AC500100159931 /* Cartfile */,
 				3B6D31CD1843100100E9A6AB /* WatchShopper */,
 				37EBD4FA1C70603C005FFC9A /* WatchApp */,
 				37EBD5091C70603C005FFC9A /* WatchApp Extension */,
@@ -280,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				D8D524F22513D5EA001C6C00 /* CoreServices.framework */,
-				D85D77A021DC54DB00E35243 /* EvernoteSDK.framework */,
 				3BF2E8ED185525A7006CB2B3 /* libz.dylib */,
 				3B6D321C18431F5B00E9A6AB /* libxml2.dylib */,
 				3B6D321418431F4000E9A6AB /* libxml2.2.dylib */,
@@ -332,6 +356,16 @@
 				D8E9561F21DC45F3004D86B4 /* ChecklistItem.swift */,
 			);
 			name = Evernote;
+			sourceTree = "<group>";
+		};
+		D8E26C182702836500F2E6B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8E26C1E2702836500F2E6B1 /* libevernote-sdk-ios.a */,
+				D8E26C202702836500F2E6B1 /* ENSDK.framework */,
+				D8E26C222702836500F2E6B1 /* EvernoteSDK.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D8E9562821DC469F004D86B4 /* Classes */ = {
@@ -414,11 +448,11 @@
 				3B6D31C11843100100E9A6AB /* Frameworks */,
 				3B6D31C21843100100E9A6AB /* Resources */,
 				37EBD51F1C70603C005FFC9A /* Embed Watch Content */,
-				3715F81C1DAD96E6004AF8DC /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D8E26C242702837B00F2E6B1 /* PBXTargetDependency */,
 				37EBD5161C70603C005FFC9A /* PBXTargetDependency */,
 			);
 			name = WatchShopper;
@@ -499,6 +533,12 @@
 			mainGroup = 3B6D31BB1843100100E9A6AB;
 			productRefGroup = 3B6D31C51843100100E9A6AB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D8E26C182702836500F2E6B1 /* Products */;
+					ProjectRef = D8E26C172702836500F2E6B1 /* evernote-sdk-ios.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3B6D31C31843100100E9A6AB /* WatchShopper */,
@@ -508,6 +548,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D8E26C1E2702836500F2E6B1 /* libevernote-sdk-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libevernote-sdk-ios.a";
+			remoteRef = D8E26C1D2702836500F2E6B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D8E26C202702836500F2E6B1 /* ENSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ENSDK.framework;
+			remoteRef = D8E26C1F2702836500F2E6B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D8E26C222702836500F2E6B1 /* EvernoteSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EvernoteSDK.framework;
+			remoteRef = D8E26C212702836500F2E6B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		37EBD4F71C70603C005FFC9A /* Resources */ = {
@@ -551,20 +615,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3715F81C1DAD96E6004AF8DC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/EvernoteSDK.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		EE566262188C2AF10054F593 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,6 +690,11 @@
 			isa = PBXTargetDependency;
 			target = 37EBD4F81C70603C005FFC9A /* WatchApp */;
 			targetProxy = 37EBD5151C70603C005FFC9A /* PBXContainerItemProxy */;
+		};
+		D8E26C242702837B00F2E6B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "evernote-sdk-ios";
+			targetProxy = D8E26C232702837B00F2E6B1 /* PBXContainerItemProxy */;
 		};
 		D8E9563821DC4F5D004D86B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -897,14 +952,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/evernote-cloud-sdk-ios/evernote-sdk-ios/ENSDK/**";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -925,14 +978,12 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WatchShopper/WatchShopper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/evernote-cloud-sdk-ios/evernote-sdk-ios/ENSDK/**";
 				INFOPLIST_FILE = "WatchShopper/WatchShopper-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "WatchShopper Dist";
@@ -965,10 +1016,6 @@
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = WatchShopperTests/Info.plist;
@@ -1008,10 +1055,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = WatchShopperTests/Info.plist;

@@ -8,7 +8,7 @@
 
 #import "ESChecklistsViewController.h"
 #import "WatchShopper-Swift.h"
-#import "EvernoteSDK/EvernoteSDK.h"
+#import "EvernoteSDK.h"
 #import "ESSettingsController.h"
 #import "WatchShopper-Swift.h"
 
