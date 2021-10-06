@@ -63,8 +63,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WatchShopper">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37EBD4F81C70603C005FFC9A"
@@ -72,7 +74,7 @@
             BlueprintName = "WatchApp"
             ReferencedContainer = "container:WatchShopper.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,8 +82,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WatchShopper">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37EBD4F81C70603C005FFC9A"
@@ -89,7 +93,16 @@
             BlueprintName = "WatchApp"
             ReferencedContainer = "container:WatchShopper.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "37EBD4F81C70603C005FFC9A"
+            BuildableName = "WatchApp.app"
+            BlueprintName = "WatchApp"
+            ReferencedContainer = "container:WatchShopper.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
