@@ -12,7 +12,7 @@ struct WatchShopperApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                ListsView(listSummaries: [ChecklistSummaryViewModel(name: "Sat List", updated: ISO8601DateFormatter().date(from: "2021-10-02T21:45:30Z")!)])
             }
         }
 
