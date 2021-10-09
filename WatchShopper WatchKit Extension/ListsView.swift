@@ -9,20 +9,21 @@ import SwiftUI
 
 struct ListsView: View {
     let formatter: DateFormatter
-    init(lists: [ChecklistViewModel]) {
-        self.lists = lists
+    init(listsViewModel: ListsViewModel) {
+        self.listsViewModel = listsViewModel
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
     }
     
-    var lists: [ChecklistViewModel]
+    @ObservedObject
+    var listsViewModel: ListsViewModel
     var body: some View {
-        List(lists) { checklist in
-            NavigationLink(destination: ChecklistView(checklist: checklist)) {
+        List(listsViewModel.lists) { checklist in
+            NavigationLink(destination: ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))) {
                 VStack(alignment: .leading) {
-                    Text(checklist.summary.name)
+                    Text(checklist.title)
                         .font(.headline)
-                    Text(checklist.summary.updated, formatter: formatter)
+                    Text(checklist.updated, formatter: formatter)
                         .font(.subheadline)
                         .foregroundColor(Color.gray)
                 }
@@ -35,19 +36,20 @@ struct ListsView: View {
 }
 
 struct ChecklistView: View {
-    var checklist: ChecklistViewModel
+    @ObservedObject
+    var checklistViewModel: ChecklistViewModel
+    
     var body: some View {
-        List(checklist.items) { item in
+        List(checklistViewModel.checklist.items) { item in
             let image = Image(systemName: "checkmark")
                 .foregroundColor(Color.green)
             Button(action: {
-                print("Hello!")
-                _ = image.hidden()
+                checklistViewModel.toggleChecked(for: item)
             }) {
                 HStack {
                     
                     if !item.checked {
-                        image
+                        image.hidden()
                     } else {
                         image
                     }
@@ -55,23 +57,25 @@ struct ChecklistView: View {
                 }
             }
         }
-        .navigationTitle(checklist.summary.name)
+        .animation(.default, value: checklistViewModel.checklist)
+        .navigationTitle(checklistViewModel.checklist.title)
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
+        .onDisappear {
+            checklistViewModel.saveChecklist()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let summary = ChecklistSummaryViewModel(name: "Sat List", updated: .now)
-        let item1 = ChecklistItemViewModel(title: "chix thighs", checked: false, itemId: 1)
-        let item2 = ChecklistItemViewModel(title: "oranges", checked: true, itemId: 2)
-        let checklist = ChecklistViewModel(summary: summary, items: [item1, item2])
+        let listsViewModel = ListsViewModel(lists: generateListData())
+        let checklistViewModel = ChecklistViewModel(checklist: listsViewModel.lists.first!)
         NavigationView {
-            ListsView(lists: [checklist])
+            ListsView(listsViewModel: listsViewModel)
         }
         NavigationView {
-            ChecklistView(checklist: checklist)
+            ChecklistView(checklistViewModel: checklistViewModel)
         }
     }
 }

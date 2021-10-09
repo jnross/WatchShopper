@@ -13,7 +13,7 @@ func generateListData(listCount:Int = 10) -> [Checklist] {
         let list = generateList(id: index.description)
         lists.append(list)
     }
-    return lists.sorted { $0.updated > $1.updated }
+    return lists
 }
 
 func generateList(id: String) -> Checklist {
@@ -34,7 +34,7 @@ func generateListItems(count: Int = 10, partiallyComplete: Bool) -> [Checklist.I
 
 func generateListItem(id: Int, checked: Bool = false) -> Checklist.Item {
 
-    let randomItem = sampleItems.randomElement() ?? "apples"
+    let randomItem = sampleItems.randomElement()!
     
     return Checklist.Item(id: id, title: randomItem, checked: checked)
     
