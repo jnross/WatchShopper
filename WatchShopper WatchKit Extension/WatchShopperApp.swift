@@ -9,10 +9,16 @@ import SwiftUI
 
 @main
 struct WatchShopperApp: App {
+    
+    var lists: [Checklist] = generateListData()
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ListsView(listSummaries: [ChecklistSummaryViewModel(name: "Sat List", updated: ISO8601DateFormatter().date(from: "2021-10-02T21:45:30Z")!)])
+                let listModels = lists.map { list in
+                    ChecklistViewModel(summary: ChecklistSummaryViewModel(name: list.title, updated: list.updated),
+                                       items: list.items.map { ChecklistItemViewModel(title: $0.title, checked: $0.checked, itemId: $0.id) })
+                }
+                ListsView(lists: listModels)
             }
         }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33827100EA80057A7E6 /* ListDataGenerator.swift */; };
+		D883A33A27100EA80057A7E6 /* ListDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33827100EA80057A7E6 /* ListDataGenerator.swift */; };
+		D883A33C27100EC60057A7E6 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33B27100EC60057A7E6 /* ListData.swift */; };
+		D883A33D27100EC60057A7E6 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33B27100EC60057A7E6 /* ListData.swift */; };
 		D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C875270F5CCA00E99597 /* WatchShopperApp.swift */; };
 		D884C878270F5CCA00E99597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C877270F5CCA00E99597 /* ContentView.swift */; };
 		D884C87A270F5CCB00E99597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884C879270F5CCB00E99597 /* Assets.xcassets */; };
@@ -101,6 +105,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D883A33827100EA80057A7E6 /* ListDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataGenerator.swift; sourceTree = "<group>"; };
+		D883A33B27100EC60057A7E6 /* ListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListData.swift; sourceTree = "<group>"; };
 		D884C872270F5CCA00E99597 /* WatchShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D884C875270F5CCA00E99597 /* WatchShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopperApp.swift; sourceTree = "<group>"; };
 		D884C877270F5CCA00E99597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 			children = (
 				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
 				D884C877270F5CCA00E99597 /* ContentView.swift */,
+				D883A33827100EA80057A7E6 /* ListDataGenerator.swift */,
+				D883A33B27100EC60057A7E6 /* ListData.swift */,
 				D884C879270F5CCB00E99597 /* Assets.xcassets */,
 				D884C87B270F5CCB00E99597 /* Preview Content */,
 			);
@@ -543,7 +551,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D884C878270F5CCA00E99597 /* ContentView.swift in Sources */,
+				D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
+				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,9 +581,11 @@
 				D884C8AB270F5CCC00E99597 /* NotificationController.swift in Sources */,
 				D884C8A9270F5CCC00E99597 /* ListsView.swift in Sources */,
 				D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */,
+				D883A33A27100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D884C8AF270F5CCC00E99597 /* ComplicationController.swift in Sources */,
 				D884C8A7270F5CCC00E99597 /* WatchShopperApp.swift in Sources */,
 				D884C8AD270F5CCC00E99597 /* NotificationView.swift in Sources */,
+				D883A33D27100EC60057A7E6 /* ListData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

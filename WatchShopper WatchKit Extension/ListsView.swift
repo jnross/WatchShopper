@@ -9,24 +9,27 @@ import SwiftUI
 
 struct ListsView: View {
     let formatter: DateFormatter
-    init(listSummaries: [ChecklistSummaryViewModel]) {
-        self.listSummaries = listSummaries
+    init(lists: [ChecklistViewModel]) {
+        self.lists = lists
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
     }
     
-    var listSummaries: [ChecklistSummaryViewModel]
+    var lists: [ChecklistViewModel]
     var body: some View {
-        List(listSummaries) { summary in
-            VStack(alignment: .leading) {
-                Text(summary.name)
-                    .font(.headline)
-                Text(summary.updated, formatter: formatter)
-                    .font(.subheadline)
-                    .foregroundColor(Color.gray)
+        List(lists) { checklist in
+            NavigationLink(destination: ChecklistView(checklist: checklist)) {
+                VStack(alignment: .leading) {
+                    Text(checklist.summary.name)
+                        .font(.headline)
+                    Text(checklist.summary.updated, formatter: formatter)
+                        .font(.subheadline)
+                        .foregroundColor(Color.gray)
+                }
             }
         }
         .navigationTitle("Lists")
+        .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
     }
 }
@@ -35,18 +38,25 @@ struct ChecklistView: View {
     var checklist: ChecklistViewModel
     var body: some View {
         List(checklist.items) { item in
-            HStack {
-                let image = Image(systemName: "checkmark")
-                    .foregroundColor(Color.green)
-                if !item.checked {
-                    image.hidden()
-                } else {
-                    image
+            let image = Image(systemName: "checkmark")
+                .foregroundColor(Color.green)
+            Button(action: {
+                print("Hello!")
+                _ = image.hidden()
+            }) {
+                HStack {
+                    
+                    if !item.checked {
+                        image
+                    } else {
+                        image
+                    }
+                    Text(item.title)
                 }
-                Text(item.title)
             }
         }
         .navigationTitle(checklist.summary.name)
+        .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
     }
 }
@@ -56,12 +66,12 @@ struct ContentView_Previews: PreviewProvider {
         let summary = ChecklistSummaryViewModel(name: "Sat List", updated: .now)
         let item1 = ChecklistItemViewModel(title: "chix thighs", checked: false, itemId: 1)
         let item2 = ChecklistItemViewModel(title: "oranges", checked: true, itemId: 2)
+        let checklist = ChecklistViewModel(summary: summary, items: [item1, item2])
         NavigationView {
-            ListsView(listSummaries: [summary])
+            ListsView(lists: [checklist])
         }
         NavigationView {
-            ChecklistView(checklist: ChecklistViewModel(summary: summary,
-                                                        items: [item1, item2]))
+            ChecklistView(checklist: checklist)
         }
     }
 }
