@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct WatchShopperApp: App {
+    var lists: [Checklist] = generateListData()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                let listsViewModel = ListsViewModel(lists: lists)
+                ListsView(listsViewModel: listsViewModel)
+            }
         }
     }
 }

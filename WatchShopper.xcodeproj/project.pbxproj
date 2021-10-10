@@ -12,7 +12,7 @@
 		D883A33C27100EC60057A7E6 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33B27100EC60057A7E6 /* ListData.swift */; };
 		D883A33D27100EC60057A7E6 /* ListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33B27100EC60057A7E6 /* ListData.swift */; };
 		D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C875270F5CCA00E99597 /* WatchShopperApp.swift */; };
-		D884C878270F5CCA00E99597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C877270F5CCA00E99597 /* ContentView.swift */; };
+		D884C878270F5CCA00E99597 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C877270F5CCA00E99597 /* ListsView.swift */; };
 		D884C87A270F5CCB00E99597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884C879270F5CCB00E99597 /* Assets.xcassets */; };
 		D884C87D270F5CCB00E99597 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884C87C270F5CCB00E99597 /* Preview Assets.xcassets */; };
 		D884C887270F5CCB00E99597 /* WatchShopperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C886270F5CCB00E99597 /* WatchShopperTests.swift */; };
@@ -32,6 +32,7 @@
 		D884C8CA270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8C9270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITests.swift */; };
 		D884C8CC270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8CB270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITestsLaunchTests.swift */; };
 		D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
+		D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +110,7 @@
 		D883A33B27100EC60057A7E6 /* ListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListData.swift; sourceTree = "<group>"; };
 		D884C872270F5CCA00E99597 /* WatchShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D884C875270F5CCA00E99597 /* WatchShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopperApp.swift; sourceTree = "<group>"; };
-		D884C877270F5CCA00E99597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D884C877270F5CCA00E99597 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		D884C879270F5CCB00E99597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D884C87C270F5CCB00E99597 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D884C882270F5CCB00E99597 /* WatchShopperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchShopperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,9 +216,10 @@
 			isa = PBXGroup;
 			children = (
 				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
-				D884C877270F5CCA00E99597 /* ContentView.swift */,
+				D884C877270F5CCA00E99597 /* ListsView.swift */,
 				D883A33827100EA80057A7E6 /* ListDataGenerator.swift */,
 				D883A33B27100EC60057A7E6 /* ListData.swift */,
+				D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */,
 				D884C879270F5CCB00E99597 /* Assets.xcassets */,
 				D884C87B270F5CCB00E99597 /* Preview Content */,
 			);
@@ -262,7 +264,6 @@
 			children = (
 				D884C8A6270F5CCC00E99597 /* WatchShopperApp.swift */,
 				D884C8A8270F5CCC00E99597 /* ListsView.swift */,
-				D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */,
 				D884C8AA270F5CCC00E99597 /* NotificationController.swift */,
 				D884C8AC270F5CCC00E99597 /* NotificationView.swift */,
 				D884C8AE270F5CCC00E99597 /* ComplicationController.swift */,
@@ -550,8 +551,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D884C878270F5CCA00E99597 /* ContentView.swift in Sources */,
+				D884C878270F5CCA00E99597 /* ListsView.swift in Sources */,
 				D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
+				D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */,
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
 				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
 			);
