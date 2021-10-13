@@ -1,6 +1,6 @@
 //
 //  ListsViewModel.swift
-//  WatchShopper WatchKit Extension
+//  WatchShopper
 //
 //  Created by Joseph Ross on 10/7/21.
 //
@@ -9,66 +9,51 @@ import Foundation
 
 class ListsViewModel: ObservableObject {
     @Published var lists: [Checklist]
+    let sync = WatchSync()
     
     init(lists: [Checklist]) {
         self.lists = lists
+        sync.delegate = self
         sortLists()
     }
     
     func sortLists() {
         lists.sort { $0.updated > $1.updated }
     }
+    
+    func saveAll() {
+        sync.updateLists(lists: lists)
+    }
+}
+
+extension ListsViewModel: WatchSyncDelegate {
+    func listUpdated(list: Checklist) {
+        if let index = lists.firstIndex(where: { $0.id == list.id }) {
+            lists[index] = list
+        } else {
+            lists.append(list)
+            sortLists()
+        }
+    }
+    
+    func listsUpdated(lists: [Checklist]) {
+        DispatchQueue.main.async {
+            self.lists = lists
+            self.sortLists()
+        }
+    }
+    
+    
 }
 
 extension ListsViewModel: ChecklistViewModelDelegate {
-    func checklistShouldSave(checklist: Checklist) {
+    func listDidUpdate(_ checklist: Checklist) {
         if let index = lists.firstIndex(where: { $0.id == checklist.id }) {
             lists[index] = checklist
         } else {
             lists.append(checklist)
             sortLists()
         }
-    }
-}
-
-protocol ChecklistViewModelDelegate: AnyObject {
-    func checklistShouldSave(checklist: Checklist)
-}
-
-class ChecklistViewModel: ObservableObject {
-    @Published var checklist: Checklist
-    weak var delegate: ChecklistViewModelDelegate? = nil
-    var sortTimer: Timer? = nil
-    let sortTimeout: TimeInterval = 1
-    
-    init(checklist: Checklist, delegate: ChecklistViewModelDelegate? = nil) {
-        self.checklist = checklist
-        self.checklist.sortCheckedToBottom()
-        self.delegate = delegate
-        print(checklist.debugDescription)
-    }
-    
-    func toggleChecked(for item: Checklist.Item) {
-        checklist.toggle(item: item)
-        resetSortTimer()
-    }
-    
-    func resetSortTimer() {
-        sortTimer?.invalidate()
-        sortTimer = Timer.scheduledTimer(withTimeInterval: sortTimeout, repeats: false, block: {  [weak self] _ in
-            self?.sortTimerFired()
-        })
-    }
-    
-    func sortTimerFired() {
-        sortTimer?.invalidate()
-        sortTimer = nil
-        
-        //Sort list items, sending completed/checked items to the bottom.
-        checklist.sortCheckedToBottom()
-    }
-    
-    func saveChecklist() {
-        delegate?.checklistShouldSave(checklist: checklist)
+        sync.updateLists(lists: lists)
     }
 }

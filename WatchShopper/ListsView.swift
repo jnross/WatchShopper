@@ -30,8 +30,14 @@ struct ListsView: View {
             }
         }
         .navigationTitle("Lists")
-        .navigationBarTitleDisplayMode(.inline)
-        .environment(\.defaultMinListRowHeight, 10)
+        .toolbar {
+            Button {
+                listsViewModel.saveAll()
+            } label: {
+                Text("Save")
+            }
+
+        }
     }
 }
 
@@ -59,8 +65,6 @@ struct ChecklistView: View {
         }
         .animation(.default, value: checklistViewModel.checklist)
         .navigationTitle(checklistViewModel.checklist.title)
-        .navigationBarTitleDisplayMode(.inline)
-        .environment(\.defaultMinListRowHeight, 10)
         .onDisappear {
             checklistViewModel.saveChecklist()
         }
@@ -76,6 +80,7 @@ struct ContentView_Previews: PreviewProvider {
         }
         NavigationView {
             ChecklistView(checklistViewModel: checklistViewModel)
+            ListsView(listsViewModel: listsViewModel)
         }
     }
 }

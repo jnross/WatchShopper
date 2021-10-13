@@ -33,6 +33,11 @@
 		D884C8CC270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8CB270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITestsLaunchTests.swift */; };
 		D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
 		D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
+		D8EBAFAD27133DBC00BB0069 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */; };
+		D8EBAFAE27133DC100BB0069 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */; };
+		D8EBAFB02713421500BB0069 /* UserDefaultsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAF2713421500BB0069 /* UserDefaultsPersistence.swift */; };
+		D8EBAFB327134A0D00BB0069 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFB227134A0D00BB0069 /* WatchSync.swift */; };
+		D8EBAFB427134A0D00BB0069 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFB227134A0D00BB0069 /* WatchSync.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +141,9 @@
 		D884C8C9270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopper_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		D884C8CB270F5CCC00E99597 /* WatchShopper_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopper_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewModel.swift; sourceTree = "<group>"; };
+		D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
+		D8EBAFAF2713421500BB0069 /* UserDefaultsPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPersistence.swift; sourceTree = "<group>"; };
+		D8EBAFB227134A0D00BB0069 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,11 +223,14 @@
 		D884C874270F5CCA00E99597 /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
-				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
-				D884C877270F5CCA00E99597 /* ListsView.swift */,
-				D883A33827100EA80057A7E6 /* ListDataGenerator.swift */,
+				D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */,
 				D883A33B27100EC60057A7E6 /* ListData.swift */,
+				D883A33827100EA80057A7E6 /* ListDataGenerator.swift */,
+				D884C877270F5CCA00E99597 /* ListsView.swift */,
 				D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */,
+				D8EBAFAF2713421500BB0069 /* UserDefaultsPersistence.swift */,
+				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
+				D8EBAFB227134A0D00BB0069 /* WatchSync.swift */,
 				D884C879270F5CCB00E99597 /* Assets.xcassets */,
 				D884C87B270F5CCB00E99597 /* Preview Content */,
 			);
@@ -556,6 +567,9 @@
 				D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */,
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
 				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
+				D8EBAFB02713421500BB0069 /* UserDefaultsPersistence.swift in Sources */,
+				D8EBAFB327134A0D00BB0069 /* WatchSync.swift in Sources */,
+				D8EBAFAD27133DBC00BB0069 /* ChecklistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +596,8 @@
 			files = (
 				D884C8AB270F5CCC00E99597 /* NotificationController.swift in Sources */,
 				D884C8A9270F5CCC00E99597 /* ListsView.swift in Sources */,
+				D8EBAFB427134A0D00BB0069 /* WatchSync.swift in Sources */,
+				D8EBAFAE27133DC100BB0069 /* ChecklistViewModel.swift in Sources */,
 				D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */,
 				D883A33A27100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D884C8AF270F5CCC00E99597 /* ComplicationController.swift in Sources */,
@@ -762,14 +778,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchShopper WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchShopper_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -794,14 +810,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchShopper WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchShopper_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -828,7 +844,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchShopper_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit App";
@@ -854,7 +870,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchShopper_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit App";
@@ -881,7 +897,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper/Preview Content\"";
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -912,7 +928,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper/Preview Content\"";
-				DEVELOPMENT_TEAM = EH36G398FH;
+				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

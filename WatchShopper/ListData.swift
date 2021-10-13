@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Checklist: Identifiable, Equatable {
-    struct Item: Identifiable, Equatable {
+struct Checklist: Codable, Identifiable, Equatable {
+    struct Item: Codable, Identifiable, Equatable {
         var id: Int
         var title: String
         var checked: Bool
