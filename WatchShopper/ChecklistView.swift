@@ -11,14 +11,21 @@ struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
     
-    @State var newItemText: String = ""
+    @State private var newItemText: String = ""
+    @FocusState private var isNewItemFieldFocused: Bool
+    
     var body: some View {
+        let newItemField = TextField("Add Item", text: $newItemText)
         List {
             Section {
-                TextField("Add Item", text: $newItemText)
+                newItemField
+                    .focused($isNewItemFieldFocused)
                     .onSubmit {
-                        checklistViewModel.addItem(newItemText)
-                        newItemText = ""
+                        if newItemText.isEmpty == false {
+                            checklistViewModel.addItem(newItemText)
+                            newItemText = ""
+                            isNewItemFieldFocused = true
+                        }
                     }
             }
             Section {
