@@ -28,15 +28,15 @@ func generateList(id: String) -> Checklist {
 
 func generateListItems(count: Int = 10, partiallyComplete: Bool) -> [Checklist.Item] {
     return (0..<count).map { index in
-        generateListItem(id: index, checked: partiallyComplete ? Bool.random() : false)
+        generateListItem(checked: partiallyComplete ? Bool.random() : false)
     }
 }
 
-func generateListItem(id: Int, checked: Bool = false) -> Checklist.Item {
+func generateListItem(checked: Bool = false) -> Checklist.Item {
 
     let randomItem = sampleItems.randomElement()!
     
-    return Checklist.Item(id: id, title: randomItem, checked: checked)
+    return Checklist.Item(title: randomItem, checked: checked)
     
     
 }

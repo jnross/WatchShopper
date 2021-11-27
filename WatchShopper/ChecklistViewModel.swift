@@ -47,4 +47,19 @@ class ChecklistViewModel: ObservableObject {
     func saveChecklist() {
         delegate?.listDidUpdate(checklist)
     }
+    
+    func addItem(_ newItemText: String) {
+        let newItem = Checklist.Item(title: newItemText, checked: false)
+        checklist.items.insert(newItem, at: 0)
+        checklist.sortCheckedToBottom()
+        saveChecklist()
+    }
+    
+    func delete(at indexSet: IndexSet) {
+        for index in indexSet.reversed() {
+            checklist.items.remove(at: index)
+        }
+        checklist.sortCheckedToBottom()
+        saveChecklist()
+    }
 }

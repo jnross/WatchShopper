@@ -45,21 +45,35 @@ struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
     
+    @State var newItemText: String = ""
     var body: some View {
-        List(checklistViewModel.checklist.items) { item in
-            let image = Image(systemName: "checkmark")
-                .foregroundColor(Color.green)
-            Button(action: {
-                checklistViewModel.toggleChecked(for: item)
-            }) {
-                HStack {
-                    
-                    if !item.checked {
-                        image.hidden()
-                    } else {
-                        image
+        List {
+            Section {
+                TextField("Add Item", text: $newItemText)
+                    .onSubmit {
+                        checklistViewModel.addItem(newItemText)
+                        newItemText = ""
                     }
-                    Text(item.title)
+            }
+            Section {
+                ForEach(checklistViewModel.checklist.items) { item in
+                    let image = Image(systemName: "checkmark")
+                        .foregroundColor(Color.green)
+                    Button(action: {
+                        checklistViewModel.toggleChecked(for: item)
+                    }) {
+                        HStack {
+                            
+                            if !item.checked {
+                                image.hidden()
+                            } else {
+                                image
+                            }
+                            Text(item.title)
+                        }
+                    }
+                }.onDelete { indexSet in
+                    checklistViewModel.delete(at: indexSet)
                 }
             }
         }

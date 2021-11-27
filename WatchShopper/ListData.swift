@@ -9,7 +9,7 @@ import Foundation
 
 struct Checklist: Codable, Identifiable, Equatable {
     struct Item: Codable, Identifiable, Equatable {
-        var id: Int
+        var id = UUID()
         var title: String
         var checked: Bool
     }
@@ -35,7 +35,7 @@ extension Checklist {
             } else if b.checked && a.checked == false {
                 return true
             } else {
-                return a.id < b.id
+                return false
             }
         }
     }
