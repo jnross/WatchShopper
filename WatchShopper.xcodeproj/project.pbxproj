@@ -792,7 +792,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -824,7 +824,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -849,9 +849,9 @@
 				IBSC_MODULE = WatchShopper_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper.new;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -875,9 +875,9 @@
 				IBSC_MODULE = WatchShopper_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper.new;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -911,7 +911,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -942,7 +942,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
