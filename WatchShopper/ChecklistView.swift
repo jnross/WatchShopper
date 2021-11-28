@@ -21,6 +21,7 @@ struct ChecklistView: View {
                 newItemField
                     .focused($isNewItemFieldFocused)
                     .onSubmit {
+                        // If the user hits "Return" with an empty field, they probably just want to hide the keyboard.
                         if newItemText.isEmpty == false {
                             checklistViewModel.addItem(newItemText)
                             newItemText = ""
@@ -55,6 +56,10 @@ struct ChecklistView: View {
         .onDisappear {
             checklistViewModel.saveChecklist()
         }
+        // Remove focus from new item field and hide keyboard when the view is scrolled.
+        .simultaneousGesture(DragGesture().onChanged({ _ in
+            isNewItemFieldFocused = false
+        }))
     }
 }
 
