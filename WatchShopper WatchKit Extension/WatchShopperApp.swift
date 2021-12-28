@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct WatchShopperApp: App {
     
-    var lists: [Checklist] = generateListData()
+    var lists: [Checklist] = []
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {

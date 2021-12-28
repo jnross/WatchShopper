@@ -9,17 +9,18 @@ import SwiftUI
 
 struct ListsView: View {
     let formatter: DateFormatter
-    init(listsViewModel: ListsViewModel) {
+    init(listsViewModel: PersistingListsViewModel) {
         self.listsViewModel = listsViewModel
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
     }
     
     @ObservedObject
-    var listsViewModel: ListsViewModel
+    var listsViewModel: PersistingListsViewModel
     var body: some View {
         List(listsViewModel.lists) { checklist in
-            NavigationLink(destination: ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))) {
+            NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))))
+            {
                 VStack(alignment: .leading) {
                     Text(checklist.title)
                         .font(.headline)
@@ -31,19 +32,22 @@ struct ListsView: View {
         }
         .navigationTitle("Lists")
         .toolbar {
-            Button {
-                listsViewModel.saveAll()
-            } label: {
-                Text("Save")
+            NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: listsViewModel.createNewCheckList(), delegate: listsViewModel))))
+            {
+                Image(systemName: "plus")
             }
-
+            Button {
+                listsViewModel.syncToWatch()
+            } label: {
+                Image(systemName: "applewatch")
+            }
         }
     }
 }
 
 struct ListsView_Previews: PreviewProvider {
     static var previews: some View {
-        let listsViewModel = ListsViewModel(lists: generateListData())
+        let listsViewModel = PersistingListsViewModel(lists: generateListData())
         NavigationView {
             ListsView(listsViewModel: listsViewModel)
         }

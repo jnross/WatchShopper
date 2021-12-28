@@ -65,7 +65,7 @@ struct ChecklistView: View {
 
 struct ChecklistView_Previews: PreviewProvider {
     static var previews: some View {
-        let listsViewModel = ListsViewModel(lists: generateListData())
+        let listsViewModel = PersistingListsViewModel(lists: generateListData())
         let checklistViewModel = ChecklistViewModel(checklist: listsViewModel.lists.first!)
         NavigationView {
             ChecklistView(checklistViewModel: checklistViewModel)

@@ -17,7 +17,11 @@ struct Checklist: Codable, Identifiable, Equatable {
     var id = UUID()
     var title: String
     var updated: Date
-    var items: [Item]
+    var items: [Item] = []
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, title, updated
+    }
 }
 
 extension Checklist {

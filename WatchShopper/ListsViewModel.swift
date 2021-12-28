@@ -9,7 +9,7 @@ import Foundation
 
 class ListsViewModel: ObservableObject {
     @Published var lists: [Checklist]
-    let sync = WatchSync()
+    private let sync = WatchSync()
     
     init(lists: [Checklist]) {
         self.lists = lists
@@ -17,11 +17,11 @@ class ListsViewModel: ObservableObject {
         sortLists()
     }
     
-    func sortLists() {
+    private func sortLists() {
         lists.sort { $0.updated > $1.updated }
     }
     
-    func saveAll() {
+    func syncToWatch() {
         sync.updateLists(lists: lists)
     }
 }
