@@ -9,12 +9,12 @@ import Foundation
 
 struct Checklist: Codable, Identifiable, Equatable {
     struct Item: Codable, Identifiable, Equatable {
-        var id = UUID()
+        var id:String = UUID().uuidString
         var title: String
         var checked: Bool
     }
     
-    var id = UUID()
+    var id: String = UUID().uuidString
     var title: String
     var updated: Date
     var items: [Item] = []

@@ -11,7 +11,7 @@ class PersistingListsViewModel: ListsViewModel {
     private let persistence = Persistence()!
     
     func createNewCheckList(title:String = "New") -> Checklist {
-        let checklist = persistence.createChecklist(title: title)
+        let checklist = persistence.newChecklist(title: title)
         return checklist
     }
 }
