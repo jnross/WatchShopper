@@ -66,10 +66,12 @@ struct CompleteChecklistItem: FetchableRecord, Decodable {
 class Persistence {
     private let dbq: DatabaseQueue
     
-    init?() {
+    init?(dbName: String? = nil) {
+        let dbName = dbName ?? "persistence"
+        
         do {
             var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            url.appendPathComponent("persistence.sqlite")
+            url.appendPathComponent("\(dbName).sqlite")
             NSLog("DB URL: \(url)")
             var config = Configuration()
 //            config.prepareDatabase { db in
@@ -200,19 +202,7 @@ class Persistence {
             }
                 
             for checklistRecord in checklistRecords {
-                let request = checklistRecord.checklistItems
-                    .including(required: ChecklistItemRecord.item)
-                    .filter(Column("checklistId") == checklistRecord.id)
-                
-                let completeItems = try dbq.read { db in
-                    return try CompleteChecklistItem.fetchAll(db, request)
-                }
-                
-                let items = completeItems.map { completeItem in
-                    return Checklist.Item(id: completeItem.item.id, title: completeItem.item.title, checked: completeItem.checklistItem.checked)
-                }
-                
-                let checklist = Checklist(id: checklistRecord.id, title: checklistRecord.title, updated: checklistRecord.updated, items: items)
+                let checklist = try populateChecklist(from: checklistRecord)
                 checklists.append( checklist)
             }
                 
@@ -221,6 +211,56 @@ class Persistence {
         }
         return checklists
 
+    }
+    
+    func checklist(forId id: String) -> Checklist? {
+        do {
+            let checklistRecord = try dbq.read { db in
+                return try ChecklistRecord.filter(key: id).fetchOne(db)
+            }
+            guard let checklistRecord = checklistRecord else {
+                return nil
+            }
+            return try populateChecklist(from: checklistRecord)
+
+        } catch {
+            assertionFailure("Failed to load checklist for id: \(id), error: \(error)")
+        }
+        return nil
+    }
+    
+    private func populateChecklist(from checklistRecord: ChecklistRecord) throws -> Checklist {
+        let request = checklistRecord.checklistItems
+            .including(required: ChecklistItemRecord.item)
+            .filter(Column("checklistId") == checklistRecord.id)
+        
+        let completeItems = try dbq.read { db in
+            return try CompleteChecklistItem.fetchAll(db, request)
+        }
+        
+        let items = completeItems.map { completeItem in
+            return Checklist.Item(id: completeItem.item.id, title: completeItem.item.title, checked: completeItem.checklistItem.checked)
+        }
+    
+        return Checklist(id: checklistRecord.id, title: checklistRecord.title, updated: checklistRecord.updated, items: items)
+    }
+    
+    func autocompleteMatches(forPrefix prefix: String) -> [String] {
+        // TODO: determine the practical limit of autocomplete results to return
+        let maxAutocompleteResults = 20
+        do {
+            let itemRecords = try dbq.read { db in
+                return try ItemRecord
+                    .filter(Column("title").like("\(prefix)%"))
+                    .limit(maxAutocompleteResults)
+                    .fetchAll(db)
+            }
+            return itemRecords.map { $0.title }
+            
+        } catch {
+            assertionFailure("Failed to load autocomplete results: \(error)")
+        }
+        return []
     }
 }
 

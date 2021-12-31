@@ -10,7 +10,7 @@ import XCTest
 
 class PersistenceTests: XCTestCase {
     
-    let persistence = Persistence()!
+    let persistence = Persistence(dbName: "tests")!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -101,7 +101,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testDeletingItemsFromSmallList() throws {
-        var checklist = persistence.newChecklist(title: "Three Veggies")
+        var checklist = persistence.newChecklist(title: "Spag Sauce")
     
         checklist.items.append(persistence.item(withTitle: "carrots"))
         checklist.items.append(persistence.item(withTitle: "celery"))
@@ -126,6 +126,39 @@ class PersistenceTests: XCTestCase {
         // We expect all five items to remain in the DB, but the linking table will only have three links.
         XCTAssertEqual(persistence.countItems(), 5)
         XCTAssertEqual(persistence.countChecklistItems(), 3)
+    }
+    
+    func testLoadingListById() throws {
+        var checklist = persistence.newChecklist(title: "Spag Sauce")
+    
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        checklist.items.append(persistence.item(withTitle: "tomatoes"))
+        checklist.items.append(persistence.item(withTitle: "olive oil"))
+        
+        persistence.save(checklist)
+        
+        checklist.items.removeLast()
+        checklist.items.removeLast()
+        
+        persistence.save(checklist)
+        
+        let loadedChecklist = persistence.checklist(forId: checklist.id)
+        XCTAssertEqual(checklist, loadedChecklist)
+    }
+    
+    func testAutocompleteResults() throws {
+        var checklist = persistence.newChecklist(title: "Spag Sauce")
+    
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        checklist.items.append(persistence.item(withTitle: "tomatoes"))
+        checklist.items.append(persistence.item(withTitle: "olive oil"))
+        
+        let autocompleteResults = persistence.autocompleteMatches(forPrefix: "c")
+        XCTAssertEqual(autocompleteResults, ["carrots", "celery"])
     }
     
 }
