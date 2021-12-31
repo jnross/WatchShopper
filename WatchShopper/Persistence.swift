@@ -188,6 +188,37 @@ class Persistence {
         
         return Checklist.Item(title: title, checked: checked)
     }
+    
+    func allChecklists() -> [Checklist] {
+        var checklists: [Checklist] = []
+        do {
+            let checklistRecords = try dbq.read { db in
+                return try ChecklistRecord.all().fetchAll(db)
+            }
+                
+            for checklistRecord in checklistRecords {
+                let request = checklistRecord.checklistItems
+                    .including(required: ChecklistItemRecord.item)
+                    .filter(Column("checklistId") == checklistRecord.id)
+                
+                let completeItems = try dbq.read { db in
+                    return try CompleteChecklistItem.fetchAll(db, request)
+                }
+                
+                let items = completeItems.map { completeItem in
+                    return Checklist.Item(id: completeItem.item.id, title: completeItem.item.title, checked: completeItem.checklistItem.checked)
+                }
+                
+                let checklist = Checklist(id: checklistRecord.id, title: checklistRecord.title, updated: checklistRecord.updated, items: items)
+                checklists.append( checklist)
+            }
+                
+        } catch {
+            assertionFailure("Failed to load checklists: \(error)")
+        }
+        return checklists
+
+    }
 }
 
 // MARK: Persistence Debug Operations - should not be called in a Release build

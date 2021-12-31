@@ -21,7 +21,7 @@ class PersistenceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testEmptyList() throws {
+    func testCreateEmptyList() throws {
         var checklist = persistence.newChecklist(title: "Test 1")
         
         persistence.save(checklist)
@@ -29,7 +29,7 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(persistence.countChecklists(), 1)
     }
 
-    func testSmallList() throws {
+    func testCreateSmallList() throws {
         var checklist = persistence.newChecklist(title: "Three Veggies")
         checklist.items.append(persistence.item(withTitle: "carrots"))
         checklist.items.append(persistence.item(withTitle: "celery"))
@@ -42,7 +42,7 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(persistence.countChecklistItems(), 3)
     }
     
-    func testOverlappingLists() throws {
+    func testCreateOverlappingLists() throws {
         var checklist = persistence.newChecklist(title: "Three Veggies")
         checklist.items.append(persistence.item(withTitle: "carrots"))
         checklist.items.append(persistence.item(withTitle: "celery"))
@@ -60,4 +60,44 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(persistence.countItems(), 4)
         XCTAssertEqual(persistence.countChecklistItems(), 6)
     }
+    
+    func testRetrieveEmptyList() throws {
+        var checklist = persistence.newChecklist(title: "Test 1")
+        persistence.save(checklist)
+        
+        let checklists = persistence.allChecklists()
+        XCTAssertEqual(checklist, checklists.first!)
+    }
+    
+    func testRetrieveSmallList() throws {
+        var checklist = persistence.newChecklist(title: "Three Veggies")
+    
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        
+        persistence.save(checklist)
+        
+        let checklists = persistence.allChecklists()
+        XCTAssertEqual(checklist, checklists.first!)
+    }
+    
+    func testRetrieveOverlappingLists() throws {
+        var checklist = persistence.newChecklist(title: "Three Veggies")
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        
+        var checklist2 = persistence.newChecklist(title: "Spag Veggies")
+        checklist2.items.append(persistence.item(withTitle: "tomatoes"))
+        checklist2.items.append(persistence.item(withTitle: "carrots"))
+        checklist2.items.append(persistence.item(withTitle: "onions"))
+        
+        persistence.save(checklist)
+        persistence.save(checklist2)
+        
+        let checklists = persistence.allChecklists()
+        XCTAssertEqual([checklist, checklist2], checklists)
+    }
+    
 }
