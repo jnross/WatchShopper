@@ -100,7 +100,7 @@ class Persistence {
         migrator.registerMigration("v1") { db in
             try db.create(table: "checklist", body: { t in
                 t.column("id", .text)
-                t.primaryKey(["id"])
+                t.primaryKey(["id"], onConflict: .replace)
                 t.column("title", .text)
                 t.column("updated", .datetime)
             })
@@ -138,8 +138,11 @@ class Persistence {
         do {
             try dbq.write { db in
                 try checklistRecord.insert(db)
-            }
-            try dbq.write { db in
+                //Clear old item links before writing the new ones:
+                try ChecklistItemRecord
+                    .filter(Column("checklistId") == checklist.id)
+                    .deleteAll(db)
+                
                 for record in checklistItemRecords {
                     try record.insert(db)
                 }

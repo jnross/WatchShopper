@@ -22,7 +22,7 @@ class PersistenceTests: XCTestCase {
     }
 
     func testCreateEmptyList() throws {
-        var checklist = persistence.newChecklist(title: "Test 1")
+        let checklist = persistence.newChecklist(title: "Test 1")
         
         persistence.save(checklist)
         
@@ -62,7 +62,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testRetrieveEmptyList() throws {
-        var checklist = persistence.newChecklist(title: "Test 1")
+        let checklist = persistence.newChecklist(title: "Test 1")
         persistence.save(checklist)
         
         let checklists = persistence.allChecklists()
@@ -98,6 +98,34 @@ class PersistenceTests: XCTestCase {
         
         let checklists = persistence.allChecklists()
         XCTAssertEqual([checklist, checklist2], checklists)
+    }
+    
+    func testDeletingItemsFromSmallList() throws {
+        var checklist = persistence.newChecklist(title: "Three Veggies")
+    
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        checklist.items.append(persistence.item(withTitle: "tomatoes"))
+        checklist.items.append(persistence.item(withTitle: "olive oil"))
+        
+        persistence.save(checklist)
+        
+        XCTAssertEqual(persistence.countChecklists(), 1)
+        XCTAssertEqual(persistence.countItems(), 5)
+        XCTAssertEqual(persistence.countChecklistItems(), 5)
+        
+        checklist.items.removeLast()
+        checklist.items.removeLast()
+        
+        persistence.save(checklist)
+        
+        let checklists = persistence.allChecklists()
+        XCTAssertEqual(checklist, checklists.first!)
+        
+        // We expect all five items to remain in the DB, but the linking table will only have three links.
+        XCTAssertEqual(persistence.countItems(), 5)
+        XCTAssertEqual(persistence.countChecklistItems(), 3)
     }
     
 }
