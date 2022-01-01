@@ -18,10 +18,6 @@ struct Checklist: Codable, Identifiable, Equatable {
     var title: String
     var updated: Date
     var items: [Item] = []
-    
-    private enum CodingKeys: String, CodingKey {
-        case id, title, updated
-    }
 
     static func ==(lhs: Checklist, rhs: Checklist) -> Bool {
         // Ignore `updated` `Date` when comparing for equality.  If everything else is equal, the checklists are equal.
