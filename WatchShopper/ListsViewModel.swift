@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListsViewModel: ObservableObject {
+class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDelegate {
     @Published var lists: [Checklist]
     private let sync = WatchSync()
     
@@ -24,9 +24,8 @@ class ListsViewModel: ObservableObject {
     func syncToWatch() {
         sync.updateLists(lists: lists)
     }
-}
 
-extension ListsViewModel: WatchSyncDelegate {
+//MARK: WatchSyncDelegate
     func listUpdated(list: Checklist) {
         if let index = lists.firstIndex(where: { $0.id == list.id }) {
             lists[index] = list
@@ -42,11 +41,8 @@ extension ListsViewModel: WatchSyncDelegate {
             self.sortLists()
         }
     }
-    
-    
-}
 
-extension ListsViewModel: ChecklistViewModelDelegate {
+//MARK: ChecklistViewModelDelegate
     func listDidUpdate(_ checklist: Checklist) {
         if let index = lists.firstIndex(where: { $0.id == checklist.id }) {
             lists[index] = checklist
@@ -55,5 +51,9 @@ extension ListsViewModel: ChecklistViewModelDelegate {
             sortLists()
         }
         sync.updateLists(lists: lists)
+    }
+    
+    func item(withTitle title: String) -> Checklist.Item {
+        return Checklist.Item(title: title, checked: false)
     }
 }
