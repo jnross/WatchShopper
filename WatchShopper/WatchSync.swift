@@ -54,7 +54,7 @@ class WatchSync: NSObject {
                 encoder.dateEncodingStrategy = .iso8601
                 encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
                 let json = try encoder.encode(list)
-                let key = list.id.description
+                let key = list.id
                 context[key] = json
             }
             if session.activationState != .activated {
