@@ -11,6 +11,7 @@ struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
     
+    @State private var newTitleText: String = ""
     @State private var newItemText: String = ""
     @FocusState private var isNewItemFieldFocused: Bool
     
@@ -53,7 +54,7 @@ struct ChecklistView: View {
             }
         }
         .animation(.default, value: checklistViewModel.checklist)
-        .navigationTitle(checklistViewModel.checklist.title)
+        //.navigationTitle(checklistViewModel.checklist.title)
         .onDisappear {
             checklistViewModel.saveChecklist()
         }
@@ -61,6 +62,18 @@ struct ChecklistView: View {
         .simultaneousGesture(DragGesture().onChanged({ _ in
             isNewItemFieldFocused = false
         }))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                TextField(checklistViewModel.checklist.title, text: $checklistViewModel.checklist.title)
+                    .font(Font.body.weight(.semibold))
+                    .multilineTextAlignment(.center)
+                    
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "plus").colorMultiply(.clear).tint(.clear)
+            }
+        }
+        
     }
 }
 

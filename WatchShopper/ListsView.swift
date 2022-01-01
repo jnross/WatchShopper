@@ -30,7 +30,7 @@ struct ListsView: View {
                 }
             }
         }
-        .navigationTitle("Lists")
+        .navigationBarTitle("Lists", displayMode: .inline)
         .toolbar {
             NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: listsViewModel.createNewCheckList(), delegate: listsViewModel))))
             {

@@ -55,6 +55,10 @@ class ChecklistViewModel: ObservableObject {
         saveChecklist()
     }
     
+    func setTitle(_ title: String) {
+        checklist.title = title
+    }
+    
     func delete(at indexSet: IndexSet) {
         for index in indexSet.reversed() {
             checklist.items.remove(at: index)
