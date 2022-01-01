@@ -122,7 +122,8 @@ class Persistence {
         
         var checklistItemRecords:[ChecklistItemRecord] = []
         for item in checklist.items {
-            checklistItemRecords.append(ChecklistItemRecord(checked: item.checked, checklistId: checklist.id, itemId: item.id))
+            let resolvedItem = self.item(withTitle: item.title, checked: item.checked)
+            checklistItemRecords.append(ChecklistItemRecord(checked: item.checked, checklistId: checklist.id, itemId: resolvedItem.id))
         }
         
         do {
@@ -143,7 +144,8 @@ class Persistence {
     }
     
     func save(_ item : Checklist.Item, in checklist: Checklist) {
-        let checklistItemRecord = ChecklistItemRecord(checked: item.checked, checklistId: checklist.id, itemId: item.id)
+        let resolvedItem = self.item(withTitle: item.title)
+        let checklistItemRecord = ChecklistItemRecord(checked: item.checked, checklistId: checklist.id, itemId: resolvedItem.id)
         
         do {
             try dbq.write { db in

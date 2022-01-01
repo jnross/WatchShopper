@@ -29,8 +29,4 @@ class PersistingListsViewModel: ListsViewModel {
         super.listDidUpdate(checklist)
         persistence.save(checklist)
     }
-    
-    override func item(withTitle title: String) -> Checklist.Item {
-        return persistence.item(withTitle: title)
-    }
 }

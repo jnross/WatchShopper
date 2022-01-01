@@ -9,7 +9,6 @@ import Foundation
 
 protocol ChecklistViewModelDelegate: AnyObject {
     func listDidUpdate(_ checklist: Checklist)
-    func item(withTitle: String) -> Checklist.Item
 }
 
 class ChecklistViewModel: ObservableObject {
@@ -50,7 +49,7 @@ class ChecklistViewModel: ObservableObject {
     }
     
     func addItem(_ newItemText: String) {
-        let newItem = delegate?.item(withTitle: newItemText) ?? Checklist.Item(title: newItemText, checked: false)
+        let newItem = Checklist.Item(title: newItemText, checked: false)
         checklist.items.insert(newItem, at: 0)
         checklist.sortCheckedToBottom()
         saveChecklist()

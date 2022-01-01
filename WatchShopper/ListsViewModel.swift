@@ -52,8 +52,4 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         }
         sync.updateLists(lists: lists)
     }
-    
-    func item(withTitle title: String) -> Checklist.Item {
-        return Checklist.Item(title: title, checked: false)
-    }
 }
