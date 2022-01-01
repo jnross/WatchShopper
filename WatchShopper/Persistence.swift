@@ -73,19 +73,7 @@ class Persistence {
             var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             url.appendPathComponent("\(dbName).sqlite")
             NSLog("DB URL: \(url)")
-            var config = Configuration()
-//            config.prepareDatabase { db in
-//                db.trace(options: .profile) { event in
-//                    // Prints all SQL statements with their duration
-//                    print(event)
-//
-//                    // Access to detailed profiling information
-//                    if case let .profile(statement, duration) = event, duration > 0.5 {
-//                        print("Slow query: \(statement.sql)")
-//                    }
-//                }
-//            }
-            dbq = try DatabaseQueue(path: url.path, configuration: config)
+            dbq = try DatabaseQueue(path: url.path)
             try createMigrator().migrate(dbq)
         } catch {
             NSLog("Failed to setup database for persistence work: \(error)")
