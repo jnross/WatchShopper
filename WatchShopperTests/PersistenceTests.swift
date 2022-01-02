@@ -161,4 +161,29 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(autocompleteResults, ["carrots", "celery"])
     }
     
+    func testDeleteList() throws {
+        var checklist = persistence.newChecklist(title: "Three Veggies")
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+        checklist.items.append(persistence.item(withTitle: "celery"))
+        checklist.items.append(persistence.item(withTitle: "onions"))
+        
+        var checklist2 = persistence.newChecklist(title: "Spag Veggies")
+        checklist2.items.append(persistence.item(withTitle: "tomatoes"))
+        checklist2.items.append(persistence.item(withTitle: "carrots"))
+        checklist2.items.append(persistence.item(withTitle: "onions"))
+        
+        persistence.save(checklist)
+        persistence.save(checklist2)
+        
+        XCTAssertEqual(persistence.countChecklists(), 2)
+        XCTAssertEqual(persistence.countItems(), 4)
+        XCTAssertEqual(persistence.countChecklistItems(), 6)
+        
+        persistence.delete(checklist)
+        
+        XCTAssertEqual(persistence.countChecklists(), 1)
+        XCTAssertEqual(persistence.countItems(), 4)
+        XCTAssertEqual(persistence.countChecklistItems(), 3)
+    }
+    
 }

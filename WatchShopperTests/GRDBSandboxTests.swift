@@ -17,7 +17,7 @@ class GRDBSandboxTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        url.appendPathComponent("persistence.sqlite")
+        url.appendPathComponent("tests.sqlite")
         var config = Configuration()
         config.prepareDatabase { db in
             db.trace(options: .profile) { event in

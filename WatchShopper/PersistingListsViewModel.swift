@@ -20,13 +20,12 @@ class PersistingListsViewModel: ListsViewModel {
         super.init(lists: persistence.allChecklists())
     }
     
-    func createNewCheckList(title:String = "New") -> Checklist {
-        let checklist = persistence.newChecklist(title: title)
-        return checklist
-    }
-    
     override func listDidUpdate(_ checklist: Checklist) {
         super.listDidUpdate(checklist)
         persistence.save(checklist)
+    }
+    
+    override func commitDelete(list: Checklist) {
+        persistence.delete(list)
     }
 }

@@ -11,7 +11,6 @@ struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
     
-    @State private var newTitleText: String = ""
     @State private var newItemText: String = ""
     @FocusState private var isNewItemFieldFocused: Bool
     
@@ -54,7 +53,6 @@ struct ChecklistView: View {
             }
         }
         .animation(.default, value: checklistViewModel.checklist)
-        //.navigationTitle(checklistViewModel.checklist.title)
         .onDisappear {
             checklistViewModel.saveChecklist()
         }
@@ -65,6 +63,9 @@ struct ChecklistView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 TextField(checklistViewModel.checklist.title, text: $checklistViewModel.checklist.title)
+                    .onSubmit {
+                        checklistViewModel.setTitle(checklistViewModel.checklist.title)
+                    }
                     .font(Font.body.weight(.semibold))
                     .multilineTextAlignment(.center)
                     

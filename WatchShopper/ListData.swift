@@ -16,7 +16,7 @@ struct Checklist: Codable, Identifiable, Equatable {
     
     var id: String = UUID().uuidString
     var title: String
-    var updated: Date
+    var updated: Date = .now
     var items: [Item] = []
 
     static func ==(lhs: Checklist, rhs: Checklist) -> Bool {

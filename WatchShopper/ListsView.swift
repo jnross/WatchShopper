@@ -13,21 +13,30 @@ struct ListsView: View {
         self.listsViewModel = listsViewModel
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
+        self.newChecklistViewModel = ChecklistViewModel(checklist: Checklist(title: "New"), delegate: nil)
+        newChecklistViewModel.delegate = listsViewModel
     }
     
     @ObservedObject
     var listsViewModel: PersistingListsViewModel
+    
+    @ObservedObject
+    var newChecklistViewModel: ChecklistViewModel
     var body: some View {
-        List(listsViewModel.lists) { checklist in
-            NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))))
-            {
-                VStack(alignment: .leading) {
-                    Text(checklist.title)
-                        .font(.headline)
-                    Text(checklist.updated, formatter: formatter)
-                        .font(.subheadline)
-                        .foregroundColor(Color.gray)
+        List {
+            ForEach(listsViewModel.lists) { checklist in
+                NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))))
+                {
+                    VStack(alignment: .leading) {
+                        Text(checklist.title)
+                            .font(.headline)
+                        Text(checklist.updated, formatter: formatter)
+                            .font(.subheadline)
+                            .foregroundColor(Color.gray)
+                    }
                 }
+            }.onDelete { indexSet in
+                listsViewModel.delete(at: indexSet)
             }
         }
         .navigationBarTitle("Lists", displayMode: .inline)

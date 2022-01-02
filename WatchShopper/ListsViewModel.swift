@@ -24,6 +24,18 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     func syncToWatch() {
         sync.updateLists(lists: lists)
     }
+    
+    func delete(at indexSet: IndexSet) {
+        for index in indexSet.reversed() {
+            let toRemove = lists.remove(at: index)
+            commitDelete(list: toRemove)
+        }
+        syncToWatch()
+    }
+    
+    func commitDelete(list: Checklist) {
+        
+    }
 
 //MARK: WatchSyncDelegate
     func listUpdated(list: Checklist) {

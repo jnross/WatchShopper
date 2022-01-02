@@ -13,10 +13,13 @@ struct WatchShopperApp: App {
     var lists: [Checklist] = []
     var body: some Scene {
         WindowGroup {
+            let listsViewModel = PersistingListsViewModel(persistence: persistence)
             NavigationView {
-                let listsViewModel = PersistingListsViewModel(persistence: persistence)
                 ListsView(listsViewModel: listsViewModel)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .environmentObject(listsViewModel)
+            
         }
     }
 }

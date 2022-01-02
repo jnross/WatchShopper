@@ -156,6 +156,19 @@ class Persistence {
         }
     }
     
+    func delete(_ list: Checklist) {
+        do {
+            try dbq.write({ db in
+                try ChecklistItemRecord
+                    .filter(Column("checklistId") == list.id)
+                    .deleteAll(db)
+                try ChecklistRecord.filter(key: list.id).deleteAll(db)
+            })
+        } catch {
+            assertionFailure("Failed to delete checklist with id \(list.id), error: \(error)")
+        }
+    }
+    
     func newChecklist(title: String) -> Checklist {
         let checklist = Checklist(title: title, updated: .now, items: [])
         
