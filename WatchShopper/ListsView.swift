@@ -41,14 +41,20 @@ struct ListsView: View {
         }
         .navigationBarTitle("Lists", displayMode: .inline)
         .toolbar {
-            NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: listsViewModel.createNewCheckList(), delegate: listsViewModel))))
-            {
-                Image(systemName: "plus")
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    listsViewModel.syncToWatch()
+                } label: {
+                    Image(systemName: "applewatch")
+                }
             }
-            Button {
-                listsViewModel.syncToWatch()
-            } label: {
-                Image(systemName: "applewatch")
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: ChecklistView(checklistViewModel: newChecklistViewModel))
+                {
+                    Image(systemName: "plus")
+                }.simultaneousGesture(TapGesture().onEnded({
+                    newChecklistViewModel.checklist = Checklist(title: "New")
+                }))
             }
         }
     }
