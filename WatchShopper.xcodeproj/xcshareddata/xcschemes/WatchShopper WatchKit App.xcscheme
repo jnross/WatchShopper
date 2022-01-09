@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D884C895270F5CCB00E99597"
-               BuildableName = "WatchShopper WatchKit App.app"
+               BuildableName = "WatchShopper.app"
                BlueprintName = "WatchShopper WatchKit App"
                ReferencedContainer = "container:WatchShopper.xcodeproj">
             </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D884C895270F5CCB00E99597"
-            BuildableName = "WatchShopper WatchKit App.app"
+            BuildableName = "WatchShopper.app"
             BlueprintName = "WatchShopper WatchKit App"
             ReferencedContainer = "container:WatchShopper.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D884C895270F5CCB00E99597"
-            BuildableName = "WatchShopper WatchKit App.app"
+            BuildableName = "WatchShopper.app"
             BlueprintName = "WatchShopper WatchKit App"
             ReferencedContainer = "container:WatchShopper.xcodeproj">
          </BuildableReference>

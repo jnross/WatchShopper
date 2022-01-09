@@ -10,8 +10,9 @@ import WatchConnectivity
 import UIKit
 
 protocol WatchSyncDelegate {
-    func listUpdated(list: Checklist)
-    func listsUpdated(lists: [Checklist])
+    func watchSync(_ watchSync: WatchSync, updated list: Checklist)
+    func watchSync(_ watchSync: WatchSync, updated lists: [Checklist])
+    func watchSyncActivated(_ watchSync: WatchSync)
 }
 
 class WatchSync: NSObject {
@@ -26,6 +27,8 @@ class WatchSync: NSObject {
         
         // Set things up after calling `super.init()`
         session.delegate = self
+        
+        NSLog("About to activate WCSession")
         session.activate()
     }
     
@@ -38,7 +41,10 @@ class WatchSync: NSObject {
             let key = list.id.description
             var context = session.applicationContext
             context[key] = json
-            session.sendMessage(context, replyHandler: nil) { error in
+            NSLog("About to send message \(context) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
+            session.sendMessage(context, replyHandler: {reply in
+                NSLog("Got reply: \(reply)")
+            }) { error in
                 NSLog("Failed to send message: \(error)")
             }
         } catch {
@@ -60,7 +66,10 @@ class WatchSync: NSObject {
             if session.activationState != .activated {
                 NSLog("WCSession is not activated!!")
             }
-            session.sendMessage(context, replyHandler: nil) { error in
+            NSLog("About to send message \(context) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
+            session.sendMessage(context, replyHandler: { reply in
+                NSLog("Got reply: \(reply)")
+            }) { error in
                 NSLog("Failed to send message: \(error)")
             }
         } catch {
@@ -88,6 +97,14 @@ extension WatchSync: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         NSLog("\(#function) \(#file):\(#line)")
+        if activationState == .activated {
+            NSLog("WCSession was activated! error: \(error)")
+            delegate?.watchSyncActivated(self)
+        }
+    }
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        NSLog("\(#function) \(#file):\(#line) reachability: \(session.isReachable)")
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -106,7 +123,7 @@ extension WatchSync: WCSessionDelegate {
                 NSLog("Failed to deserialize list at key \(key)")
             }
         }
-        delegate?.listsUpdated(lists: lists)
+        delegate?.watchSync(self, updated: lists)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
@@ -129,6 +146,6 @@ extension WatchSync: WCSessionDelegate {
                 NSLog("Failed to deserialize list at key \(key)")
             }
         }
-        delegate?.listsUpdated(lists: lists)
+        delegate?.watchSync(self, updated: lists)
     }
 }

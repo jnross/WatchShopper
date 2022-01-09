@@ -2,24 +2,27 @@
   "images" : [
     {
       "idiom" : "watch",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "watch",
-      "scale" : "2x",
+      "filename" : "icon_26pt.pdf",
       "screen-width" : "<=145"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
+      "filename" : "icon_29pt.pdf",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "icon_29pt-1.pdf",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "icon_32pt.pdf",
       "screen-width" : ">183"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
-  },
-  "properties" : {
-    "auto-scaling" : "auto"
+    "version" : 1,
+    "author" : "xcode"
   }
 }

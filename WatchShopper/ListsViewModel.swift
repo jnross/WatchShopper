@@ -38,7 +38,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
 
 //MARK: WatchSyncDelegate
-    func listUpdated(list: Checklist) {
+    func watchSync(_ watchSync: WatchSync, updated list: Checklist) {
         if let index = lists.firstIndex(where: { $0.id == list.id }) {
             lists[index] = list
         } else {
@@ -47,11 +47,17 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         }
     }
     
-    func listsUpdated(lists: [Checklist]) {
+    func watchSync(_ watchSync: WatchSync, updated lists: [Checklist]) {
         DispatchQueue.main.async {
             self.lists = lists
             self.sortLists()
         }
+    }
+    
+    func watchSyncActivated(_ watchSync: WatchSync) {
+#if os(iOS)
+        self.syncToWatch()
+#endif
     }
 
 //MARK: ChecklistViewModelDelegate

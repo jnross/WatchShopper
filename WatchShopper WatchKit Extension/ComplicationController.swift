@@ -53,7 +53,39 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Sample Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+            // This method will be called once per supported complication, and the results will be cached
+        let image = #imageLiteral(resourceName: "Complication/Graphic Corner")
+        let imageProvider = CLKImageProvider(onePieceImage: image)
+        let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: image)
+        let template: CLKComplicationTemplate?
+        switch complication.family {
+        case .circularSmall:
+            template = CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: imageProvider)
+        case .graphicCircular:
+            template = CLKComplicationTemplateGraphicCircularImage(imageProvider: fullColorImageProvider)
+        case .modularSmall:
+            template = CLKComplicationTemplateModularSmallSimpleImage(imageProvider: imageProvider)
+        case .utilitarianSmall:
+            template = CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: imageProvider)
+        case .extraLarge:
+            template = CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: imageProvider)
+        case .graphicCorner:
+            template = CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: fullColorImageProvider)
+        case .graphicRectangular:
+            template = CLKComplicationTemplateGraphicRectangularFullImage(imageProvider: fullColorImageProvider)
+        case .graphicExtraLarge:
+            template = CLKComplicationTemplateGraphicExtraLargeCircularImage(imageProvider: fullColorImageProvider)
+        case .modularLarge:
+            template = nil
+        case .utilitarianSmallFlat:
+            template = nil
+        case .utilitarianLarge:
+            template = nil
+        case .graphicBezel:
+            template = nil
+        @unknown default:
+            template = nil
+        }
+        handler(template)
     }
 }
