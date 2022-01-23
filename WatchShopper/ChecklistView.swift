@@ -19,7 +19,8 @@ struct ChecklistView: View {
         List {
             Section {
                 newItemField
-                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
+                    .disableAutocorrection(true)
                     .focused($isNewItemFieldFocused)
                     .onSubmit {
                         // If the user hits "Return" with an empty field, they probably just want to hide the keyboard.
@@ -52,6 +53,7 @@ struct ChecklistView: View {
                 }
             }
         }
+        .listStyle(.plain)
         .animation(.default, value: checklistViewModel.checklist)
         .onDisappear {
             checklistViewModel.saveChecklist()
