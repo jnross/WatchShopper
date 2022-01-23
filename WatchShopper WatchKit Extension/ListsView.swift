@@ -32,6 +32,9 @@ struct ListsView: View {
         .navigationTitle("Lists")
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
+        .onAppear {
+            listsViewModel.sendWakeup()
+        }
     }
 }
 

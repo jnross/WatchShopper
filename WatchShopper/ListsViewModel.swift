@@ -25,6 +25,10 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         sync.updateLists(lists: lists)
     }
     
+    func sendWakeup() {
+        sync.sendWakeup()
+    }
+    
     func delete(at indexSet: IndexSet) {
         for index in indexSet.reversed() {
             let toRemove = lists.remove(at: index)
@@ -52,6 +56,10 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
             self.lists = lists
             self.sortLists()
         }
+    }
+    
+    func watchSyncSentWakeup(_ watchSync: WatchSync) {
+        self.syncToWatch()
     }
     
     func watchSyncActivated(_ watchSync: WatchSync) {

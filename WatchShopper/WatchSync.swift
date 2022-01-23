@@ -12,7 +12,25 @@ import UIKit
 protocol WatchSyncDelegate {
     func watchSync(_ watchSync: WatchSync, updated list: Checklist)
     func watchSync(_ watchSync: WatchSync, updated lists: [Checklist])
+    func watchSyncSentWakeup(_ watchSync: WatchSync)
     func watchSyncActivated(_ watchSync: WatchSync)
+}
+
+enum WatchSyncMessage : Codable, CustomDebugStringConvertible {
+    var debugDescription: String {
+        switch(self) {
+        case .wakeup:
+            return "wakeup"
+        case .listUpdate(let list):
+            return "listUpdate: \(list)"
+        case .lists(let lists):
+            return "lists: \(lists)"
+        }
+    }
+    
+    case wakeup
+    case listUpdate(Checklist)
+    case lists([Checklist])
 }
 
 class WatchSync: NSObject {
@@ -33,47 +51,31 @@ class WatchSync: NSObject {
     }
     
     func updateList(list: Checklist) {
+        sendMessage(.listUpdate(list))
+    }
+    
+    func updateLists(lists: [Checklist]) {
+        sendMessage(.lists(lists))
+    }
+    
+    func sendWakeup() {
+        sendMessage(.wakeup)
+    }
+    
+    private func sendMessage(_ message: WatchSyncMessage) {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            let json = try encoder.encode(list)
-            let key = list.id.description
-            var context = session.applicationContext
-            context[key] = json
-            NSLog("About to send message \(context) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
-            session.sendMessage(context, replyHandler: {reply in
+            let json = try encoder.encode(message)
+            NSLog("About to send message \(json) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
+            session.sendMessageData(json, replyHandler: {reply in
                 NSLog("Got reply: \(reply)")
             }) { error in
                 NSLog("Failed to send message: \(error)")
             }
         } catch {
-            NSLog("Failed to serialize checklist with id: \(list.id), error: \(error)")
-        }
-    }
-    
-    func updateLists(lists: [Checklist]) {
-        do {
-            var context: [String : Any] = [:]
-            try lists.forEach { list in
-                let encoder = JSONEncoder()
-                encoder.dateEncodingStrategy = .iso8601
-                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-                let json = try encoder.encode(list)
-                let key = list.id
-                context[key] = json
-            }
-            if session.activationState != .activated {
-                NSLog("WCSession is not activated!!")
-            }
-            NSLog("About to send message \(context) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
-            session.sendMessage(context, replyHandler: { reply in
-                NSLog("Got reply: \(reply)")
-            }) { error in
-                NSLog("Failed to send message: \(error)")
-            }
-        } catch {
-            NSLog("Failed to serialize checklists, error: \(error)")
+            NSLog("Failed to serialize serialize and send message: \(message), error: \(error)")
         }
     }
     
@@ -105,6 +107,34 @@ extension WatchSync: WCSessionDelegate {
     
     func sessionReachabilityDidChange(_ session: WCSession) {
         NSLog("\(#function) \(#file):\(#line) reachability: \(session.isReachable)")
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let message = try decoder.decode(WatchSyncMessage.self, from: messageData)
+            handleMessage(message)
+            
+        } catch {
+            NSLog("Failed to deserialize message \(messageData)")
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        self.session(session, didReceiveMessageData: messageData)
+        replyHandler(Data())
+    }
+    
+    private func handleMessage(_ message: WatchSyncMessage) {
+        switch message {
+        case .wakeup:
+            delegate?.watchSyncSentWakeup(self)
+        case .listUpdate(let list):
+            delegate?.watchSync(self, updated: list)
+        case .lists(let lists):
+            delegate?.watchSync(self, updated: lists)
+        }
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
