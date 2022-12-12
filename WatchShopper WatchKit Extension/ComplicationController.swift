@@ -72,7 +72,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         case .graphicCorner:
             template = CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: fullColorImageProvider)
         case .graphicRectangular:
-            template = CLKComplicationTemplateGraphicRectangularFullImage(imageProvider: fullColorImageProvider)
+            template = nil
         case .graphicExtraLarge:
             template = CLKComplicationTemplateGraphicExtraLargeCircularImage(imageProvider: fullColorImageProvider)
         case .modularLarge:
