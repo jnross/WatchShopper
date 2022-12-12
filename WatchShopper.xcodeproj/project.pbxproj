@@ -22,7 +22,6 @@
 		D884C887270F5CCB00E99597 /* WatchShopperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C886270F5CCB00E99597 /* WatchShopperTests.swift */; };
 		D884C897270F5CCB00E99597 /* WatchShopper.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D884C896270F5CCB00E99597 /* WatchShopper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D884C89C270F5CCC00E99597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D884C89B270F5CCC00E99597 /* Assets.xcassets */; };
-		D884C8A2270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D884C8A1270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D884C8A7270F5CCC00E99597 /* WatchShopperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8A6270F5CCC00E99597 /* WatchShopperApp.swift */; };
 		D884C8A9270F5CCC00E99597 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8A8270F5CCC00E99597 /* ListsView.swift */; };
 		D884C8AB270F5CCC00E99597 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8AA270F5CCC00E99597 /* NotificationController.swift */; };
@@ -45,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D804586B2947175600DD50AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D884C86A270F5CCA00E99597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D884C895270F5CCB00E99597;
+			remoteInfo = "WatchShopper WatchKit App";
+		};
 		D884C883270F5CCB00E99597 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D884C86A270F5CCA00E99597 /* Project object */;
@@ -59,34 +65,9 @@
 			remoteGlobalIDString = D884C895270F5CCB00E99597;
 			remoteInfo = "WatchShopper WatchKit App";
 		};
-		D884C8A3270F5CCC00E99597 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D884C86A270F5CCA00E99597 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D884C8A0270F5CCC00E99597;
-			remoteInfo = "WatchShopper WatchKit Extension";
-		};
-		D884C8BC270F5CCC00E99597 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D884C86A270F5CCA00E99597 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D884C8A0270F5CCC00E99597;
-			remoteInfo = "WatchShopper WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D884C8D2270F5CCC00E99597 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D884C8A2270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D884C8D6270F5CCC00E99597 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,7 +96,6 @@
 		D884C886270F5CCB00E99597 /* WatchShopperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopperTests.swift; sourceTree = "<group>"; };
 		D884C896270F5CCB00E99597 /* WatchShopper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchShopper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D884C89B270F5CCC00E99597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D884C8A1270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchShopper WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D884C8A6270F5CCC00E99597 /* WatchShopperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchShopperApp.swift; sourceTree = "<group>"; };
 		D884C8A8270F5CCC00E99597 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		D884C8AA270F5CCC00E99597 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -187,7 +167,6 @@
 				D884C872270F5CCA00E99597 /* WatchShopper.app */,
 				D884C882270F5CCB00E99597 /* WatchShopperTests.xctest */,
 				D884C896270F5CCB00E99597 /* WatchShopper.app */,
-				D884C8A1270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex */,
 				D884C8BB270F5CCC00E99597 /* WatchShopper WatchKit AppTests.xctest */,
 			);
 			name = Products;
@@ -320,34 +299,17 @@
 			buildConfigurationList = D884C8D3270F5CCC00E99597 /* Build configuration list for PBXNativeTarget "WatchShopper WatchKit App" */;
 			buildPhases = (
 				D884C894270F5CCB00E99597 /* Resources */,
-				D884C8D2270F5CCC00E99597 /* Embed App Extensions */,
+				D884C89D270F5CCC00E99597 /* Sources */,
+				D884C89E270F5CCC00E99597 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D884C8A4270F5CCC00E99597 /* PBXTargetDependency */,
 			);
 			name = "WatchShopper WatchKit App";
 			productName = "WatchShopper WatchKit App";
 			productReference = D884C896270F5CCB00E99597 /* WatchShopper.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		D884C8A0270F5CCC00E99597 /* WatchShopper WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D884C8CF270F5CCC00E99597 /* Build configuration list for PBXNativeTarget "WatchShopper WatchKit Extension" */;
-			buildPhases = (
-				D884C89D270F5CCC00E99597 /* Sources */,
-				D884C89E270F5CCC00E99597 /* Frameworks */,
-				D884C89F270F5CCC00E99597 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "WatchShopper WatchKit Extension";
-			productName = "WatchShopper WatchKit Extension";
-			productReference = D884C8A1270F5CCC00E99597 /* WatchShopper WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 		D884C8BA270F5CCC00E99597 /* WatchShopper WatchKit AppTests */ = {
 			isa = PBXNativeTarget;
@@ -360,7 +322,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D884C8BD270F5CCC00E99597 /* PBXTargetDependency */,
+				D804586C2947175600DD50AD /* PBXTargetDependency */,
 			);
 			name = "WatchShopper WatchKit AppTests";
 			productName = "WatchShopper WatchKit AppTests";
@@ -375,7 +337,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					D884C871270F5CCA00E99597 = {
 						CreatedOnToolsVersion = 13.0;
@@ -387,12 +349,9 @@
 					D884C895270F5CCB00E99597 = {
 						CreatedOnToolsVersion = 13.0;
 					};
-					D884C8A0270F5CCC00E99597 = {
-						CreatedOnToolsVersion = 13.0;
-					};
 					D884C8BA270F5CCC00E99597 = {
 						CreatedOnToolsVersion = 13.0;
-						TestTargetID = D884C8A0270F5CCC00E99597;
+						TestTargetID = D884C895270F5CCB00E99597;
 					};
 				};
 			};
@@ -415,7 +374,6 @@
 				D884C871270F5CCA00E99597 /* WatchShopper */,
 				D884C881270F5CCB00E99597 /* WatchShopperTests */,
 				D884C895270F5CCB00E99597 /* WatchShopper WatchKit App */,
-				D884C8A0270F5CCC00E99597 /* WatchShopper WatchKit Extension */,
 				D884C8BA270F5CCC00E99597 /* WatchShopper WatchKit AppTests */,
 			);
 		};
@@ -442,16 +400,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D884C89C270F5CCC00E99597 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D884C89F270F5CCC00E99597 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				D884C8B4270F5CCC00E99597 /* Preview Assets.xcassets in Resources */,
 				D884C8B1270F5CCC00E99597 /* Assets.xcassets in Resources */,
+				D884C89C270F5CCC00E99597 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +474,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D804586C2947175600DD50AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D884C895270F5CCB00E99597 /* WatchShopper WatchKit App */;
+			targetProxy = D804586B2947175600DD50AD /* PBXContainerItemProxy */;
+		};
 		D884C884270F5CCB00E99597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D884C871270F5CCA00E99597 /* WatchShopper */;
@@ -532,16 +488,6 @@
 			isa = PBXTargetDependency;
 			target = D884C895270F5CCB00E99597 /* WatchShopper WatchKit App */;
 			targetProxy = D884C898270F5CCB00E99597 /* PBXContainerItemProxy */;
-		};
-		D884C8A4270F5CCC00E99597 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D884C8A0270F5CCC00E99597 /* WatchShopper WatchKit Extension */;
-			targetProxy = D884C8A3270F5CCC00E99597 /* PBXContainerItemProxy */;
-		};
-		D884C8BD270F5CCC00E99597 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D884C8A0270F5CCC00E99597 /* WatchShopper WatchKit Extension */;
-			targetProxy = D884C8BC270F5CCC00E99597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -580,6 +526,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -639,6 +586,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -657,84 +605,26 @@
 			};
 			name = Release;
 		};
-		D884C8D0270F5CCC00E99597 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = PTE4TYXPW2;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "WatchShopper WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchShopper_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		D884C8D1270F5CCC00E99597 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchShopper WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = PTE4TYXPW2;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "WatchShopper WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WatchShopper WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchShopper_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
 		D884C8D4270F5CCC00E99597 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = WatchShopper_WatchKit_Extension;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper.new;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp;
 				PRODUCT_NAME = WatchShopper;
@@ -752,14 +642,21 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PTE4TYXPW2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = WatchShopper_WatchKit_Extension;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.rossible.WatchShopper.new;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rossible.WatchShopper.new.watchkitapp;
 				PRODUCT_NAME = WatchShopper;
@@ -910,7 +807,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper WatchKit Extension.appex/WatchShopper WatchKit Extension";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchShopper";
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -936,7 +833,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper WatchKit Extension.appex/WatchShopper WatchKit Extension";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchShopper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchShopper";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
@@ -950,15 +847,6 @@
 			buildConfigurations = (
 				D884C8CD270F5CCC00E99597 /* Debug */,
 				D884C8CE270F5CCC00E99597 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D884C8CF270F5CCC00E99597 /* Build configuration list for PBXNativeTarget "WatchShopper WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D884C8D0270F5CCC00E99597 /* Debug */,
-				D884C8D1270F5CCC00E99597 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
