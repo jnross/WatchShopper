@@ -53,7 +53,7 @@ struct ListsView: View {
                 {
                     Image(systemName: "plus")
                 }.simultaneousGesture(TapGesture().onEnded({
-                    newChecklistViewModel.checklist = Checklist(title: "New")
+                    newChecklistViewModel.checklist = Checklist(title: "")
                 }))
             }
         }

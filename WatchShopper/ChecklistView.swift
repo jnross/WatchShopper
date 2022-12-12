@@ -64,7 +64,7 @@ struct ChecklistView: View {
         }))
         .toolbar {
             ToolbarItem(placement: .principal) {
-                TextField(checklistViewModel.checklist.title, text: $checklistViewModel.checklist.title)
+                TextField(checklistViewModel.checklist.title, text: $checklistViewModel.checklist.title, prompt: Text("List Title"))
                     .onSubmit {
                         checklistViewModel.setTitle(checklistViewModel.checklist.title)
                     }
