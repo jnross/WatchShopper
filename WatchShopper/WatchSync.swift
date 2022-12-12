@@ -100,7 +100,7 @@ extension WatchSync: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         NSLog("\(#function) \(#file):\(#line)")
         if activationState == .activated {
-            NSLog("WCSession was activated! error: \(error)")
+            NSLog("WCSession was activated! error: \(error ??? "nil")")
             delegate?.watchSyncActivated(self)
         }
     }

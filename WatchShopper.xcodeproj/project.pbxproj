@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8045869294712AD00DD50AD /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8045868294712AD00DD50AD /* SwiftExtensions.swift */; };
+		D804586A294713B000DD50AD /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8045868294712AD00DD50AD /* SwiftExtensions.swift */; };
 		D80C151E277CFD2400ABA436 /* GRDBSandboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C151D277CFD2400ABA436 /* GRDBSandboxTests.swift */; };
 		D80C1522277CFEEC00ABA436 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C1521277CFEEC00ABA436 /* PersistenceTests.swift */; };
 		D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D883A33827100EA80057A7E6 /* ListDataGenerator.swift */; };
@@ -99,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D8045868294712AD00DD50AD /* SwiftExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExtensions.swift; sourceTree = "<group>"; };
 		D80C151D277CFD2400ABA436 /* GRDBSandboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBSandboxTests.swift; sourceTree = "<group>"; };
 		D80C1521277CFEEC00ABA436 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		D883A33827100EA80057A7E6 /* ListDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataGenerator.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 				D884C87B270F5CCB00E99597 /* Preview Content */,
 				D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */,
 				D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */,
+				D8045868294712AD00DD50AD /* SwiftExtensions.swift */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -470,6 +474,7 @@
 				D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */,
 				D8E9B962275471D500BC3E61 /* PersistingListsViewModel.swift in Sources */,
+				D8045869294712AD00DD50AD /* SwiftExtensions.swift in Sources */,
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
 				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
 				D8EBAFB02713421500BB0069 /* Persistence.swift in Sources */,
@@ -500,6 +505,7 @@
 				D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */,
 				D883A33A27100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D884C8AF270F5CCC00E99597 /* ComplicationController.swift in Sources */,
+				D804586A294713B000DD50AD /* SwiftExtensions.swift in Sources */,
 				D884C8A7270F5CCC00E99597 /* WatchShopperApp.swift in Sources */,
 				D884C8AD270F5CCC00E99597 /* NotificationView.swift in Sources */,
 				D883A33D27100EC60057A7E6 /* ListData.swift in Sources */,
