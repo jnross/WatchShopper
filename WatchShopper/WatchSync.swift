@@ -12,6 +12,7 @@ import UIKit
 protocol WatchSyncDelegate {
     func watchSync(_ watchSync: WatchSync, updated list: Checklist)
     func watchSync(_ watchSync: WatchSync, updated lists: [Checklist])
+    func watchSync(_ watchSync: WatchSync, deleteListWithId id: String)
     func watchSyncSentWakeup(_ watchSync: WatchSync)
     func watchSyncActivated(_ watchSync: WatchSync)
 }
@@ -25,12 +26,18 @@ enum WatchSyncMessage : Codable, CustomDebugStringConvertible {
             return "listUpdate: \(list)"
         case .lists(let lists):
             return "lists: \(lists)"
+        case .updateLists(let lists):
+            return "updateLists: \(lists)"
+        case .deleteList(let listId):
+            return "deleteList: \(listId)"
         }
     }
     
     case wakeup
     case listUpdate(Checklist)
     case lists([Checklist])
+    case updateLists([Checklist])
+    case deleteList(String)
 }
 
 class WatchSync: NSObject {
@@ -134,6 +141,10 @@ extension WatchSync: WCSessionDelegate {
             delegate?.watchSync(self, updated: list)
         case .lists(let lists):
             delegate?.watchSync(self, updated: lists)
+        case .updateLists(let lists):
+            delegate?.watchSync(self, updated: lists)
+        case .deleteList(let listId):
+            delegate?.watchSync(self, deleteListWithId: listId)
         }
     }
     

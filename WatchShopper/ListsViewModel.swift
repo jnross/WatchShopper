@@ -22,7 +22,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
     
     func syncToWatch() {
-        sync.updateLists(lists: lists)
+        sync.updateLists(lists: Array(lists.prefix(20)))
     }
     
     func sendWakeup() {
@@ -43,18 +43,28 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
 
 //MARK: WatchSyncDelegate
     func watchSync(_ watchSync: WatchSync, updated list: Checklist) {
-        if let index = lists.firstIndex(where: { $0.id == list.id }) {
-            lists[index] = list
-        } else {
-            lists.append(list)
-            sortLists()
-        }
+        self.watchSync(watchSync, updated: [list])
     }
     
     func watchSync(_ watchSync: WatchSync, updated lists: [Checklist]) {
         DispatchQueue.main.async {
-            self.lists = lists
+            lists.forEach { list in
+                if let index = self.lists.firstIndex(where: { $0.id == list.id }) {
+                    self.lists[index] = list
+                } else {
+                    self.lists.append(list)
+                }
+            }
             self.sortLists()
+        }
+    }
+    
+    func watchSync(_ watchSync: WatchSync, deleteListWithId id: String) {
+        DispatchQueue.main.async {
+            if let index = self.lists.firstIndex(where: { $0.id == id }) {
+                let toDelete = self.lists.remove(at: index)
+                self.commitDelete(list: toDelete)
+            }
         }
     }
     
