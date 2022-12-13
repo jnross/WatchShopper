@@ -11,12 +11,8 @@ struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
     
-    enum FocusedField: Hashable {
-        case listTitle, newItem
-    }
-    
     @State private var newItemText: String = ""
-    @FocusState private var focusedField: FocusedField?
+    @FocusState var focusedField: FocusedField?
     
     var body: some View {
         let newItemField = TextField("Add Item", text: $newItemText)
@@ -26,9 +22,6 @@ struct ChecklistView: View {
                     .textInputAutocapitalization(.never)
                     .disableAutocorrection(true)
                     .focused($focusedField, equals: .newItem)
-                    .onAppear {
-                        focusedField = .newItem
-                    }
                     .onSubmit {
                         // If the user hits "Return" with an empty field, they probably just want to hide the keyboard.
                         if newItemText.isEmpty == false {
@@ -75,8 +68,16 @@ struct ChecklistView: View {
                     .focused($focusedField, equals: .listTitle)
                     .font(Font.body.weight(.semibold))
                     .multilineTextAlignment(.center)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            if checklistViewModel.checklist.title.isEmpty {
+                                focusedField = .listTitle
+                            }
+                        }
+                    }
                     .onSubmit {
                         checklistViewModel.setTitle(checklistViewModel.checklist.title)
+                        focusedField = .newItem
                     }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -85,6 +86,10 @@ struct ChecklistView: View {
         }
         
     }
+}
+
+enum FocusedField: Hashable {
+    case listTitle, newItem
 }
 
 struct ChecklistView_Previews: PreviewProvider {

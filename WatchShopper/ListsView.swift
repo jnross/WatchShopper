@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ListsView: View {
+    
+    @FocusState var focusedField: FocusedField?
+    
     let formatter: DateFormatter
     init(listsViewModel: PersistingListsViewModel) {
         self.listsViewModel = listsViewModel
@@ -25,7 +28,7 @@ struct ListsView: View {
     var body: some View {
         List {
             ForEach(listsViewModel.lists) { checklist in
-                NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel))))
+                NavigationLink(destination: NavigationLazyView(ChecklistView(checklistViewModel: ChecklistViewModel(checklist: checklist, delegate: listsViewModel), focusedField: _focusedField)))
                 {
                     VStack(alignment: .leading) {
                         Text(checklist.title)
@@ -49,7 +52,7 @@ struct ListsView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: ChecklistView(checklistViewModel: newChecklistViewModel))
+                NavigationLink(destination: ChecklistView(checklistViewModel: newChecklistViewModel, focusedField: _focusedField))
                 {
                     Image(systemName: "plus")
                 }.simultaneousGesture(TapGesture().onEnded({
