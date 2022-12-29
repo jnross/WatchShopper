@@ -21,71 +21,45 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the currently supported complication descriptors
         handler(descriptors)
     }
-    
-    func handleSharedComplicationDescriptors(_ complicationDescriptors: [CLKComplicationDescriptor]) {
-        // Do any necessary work to support these newly shared complication descriptors
-    }
-
-    // MARK: - Timeline Configuration
-    
-    func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        handler(nil)
-    }
-    
-    func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
-        // Call the handler with your desired behavior when the device is locked
-        handler(.showOnLockScreen)
-    }
 
     // MARK: - Timeline Population
     
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        handler(nil)
+    func currentTimelineEntry(for complication: CLKComplication) async -> CLKComplicationTimelineEntry? {
+        return nil
     }
     
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries after the given date
-        handler(nil)
-    }
 
     // MARK: - Sample Templates
     
-    func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
+    func localizableSampleTemplate(for complication: CLKComplication) async -> CLKComplicationTemplate? {
             // This method will be called once per supported complication, and the results will be cached
-        let image = #imageLiteral(resourceName: "Complication/Graphic Corner")
-        let imageProvider = CLKImageProvider(onePieceImage: image)
-        let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: image)
-        let template: CLKComplicationTemplate?
         switch complication.family {
         case .circularSmall:
-            template = CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: imageProvider)
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Circular"))
+            return CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: imageProvider)
         case .graphicCircular:
-            template = CLKComplicationTemplateGraphicCircularImage(imageProvider: fullColorImageProvider)
-        case .modularSmall:
-            template = CLKComplicationTemplateModularSmallSimpleImage(imageProvider: imageProvider)
-        case .utilitarianSmall:
-            template = CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: imageProvider)
-        case .extraLarge:
-            template = CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: imageProvider)
-        case .graphicCorner:
-            template = CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: fullColorImageProvider)
-        case .graphicRectangular:
-            template = nil
-        case .graphicExtraLarge:
-            template = CLKComplicationTemplateGraphicExtraLargeCircularImage(imageProvider: fullColorImageProvider)
-        case .modularLarge:
-            template = nil
-        case .utilitarianSmallFlat:
-            template = nil
-        case .utilitarianLarge:
-            template = nil
+            let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Circular"))
+            return CLKComplicationTemplateGraphicCircularImage(imageProvider: fullColorImageProvider)
         case .graphicBezel:
-            template = nil
+            let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Bezel"))
+            return CLKComplicationTemplateGraphicBezelCircularText(circularTemplate: CLKComplicationTemplateGraphicCircularImage(imageProvider: fullColorImageProvider))
+        case .modularSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
+            return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: imageProvider)
+        case .utilitarianSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Utilitarian"))
+            return CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: imageProvider)
+        case .graphicCorner:
+            let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Corner"))
+            return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: fullColorImageProvider)
+        case .extraLarge: fallthrough
+        case .graphicRectangular: fallthrough
+        case .graphicExtraLarge: fallthrough
+        case .modularLarge: fallthrough
+        case .utilitarianSmallFlat: fallthrough
+        case .utilitarianLarge: fallthrough
         @unknown default:
-            template = nil
+            return nil
         }
-        handler(template)
     }
 }

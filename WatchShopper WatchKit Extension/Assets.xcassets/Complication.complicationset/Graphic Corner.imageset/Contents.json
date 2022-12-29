@@ -1,28 +1,21 @@
 {
   "images" : [
     {
-      "filename" : "icon_36.pdf",
-      "idiom" : "watch",
-      "screen-width" : "<=145"
-    },
-    {
       "filename" : "icon_40.pdf",
       "idiom" : "watch",
-      "screen-width" : ">161"
+      "scale" : "2x"
     },
     {
-      "filename" : "icon_40 1.pdf",
       "idiom" : "watch",
-      "screen-width" : ">145"
-    },
-    {
-      "filename" : "icon_44.pdf",
-      "idiom" : "watch",
+      "scale" : "2x",
       "screen-width" : ">183"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "auto-scaling" : "auto"
   }
 }
