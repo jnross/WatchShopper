@@ -11,6 +11,12 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     @Published var lists: [Checklist]
     private let sync = WatchSync()
     
+    // Retry logic
+    private var refreshRetryCount = 0
+    private let maxRefreshRetries = 3
+    private var refreshRetryTimer: Timer?
+    private var didReceiveLists = false
+    
     init(lists: [Checklist]) {
         self.lists = lists
         sync.delegate = self
@@ -25,8 +31,26 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         sync.updateLists(lists: Array(lists.prefix(20)))
     }
     
-    func sendWakeup() {
-        sync.sendWakeup()
+    func sendRefresh() {
+        sync.sendRefresh()
+    }
+    
+    func sendRefreshWithRetry() {
+        refreshRetryCount = 0
+        didReceiveLists = false
+        attemptRefresh()
+    }
+    
+    private func attemptRefresh() {
+        sendRefresh()
+        refreshRetryCount += 1
+        refreshRetryTimer?.invalidate()
+        refreshRetryTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+            if self.lists.isEmpty && !self.didReceiveLists && self.refreshRetryCount < self.maxRefreshRetries {
+                self.attemptRefresh()
+            }
+        }
     }
     
     func delete(at indexSet: IndexSet) {
@@ -56,6 +80,8 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
                 }
             }
             self.sortLists()
+            self.didReceiveLists = true
+            self.refreshRetryTimer?.invalidate()
         }
     }
     
@@ -68,13 +94,17 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         }
     }
     
-    func watchSyncSentWakeup(_ watchSync: WatchSync) {
-        self.syncToWatch()
+    func watchSyncSentRefresh(_ watchSync: WatchSync) {
+        self.sendRefreshWithRetry()
     }
     
     func watchSyncActivated(_ watchSync: WatchSync) {
 #if os(iOS)
         self.syncToWatch()
+#else
+        if self.lists.isEmpty {
+            self.sendRefreshWithRetry()
+        }
 #endif
     }
 

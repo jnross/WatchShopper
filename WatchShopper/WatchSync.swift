@@ -13,21 +13,21 @@ protocol WatchSyncDelegate {
     func watchSync(_ watchSync: WatchSync, updated list: Checklist)
     func watchSync(_ watchSync: WatchSync, updated lists: [Checklist])
     func watchSync(_ watchSync: WatchSync, deleteListWithId id: String)
-    func watchSyncSentWakeup(_ watchSync: WatchSync)
+    func watchSyncSentRefresh(_ watchSync: WatchSync)
     func watchSyncActivated(_ watchSync: WatchSync)
 }
 
-enum WatchSyncMessage : Codable, CustomStringConvertible {
-    case wakeup
+enum WatchSyncMessage: Codable, CustomStringConvertible {
+    case refresh
     case listUpdate(Checklist)
     case lists([Checklist])
     case updateLists([Checklist])
     case deleteList(String)
 
     var description: String {
-        switch(self) {
-        case .wakeup:
-            return "wakeup"
+        switch self {
+        case .refresh:
+            return "refresh"
         case .listUpdate:
             return "listUpdate"
         case .lists:
@@ -40,9 +40,9 @@ enum WatchSyncMessage : Codable, CustomStringConvertible {
     }
 
     var verboseDescription: String {
-        switch(self) {
-        case .wakeup:
-            return "wakeup"
+        switch self {
+        case .refresh:
+            return "refresh"
         case .listUpdate(let list):
             return "listUpdate: \(list)"
         case .lists(let lists):
@@ -82,8 +82,8 @@ class WatchSync: NSObject {
         sendMessage(.lists(lists))
     }
     
-    func sendWakeup() {
-        sendMessage(.wakeup)
+    func sendRefresh() {
+        sendMessage(.refresh)
     }
     
     private func sendMessage(_ message: WatchSyncMessage) {
@@ -162,8 +162,8 @@ extension WatchSync: WCSessionDelegate {
         logger.log("watchOS: rcv message \(message)")
 #endif
         switch message {
-        case .wakeup:
-            delegate?.watchSyncSentWakeup(self)
+        case .refresh:
+            delegate?.watchSyncSentRefresh(self)
         case .listUpdate(let list):
             delegate?.watchSync(self, updated: list)
         case .lists(let lists):

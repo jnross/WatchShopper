@@ -33,7 +33,11 @@ struct ListsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
         .onAppear {
-            listsViewModel.sendWakeup()
+            listsViewModel.sendRefreshWithRetry()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: WKExtension.applicationDidBecomeActiveNotification)) { _ in
+            // Sync when app becomes active (after backgrounding, etc.)
+            listsViewModel.sendRefreshWithRetry()
         }
     }
 }
