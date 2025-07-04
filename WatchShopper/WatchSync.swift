@@ -17,8 +17,29 @@ protocol WatchSyncDelegate {
     func watchSyncActivated(_ watchSync: WatchSync)
 }
 
-enum WatchSyncMessage : Codable, CustomDebugStringConvertible {
-    var debugDescription: String {
+enum WatchSyncMessage : Codable, CustomStringConvertible {
+    case wakeup
+    case listUpdate(Checklist)
+    case lists([Checklist])
+    case updateLists([Checklist])
+    case deleteList(String)
+
+    var description: String {
+        switch(self) {
+        case .wakeup:
+            return "wakeup"
+        case .listUpdate:
+            return "listUpdate"
+        case .lists:
+            return "lists"
+        case .updateLists:
+            return "updateLists"
+        case .deleteList:
+            return "deleteList"
+        }
+    }
+
+    var verboseDescription: String {
         switch(self) {
         case .wakeup:
             return "wakeup"
@@ -28,21 +49,17 @@ enum WatchSyncMessage : Codable, CustomDebugStringConvertible {
             return "lists: \(lists)"
         case .updateLists(let lists):
             return "updateLists: \(lists)"
-        case .deleteList(let listId):
-            return "deleteList: \(listId)"
+        case .deleteList(let id):
+            return "deleteList: \(id)"
         }
     }
     
-    case wakeup
-    case listUpdate(Checklist)
-    case lists([Checklist])
-    case updateLists([Checklist])
-    case deleteList(String)
 }
 
 class WatchSync: NSObject {
     let session: WCSession
     var delegate: WatchSyncDelegate? = nil
+    let logger = Logger(tag: "WatchSync")
     
     override init() {
         // Initialize variables before calling `super.init()`
@@ -53,7 +70,7 @@ class WatchSync: NSObject {
         // Set things up after calling `super.init()`
         session.delegate = self
         
-        NSLog("About to activate WCSession")
+        logger.log("About to activate WCSession")
         session.activate()
     }
     
@@ -70,19 +87,24 @@ class WatchSync: NSObject {
     }
     
     private func sendMessage(_ message: WatchSyncMessage) {
+#if os(iOS)
+        logger.log("iOS: send message \(message)")
+#else
+        logger.log("watchOS: send message \(message)")
+#endif
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
             let json = try encoder.encode(message)
-            NSLog("About to send message \(json) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
+            logger.log("About to send message \(json) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
             session.sendMessageData(json, replyHandler: {reply in
-                NSLog("Got reply: \(reply)")
+                self.logger.log("Got reply: \(reply)")
             }) { error in
-                NSLog("Failed to send message: \(error)")
+                self.logger.log("Failed to send message: \(error)")
             }
         } catch {
-            NSLog("Failed to serialize serialize and send message: \(message), error: \(error)")
+            logger.log("Failed to serialize serialize and send message: \(message), error: \(error)")
         }
     }
     
@@ -92,28 +114,28 @@ extension WatchSync: WCSessionDelegate {
     
 #if os(iOS)
     func sessionDidBecomeInactive(_ session: WCSession) {
-        NSLog("\(#function) \(#file):\(#line)")
+        logger.log("\(#function) \(#file):\(#line)")
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        NSLog("\(#function) \(#file):\(#line)")
+        logger.log("\(#function) \(#file):\(#line)")
     }
     
     func sessionWatchStateDidChange(_ session: WCSession) {
-        NSLog("\(#function) \(#file):\(#line) state: \(session.isPaired) \(session.isReachable) \(session.isWatchAppInstalled)")
+        logger.log("\(#function) \(#file):\(#line) state: \(session.isPaired) \(session.isReachable) \(session.isWatchAppInstalled)")
     }
 #endif
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        NSLog("\(#function) \(#file):\(#line)")
+        logger.log("\(#function) \(#file):\(#line)")
         if activationState == .activated {
-            NSLog("WCSession was activated! error: \(error ??? "nil")")
+            logger.log("WCSession was activated! error: \(error ??? "nil")")
             delegate?.watchSyncActivated(self)
         }
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
-        NSLog("\(#function) \(#file):\(#line) reachability: \(session.isReachable)")
+        logger.log("\(#function) \(#file):\(#line) reachability: \(session.isReachable)")
     }
     
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
@@ -124,7 +146,7 @@ extension WatchSync: WCSessionDelegate {
             handleMessage(message)
             
         } catch {
-            NSLog("Failed to deserialize message \(messageData)")
+            logger.log("Failed to deserialize message \(messageData)")
         }
     }
     
@@ -134,6 +156,11 @@ extension WatchSync: WCSessionDelegate {
     }
     
     private func handleMessage(_ message: WatchSyncMessage) {
+#if os(iOS)
+        logger.log("iOS: rcv message \(message)")
+#else
+        logger.log("watchOS: rcv message \(message)")
+#endif
         switch message {
         case .wakeup:
             delegate?.watchSyncSentWakeup(self)
@@ -161,7 +188,7 @@ extension WatchSync: WCSessionDelegate {
                 let checklist = try decoder.decode(Checklist.self, from: data)
                 lists.append(checklist)
             } catch {
-                NSLog("Failed to deserialize list at key \(key)")
+                logger.log("Failed to deserialize list at key \(key)")
             }
         }
         delegate?.watchSync(self, updated: lists)
@@ -184,7 +211,7 @@ extension WatchSync: WCSessionDelegate {
                 let checklist = try decoder.decode(Checklist.self, from: data)
                 lists.append(checklist)
             } catch {
-                NSLog("Failed to deserialize list at key \(key)")
+                logger.log("Failed to deserialize list at key \(key)")
             }
         }
         delegate?.watchSync(self, updated: lists)

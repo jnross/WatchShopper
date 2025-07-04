@@ -65,6 +65,7 @@ struct CompleteChecklistItem: FetchableRecord, Decodable {
 
 class Persistence {
     private let dbq: DatabaseQueue
+    private let logger = Logger(tag: "Persistence")
     
     init?(dbName: String? = nil) {
         let dbName = dbName ?? "persistence"
@@ -72,11 +73,11 @@ class Persistence {
         do {
             var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             url.appendPathComponent("\(dbName).sqlite")
-            NSLog("DB URL: \(url)")
+            logger.log("DB URL: \(url)")
             dbq = try DatabaseQueue(path: url.path)
             try createMigrator().migrate(dbq)
         } catch {
-            NSLog("Failed to setup database for persistence work: \(error)")
+            logger.log("Failed to setup database for persistence work: \(error)")
             return nil
         }
     }

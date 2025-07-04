@@ -34,6 +34,8 @@
 		D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
 		D8E9B95827529D9300BC3E61 /* ChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B95727529D9300BC3E61 /* ChecklistView.swift */; };
 		D8E9B95D27534FA800BC3E61 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = D8E9B95C27534FA800BC3E61 /* GRDB */; };
+		EEC3CF0A2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
+		EEC3CF0B2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
 		D8E9B95F2754189800BC3E61 /* SwiftUI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */; };
 		D8E9B962275471D500BC3E61 /* PersistingListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */; };
 		D8EBAFAD27133DBC00BB0069 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */; };
@@ -41,6 +43,8 @@
 		D8EBAFB02713421500BB0069 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAF2713421500BB0069 /* Persistence.swift */; };
 		D8EBAFB327134A0D00BB0069 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFB227134A0D00BB0069 /* WatchSync.swift */; };
 		D8EBAFB427134A0D00BB0069 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFB227134A0D00BB0069 /* WatchSync.swift */; };
+		EEC3CF062E16F3DF00F0F40A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3CF052E16F3DF00F0F40A /* Logger.swift */; };
+		EEC3CF072E16F3DF00F0F40A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3CF052E16F3DF00F0F40A /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,7 @@
 		D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
 		D8EBAFAF2713421500BB0069 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D8EBAFB227134A0D00BB0069 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
+		EEC3CF052E16F3DF00F0F40A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8E9B95D27534FA800BC3E61 /* GRDB in Frameworks */,
+				EEC3CF0A2E16F3DF00F0F40A /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC3CF0B2E16F3DF00F0F40A /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,20 +182,21 @@
 		D884C874270F5CCA00E99597 /* WatchShopper */ = {
 			isa = PBXGroup;
 			children = (
+				D884C879270F5CCB00E99597 /* Assets.xcassets */,
+				D8E9B95727529D9300BC3E61 /* ChecklistView.swift */,
 				D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */,
 				D883A33B27100EC60057A7E6 /* ListData.swift */,
 				D883A33827100EA80057A7E6 /* ListDataGenerator.swift */,
 				D884C877270F5CCA00E99597 /* ListsView.swift */,
-				D8E9B95727529D9300BC3E61 /* ChecklistView.swift */,
 				D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */,
+				EEC3CF052E16F3DF00F0F40A /* Logger.swift */,
 				D8EBAFAF2713421500BB0069 /* Persistence.swift */,
-				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
-				D8EBAFB227134A0D00BB0069 /* WatchSync.swift */,
-				D884C879270F5CCB00E99597 /* Assets.xcassets */,
-				D884C87B270F5CCB00E99597 /* Preview Content */,
-				D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */,
 				D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */,
 				D8045868294712AD00DD50AD /* SwiftExtensions.swift */,
+				D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */,
+				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
+				D8EBAFB227134A0D00BB0069 /* WatchSync.swift */,
+				D884C87B270F5CCB00E99597 /* Preview Content */,
 			);
 			path = WatchShopper;
 			sourceTree = "<group>";
@@ -271,6 +279,7 @@
 			name = WatchShopper;
 			packageProductDependencies = (
 				D8E9B95C27534FA800BC3E61 /* GRDB */,
+				EEC3CF092E16F3DF00F0F40A /* Logging */,
 			);
 			productName = WatchShopper;
 			productReference = D884C872270F5CCA00E99597 /* WatchShopper.app */;
@@ -307,6 +316,9 @@
 			dependencies = (
 			);
 			name = "WatchShopper WatchKit App";
+			packageProductDependencies = (
+				EEC3CF092E16F3DF00F0F40A /* Logging */,
+			);
 			productName = "WatchShopper WatchKit App";
 			productReference = D884C896270F5CCB00E99597 /* WatchShopper.app */;
 			productType = "com.apple.product-type.application";
@@ -366,6 +378,7 @@
 			mainGroup = D884C869270F5CCA00E99597;
 			packageReferences = (
 				D8E9B95B27534FA700BC3E61 /* XCRemoteSwiftPackageReference "GRDB" */,
+				EEC3CF082E16F3DF00F0F40A /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = D884C873270F5CCA00E99597 /* Products */;
 			projectDirPath = "";
@@ -429,6 +442,7 @@
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
 				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
 				D8EBAFB02713421500BB0069 /* Persistence.swift in Sources */,
+				EEC3CF062E16F3DF00F0F40A /* Logger.swift in Sources */,
 				D8E9B95F2754189800BC3E61 /* SwiftUI+Extensions.swift in Sources */,
 				D8EBAFB327134A0D00BB0069 /* WatchSync.swift in Sources */,
 				D8EBAFAD27133DBC00BB0069 /* ChecklistViewModel.swift in Sources */,
@@ -456,6 +470,7 @@
 				D884C8E7270F9FEF00E99597 /* ListsViewModel.swift in Sources */,
 				D883A33A27100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D884C8AF270F5CCC00E99597 /* ComplicationController.swift in Sources */,
+				EEC3CF072E16F3DF00F0F40A /* Logger.swift in Sources */,
 				D804586A294713B000DD50AD /* SwiftExtensions.swift in Sources */,
 				D884C8A7270F5CCC00E99597 /* WatchShopperApp.swift in Sources */,
 				D884C8AD270F5CCC00E99597 /* NotificationView.swift in Sources */,
@@ -898,6 +913,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		EEC3CF082E16F3DF00F0F40A /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -905,6 +928,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D8E9B95B27534FA700BC3E61 /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		EEC3CF092E16F3DF00F0F40A /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEC3CF082E16F3DF00F0F40A /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
