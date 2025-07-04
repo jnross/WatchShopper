@@ -86,6 +86,6 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
             lists.append(checklist)
             sortLists()
         }
-        sync.updateLists(lists: lists)
+        self.syncToWatch()
     }
 }
