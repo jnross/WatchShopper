@@ -91,7 +91,8 @@ enum FocusedField: Hashable {
 
 struct ChecklistView_Previews: PreviewProvider {
     static var previews: some View {
-        let listsViewModel = PersistingListsViewModel(lists: generateListData())
+        // Preview uses a no-op delegate
+        let listsViewModel = ListsViewModel(lists: generateListData(), syncBehaviorDelegate: PreviewWatchSyncBehavior())
         let checklistViewModel = ChecklistViewModel(checklist: listsViewModel.lists.first!)
         NavigationView {
             ChecklistView(checklistViewModel: checklistViewModel)

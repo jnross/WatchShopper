@@ -12,7 +12,7 @@ struct ListsView: View {
     @FocusState var focusedField: FocusedField?
     
     let formatter: DateFormatter
-    init(listsViewModel: PersistingListsViewModel) {
+    init(listsViewModel: ListsViewModel) {
         self.listsViewModel = listsViewModel
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -21,7 +21,7 @@ struct ListsView: View {
     }
     
     @ObservedObject
-    var listsViewModel: PersistingListsViewModel
+    var listsViewModel: ListsViewModel
     
     @ObservedObject
     var newChecklistViewModel: ChecklistViewModel
@@ -65,7 +65,7 @@ struct ListsView: View {
 
 struct ListsView_Previews: PreviewProvider {
     static var previews: some View {
-        let listsViewModel = PersistingListsViewModel(lists: generateListData())
+        let listsViewModel = ListsViewModel(lists: generateListData(), syncBehaviorDelegate: PreviewWatchSyncBehavior())
         NavigationView {
             ListsView(listsViewModel: listsViewModel)
         }

@@ -34,10 +34,7 @@
 		D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */; };
 		D8E9B95827529D9300BC3E61 /* ChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B95727529D9300BC3E61 /* ChecklistView.swift */; };
 		D8E9B95D27534FA800BC3E61 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = D8E9B95C27534FA800BC3E61 /* GRDB */; };
-		EEC3CF0A2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
-		EEC3CF0B2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
 		D8E9B95F2754189800BC3E61 /* SwiftUI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */; };
-		D8E9B962275471D500BC3E61 /* PersistingListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */; };
 		D8EBAFAD27133DBC00BB0069 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */; };
 		D8EBAFAE27133DC100BB0069 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */; };
 		D8EBAFB02713421500BB0069 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFAF2713421500BB0069 /* Persistence.swift */; };
@@ -45,6 +42,10 @@
 		D8EBAFB427134A0D00BB0069 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EBAFB227134A0D00BB0069 /* WatchSync.swift */; };
 		EEC3CF062E16F3DF00F0F40A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3CF052E16F3DF00F0F40A /* Logger.swift */; };
 		EEC3CF072E16F3DF00F0F40A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3CF052E16F3DF00F0F40A /* Logger.swift */; };
+		EEC3CF0A2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
+		EEC3CF0B2E16F3DF00F0F40A /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = EEC3CF092E16F3DF00F0F40A /* Logging */; };
+		EECC00012E16F40000F0F40A /* PhoneSyncBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC00002E16F40000F0F40A /* PhoneSyncBehavior.swift */; };
+		EECC00032E16F41000F0F40A /* WatchSyncBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECC00022E16F41000F0F40A /* WatchSyncBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,11 +115,12 @@
 		D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewModel.swift; sourceTree = "<group>"; };
 		D8E9B95727529D9300BC3E61 /* ChecklistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistView.swift; sourceTree = "<group>"; };
 		D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Extensions.swift"; sourceTree = "<group>"; };
-		D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingListsViewModel.swift; sourceTree = "<group>"; };
 		D8EBAFAC27133DBC00BB0069 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
 		D8EBAFAF2713421500BB0069 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D8EBAFB227134A0D00BB0069 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		EEC3CF052E16F3DF00F0F40A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		EECC00002E16F40000F0F40A /* PhoneSyncBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSyncBehavior.swift; sourceTree = "<group>"; };
+		EECC00022E16F41000F0F40A /* WatchSyncBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSyncBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +193,7 @@
 				D884C8E6270F9FEF00E99597 /* ListsViewModel.swift */,
 				EEC3CF052E16F3DF00F0F40A /* Logger.swift */,
 				D8EBAFAF2713421500BB0069 /* Persistence.swift */,
-				D8E9B961275471D500BC3E61 /* PersistingListsViewModel.swift */,
+				EECC00002E16F40000F0F40A /* PhoneSyncBehavior.swift */,
 				D8045868294712AD00DD50AD /* SwiftExtensions.swift */,
 				D8E9B95E2754189800BC3E61 /* SwiftUI+Extensions.swift */,
 				D884C875270F5CCA00E99597 /* WatchShopperApp.swift */,
@@ -230,11 +232,12 @@
 		D884C8A5270F5CCC00E99597 /* WatchShopper WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D884C8A6270F5CCC00E99597 /* WatchShopperApp.swift */,
+				D884C8AE270F5CCC00E99597 /* ComplicationController.swift */,
 				D884C8A8270F5CCC00E99597 /* ListsView.swift */,
 				D884C8AA270F5CCC00E99597 /* NotificationController.swift */,
 				D884C8AC270F5CCC00E99597 /* NotificationView.swift */,
-				D884C8AE270F5CCC00E99597 /* ComplicationController.swift */,
+				EECC00022E16F41000F0F40A /* WatchSyncBehavior.swift */,
+				D884C8A6270F5CCC00E99597 /* WatchShopperApp.swift */,
 				D884C8B0270F5CCC00E99597 /* Assets.xcassets */,
 				D884C8B5270F5CCC00E99597 /* Info.plist */,
 				D884C8B6270F5CCC00E99597 /* PushNotificationPayload.apns */,
@@ -437,11 +440,11 @@
 				D884C878270F5CCA00E99597 /* ListsView.swift in Sources */,
 				D883A33927100EA80057A7E6 /* ListDataGenerator.swift in Sources */,
 				D88817262712B3AB00348652 /* ListsViewModel.swift in Sources */,
-				D8E9B962275471D500BC3E61 /* PersistingListsViewModel.swift in Sources */,
 				D8045869294712AD00DD50AD /* SwiftExtensions.swift in Sources */,
 				D884C876270F5CCA00E99597 /* WatchShopperApp.swift in Sources */,
 				D883A33C27100EC60057A7E6 /* ListData.swift in Sources */,
 				D8EBAFB02713421500BB0069 /* Persistence.swift in Sources */,
+				EECC00012E16F40000F0F40A /* PhoneSyncBehavior.swift in Sources */,
 				EEC3CF062E16F3DF00F0F40A /* Logger.swift in Sources */,
 				D8E9B95F2754189800BC3E61 /* SwiftUI+Extensions.swift in Sources */,
 				D8EBAFB327134A0D00BB0069 /* WatchSync.swift in Sources */,
@@ -472,6 +475,7 @@
 				D884C8AF270F5CCC00E99597 /* ComplicationController.swift in Sources */,
 				EEC3CF072E16F3DF00F0F40A /* Logger.swift in Sources */,
 				D804586A294713B000DD50AD /* SwiftExtensions.swift in Sources */,
+				EECC00032E16F41000F0F40A /* WatchSyncBehavior.swift in Sources */,
 				D884C8A7270F5CCC00E99597 /* WatchShopperApp.swift in Sources */,
 				D884C8AD270F5CCC00E99597 /* NotificationView.swift in Sources */,
 				D883A33D27100EC60057A7E6 /* ListData.swift in Sources */,

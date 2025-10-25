@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct WatchShopperApp: App {
-    var persistence: Persistence = Persistence()!
-    var lists: [Checklist] = []
     var body: some Scene {
         WindowGroup {
-            let listsViewModel = PersistingListsViewModel(persistence: persistence)
+            let persistence = Persistence()!
+            let syncBehavior = PhoneSyncBehavior(persistence: persistence)
+            let listsViewModel = ListsViewModel(lists: persistence.allChecklists(), syncBehaviorDelegate: syncBehavior)
             NavigationView {
                 ListsView(listsViewModel: listsViewModel)
             }

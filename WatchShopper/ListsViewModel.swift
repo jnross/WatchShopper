@@ -7,19 +7,36 @@
 
 import Foundation
 
+/// Delegate protocol for platform-specific watch sync and persistence behavior
+protocol ListsViewModelDelegate {
+    /// Called when a refresh request is received from the counterpart device
+    func didReceiveRefreshRequest(listsViewModel: ListsViewModel, from watchSync: WatchSync)
+
+    /// Called when the WatchConnectivity session becomes activated
+    func didActivate(listsViewModel: ListsViewModel, watchSync: WatchSync)
+
+    /// Called when a list is updated and needs to be persisted
+    func didUpdateList(_ checklist: Checklist, in listsViewModel: ListsViewModel)
+
+    /// Called when a list needs to be deleted from persistent storage
+    func didDeleteList(_ checklist: Checklist, in listsViewModel: ListsViewModel)
+}
+
 class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDelegate {
     @Published var lists: [Checklist]
     private let sync = WatchSync()
     private let logger = Logger(tag: "ListsViewModel")
+    private let syncBehaviorDelegate: ListsViewModelDelegate
 
     // Retry logic
     private var refreshRetryCount = 0
     private let maxRefreshRetries = 3
     private var refreshRetryTimer: Timer?
     private var didReceiveLists = false
-    
-    init(lists: [Checklist]) {
+
+    init(lists: [Checklist], syncBehaviorDelegate: ListsViewModelDelegate) {
         self.lists = lists
+        self.syncBehaviorDelegate = syncBehaviorDelegate
         sync.delegate = self
         sortLists()
         logger.info("ListsViewModel init: starting with \(lists.count) lists")
@@ -29,6 +46,8 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         lists.sort { $0.updated > $1.updated }
     }
     
+    // MARK: - Public methods for delegates
+
     func syncToWatch() {
         let listCount = lists.count
         let syncCount = min(listCount, 20)
@@ -73,7 +92,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
     
     func commitDelete(list: Checklist) {
-        
+        syncBehaviorDelegate.didDeleteList(list, in: self)
     }
 
 //MARK: WatchSyncDelegate
@@ -107,27 +126,13 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         }
     }
     
+    // Platform-specific behavior - delegated to platform-specific implementations
     func watchSyncSentRefresh(_ watchSync: WatchSync) {
-#if os(iOS)
-        // iPhone receives refresh request from watch - send the lists data
-        logger.info("watchSyncSentRefresh: received refresh request, sending lists")
-        self.syncToWatch()
-#else
-        // Watch should not receive refresh messages - only send them
-        // If we receive one, send another refresh request (watchOS)
-        logger.info("watchSyncSentRefresh: unexpectedly received refresh on watch, retrying")
-        self.sendRefreshWithRetry()
-#endif
+        syncBehaviorDelegate.didReceiveRefreshRequest(listsViewModel: self, from: watchSync)
     }
     
     func watchSyncActivated(_ watchSync: WatchSync) {
-#if os(iOS)
-        self.syncToWatch()
-#else
-        if self.lists.isEmpty {
-            self.sendRefreshWithRetry()
-        }
-#endif
+        syncBehaviorDelegate.didActivate(listsViewModel: self, watchSync: watchSync)
     }
 
 //MARK: ChecklistViewModelDelegate
@@ -138,6 +143,15 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
             lists.append(checklist)
             sortLists()
         }
+        syncBehaviorDelegate.didUpdateList(checklist, in: self)
         self.syncToWatch()
     }
+}
+
+// Simple no-op delegate for previews
+class PreviewWatchSyncBehavior: ListsViewModelDelegate {
+    func didReceiveRefreshRequest(listsViewModel: ListsViewModel, from watchSync: WatchSync) {}
+    func didActivate(listsViewModel: ListsViewModel, watchSync: WatchSync) {}
+    func didUpdateList(_ checklist: Checklist, in listsViewModel: ListsViewModel) {}
+    func didDeleteList(_ checklist: Checklist, in listsViewModel: ListsViewModel) {}
 }

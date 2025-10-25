@@ -10,7 +10,10 @@ import SwiftUI
 @main
 struct WatchShopperApp: App {
 
-    @StateObject private var listsViewModel = ListsViewModel(lists: [])
+    @StateObject private var listsViewModel = ListsViewModel(
+        lists: [],
+        syncBehaviorDelegate: WatchSyncBehavior()
+    )
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
