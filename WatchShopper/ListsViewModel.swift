@@ -10,7 +10,8 @@ import Foundation
 class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDelegate {
     @Published var lists: [Checklist]
     private let sync = WatchSync()
-    
+    private let logger = Logger(tag: "ListsViewModel")
+
     // Retry logic
     private var refreshRetryCount = 0
     private let maxRefreshRetries = 3
@@ -21,6 +22,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         self.lists = lists
         sync.delegate = self
         sortLists()
+        logger.info("ListsViewModel init: starting with \(lists.count) lists")
     }
     
     private func sortLists() {
@@ -28,27 +30,36 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
     
     func syncToWatch() {
+        let listCount = lists.count
+        let syncCount = min(listCount, 20)
+        logger.info("syncToWatch: sending \(syncCount) of \(listCount) lists")
         sync.updateLists(lists: Array(lists.prefix(20)))
     }
     
     func sendRefresh() {
+        logger.info("sendRefresh: sending refresh message")
         sync.sendRefresh()
     }
     
     func sendRefreshWithRetry() {
+        logger.info("sendRefreshWithRetry: starting retry sequence")
         refreshRetryCount = 0
         didReceiveLists = false
         attemptRefresh()
     }
-    
+
     private func attemptRefresh() {
+        logger.info("attemptRefresh: attempt #\(refreshRetryCount + 1) of \(maxRefreshRetries)")
         sendRefresh()
         refreshRetryCount += 1
         refreshRetryTimer?.invalidate()
         refreshRetryTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
             guard let self = self else { return }
             if self.lists.isEmpty && !self.didReceiveLists && self.refreshRetryCount < self.maxRefreshRetries {
+                self.logger.info("attemptRefresh: retrying (lists empty: \(self.lists.isEmpty), didReceive: \(self.didReceiveLists))")
                 self.attemptRefresh()
+            } else {
+                self.logger.info("attemptRefresh: stopping retries (lists: \(self.lists.count), didReceive: \(self.didReceiveLists), attempts: \(self.refreshRetryCount))")
             }
         }
     }
@@ -71,6 +82,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
     
     func watchSync(_ watchSync: WatchSync, updated lists: [Checklist]) {
+        logger.info("watchSync: received \(lists.count) lists")
         DispatchQueue.main.async {
             lists.forEach { list in
                 if let index = self.lists.firstIndex(where: { $0.id == list.id }) {
@@ -80,6 +92,7 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
                 }
             }
             self.sortLists()
+            self.logger.info("watchSync: now have \(self.lists.count) total lists")
             self.didReceiveLists = true
             self.refreshRetryTimer?.invalidate()
         }
@@ -95,7 +108,16 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
     }
     
     func watchSyncSentRefresh(_ watchSync: WatchSync) {
+#if os(iOS)
+        // iPhone receives refresh request from watch - send the lists data
+        logger.info("watchSyncSentRefresh: received refresh request, sending lists")
+        self.syncToWatch()
+#else
+        // Watch should not receive refresh messages - only send them
+        // If we receive one, send another refresh request (watchOS)
+        logger.info("watchSyncSentRefresh: unexpectedly received refresh on watch, retrying")
         self.sendRefreshWithRetry()
+#endif
     }
     
     func watchSyncActivated(_ watchSync: WatchSync) {

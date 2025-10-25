@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ListsView: View {
     let formatter: DateFormatter
+    let logger = Logger(tag: "ListsView")
+
     init(listsViewModel: ListsViewModel) {
         self.listsViewModel = listsViewModel
         self.formatter = DateFormatter()
         formatter.dateStyle = .medium
+        logger.info("ListsView init")
     }
-    
+
     @ObservedObject
     var listsViewModel: ListsViewModel
     var body: some View {
@@ -33,10 +36,12 @@ struct ListsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.defaultMinListRowHeight, 10)
         .onAppear {
+            logger.info("ListsView onAppear: lists count = \(listsViewModel.lists.count)")
             listsViewModel.sendRefreshWithRetry()
         }
         .onReceive(NotificationCenter.default.publisher(for: WKExtension.applicationDidBecomeActiveNotification)) { _ in
             // Sync when app becomes active (after backgrounding, etc.)
+            logger.info("ListsView applicationDidBecomeActive: requesting refresh")
             listsViewModel.sendRefreshWithRetry()
         }
     }

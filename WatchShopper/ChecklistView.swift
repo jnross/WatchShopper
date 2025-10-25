@@ -80,9 +80,6 @@ struct ChecklistView: View {
                         focusedField = .newItem
                     }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Image(systemName: "plus").colorMultiply(.clear).tint(.clear)
-            }
         }
         
     }
