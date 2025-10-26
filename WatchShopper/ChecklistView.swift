@@ -15,21 +15,33 @@ struct ChecklistView: View {
     @FocusState var focusedField: FocusedField?
     
     var body: some View {
-        let newItemField = TextField("Add Item", text: $newItemText)
         List {
             Section {
-                newItemField
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .focused($focusedField, equals: .newItem)
-                    .onSubmit {
-                        // If the user hits "Return" with an empty field, they probably just want to hide the keyboard.
-                        if newItemText.isEmpty == false {
-                            checklistViewModel.addItem(newItemText)
-                            newItemText = ""
-                            focusedField = .newItem
+                ZStack(alignment: .topLeading) {
+                    TextEditor(text: $newItemText)
+                        .frame(minHeight: 20, maxHeight: 40)
+                        .focused($focusedField, equals: .newItem)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .onChange(of: newItemText) { newValue in
+                            if newValue.contains("\n") {
+                                let trimmedText = newValue.replacingOccurrences(of: "\n", with: "").trimmingCharacters(in: .whitespaces)
+                                if !trimmedText.isEmpty {
+                                    checklistViewModel.addItem(trimmedText)
+                                } else {
+                                    focusedField = nil
+                                }
+                                newItemText = ""
+                            }
                         }
+                    if newItemText.isEmpty {
+                        Text("Add Item")
+                            .foregroundColor(Color(uiColor: .placeholderText))
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 8)
+                            .allowsHitTesting(false)
                     }
+                }
             }
             Section {
                 ForEach(checklistViewModel.checklist.items) { item in
