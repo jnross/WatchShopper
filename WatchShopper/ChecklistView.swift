@@ -10,10 +10,10 @@ import SwiftUI
 struct ChecklistView: View {
     @ObservedObject
     var checklistViewModel: ChecklistViewModel
-    
+
     @State private var newItemText: String = ""
     @FocusState var focusedField: FocusedField?
-    
+
     var body: some View {
         List {
             Section {
@@ -51,7 +51,6 @@ struct ChecklistView: View {
                         checklistViewModel.toggleChecked(for: item)
                     }) {
                         HStack {
-                            
                             if !item.checked {
                                 image.hidden()
                             } else {
@@ -91,9 +90,11 @@ struct ChecklistView: View {
                         checklistViewModel.setTitle(checklistViewModel.checklist.title)
                         focusedField = .newItem
                     }
+                    // Minimum width needed for cursor to be visible in empty text field
+                    .frame(minWidth: 100)
             }
         }
-        
+
     }
 }
 
