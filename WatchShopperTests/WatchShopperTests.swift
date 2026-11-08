@@ -32,6 +32,28 @@ class WatchShopperTests: XCTestCase {
 
 }
 
+class WatchSyncCodingTests: XCTestCase {
+    func testMessageRoundTripPreservesSubsecondUpdated() throws {
+        let list = Checklist(id: "list-1", title: "Groceries", updated: Date(timeIntervalSince1970: 1_700_000_000.123456), items: [])
+
+        let data = try WatchSync.makeEncoder().encode(WatchSyncMessage.listUpdate(list))
+        let decoded = try WatchSync.makeDecoder().decode(WatchSyncMessage.self, from: data)
+
+        guard case .listUpdate(let decodedList) = decoded else {
+            return XCTFail("Unexpected message: \(decoded)")
+        }
+        XCTAssertEqual(decodedList.updated, list.updated)
+    }
+
+    func testDecodesLegacyISO8601Updated() throws {
+        let json = #"{"id":"list-1","items":[],"title":"Groceries","updated":"2023-11-14T22:13:20Z"}"#
+
+        let decoded = try WatchSync.makeDecoder().decode(Checklist.self, from: Data(json.utf8))
+
+        XCTAssertEqual(decoded.updated, Date(timeIntervalSince1970: 1_700_000_000))
+    }
+}
+
 class RecordingSyncBehavior: ListsViewModelDelegate {
     var updatedLists: [Checklist] = []
 

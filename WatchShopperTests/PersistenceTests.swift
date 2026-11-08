@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import GRDB
 @testable import WatchShopper
 
 class PersistenceTests: XCTestCase {
@@ -149,7 +150,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testSavePreservesUpdated() throws {
-        let updated = Date(timeIntervalSince1970: 1_700_000_000)
+        let updated = Date(timeIntervalSince1970: 1_700_000_000.123456)
         var checklist = persistence.newChecklist(title: "Three Veggies")
         checklist.updated = updated
         checklist.items.append(persistence.item(withTitle: "carrots"))
@@ -157,6 +158,21 @@ class PersistenceTests: XCTestCase {
         persistence.save(checklist)
 
         XCTAssertEqual(persistence.checklist(forId: checklist.id)?.updated, updated)
+    }
+
+    func testLoadsLegacyTextUpdated() throws {
+        let checklist = persistence.newChecklist(title: "Three Veggies")
+        persistence.save(checklist)
+
+        var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        url.appendPathComponent("tests.sqlite")
+        let dbq = try DatabaseQueue(path: url.path)
+        try dbq.write { db in
+            try db.execute(sql: "UPDATE checklist SET updated = '2023-11-14 22:13:20.123' WHERE id = ?", arguments: [checklist.id])
+        }
+
+        let loaded = try XCTUnwrap(persistence.checklist(forId: checklist.id))
+        XCTAssertEqual(loaded.updated.timeIntervalSince1970, 1_700_000_000.123, accuracy: 0.0005)
     }
 
     func testAutocompleteResults() throws {

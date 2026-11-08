@@ -15,7 +15,22 @@ struct ChecklistRecord: FetchableRecord, PersistableRecord, Codable, Identifiabl
     var updated: Date = .now
     
     static let databaseTableName = "checklist"
-    
+
+    // Full precision; the default text format keeps only milliseconds, too coarse for sync ordering.
+    static func databaseDateEncodingStrategy(for column: String) -> DatabaseDateEncodingStrategy {
+        .timeIntervalSinceReferenceDate
+    }
+
+    static func databaseDateDecodingStrategy(for column: String) -> DatabaseDateDecodingStrategy {
+        .custom { dbValue in
+            if let interval = TimeInterval.fromDatabaseValue(dbValue) {
+                return Date(timeIntervalSinceReferenceDate: interval)
+            }
+            // Rows saved before the switch to numeric dates hold "yyyy-MM-dd HH:mm:ss.SSS" text.
+            return Date.fromDatabaseValue(dbValue)
+        }
+    }
+
     static let checkListItems = hasMany(ChecklistItemRecord.self)
     
     var checklistItems: QueryInterfaceRequest<ChecklistItemRecord> {

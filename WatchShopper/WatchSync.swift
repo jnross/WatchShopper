@@ -76,14 +76,26 @@ class WatchSync: NSObject {
     
     static func makeEncoder() -> JSONEncoder {
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
+        // Full-precision numeric dates, so sync can order edits made within the same second.
+        encoder.dateEncodingStrategy = .deferredToDate
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         return encoder
     }
-    
+
     static func makeDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            if let interval = try? container.decode(Double.self) {
+                return Date(timeIntervalSinceReferenceDate: interval)
+            }
+            // Older app versions send whole-second ISO 8601 strings.
+            let string = try container.decode(String.self)
+            guard let date = ISO8601DateFormatter().date(from: string) else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: \(string)")
+            }
+            return date
+        }
         return decoder
     }
     
