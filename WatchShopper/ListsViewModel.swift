@@ -105,8 +105,12 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
         DispatchQueue.main.async {
             lists.forEach { list in
                 if let index = self.lists.firstIndex(where: { $0.id == list.id }) {
+                    // Strictly newer only, so a stale or echoed copy can't revert a local edit.
+                    guard list.updated > self.lists[index].updated else { return }
                     self.lists[index] = list
+                    self.syncBehaviorDelegate.didUpdateList(list, in: self)
                 } else {
+                    // Not persisted: deletes aren't synced, so unknown lists may be ones deleted here.
                     self.lists.append(list)
                 }
             }
@@ -137,9 +141,14 @@ class ListsViewModel: ObservableObject, WatchSyncDelegate, ChecklistViewModelDel
 
 //MARK: ChecklistViewModelDelegate
     func listDidUpdate(_ checklist: Checklist) {
+        var checklist = checklist
         if let index = lists.firstIndex(where: { $0.id == checklist.id }) {
+            // Equality ignores `updated`; skip no-op saves (e.g. on view disappear) so they don't win sync conflicts.
+            guard checklist != lists[index] else { return }
+            checklist.updated = .now
             lists[index] = checklist
         } else {
+            checklist.updated = .now
             lists.append(checklist)
             sortLists()
         }

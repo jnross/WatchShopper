@@ -117,9 +117,8 @@ class Persistence {
     }
     
     func save(_ checklist: Checklist) {
-        var checklistRecord = ChecklistRecord(id: checklist.id, title: checklist.title, updated: checklist.updated)
-        // Should we set `.updated` to `.now` here, or trust the existing value?
-        checklistRecord.updated = .now
+        // Keep the caller's `updated`; sync compares it to decide which device's copy is newer.
+        let checklistRecord = ChecklistRecord(id: checklist.id, title: checklist.title, updated: checklist.updated)
         
         var checklistItemRecords:[ChecklistItemRecord] = []
         for item in checklist.items {

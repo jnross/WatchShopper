@@ -148,6 +148,17 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(checklist, loadedChecklist)
     }
     
+    func testSavePreservesUpdated() throws {
+        let updated = Date(timeIntervalSince1970: 1_700_000_000)
+        var checklist = persistence.newChecklist(title: "Three Veggies")
+        checklist.updated = updated
+        checklist.items.append(persistence.item(withTitle: "carrots"))
+
+        persistence.save(checklist)
+
+        XCTAssertEqual(persistence.checklist(forId: checklist.id)?.updated, updated)
+    }
+
     func testAutocompleteResults() throws {
         var checklist = persistence.newChecklist(title: "Spag Sauce")
     
