@@ -74,6 +74,19 @@ class WatchSync: NSObject {
         session.activate()
     }
     
+    static func makeEncoder() -> JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        return encoder
+    }
+    
+    static func makeDecoder() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }
+    
     func updateList(list: Checklist) {
         sendMessage(.listUpdate(list))
     }
@@ -93,10 +106,7 @@ class WatchSync: NSObject {
         logger.log("watchOS: send message \(message)")
 #endif
         do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            let json = try encoder.encode(message)
+            let json = try WatchSync.makeEncoder().encode(message)
             logger.log("About to send message \(json) activated: \(session.activationState == .activated) reachable: \(session.isReachable)")
             session.sendMessageData(json, replyHandler: {reply in
                 self.logger.log("Got reply: \(reply)")
@@ -139,10 +149,8 @@ extension WatchSync: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
         do {
-            let message = try decoder.decode(WatchSyncMessage.self, from: messageData)
+            let message = try WatchSync.makeDecoder().decode(WatchSyncMessage.self, from: messageData)
             handleMessage(message)
             
         } catch {
@@ -183,9 +191,7 @@ extension WatchSync: WCSessionDelegate {
                 continue
             }
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let checklist = try decoder.decode(Checklist.self, from: data)
+                let checklist = try WatchSync.makeDecoder().decode(Checklist.self, from: data)
                 lists.append(checklist)
             } catch {
                 logger.log("Failed to deserialize list at key \(key)")
@@ -206,9 +212,7 @@ extension WatchSync: WCSessionDelegate {
                 continue
             }
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let checklist = try decoder.decode(Checklist.self, from: data)
+                let checklist = try WatchSync.makeDecoder().decode(Checklist.self, from: data)
                 lists.append(checklist)
             } catch {
                 logger.log("Failed to deserialize list at key \(key)")
